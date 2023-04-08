@@ -1,29 +1,27 @@
 @extends('layouts.template')
 @section('hero')
     <section id="hero" class="d-flex align-items-center">
-        <div class="container">
-        <div class="row">
-            <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-            <h1>Selamat Datang di
-                Klinik Rawat Inap
-                dr. Suherman</h1>
-            <h2>Melayani dengan Sepenuh Hatip</h2>
-            <div class="d-flex justify-content-center justify-content-lg-start">
-                <a href="#about" class="btn-get-started scrollto">Get Started</a>
-                <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
-            </div>
-            </div>
-            <div class="col-lg-6 order-1 order-lg-2 hero-img d-flex justify-content-center" data-aos="zoom-in" data-aos-delay="200">
-            <img src="{{ asset('') }}frontend/assets/img/logo-1.png" class="img-fluid animated" alt="">
+        <div class="hero-img">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
+                        <h1>Selamat Datang di
+                            Klinik Rawat Inap
+                            dr. Suherman</h1>
+                        <h4 class="fw-light mt-3" style="color:rgb(197, 197, 197)">Melayani dengan Sepenuh Hati</h4>
+                    </div>
+                    <div class="col-lg-6 order-1 order-lg-2 d-flex justify-content-center" data-aos="zoom-in" data-aos-delay="200">
+                        <img src="{{ asset('') }}frontend/assets/img/logo-1.png" class="img-fluid animated" alt="">
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
-
-  </section><!-- End Hero -->
-@endsection
+    </section>
+  @endsection
+  <!-- End Hero -->
 @section('content')
     <!-- ======= Clients Section ======= -->
-        <section id="clients" class="clients section-bg">
+        <section id="clients" class="clients section-bg" style="background-color: #37517e;">
             <div class="container">
 
             <div class="row" data-aos="zoom-in">
@@ -55,95 +53,94 @@
             </div>
 
             </div>
-        </section><!-- End Cliens Section -->
+        </section>
+        <!-- End Cliens Section -->
 
         <!-- ======= About Us Section ======= -->
         <section id="about" class="about">
-            <div class="container" data-aos="fade-up">
-
-            <div class="section-title">
-                <h2>About Us</h2>
-            </div>
-
-            <div class="row content">
-                <div class="col-lg-6">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua.
-                </p>
-                <ul>
-                    <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
-                    <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
-                    <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
-                </ul>
+            <div class="container text-center" data-aos="fade-up">
+                <div class="section-title">
+                    <h2>Tentang Kami</h2>
                 </div>
-                <div class="col-lg-6 pt-4 pt-lg-0">
-                <p>
-                    Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-                <a href="#" class="btn-learn-more">Learn More</a>
+                <div class="row content">
+                    <div class="row justify-content-between">
+                        <div class="col-4 p-5">
+                            <img src="{{ asset('') }}frontend/assets/img/status-alert.png" alt="">
+                            <p class="mt-3 fw-bold">Meraih “Status Paripurna”</p>
+                        </div>
+                        <div class="col-4 p-5">
+                            <img src="{{ asset('') }}frontend/assets/img/hospital-fill.png" alt=""><br>
+                            <p class="mt-3 fw-bold">Fasilitas Kesehatan Tingkat Pertama</p>
+                        </div>
+                        <div class="col-4 p-5">
+                            <img src="{{ asset('') }}frontend/assets/img/Group 2.png" alt=""><br>
+                            <p class="mt-3 fw-bold">14 Februari 2009</p>
+                        </div>
+                        <div class="col-4 p-5">
+                            <img src="{{ asset('') }}frontend/assets/img/status-alert.png" alt=""><br>
+                            <p class="mt-3 fw-bold">Meraih “Status Paripurna”</p>
+                        </div>
+                        <div class="col-4 p-5">
+                            <img src="{{ asset('') }}frontend/assets/img/hospital-fill.png" alt=""><br>
+                            <p class="mt-3 fw-bold">Fasilitas Kesehatan Tingkat Pertama</p>
+                        </div>
+                        <div class="col-4 p-5">
+                            <img src="{{ asset('') }}frontend/assets/img/Group 2.png" alt=""><br>
+                            <p class="mt-3 fw-bold">14 Februari 2009</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
             </div>
         </section><!-- End About Us Section -->
 
         <!-- ======= Why Us Section ======= -->
-        <section id="why-us" class="why-us section-bg">
-            <div class="container-fluid" data-aos="fade-up">
-
-            <div class="row">
-
-                <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
-
-                <div class="content">
-                    <h3>Eum ipsam laborum deleniti <strong>velit pariatur architecto aut nihil</strong></h3>
-                    <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                    </p>
+        <section id="team" class="team section-bg">
+            <div class="container" data-aos="fade-up">
+                <div class="section-title">
+                    <h2>Profil</h2>
                 </div>
-
-                <div class="accordion-list">
-                    <ul>
-                    <li>
-                        <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1"><span>01</span> Non consectetur a erat nam at lectus urna duis? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                        <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
-                        <p>
-                            Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
-                        </p>
+                <div class="row">
+                    <div class="col-lg-5 text-center" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="card border-0 p-3 shadow-sm rounded-3"> 
+                            {{-- style="background:#D9D9D9" --}}
+                            <div class="card-body align-middle mb-4">
+                                <h4>Motto</h4>
+                                <p class="mt-5">Melayani dengan sepenuh hati</p>
+                            </div>
                         </div>
-                    </li>
-
-                    <li>
-                        <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed"><span>02</span> Feugiat scelerisque varius morbi enim nunc? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                        <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
-                        <p>
-                            Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
-                        </p>
+                        <div class="card border-0 p-3 mt-4 shadow-sm rounded-3">
+                            <div class="card-body align-middle mb-4">
+                                <h4>Visi</h4>
+                                <p class="mt-4">Menjadi Klinik Utama yang mengedepankan pelayanan prima dan nilai-nilai keislaman dengan ragam layanan unggulan pada Tahun 2027</p>
+                            </div>
                         </div>
-                    </li>
-
-                    <li>
-                        <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed"><span>03</span> Dolor sit amet consectetur adipiscing elit? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                        <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
-                        <p>
-                            Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
-                        </p>
+                    </div>
+                    <div class="col-lg-7 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="card p-3 border-0 shadow-sm rounded-3">
+                            <div class="card-body">
+                                <h4 class="text-center">Misi</h4>
+                                <ol class="mt-4">
+                                    <li>Meningkatkan status Klinik Pratama menjadi Klinik Utama </li>
+                                    <li class="mt-2">Memberikan pelayanan preventif, kuratif dan rehabilitative yang komprehensif dan berkesinambungan sesuai dengan kompetensi</li>
+                                    <li class="mt-2">Memberikan pelayanan kesehatan bermutu dan mengutamakan keselamatan dan kepuasan pasien</li>
+                                    <li class="mt-2">Menyediakan sarana, prasarana dan peralatan yang bermutu baik & terpercaya</li>
+                                    <li class="mt-2">Menyediakan SDM yang professional, santun dan berakhlak mulia berdasarkan nilai-nilai keislaman</li>
+                                    <li class="mt-2">Memberikan pleayanan unggulan</li>
+                                    <li class="mt-2">Melakukan kerjasama dengan pihak lain yang saling memberikan manfaat</li><br>
+                                </ol>
+                            </div>
                         </div>
-                    </li>
-
-                    </ul>
+                    </div>
+                    {{-- <div class="col-lg-5 mt-4 text-center" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="member align-middle">
+                            <h4>Visi</h4>
+                            <p class="mt-4">Menjadi Klinik Utama yang mengedepankan pelayanan prima dan nilai-nilai keislaman dengan ragam layanan unggulan pada Tahun 2027</p>
+                        </div>
+                    </div> --}}
                 </div>
-
-                </div>
-
-                <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("assets/img/why-us.png");' data-aos="zoom-in" data-aos-delay="150">&nbsp;</div>
             </div>
-
-            </div>
-        </section><!-- End Why Us Section -->
+        </section>
+        <!-- End Why Us Section -->
 
         <!-- ======= Skills Section ======= -->
         <section id="skills" class="skills">
