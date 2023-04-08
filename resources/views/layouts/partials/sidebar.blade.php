@@ -16,14 +16,15 @@
                     <span class="text">Dashboard</span>
                 </a>
             </li>
-            <li class="menu-item has-submenu">
+            <li class="menu-item has-submenu {{ Request::segment(2) == 'master-data' ? 'active' : '' }}">
                 <a class="menu-link" href="page-form-product-1.html">
                     <i class="icon material-icons md-add_box"></i>
                     <span class="text">Master Data</span>
                 </a>
                 <div class="submenu">
-                    <a href="">Data Admin</a>
-                    <a href="">Data Dokter</a>
+                    <a href="{{ route('poli.index') }}">Data Poli</a>
+                    <a href="{{ route('admin.index') }}">Data Admin</a>
+                    <a href="{{ route('dokter.index') }}">Data Dokter</a>
                     <a href="">Data Petugas</a>
 
                 </div>
