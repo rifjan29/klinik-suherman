@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
+use App\Models\Dokter;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -28,6 +30,12 @@ class UserSeeder extends Seeder
             $user->role = $role[$i];
             $user->save();
         }
-
+        $admin = new Admin;
+        $admin->nama_admin = 'administrator';
+        $admin->jabatan = 'direktur';
+        $admin->jenis_kelamin = '1';
+        $admin->alamat = 'Probolinggo';
+        $admin->id_user = 1;
+        $admin->save();
     }
 }

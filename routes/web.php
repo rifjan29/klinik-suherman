@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DokterController;
+use App\Http\Controllers\PoliController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +26,11 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
     Route::prefix('dashboard')->group(function () {
-
+        Route::prefix('master-data')->group(function () {
+            Route::resource('poli', PoliController::class);
+            Route::resource('dokter', DokterController::class);
+            Route::resource('admin', AdminController::class);
+        });
     });
 });
 
