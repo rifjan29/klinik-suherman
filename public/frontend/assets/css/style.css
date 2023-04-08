@@ -389,8 +389,19 @@ h6 {
   background: #37517e;
 }
 
+#hero .hero-img {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/bg.png");
+  height: 850px;
+  width: 100%;
+  margin-top: 125px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
 #hero .container {
-  padding-top: 72px;
+  padding-top: 250px;
 }
 
 #hero h1 {
