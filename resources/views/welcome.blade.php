@@ -101,13 +101,14 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-5 text-center" data-aos="zoom-in" data-aos-delay="300">
-                        <div class="card border-0 p-3 shadow-sm rounded-3" style="background:#D9D9D9">
+                        <div class="card border-0 p-3 shadow-sm rounded-3"> 
+                            {{-- style="background:#D9D9D9" --}}
                             <div class="card-body align-middle mb-4">
                                 <h4>Motto</h4>
                                 <p class="mt-5">Melayani dengan sepenuh hati</p>
                             </div>
                         </div>
-                        <div class="card border-0 p-3 mt-4 shadow-sm rounded-3" style="background:#D9D9D9">
+                        <div class="card border-0 p-3 mt-4 shadow-sm rounded-3">
                             <div class="card-body align-middle mb-4">
                                 <h4>Visi</h4>
                                 <p class="mt-4">Menjadi Klinik Utama yang mengedepankan pelayanan prima dan nilai-nilai keislaman dengan ragam layanan unggulan pada Tahun 2027</p>
@@ -115,7 +116,7 @@
                         </div>
                     </div>
                     <div class="col-lg-7 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
-                        <div class="card p-3 border-0 shadow-sm rounded-3" style="background:#D9D9D9">
+                        <div class="card p-3 border-0 shadow-sm rounded-3">
                             <div class="card-body">
                                 <h4 class="text-center">Misi</h4>
                                 <ol class="mt-4">
