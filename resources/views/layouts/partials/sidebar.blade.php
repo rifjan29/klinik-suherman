@@ -25,12 +25,13 @@
                     <a href="{{ route('poli.index') }}">Data Poli</a>
                     <a href="{{ route('admin.index') }}">Data Admin</a>
                     <a href="{{ route('dokter.index') }}">Data Dokter</a>
-                    <a href="">Data Petugas</a>
+                    <a href="{{ route('petugas.index') }}">Data Petugas</a>
+                    <a href="{{ route('apotek.index') }}">Data Apotek</a>
 
                 </div>
             </li>
-            <li class="menu-item ">
-                <a class="menu-link" href="">
+            <li class="menu-item {{ Request::segment(2) == 'ambulance' ? 'active' : '' }}">
+                <a class="menu-link" href="{{ route('ambulance') }}">
                     <i class="icon material-icons md-airport_shuttle"></i>
                     <span class="text">Data Ambulance</span>
                 </a>
