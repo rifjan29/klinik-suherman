@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AmbulanceController;
+use App\Http\Controllers\ApoterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DokterController;
+use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\PoliController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -30,7 +33,11 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('poli', PoliController::class);
             Route::resource('dokter', DokterController::class);
             Route::resource('admin', AdminController::class);
+            Route::resource('petugas',PetugasController::class);
+            Route::resource('apotek',ApoterController::class);
         });
+
+        Route::get('ambulance',[AmbulanceController::class,'index'])->name('ambulance');
     });
 });
 

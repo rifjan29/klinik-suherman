@@ -65,7 +65,7 @@
                         <span class="icon icon-sm rounded-circle bg-warning-light"><i class="text-warning material-icons md-airplay"></i></span>
                         <div class="text">
                             <h6 class="mb-1 card-title">Data Akun</h6>
-                            <span>$13,456.5</span>
+                            <span>{{ $dataAkun }}</span>
                         </div>
                     </article>
                 </div>
