@@ -95,7 +95,7 @@
         <!-- End About Us Section -->
 
         <!-- ======= Why Us Section ======= -->
-        <section id="team" class="team section-bg">
+        <section id="why-us" class="team section-bg">
             <div class="container" data-aos="fade-up">
                 <div class="section-title">
                     <h2>Profil</h2>
