@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
             'apotek',
             'petugas',
             'dokter',
+            'kasir',
         ];
         for ($i=0; $i < count($role); $i++) {
             $user = new User;

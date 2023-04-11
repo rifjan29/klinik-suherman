@@ -36,8 +36,15 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('petugas',PetugasController::class);
             Route::resource('apotek',ApoterController::class);
         });
+        Route::prefix('ambulance')->group(function () {
+            Route::get('data-ambulance',[AmbulanceController::class,'index'])->name('data-ambulance');
+            Route::get('riwayat-ambulance',[AmbulanceController::class,'riwayat'])->name('riwayat-ambulance');
+            // Route::get('data-saldo',[AmbulanceController::class,'saldo'])->name('data-saldo');
+            // Route::get('data-pemasukan',[AmbulanceController::class,'pemasukan'])->name('data-pemasukan');
+            // Route::get('riwayat-transaksi',[AmbulanceController::class,'transaksi'])->name('riwayat-transaksi');
 
-        Route::get('ambulance',[AmbulanceController::class,'index'])->name('ambulance');
+        });
+
     });
 });
 

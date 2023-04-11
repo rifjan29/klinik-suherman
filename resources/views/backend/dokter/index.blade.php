@@ -38,6 +38,7 @@
                                 <th scope="col">Umur</th>
                                 <th scope="col">Spesialis</th>
                                 <th scope="col">Jam Kerja</th>
+                                <th scope="col">Nominal</th>
                                 <th scope="col">No Telp</th>
                                 <th scope="col">Tanggal</th>
                                 <th scope="col" class="text-start">Action</th>
@@ -61,6 +62,7 @@
                                     <td><b>{{ $age }} Tahun</b></td>
                                     <td><b>{{ $item->spesialis }}</b></td>
                                     <td><b>{{ $item->mulai_dari }} - {{ $item->akhir_dari }}</b></td>
+                                    <td><b>Rp. {{ number_format($item->nominal,2, ",", ".") }}</b></td>
                                     <td><b>{{ $item->no_telp }}</b></td>
                                     <td><b> {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d M Y - H:i:s') }}</b></td>
                                     <td class="text-start">

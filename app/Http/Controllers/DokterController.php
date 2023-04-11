@@ -49,6 +49,7 @@ class DokterController extends Controller
             'alamat' => 'required',
             'username' => 'required',
             'password' => 'required',
+            'nominal' => 'required',
             'foto_dokter' => 'required',
         ]);
         try {
@@ -68,6 +69,7 @@ class DokterController extends Controller
             $dokter->jenis_kelamin = $request->get('jeni_kelamin');
             $dokter->umur = $request->get('tgl_lahir');
             $dokter->alamat = $request->get('alamat');
+            $dokter->nominal = $this->formatNumber($request->get('nominal'));
             $dokter->no_telp = $request->get('telp');
             $dokter->id_user = $user->id;
             if ($request->hasFile('foto_dokter')) {
@@ -87,6 +89,10 @@ class DokterController extends Controller
         } catch (QueryException $e){
             return redirect()->route('dokter.index')->withError('Terjadi kesalahan.');
         }
+    }
+    public function formatNumber($param)
+    {
+        return (int)str_replace('.', '', $param);
     }
     public function pecahjamkerja($param)
     {
@@ -152,6 +158,7 @@ class DokterController extends Controller
             $dokter->jenis_kelamin = $request->get('jeni_kelamin');
             $dokter->umur = $request->get('tgl_lahir');
             $dokter->alamat = $request->get('alamat');
+            $dokter->nominal = $this->formatNumber($request->get('nominal'));
             $dokter->no_telp = $request->get('telp');
             if ($request->hasFile('foto_dokter')) {
                 $photos = $request->file('foto_dokter');
