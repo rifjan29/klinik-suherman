@@ -381,6 +381,14 @@ h6 {
 }
 
 /*--------------------------------------------------------------
+# Login Section
+--------------------------------------------------------------*/
+
+.login {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/bg-LoginRegister.png");
+}
+
+/*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
 #hero {
@@ -851,11 +859,91 @@ section {
 /*--------------------------------------------------------------
 # Services
 --------------------------------------------------------------*/
+#services .bg-image1 {
+  background-image: linear-gradient(rgba(187, 187, 187, 0), rgba(0, 0, 0, 50)), url("../img/rawat-jalan.jpg");
+  height: 310px;
+  width: 100%;
+  /* margin-top: 125px; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  border-radius: 4%;
+}
+
+#services .bg-image2 {
+  background-image: linear-gradient(rgba(187, 187, 187, 0), rgba(0, 0, 0, 50)), url("../img/rawat-inap.jpg");
+  height: 310px;
+  width: 100%;
+  /* margin-top: 125px; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  border-radius: 4%;
+}
+
+#services .bg-image3 {
+  background-image: linear-gradient(rgba(187, 187, 187, 0), rgba(0, 0, 0, 50)), url("../img/penunjang.jpg");
+  height: 310px;
+  width: 100%;
+  /* margin-top: 125px; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  border-radius: 4%;
+}
+
+#services .bg-image4 {
+  background-image: linear-gradient(rgba(187, 187, 187, 0), rgba(0, 0, 0, 50)), url("../img/ugd.jpg");
+  height: 310px;
+  width: 100%;
+  /* margin-top: 125px; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  border-radius: 4%;
+}
+
+#services .bg-image5 {
+  background-image: linear-gradient(rgba(187, 187, 187, 0), rgba(0, 0, 0, 50)), url("../img/ambulance.jpg");
+  height: 310px;
+  width: 100%;
+  /* margin-top: 125px; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  border-radius: 4%;
+}
+
+#services .bg-image6 {
+  background-image: linear-gradient(rgba(187, 187, 187, 0), rgba(0, 0, 0, 50)), url("../img/konsultasi.jpg");
+  height: 310px;
+  width: 100%;
+  /* margin-top: 125px; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  border-radius: 4%;
+}
+
+#services .card-text {
+  text-align: start;
+  width: 100%;
+  margin: 62% 0;
+  position: absolute;
+  z-index: 1;
+}
+
 .services .icon-box {
   box-shadow: 0px 0 25px 0 rgba(0, 0, 0, 0.1);
   padding: 50px 30px;
   transition: all ease-in-out 0.4s;
-  background: #fff;
+  background: #4668a2;
 }
 
 .services .icon-box .icon {
@@ -945,9 +1033,54 @@ section {
   }
 }
 
+
 /*--------------------------------------------------------------
 # Portfolio
 --------------------------------------------------------------*/
+#portfolio .bg-image7 {
+  background-image: linear-gradient(rgba(187, 187, 187, 0), rgba(0, 0, 0, 50)), url("../img/umum.jpg");
+  height: 310px;
+  width: 100%;
+  /* margin-top: 125px; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  border-radius: 4%;
+}
+
+#portfolio .bg-image8 {
+  background-image: linear-gradient(rgba(187, 187, 187, 0), rgba(0, 0, 0, 50)), url("../img/kia.jpg");
+  height: 310px;
+  width: 100%;
+  /* margin-top: 125px; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  border-radius: 4%;
+}
+
+#portfolio .bg-image9 {
+  background-image: linear-gradient(rgba(187, 187, 187, 0), rgba(0, 0, 0, 50)), url("../img/gigi.jpg");
+  height: 310px;
+  width: 100%;
+  /* margin-top: 125px; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  border-radius: 4%;
+}
+
+#portfolio .card-text {
+  text-align: start;
+  width: 100%;
+  margin: 62% 0;
+  position: absolute;
+  z-index: 1;
+}
+
 .portfolio #portfolio-flters {
   list-style: none;
   margin-bottom: 20px;
@@ -1413,6 +1546,10 @@ section {
 /*--------------------------------------------------------------
 # Contact
 --------------------------------------------------------------*/
+#contact ul {
+  list-style-type: none;
+}
+
 .contact .info {
   border-top: 3px solid #47b2e4;
   border-bottom: 3px solid #47b2e4;
