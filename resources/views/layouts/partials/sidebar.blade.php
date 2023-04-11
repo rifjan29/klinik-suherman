@@ -30,12 +30,24 @@
 
                 </div>
             </li>
-            <li class="menu-item {{ Request::segment(2) == 'ambulance' ? 'active' : '' }}">
-                <a class="menu-link" href="{{ route('ambulance') }}">
+            <li class="menu-item has-submenu {{ Request::segment(2) == 'ambulance' ? 'active' : '' }}">
+                <a class="menu-link" href="page-form-product-1.html">
                     <i class="icon material-icons md-airport_shuttle"></i>
-                    <span class="text">Data Ambulance</span>
+                    <span class="text">Data E-Ambulance</span>
                 </a>
+                <div class="submenu">
+                    {{-- role petugas (sopir) --}}
+                    <a href="{{ route('data-ambulance') }}">Data Ambulance</a>
+                    <a href="{{ route('riwayat-ambulance') }}">Riwayat Pemesanan </a>
+                    {{-- role kasir --}}
+                    {{-- <a href="{{ route('data-saldo') }}">Data Saldo</a>
+                    <a href="{{ route('data-pemasukan') }}">Data Pemasukan </a>
+                    <a href="{{ route('riwayat-transaksi') }}">Riwayat Transaksi</a> --}}
+
+                </div>
             </li>
+
+
             <li class="menu-item ">
                 <a class="menu-link" href="">
                     <i class="icon material-icons md-add_alert"></i>

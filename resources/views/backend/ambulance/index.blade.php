@@ -18,7 +18,7 @@
     @section('content')
     <section class="content-main">
         <div class="content-header">
-            <h2 class="content-title">Data {{ ucwords(str_replace('-',' ',Request::segment(2))) }}</h2>
+            <h2 class="content-title">{{ ucwords(str_replace('-',' ',Request::segment(3))) }}</h2>
             {{-- <div>
                 <a href="{{ route('dokter.create') }}" class="btn btn-danger"><i class="text-muted material-icons md-post_add"></i>Tambah Data</a>
             </div> --}}
@@ -31,93 +31,76 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>No Pesanan</th>
-                                <th scope="col">Nama Pemesan</th>
+                                <th>Foto Mobil</th>
+                                <th>No Plat</th>
+                                <th scope="col">Tahun Mobil</th>
                                 <th scope="col">No. Telp</th>
-                                <th scope="col">Alamat</th>
-                                <th scope="col">Tanggal Pesanan</th>
-                                <th scope="col">Alasan</th>
-                                <th>Status Pesanan</th>
-                                <th>Status Pembayaran</th>
+                                <th scope="col">Asal Mobil</th>
+                                <th scope="col">Status Mobil</th>
+                                <th>Tanggal</th>
                                 <th scope="col" class="text-start">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>1</td>
-                                <td>AM-001</td>
-                                <td>Sofyan</td>
+                                <th>
+                                    <div class="input-upload">
+                                        <img src="{{ asset('backend/assets/imgs/theme/upload.svg') }}" alt="">
+                                    </div>
+                                </th>
+                                <td>P001 KY</td>
+                                <td>2001</td>
                                 <td>081215</td>
-                                <td>Perumnas Citarum No. 25</td>
+                                <td>Milik Pribadi</td>
+                                <td> <span class="badge rounded-pill alert-success">Tersedia</span></td>
                                 <td>12-May-2020 12:0:20</td>
-                                <td><a href="" class="badge rounded-pill alert-info">Alasan Pesanan</a></td>
-                                <td>
-                                    <span class="badge rounded-pill alert-success">Telah Sampai di lokasi</span>
-                                </td>
-                                <td>
-                                    <span class="badge rounded-pill alert-success">Diterima</span>
-                                </td>
-                                <td>
-                                    <a href="" class="btn btn-sm font-sm rounded btn-brand"> <i class="material-icons md-edit"></i> Detail Pesanan </a>
-                                    <div class="dropdown">
-                                        <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i class="material-icons md-more_horiz"></i> </a>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#">Cek Pembayaran</a>
-                                            <a class="dropdown-item" href="#">Ganti Status Pesanan</a>
+                                <td class="text-start">
+                                    <div class="d-flex justify-content-start">
+                                        <div>
+                                            <a href="" class="btn btn-sm font-sm rounded btn-brand"> <i class="material-icons md-edit"></i> Edit </a>
+                                        </div>
+                                        <div class="mx-2">
+                                            <form action="" class="p-0 m-0" method="POST" onsubmit="return confirm('Move data to trash? ')">
+                                                @method('delete')
+                                                @csrf
+                                                <button  class="btn btn-sm font-sm btn-light rounded"> <i class="material-icons md-delete_forever"></i> Delete </button>
+                                            </form>
                                         </div>
                                     </div>
+                                    <!-- dropdown //end -->
                                 </td>
                             </tr>
                             <tr>
-                                <td>2</td>
-                                <td>AM-002</td>
-                                <td>Sofyan Muhammad</td>
-                                <td>081215</td>
-                                <td>Perumnas Badean No. 20</td>
-                                <td>13-May-2020 12:0:20</td>
-                                <td><a href="" class="badge rounded-pill alert-info">Alasan Pesanan</a></td>
-                                <td>
-                                    <span class="badge rounded-pill alert-warning">Dalam Antrian</span>
-                                </td>
-                                <td>
-                                    <span class="badge rounded-pill alert-warning">Pending</span>
-                                </td>
-                                <td>
-                                    <a href="" class="btn btn-sm font-sm rounded btn-brand"> <i class="material-icons md-edit"></i> Detail Pesanan </a>
-                                    <div class="dropdown">
-                                        <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i class="material-icons md-more_horiz"></i> </a>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#">Cek Pembayaran</a>
-                                            <a class="dropdown-item" href="#">Ganti Status Pesanan</a>
-                                        </div>
+                                <td>1</td>
+                                <th>
+                                    <div class="input-upload">
+                                        <img src="{{ asset('backend/assets/imgs/theme/upload.svg') }}" alt="">
                                     </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>AM-003</td>
-                                <td>Sofyan Saori</td>
+                                </th>
+                                <td>P001 KY</td>
+                                <td>2001</td>
                                 <td>081215</td>
-                                <td>Perumnas Mastrip No. 20 </td>
+                                <td>Milik Pribadi</td>
+                                <td> <span class="badge rounded-pill alert-warning">Dipesan</span></td>
                                 <td>12-May-2020 12:0:20</td>
-                                <td><a href="" class="badge rounded-pill alert-info">Alasan Pesanan</a></td>
-                                <td>
-                                    <span class="badge rounded-pill alert-warning">Pending</span>
-                                </td>
-                                <td>
-                                    <span class="badge rounded-pill alert-danger">Ditolak</span>
-                                </td>
-                                <td>
-                                    <a href="" class="btn btn-sm font-sm rounded btn-brand"> <i class="material-icons md-edit"></i> Detail Pesanan </a>
-                                    <div class="dropdown">
-                                        <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i class="material-icons md-more_horiz"></i> </a>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#">Cek Pembayaran</a>
-                                            <a class="dropdown-item" href="#">Ganti Status Pesanan</a>
+                                <td class="text-start">
+                                    <div class="d-flex justify-content-start">
+                                        <div>
+                                            <a href="" class="btn btn-sm font-sm rounded btn-brand"> <i class="material-icons md-edit"></i> Edit </a>
+                                        </div>
+                                        <div class="mx-2">
+                                            <form action="" class="p-0 m-0" method="POST" onsubmit="return confirm('Move data to trash? ')">
+                                                @method('delete')
+                                                @csrf
+                                                <button  class="btn btn-sm font-sm btn-light rounded"> <i class="material-icons md-delete_forever"></i> Delete </button>
+                                            </form>
                                         </div>
                                     </div>
+                                    <!-- dropdown //end -->
                                 </td>
                             </tr>
+
 
                         </tbody>
                     </table>

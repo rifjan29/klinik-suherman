@@ -10,4 +10,25 @@ class AmbulanceController extends Controller
     {
         return view('backend.ambulance.index');
     }
+
+    public function riwayat()
+    {
+        return view('backend.ambulance.riwayat-ambulance');
+
+    }
+
+    public function saldo()
+    {
+        return view('backend.ambulance.data-saldo');
+    }
+
+    public function pemasukan()
+    {
+        return view('backend.ambulance.data-pemasukan');
+    }
+
+    public function transaksi()
+    {
+        return view('backend.ambulance.riwayat-transaksi');
+    }
 }
