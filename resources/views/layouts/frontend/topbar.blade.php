@@ -24,21 +24,12 @@
           <li><a class="nav-link scrollto" href="#why-us">Profil</a></li>
           <li class="dropdown"><a href="#services"><span>Pelayanan</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Rawat Jalan</a></li>
-              {{-- <li class="dropdown"><a href="#"><span></span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li> --}}
-              <li><a href="#">Rawat Inap</a></li>
-              <li><a href="#">Penunjang</a></li>
-              <li><a href="#">UGD</a></li>
-              <li><a href="#">E-Ambulance</a></li>
-              <li><a href="#">E-Konsultasi</a></li>
+              <li><a href="{{ route('rawat-jalan') }}">Rawat Jalan</a></li>
+              <li><a href="{{ route('rawat-inap') }}">Rawat Inap</a></li>
+              <li><a href="{{ route('penunjang') }}">Penunjang</a></li>
+              <li><a href="{{ route('ugd') }}">UGD</a></li>
+              <li><a href="{{ route('e-ambulance') }}">E-Ambulance</a></li>
+              <li><a href="{{ route('e-konsultasi') }}">E-Konsultasi</a></li>
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="#portfolio">Dokter</a></li>
