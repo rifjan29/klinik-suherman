@@ -151,7 +151,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4 text-center pelayanan">
-                        <a href="">
+                        <a href="{{ route('rawat-jalan') }}">
                             <div class="bg-image1">
                                 <div class="text-start mx-4 fw-bold fs-5" style="color: rgb(247, 247, 247)">
                                     <p class="card-text">Rawat Jalan</p>
@@ -160,7 +160,7 @@
                         </a>
                     </div>
                     <div class="col-md-4 text-center pelayanan">
-                        <a href="">
+                        <a href="{{ route('rawat-inap') }}">
                             <div class="bg-image2">
                                 <div class="text-start mx-4 fw-bold fs-5" style="color: rgb(247, 247, 247)">
                                     <p class="card-text">Rawat Inap</p>
@@ -169,7 +169,7 @@
                         </a>
                     </div>
                     <div class="col-md-4 text-center pelayanan">
-                        <a href="">
+                        <a href="{{ route('penunjang') }}">
                             <div class="bg-image3">
                                 <div class="text-start mx-4 fw-bold fs-5" style="color: rgb(247, 247, 247)">
                                     <p class="card-text">Penunjang</p>
@@ -178,7 +178,7 @@
                         </a>
                     </div>
                     <div class="col-md-4 mt-4 text-center pelayanan">
-                        <a href="">
+                        <a href="{{ route('ugd') }}">
                             <div class="bg-image4">
                                 <div class="text-start mx-4 fw-bold fs-5" style="color: rgb(247, 247, 247)">
                                     <p class="card-text">UGD</p>
@@ -187,7 +187,7 @@
                         </a>
                     </div>
                     <div class="col-md-4 mt-4 text-center pelayanan">
-                        <a href="">
+                        <a href="{{ route('e-ambulance') }}">
                             <div class="bg-image5">
                                 <div class="text-start mx-4 fw-bold fs-5" style="color: rgb(247, 247, 247)">
                                     <p class="card-text">E-Ambulance</p>
@@ -196,7 +196,7 @@
                         </a>
                     </div>
                     <div class="col-md-4 mt-4 text-center pelayanan">
-                        <a href="">
+                        <a href="{{ route('e-konsultasi') }}">
                             <div class="bg-image6">
                                 <div class="text-start mx-4 fw-bold fs-5" style="color: rgb(247, 247, 247)">
                                     <p class="card-text">E-Konsultasi</p>
