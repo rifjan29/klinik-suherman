@@ -514,6 +514,9 @@
                             <textarea class="form-control shadow" id="exampleFormControlTextarea1" rows="9" cols="100" placeholder="Isikan Kotak dan Saran Anda"></textarea>
                         </div>
                     </div>
+                    <div class="d-flex justify-content-end p-1 mt-5">
+                        <button type="button" class="btn btn-lg btn-primary text-center" style="background-color: #37517E; border:0; border-radius:20px"><span class="p-4" style="font-size: 16px">Submit</span></button>
+                    </div>
                 </div>
             </div>
         </section>
