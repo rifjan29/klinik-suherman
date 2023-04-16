@@ -45,9 +45,7 @@
   @yield('hero')
 
   <main id="main">
-
-    @yield('content')
-
+      @yield('content')
   </main><!-- End #main -->
 
   @include('layouts.frontend.footer')
