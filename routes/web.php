@@ -6,6 +6,7 @@ use App\Http\Controllers\ApoterController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataMobilAmbulanceController;
+use App\Http\Controllers\DataProfileController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\KasirController;
 use App\Http\Controllers\PetugasController;
@@ -31,6 +32,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
+    Route::get('profile-user/{id}',[DataProfileController::class,'index'])->name('profile-user');
     Route::prefix('dashboard')->group(function () {
         Route::prefix('master-data')->group(function () {
             Route::resource('poli', PoliController::class);

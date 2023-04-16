@@ -21,7 +21,8 @@
             <!-- Button trigger modal -->
             <div>
                 <h2 class="content-title card-title">Dashboard</h2>
-                <p>Selamat di aplikasi Klinik Rawat Inap DR. SUHERMAN</p>
+                <p>Selamat Datang  {{ auth()->user()->name }}, di aplikasi Klinik Rawat Inap DR. SUHERMAN</p>
+
             </div>
 
         </div>
