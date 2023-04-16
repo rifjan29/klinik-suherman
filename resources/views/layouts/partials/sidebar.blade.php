@@ -29,6 +29,7 @@
                     <a href="{{ route('apotek.index') }}"> Apotek</a>
                     <a href="{{ route('ambulance.index') }}"> Ambulance</a>
                     <a href="{{ route('kasir.index') }}"> Kasir</a>
+                    <a href="{{ route('bank.index') }}"> Bank</a>
 
                 </div>
             </li>
