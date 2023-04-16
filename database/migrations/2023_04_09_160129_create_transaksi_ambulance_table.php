@@ -17,9 +17,12 @@ return new class extends Migration
             $table->foreignId('id_ambulance')->constrained('ambulance')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('id_pasien')->constrained('pasien_ambulance')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('id_petugas')->nullable()->constrained('petugas')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->string('foto_kejadian')->nullable();
-            $table->enum('status_pembayaran',['lunas','pending'])->default('pending');
-            $table->enum('status_kendaraan',['0','1','2'])->default('0')->comment('0 : dalam perjalanan 1 : tiba dilokasi 2 : proses pengecekan');
+
+            $table->enum('status_kejadian',['0','1'])->nullable()->comment('0 = darurat 1 = tidak darurat');
+            $table->string('ket_kasir')->nullable();
+            $table->string('nominal')->nullable();
+            $table->enum('status_pembayaran',['lunas','pending','ditolak'])->default('pending');
+            $table->enum('status_kendaraan',['0','1','2'])->default('0')->comment('0 : proses pengecekan 1 : dalam perjalanan 2 : tiba dilokasi');
             $table->date('tanggal')->nullable();
             $table->date('tanggal_jemput')->nullable();
             $table->timestamps();

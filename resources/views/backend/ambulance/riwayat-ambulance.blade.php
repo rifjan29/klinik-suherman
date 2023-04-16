@@ -32,42 +32,87 @@
                             <tr>
                                 <th>No</th>
                                 <th>No Pesanan</th>
-                                <th scope="col">Nama Pemesan</th>
+                                <th scope="col">Nama Wali</th>
                                 <th scope="col">No. Telp</th>
                                 <th scope="col">Alamat</th>
                                 <th scope="col">Tanggal Pesanan</th>
                                 <th scope="col">Alasan</th>
+                                <th>Status Kejadian</th>
                                 <th>Status Pesanan</th>
                                 <th>Status Pembayaran</th>
                                 <th scope="col" class="text-start">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>AM-001</td>
-                                <td>Sofyan</td>
-                                <td>081215</td>
-                                <td>Perumnas Citarum No. 25</td>
-                                <td>12-May-2020 12:0:20</td>
-                                <td><a href="" class="badge rounded-pill alert-info">Alasan Pesanan</a></td>
-                                <td>
-                                    <span class="badge rounded-pill alert-success">Telah Sampai di lokasi</span>
-                                </td>
-                                <td>
-                                    <span class="badge rounded-pill alert-success">Diterima</span>
-                                </td>
-                                <td>
-                                    <a href="" class="btn btn-sm font-sm rounded btn-brand"> <i class="material-icons md-edit"></i> Detail Pesanan </a>
-                                    <div class="dropdown">
-                                        <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i class="material-icons md-more_horiz"></i> </a>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#">Cek Pembayaran</a>
-                                            <a class="dropdown-item" href="#">Ganti Status Pesanan</a>
+                            @foreach ($data as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->kode_pesanan }}</td>
+                                    <td>{{ $item->pasien_ambulance->nama_wali }}</td>
+                                    <td>{{ $item->pasien_ambulance->no_hp }}</td>
+                                    <td>{{ $item->pasien_ambulance->lokasi_tujuan }}</td>
+                                    <td>{{ $item->pasien_ambulance->tanggal }}</td>
+                                    <td><a href="{{ $item->pasien_ambulance->id }}" class="badge rounded-pill alert-info">Alasan Pesanan</a></td>
+                                    <td>
+                                        @if ($item->status_kejadian == '0')
+                                            <span class="badge rounded-pill alert-warning">Tidak Darurat</span>
+                                        @elseif ($item->status_kejadian == '1')
+                                            <span class="badge rounded-pill alert-warning">Darurat</span>
+                                        @else
+                                            <a href="{{ $item->pasien_ambulance->id }}" data-bs-toggle="modal" data-bs-target="#cekstatus{{ $item->pasien_ambulance->id }}" class="badge rounded-pill alert-info">Cek Status Kejadian</a></td>
+                                            <div class="modal fade" id="cekstatus{{ $item->pasien_ambulance->id }}" tabindex="-1" aria-labelledby="cekstatus{{ $item->pasien_ambulance->id }}Label" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                  <div class="modal-content">
+                                                    <div class="modal-header">
+                                                      <h5 class="modal-title" id="exampleModalLabel">Modal Keluar</h5>
+                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <a class="btn btn-primary" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">Logout</a>
+                                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                                @csrf
+                                                            </form>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($item->status_kendaraan == '1')
+                                            <span class="badge rounded-pill alert-warning">Dalam Perjalanan</span>
+                                        @elseif ($item->status_kendaraan == '2')
+                                            <span class="badge rounded-pill alert-info">Tiba di klinik</span>
+                                        @else
+                                            <span class="badge rounded-pill alert-warning">Proses Pengecekan</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($item->status_kendaraan == 'pending')
+                                            <span class="badge rounded-pill alert-warning">Pending</span>
+                                        @elseif ($item->status_kendaraan == 'lunas')
+                                            <span class="badge rounded-pill alert-info">Lunas</span>
+                                        @else
+                                            <span class="badge rounded-pill alert-danger">Ditolak</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="" class="btn btn-sm font-sm rounded btn-brand"> <i class="material-icons md-edit"></i> Detail Pesanan </a>
+                                        <div class="dropdown">
+                                            <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i class="material-icons md-more_horiz"></i> </a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="#">Cek Pembayaran</a>
+                                                <a class="dropdown-item" href="#">Ganti Status Pesanan</a>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                            @endforeach
 
 
                         </tbody>

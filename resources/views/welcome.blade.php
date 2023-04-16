@@ -102,7 +102,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-5 text-center" data-aos="zoom-in" data-aos-delay="300">
-                        <div class="card border-0 p-3 shadow rounded-3"> 
+                        <div class="card border-0 p-3 shadow rounded-3">
                             {{-- style="background:#D9D9D9" --}}
                             <div class="card-body align-middle mb-4">
                                 <h4>Motto</h4>
@@ -116,7 +116,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-7 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="col-lg-7 d-flex align-items-stretch section__misi" data-aos="zoom-in" data-aos-delay="300">
                         <div class="card p-3 border-0 shadow rounded-3">
                             <div class="card-body">
                                 <h4 class="text-center">Misi</h4>
@@ -279,7 +279,7 @@
                                 <div class="col-3 p-5">
                                     <a href="">
                                         <div class="card border border-0 rounded-4 shadow p-3" style="width:125px; height:135px">
-                                            <img src="{{ asset('') }}frontend/assets/img/emoji1.png" 
+                                            <img src="{{ asset('') }}frontend/assets/img/emoji1.png"
                                             class="rounded mx-auto d-block mt-2" alt="GFG" style="width: 50px; height:50px">
                                             <p class="mt-3" style="color:black; font-size:12px">Sangat tidak puas</p>
                                         </div>
@@ -288,7 +288,7 @@
                                 <div class="col-3 p-5">
                                     <a href="">
                                         <div class="card border border-0 rounded-4 shadow p-3" style="width:125px; height:135px">
-                                            <img src="{{ asset('') }}frontend/assets/img/emoji2.png" 
+                                            <img src="{{ asset('') }}frontend/assets/img/emoji2.png"
                                             class="rounded mx-auto d-block mt-2" alt="GFG" style="width: 50px; height:50px">
                                             <p class="mt-3" style="color:black; font-size:12px">Tidak puas</p>
                                         </div>
@@ -297,7 +297,7 @@
                                 <div class="col-3 p-5">
                                     <a href="">
                                         <div class="card border border-0 rounded-4 shadow p-3" style="width:125px; height:135px">
-                                            <img src="{{ asset('') }}frontend/assets/img/emoji3.png" 
+                                            <img src="{{ asset('') }}frontend/assets/img/emoji3.png"
                                             class="rounded mx-auto d-block mt-2" alt="GFG" style="width: 50px; height:50px">
                                             <p class="mt-3" style="color:black; font-size:12px">Puas</p>
                                         </div>
@@ -306,7 +306,7 @@
                                 <div class="col-3 p-5">
                                     <a href="">
                                         <div class="card border border-0 rounded-4 shadow p-3" style="width:125px; height:135px">
-                                            <img src="{{ asset('') }}frontend/assets/img/emoji4.png" 
+                                            <img src="{{ asset('') }}frontend/assets/img/emoji4.png"
                                             class="rounded mx-auto d-block mt-2" alt="GFG" style="width: 50px; height:50px">
                                             <p class="mt-3" style="color:black; font-size:12px">Sangat puas</p>
                                         </div>
@@ -322,7 +322,7 @@
                                 <div class="col-3 p-5">
                                     <a href="">
                                         <div class="card border border-0 rounded-4 shadow p-3" style="width:125px; height:135px">
-                                            <img src="{{ asset('') }}frontend/assets/img/emoji1.png" 
+                                            <img src="{{ asset('') }}frontend/assets/img/emoji1.png"
                                             class="rounded mx-auto d-block mt-2" alt="GFG" style="width: 50px; height:50px">
                                             <p class="mt-3" style="color:black; font-size:12px">Sangat tidak puas</p>
                                         </div>
@@ -331,7 +331,7 @@
                                 <div class="col-3 p-5">
                                     <a href="">
                                         <div class="card border border-0 rounded-4 shadow p-3" style="width:125px; height:135px">
-                                            <img src="{{ asset('') }}frontend/assets/img/emoji2.png" 
+                                            <img src="{{ asset('') }}frontend/assets/img/emoji2.png"
                                             class="rounded mx-auto d-block mt-2" alt="GFG" style="width: 50px; height:50px">
                                             <p class="mt-3" style="color:black; font-size:12px">Tidak puas</p>
                                         </div>
@@ -340,7 +340,7 @@
                                 <div class="col-3 p-5">
                                     <a href="">
                                         <div class="card border border-0 rounded-4 shadow p-3" style="width:125px; height:135px">
-                                            <img src="{{ asset('') }}frontend/assets/img/emoji3.png" 
+                                            <img src="{{ asset('') }}frontend/assets/img/emoji3.png"
                                             class="rounded mx-auto d-block mt-2" alt="GFG" style="width: 50px; height:50px">
                                             <p class="mt-3" style="color:black; font-size:12px">Puas</p>
                                         </div>
@@ -349,7 +349,7 @@
                                 <div class="col-3 p-5">
                                     <a href="">
                                         <div class="card border border-0 rounded-4 shadow p-3" style="width:125px; height:135px">
-                                            <img src="{{ asset('') }}frontend/assets/img/emoji4.png" 
+                                            <img src="{{ asset('') }}frontend/assets/img/emoji4.png"
                                             class="rounded mx-auto d-block mt-2" alt="GFG" style="width: 50px; height:50px">
                                             <p class="mt-3" style="color:black; font-size:12px">Sangat puas</p>
                                         </div>
@@ -365,7 +365,7 @@
                                 <div class="col-3 p-5">
                                     <a href="">
                                         <div class="card border border-0 rounded-4 shadow p-3" style="width:125px; height:135px">
-                                            <img src="{{ asset('') }}frontend/assets/img/emoji1.png" 
+                                            <img src="{{ asset('') }}frontend/assets/img/emoji1.png"
                                             class="rounded mx-auto d-block mt-2" alt="GFG" style="width: 50px; height:50px">
                                             <p class="mt-3" style="color:black; font-size:12px">Sangat tidak puas</p>
                                         </div>
@@ -374,7 +374,7 @@
                                 <div class="col-3 p-5">
                                     <a href="">
                                         <div class="card border border-0 rounded-4 shadow p-3" style="width:125px; height:135px">
-                                            <img src="{{ asset('') }}frontend/assets/img/emoji2.png" 
+                                            <img src="{{ asset('') }}frontend/assets/img/emoji2.png"
                                             class="rounded mx-auto d-block mt-2" alt="GFG" style="width: 50px; height:50px">
                                             <p class="mt-3" style="color:black; font-size:12px">Tidak puas</p>
                                         </div>
@@ -383,7 +383,7 @@
                                 <div class="col-3 p-5">
                                     <a href="">
                                         <div class="card border border-0 rounded-4 shadow p-3" style="width:125px; height:135px">
-                                            <img src="{{ asset('') }}frontend/assets/img/emoji3.png" 
+                                            <img src="{{ asset('') }}frontend/assets/img/emoji3.png"
                                             class="rounded mx-auto d-block mt-2" alt="GFG" style="width: 50px; height:50px">
                                             <p class="mt-3" style="color:black; font-size:12px">Puas</p>
                                         </div>
@@ -392,7 +392,7 @@
                                 <div class="col-3 p-5">
                                     <a href="">
                                         <div class="card border border-0 rounded-4 shadow p-3" style="width:125px; height:135px">
-                                            <img src="{{ asset('') }}frontend/assets/img/emoji4.png" 
+                                            <img src="{{ asset('') }}frontend/assets/img/emoji4.png"
                                             class="rounded mx-auto d-block mt-2" alt="GFG" style="width: 50px; height:50px">
                                             <p class="mt-3" style="color:black; font-size:12px">Sangat puas</p>
                                         </div>
@@ -408,7 +408,7 @@
                                 <div class="col-3 p-5">
                                     <a href="">
                                         <div class="card border border-0 rounded-4 shadow p-3" style="width:125px; height:135px">
-                                            <img src="{{ asset('') }}frontend/assets/img/emoji1.png" 
+                                            <img src="{{ asset('') }}frontend/assets/img/emoji1.png"
                                             class="rounded mx-auto d-block mt-2" alt="GFG" style="width: 50px; height:50px">
                                             <p class="mt-3" style="color:black; font-size:12px">Sangat tidak puas</p>
                                         </div>
@@ -417,7 +417,7 @@
                                 <div class="col-3 p-5">
                                     <a href="">
                                         <div class="card border border-0 rounded-4 shadow p-3" style="width:125px; height:135px">
-                                            <img src="{{ asset('') }}frontend/assets/img/emoji2.png" 
+                                            <img src="{{ asset('') }}frontend/assets/img/emoji2.png"
                                             class="rounded mx-auto d-block mt-2" alt="GFG" style="width: 50px; height:50px">
                                             <p class="mt-3" style="color:black; font-size:12px">Tidak puas</p>
                                         </div>
@@ -426,7 +426,7 @@
                                 <div class="col-3 p-5">
                                     <a href="">
                                         <div class="card border border-0 rounded-4 shadow p-3" style="width:125px; height:135px">
-                                            <img src="{{ asset('') }}frontend/assets/img/emoji3.png" 
+                                            <img src="{{ asset('') }}frontend/assets/img/emoji3.png"
                                             class="rounded mx-auto d-block mt-2" alt="GFG" style="width: 50px; height:50px">
                                             <p class="mt-3" style="color:black; font-size:12px">Puas</p>
                                         </div>
@@ -435,7 +435,7 @@
                                 <div class="col-3 p-5">
                                     <a href="">
                                         <div class="card border border-0 rounded-4 shadow p-3" style="width:125px; height:135px">
-                                            <img src="{{ asset('') }}frontend/assets/img/emoji4.png" 
+                                            <img src="{{ asset('') }}frontend/assets/img/emoji4.png"
                                             class="rounded mx-auto d-block mt-2" alt="GFG" style="width: 50px; height:50px">
                                             <p class="mt-3" style="color:black; font-size:12px">Sangat puas</p>
                                         </div>
@@ -451,7 +451,7 @@
                                 <div class="col-3 p-5">
                                     <a href="">
                                         <div class="card border border-0 rounded-4 shadow p-3" style="width:125px; height:135px">
-                                            <img src="{{ asset('') }}frontend/assets/img/emoji1.png" 
+                                            <img src="{{ asset('') }}frontend/assets/img/emoji1.png"
                                             class="rounded mx-auto d-block mt-2" alt="GFG" style="width: 50px; height:50px">
                                             <p class="mt-3" style="color:black; font-size:12px">Sangat tidak puas</p>
                                         </div>
@@ -460,7 +460,7 @@
                                 <div class="col-3 p-5">
                                     <a href="">
                                         <div class="card border border-0 rounded-4 shadow p-3" style="width:125px; height:135px">
-                                            <img src="{{ asset('') }}frontend/assets/img/emoji2.png" 
+                                            <img src="{{ asset('') }}frontend/assets/img/emoji2.png"
                                             class="rounded mx-auto d-block mt-2" alt="GFG" style="width: 50px; height:50px">
                                             <p class="mt-3" style="color:black; font-size:12px">Tidak puas</p>
                                         </div>
@@ -469,7 +469,7 @@
                                 <div class="col-3 p-5">
                                     <a href="">
                                         <div class="card border border-0 rounded-4 shadow p-3" style="width:125px; height:135px">
-                                            <img src="{{ asset('') }}frontend/assets/img/emoji3.png" 
+                                            <img src="{{ asset('') }}frontend/assets/img/emoji3.png"
                                             class="rounded mx-auto d-block mt-2" alt="GFG" style="width: 50px; height:50px">
                                             <p class="mt-3" style="color:black; font-size:12px">Puas</p>
                                         </div>
@@ -478,7 +478,7 @@
                                 <div class="col-3 p-5">
                                     <a href="">
                                         <div class="card border border-0 rounded-4 shadow p-3" style="width:125px; height:135px">
-                                            <img src="{{ asset('') }}frontend/assets/img/emoji4.png" 
+                                            <img src="{{ asset('') }}frontend/assets/img/emoji4.png"
                                             class="rounded mx-auto d-block mt-2" alt="GFG" style="width: 50px; height:50px">
                                             <p class="mt-3" style="color:black; font-size:12px">Sangat puas</p>
                                         </div>

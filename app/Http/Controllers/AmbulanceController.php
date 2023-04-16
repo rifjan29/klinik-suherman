@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RiwayatTransaksAmbulance;
 use Illuminate\Http\Request;
 
 class AmbulanceController extends Controller
@@ -13,7 +14,8 @@ class AmbulanceController extends Controller
 
     public function riwayat()
     {
-        return view('backend.ambulance.riwayat-ambulance');
+        $data = RiwayatTransaksAmbulance::with('pasien_ambulance','ambulance')->get();
+        return view('backend.ambulance.riwayat-ambulance',compact('data'));
 
     }
 

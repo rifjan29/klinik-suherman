@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string('lokasi_tujuan')->nullable();
             $table->string('lokasi_awal')->nullable();
             $table->date('tanggal')->nullable();
+            $table->string('foto_kejadian')->nullable();
+            $table->text('keadaan')->nullable();
             $table->string('no_hp')->nullable();
-            $table->string('keadaan')->nullable();
             $table->timestamps();
         });
     }
