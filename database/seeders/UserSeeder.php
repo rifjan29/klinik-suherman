@@ -22,6 +22,7 @@ class UserSeeder extends Seeder
             'petugas',
             'dokter',
             'kasir',
+            'super-admin',
         ];
         for ($i=0; $i < count($role); $i++) {
             $user = new User;
@@ -33,7 +34,7 @@ class UserSeeder extends Seeder
         }
         $admin = new Admin;
         $admin->nama_admin = 'administrator';
-        $admin->jabatan = 'direktur';
+        $admin->jabatan = 'Staf It';
         $admin->jenis_kelamin = '1';
         $admin->alamat = 'Probolinggo';
         $admin->id_user = 1;

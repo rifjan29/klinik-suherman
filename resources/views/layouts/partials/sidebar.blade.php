@@ -22,11 +22,12 @@
                     <span class="text">Master Data</span>
                 </a>
                 <div class="submenu">
-                    <a href="{{ route('poli.index') }}">Data Poli</a>
-                    <a href="{{ route('admin.index') }}">Data Admin</a>
-                    <a href="{{ route('dokter.index') }}">Data Dokter</a>
-                    <a href="{{ route('petugas.index') }}">Data Petugas</a>
-                    <a href="{{ route('apotek.index') }}">Data Apotek</a>
+                    <a href="{{ route('poli.index') }}"> Poli</a>
+                    <a href="{{ route('admin.index') }}"> Admin</a>
+                    <a href="{{ route('dokter.index') }}"> Dokter</a>
+                    <a href="{{ route('petugas.index') }}"> Petugas</a>
+                    <a href="{{ route('apotek.index') }}"> Apotek</a>
+                    <a href="{{ route('ambulance.index') }}"> Ambulance</a>
 
                 </div>
             </li>

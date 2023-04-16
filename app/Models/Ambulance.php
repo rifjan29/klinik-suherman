@@ -9,4 +9,12 @@ class Ambulance extends Model
 {
     use HasFactory;
     protected $table = 'ambulance';
+    protected $fillable = [
+        'foto',
+        'nama_mobil',
+        'plat',
+        'tahun_mobil',
+        'asal_mobil',
+        'status_mobil'
+    ];
 }
