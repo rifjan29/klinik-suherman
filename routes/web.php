@@ -6,6 +6,7 @@ use App\Http\Controllers\ApoterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataMobilAmbulanceController;
 use App\Http\Controllers\DokterController;
+use App\Http\Controllers\KasirController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\PoliController;
 use App\Http\Controllers\ProfileController;
@@ -37,6 +38,7 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('petugas',PetugasController::class);
             Route::resource('apotek',ApoterController::class);
             Route::resource('ambulance', DataMobilAmbulanceController::class);
+            Route::resource('kasir', KasirController::class);
         });
         Route::prefix('ambulance')->group(function () {
             Route::get('data-ambulance',[AmbulanceController::class,'index'])->name('data-ambulance');

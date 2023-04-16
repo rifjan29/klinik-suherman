@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin;
-use App\Models\Petugas;
+use App\Models\Kasir;
 use App\Models\User;
 use Exception;
 use Illuminate\Database\QueryException;
@@ -11,15 +10,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use File;
 
-class PetugasController extends Controller
+class KasirController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data = Petugas::with('user')->latest()->get();
-        return view('backend.petugas.index',compact('data'));
+        $data = Kasir::all();
+        return view('backend.kasir.index',compact('data'));
     }
 
     /**
@@ -27,7 +26,7 @@ class PetugasController extends Controller
      */
     public function create()
     {
-        return view('backend.petugas.create');
+        return view('backend.kasir.create');
     }
 
     /**
@@ -36,7 +35,7 @@ class PetugasController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_petugas' => 'required',
+            'nama_kasir' => 'required',
             'email' => 'required',
             'jabatan' => 'required',
             'jeni_kelamin' => 'required',
@@ -49,31 +48,31 @@ class PetugasController extends Controller
             $user->name = $request->get('username');
             $user->email = $request->get('email');
             $user->password = Hash::make($request->get('password'));
-            $user->role = 'petugas';
+            $user->role = 'kasir';
             $user->save();
 
-            $petugas = new Petugas;
-            $petugas->nama_petugas = $request->get('nama_petugas');
-            $petugas->jabatan = $request->get('jabatan');
-            $petugas->jenis_kelamin = $request->get('jeni_kelamin');
-            $petugas->alamat = $request->get('alamat');
-            $petugas->id_user = $user->id;
-            if ($request->hasFile('foto_petugas')) {
-                $photos = $request->file('foto_petugas');
+            $kasir = new Kasir;
+            $kasir->nama_kasir = $request->get('nama_kasir');
+            $kasir->jabatan = $request->get('jabatan');
+            $kasir->jenis_kelamin = $request->get('jeni_kelamin');
+            $kasir->alamat = $request->get('alamat');
+            $kasir->id_user = $user->id;
+            if ($request->hasFile('foto_kasir')) {
+                $photos = $request->file('foto_kasir');
                 $filename = date('His') . '.' . $photos->getClientOriginalExtension();
-                $path = public_path('img/petugas');
+                $path = public_path('img/kasir');
                 if ($photos->move($path, $filename)) {
-                    $petugas->foto = $filename;
+                    $kasir->foto = $filename;
                 } else {
                     return redirect()->back()->withError('Terjadi kesalahan.');
                 }
             }
-            $petugas->save();
-            return redirect()->route('petugas.index')->withStatus('Berhasil menambahkan data.');
+            $kasir->save();
+            return redirect()->route('kasir.index')->withStatus('Berhasil menambahkan data.');
         } catch (Exception $e) {
-            return redirect()->route('petugas.index')->withError('Terjadi kesalahan.');
+            return redirect()->route('kasir.index')->withError('Terjadi kesalahan.');
         } catch (QueryException $e){
-            return redirect()->route('petugas.index')->withError('Terjadi kesalahan.');
+            return redirect()->route('kasir.index')->withError('Terjadi kesalahan.');
         }
     }
 
@@ -90,9 +89,9 @@ class PetugasController extends Controller
      */
     public function edit(string $id)
     {
-        $data['data'] = Petugas::find($id);
+        $data['data'] = Kasir::find($id);
         $data['user'] = User::find($data['data']->id_user);
-        return view('backend.petugas.edit',$data);
+        return view('backend.kasir.edit',$data);
     }
 
     /**
@@ -101,7 +100,7 @@ class PetugasController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'nama_petugas' => 'required',
+            'nama_kasir' => 'required',
             'email' => 'required',
             'jabatan' => 'required',
             'jeni_kelamin' => 'required',
@@ -122,30 +121,30 @@ class PetugasController extends Controller
                 ]);
             }
 
-            $petugas = Petugas::findOrFail($id);
-            $petugas->nama_petugas = $request->get('nama_petugas');
-            $petugas->jabatan = $request->get('jabatan');
-            $petugas->jenis_kelamin = $request->get('jeni_kelamin');
-            $petugas->alamat = $request->get('alamat');
-            if ($request->hasFile('foto_petugas')) {
-                $photos = $request->file('foto_petugas');
-                $last_path = public_path() . '/img/petugas/' . $petugas->foto;
+            $kasir = Kasir::findOrFail($id);
+            $kasir->nama_kasir = $request->get('nama_kasir');
+            $kasir->jabatan = $request->get('jabatan');
+            $kasir->jenis_kelamin = $request->get('jeni_kelamin');
+            $kasir->alamat = $request->get('alamat');
+            if ($request->hasFile('foto_kasir')) {
+                $photos = $request->file('foto_kasir');
+                $last_path = public_path() . '/img/kasir/' . $kasir->foto;
                 unlink($last_path);
-                $photos = $request->file('foto_petugas');
+                $photos = $request->file('foto_kasir');
                 $filename = date('His') . '.' . $photos->getClientOriginalExtension();
-                $path = public_path('img/petugas');
+                $path = public_path('img/kasir');
                 if ($photos->move($path, $filename)) {
-                    $petugas->foto = $filename;
+                    $kasir->foto = $filename;
                 } else {
                     return redirect()->back()->withError('Terjadi kesalahan.');
                 }
             }
-            $petugas->update();
-            return redirect()->route('petugas.index')->withStatus('Berhasil mengganti data.');
+            $kasir->update();
+            return redirect()->route('kasir.index')->withStatus('Berhasil mengganti data.');
         } catch (Exception $e) {
-            return redirect()->route('petugas.index')->withError('Terjadi kesalahan.');
+            return redirect()->route('kasir.index')->withError('Terjadi kesalahan.');
         } catch (QueryException $e){
-            return redirect()->route('petugas.index')->withError('Terjadi kesalahan.');
+            return redirect()->route('kasir.index')->withError('Terjadi kesalahan.');
         }
     }
 
@@ -155,22 +154,22 @@ class PetugasController extends Controller
     public function destroy(string $id)
     {
         try {
-            $petugas = Petugas::find($id);
-            $file_path = public_path().'/img/petugas/'.$petugas->foto;
+            $kasir = Kasir::find($id);
+            $file_path = public_path().'/img/kasir/'.$kasir->foto;
             if (File::delete($file_path)) {
-                $user = User::find($petugas->id_user);
+                $user = User::find($kasir->id_user);
                 $user->delete();
-                $petugas->delete();
+                $kasir->delete();
             }else{
-                $user = User::find($petugas->id_user);
+                $user = User::find($kasir->id_user);
                 $user->delete();
-                $petugas->delete();
+                $kasir->delete();
             }
-            return redirect()->route('petugas.index')->withStatus('Berhasil Menghapus data.');
+            return redirect()->route('kasir.index')->withStatus('Berhasil Menghapus data.');
         } catch (Exception $e) {
-            return redirect()->route('petugas.index')->withError('Terjadi kesalahan.');
+            return redirect()->route('kasir.index')->withError('Terjadi kesalahan.');
         } catch (QueryException $e){
-            return redirect()->route('petugas.index')->withError('Terjadi kesalahan.');
+            return redirect()->route('kasir.index')->withError('Terjadi kesalahan.');
         }
     }
 }

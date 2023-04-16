@@ -59,17 +59,17 @@
             <div class="col-md-8">
                 <div class="card mb-4">
                     <header class="card-header">
-                        <h4>Profile Data Petugas</h4>
+                        <h4>Profile Data Kasir</h4>
                     </header>
                     <div class="card-body">
-                        <form action="{{ route('petugas.update',$data->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('kasir.update',$data->id) }}" method="POST" enctype="multipart/form-data">
                             @method('put')
                             @csrf
 
                                 <div class="mb-4">
-                                    <label for="product_name" class="form-label">Nama Petugas</label>
-                                    <input type="text" value="{{ old('nama_petugas',$data->nama_petugas) }}" placeholder="Masukkan nama petugas" class="form-control @error('nama_petugas') is-invalid @enderror" name="nama_petugas"/>
-                                    @error('nama_petugas')
+                                    <label for="product_name" class="form-label">Nama Kasir</label>
+                                    <input type="text" value="{{ old('nama_kasir',$data->nama_kasir) }}" placeholder="Masukkan nama kasir" class="form-control @error('nama_kasir') is-invalid @enderror" name="nama_kasir"/>
+                                    @error('nama_kasir')
                                         <div class="invalid-feedback">
                                             {{$message}}.
                                         </div>
@@ -77,7 +77,7 @@
                                 </div>
                                 <div class="mb-4">
                                     <label for="product_name" class="form-label">Email</label>
-                                    <input type="text" value="{{ old('email',$user->email) }}" placeholder="Masukkan email Admin" class="form-control @error('email') is-invalid @enderror" name="email"/>
+                                    <input type="text" value="{{ old('email',$user->email) }}" placeholder="Masukkan email kasir" class="form-control @error('email') is-invalid @enderror" name="email"/>
                                     @error('email')
                                         <div class="invalid-feedback">
                                             {{$message}}.
@@ -130,7 +130,7 @@
             <div class="col-md-4">
                 <div class="card">
                     <header class="card-header">
-                        <h4>Akun Data Petugas</h4>
+                        <h4>Akun Data Kasir</h4>
                     </header>
                     <div class="card-body">
                         <div class="mb-3">
@@ -165,13 +165,13 @@
                 </div>
                 <div class="card">
                     <header class="card-header">
-                        <h4>Foto Data Petugas</h4>
+                        <h4>Foto Data Kasir</h4>
                     </header>
                     <div class="card-body">
                         <div class="mb-3">
                             <div class="input-upload">
-                                <img src="{{ $data->foto != null ? asset('img/petugas/'.$data->foto) : asset('backend/assets/imgs/theme/upload.svg') }}" alt="" id="photosPreview"/>
-                                <input class="form-control" name="foto_petugas" type="file" id="gambar_konten"/>
+                                <img src="{{ $data->foto != null ? asset('img/kasir/'.$data->foto) : asset('backend/assets/imgs/theme/upload.svg') }}" alt="" id="photosPreview"/>
+                                <input class="form-control" name="foto_kasir" type="file" id="gambar_konten"/>
                             </div>
                         </div>
 

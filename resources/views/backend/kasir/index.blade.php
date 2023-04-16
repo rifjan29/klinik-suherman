@@ -20,7 +20,7 @@
         <div class="content-header">
             <h2 class="content-title">Data {{ ucwords(str_replace('-',' ',Request::segment(3))) }}</h2>
             <div>
-                <a href="{{ route('admin.create') }}" class="btn btn-primary"><i class="text-muted material-icons md-post_add"></i>Tambah Data</a>
+                <a href="{{ route('kasir.create') }}" class="btn btn-primary"><i class="text-muted material-icons md-post_add"></i>Tambah Data</a>
             </div>
         </div>
         @include('components.notification')
@@ -35,7 +35,6 @@
                                 <th scope="col">Username</th>
                                 <th scope="col">Nama Lengkap</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Role</th>
                                 <th scope="col">Alamat</th>
                                 <th scope="col">Tanggal</th>
                                 <th scope="col" class="text-start">Action</th>
@@ -47,24 +46,22 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
                                         <div class="input-upload">
-                                            <img src="{{ $item->foto != null ? asset('img/admin/'.$item->foto) : asset('backend/assets/imgs/theme/upload.svg') }}" alt="" id="photosPreview"/>
+                                            <img src="{{ $item->foto != null ? asset('img/kasir/'.$item->foto) : asset('backend/assets/imgs/theme/upload.svg') }}" alt="" id="photosPreview"/>
                                         </div>
                                     </td>
                                     <td><b>{{ $item->user->name }}</b></td>
-                                    <td><b>{{ $item->nama_admin }}</b></td>
+                                    <td><b>{{ $item->nama_kasir }}</b></td>
                                     <td><b>{{ $item->user->email }}</b></td>
-                                    <td><b>{{ $item->user->role }}</b></td>
                                     <td><b>{{ $item->alamat }}</b></td>
                                     <td><b> {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d M Y - H:i:s') }}</b></td>
                                     <td class="text-start">
                                         <div class="d-flex justify-content-start">
                                             <div>
-                                                <a href="{{ route('admin.edit',$item->id) }}" class="btn btn-sm font-sm rounded btn-brand"> <i class="material-icons md-edit"></i> Edit </a>
+                                                <a href="{{ route('kasir.edit',$item->id) }}" class="btn btn-sm font-sm rounded btn-brand"> <i class="material-icons md-edit"></i> Edit </a>
                                             </div>
                                             <div class="mx-2">
-                                                @if (auth()->user()->id != $item->user->id && auth()->user()->role == 'super-admin')
-
-                                                    <form action="{{ route('admin.destroy',$item->id) }}" class="p-0 m-0" method="POST" onsubmit="return confirm('Move data to trash? ')">
+                                                @if (auth()->user()->id != $item->user->id)
+                                                    <form action="{{ route('kasir.destroy',$item->id) }}" class="p-0 m-0" method="POST" onsubmit="return confirm('Move data to trash? ')">
                                                         @method('delete')
                                                         @csrf
                                                         <button  class="btn btn-sm font-sm btn-light rounded"> <i class="material-icons md-delete_forever"></i> Delete </button>

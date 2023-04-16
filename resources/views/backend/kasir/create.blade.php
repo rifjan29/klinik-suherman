@@ -59,17 +59,16 @@
             <div class="col-md-8">
                 <div class="card mb-4">
                     <header class="card-header">
-                        <h4>Profile Data Petugas</h4>
+                        <h4>Profile Data Kasir</h4>
                     </header>
                     <div class="card-body">
-                        <form action="{{ route('petugas.update',$data->id) }}" method="POST" enctype="multipart/form-data">
-                            @method('put')
+                        <form action="{{ route('kasir.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                                 <div class="mb-4">
-                                    <label for="product_name" class="form-label">Nama Petugas</label>
-                                    <input type="text" value="{{ old('nama_petugas',$data->nama_petugas) }}" placeholder="Masukkan nama petugas" class="form-control @error('nama_petugas') is-invalid @enderror" name="nama_petugas"/>
-                                    @error('nama_petugas')
+                                    <label for="product_name" class="form-label">Nama Kasir</label>
+                                    <input type="text" value="{{ old('nama_kasir') }}" placeholder="Masukkan nama kasir" class="form-control @error('nama_kasir') is-invalid @enderror" name="nama_kasir"/>
+                                    @error('nama_kasir')
                                         <div class="invalid-feedback">
                                             {{$message}}.
                                         </div>
@@ -77,7 +76,7 @@
                                 </div>
                                 <div class="mb-4">
                                     <label for="product_name" class="form-label">Email</label>
-                                    <input type="text" value="{{ old('email',$user->email) }}" placeholder="Masukkan email Admin" class="form-control @error('email') is-invalid @enderror" name="email"/>
+                                    <input type="text" value="{{ old('email') }}" placeholder="Masukkan email kasir" class="form-control @error('email') is-invalid @enderror" name="email"/>
                                     @error('email')
                                         <div class="invalid-feedback">
                                             {{$message}}.
@@ -86,7 +85,7 @@
                                 </div>
                                 <div class="mb-4">
                                     <label for="product_name" class="form-label">Jabatan</label>
-                                    <input type="text" value="{{ old('jabatan',$data->jabatan) }}" placeholder="Masukkan jabatan" class="form-control @error('jabatan') is-invalid @enderror" name="jabatan"/>
+                                    <input type="text" value="{{ old('jabatan') }}" placeholder="Masukkan jabatan" class="form-control @error('jabatan') is-invalid @enderror" name="jabatan"/>
                                     @error('jabatan')
                                         <div class="invalid-feedback">
                                             {{$message}}.
@@ -97,11 +96,11 @@
                                     <div class="col-md-6">
                                         <label for="product_name" class="form-label">Jenis Kelamin</label>
                                         <label class="mb-2 form-check form-check-inline" style="width: 45%;">
-                                            <input class="form-check-input" id="jenis_kelamin" name="jeni_kelamin" value="1" {{ old('jenis_kelamin',$data->jenis_kelamin) == '1' ? "checked" : '' }} type="radio">
+                                            <input class="form-check-input" id="jenis_kelamin" name="jeni_kelamin" value="1" {{ old('jenis_kelamin') == '1' ? "checked" : '' }} type="radio">
                                             <span class="form-check-label"> Laki-Laki </span>
                                         </label>
                                         <label class="mb-2 form-check form-check-inline" style="width: 45%;">
-                                            <input class="form-check-input" id="jeni_kelamin" name="jeni_kelamin" value="2" {{ old('jenis_kelamin',$data->jenis_kelamin) == '2' ? "checked" : '' }} type="radio">
+                                            <input class="form-check-input" id="jeni_kelamin" name="jeni_kelamin" value="2" {{ old('jenis_kelamin') == '1' ? "checked" : '' }} type="radio">
                                             <span class="form-check-label"> Perempuan </span>
                                         </label>
                                         @error('jenis_kelamin')
@@ -114,7 +113,7 @@
 
                                 <div class="mb-4">
                                     <label for="product_name" class="form-label">Alamat</label>
-                                    <textarea name="alamat" id="" cols="30" rows="10" class="form-control" placeholder="Masukkan alamat">{{ old('alamat',$data->alamat) }}</textarea>
+                                    <textarea name="alamat" id="" cols="30" rows="10" class="form-control" placeholder="Masukkan alamat"></textarea>
                                     @error('name')
                                         <div class="invalid-feedback">
                                             {{$message}}.
@@ -130,32 +129,22 @@
             <div class="col-md-4">
                 <div class="card">
                     <header class="card-header">
-                        <h4>Akun Data Petugas</h4>
+                        <h4>Akun Data Kasir</h4>
                     </header>
                     <div class="card-body">
                         <div class="mb-3">
-                            <input type="text" hidden name="id" value="{{ $user->id }}">
                             <label for="product_name" class="form-label">Username</label>
-                            <input type="text" value="{{ old('username',$user->name) }}" placeholder="Masukkan username" class="form-control @error('username') is-invalid @enderror" name="username"/>
+                            <input type="text" value="{{ old('username') }}" placeholder="Masukkan username" class="form-control @error('username') is-invalid @enderror" name="username"/>
                             @error('username')
                                 <div class="invalid-feedback">
                                     {{$message}}.
                                 </div>
                             @enderror
                         </div>
-                        <div class="mb-3">
-                            <label for="product_name" class="form-label">Password Baru</label>
-                            <input type="password" value="{{ old('password') }}" placeholder="Masukkan password" class="form-control @error('password') is-invalid @enderror" name="password"/>
-                            @error('password')
-                                <div class="invalid-feedback">
-                                    {{$message}}.
-                                </div>
-                            @enderror
-                        </div>
                         <div class="mb-2">
-                            <label for="product_name" class="form-label">Ulangi Password</label>
-                            <input type="password" value="{{ old('password_confirmation') }}" placeholder="Masukkan password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation"/>
-                            @error('password_confirmation')
+                            <label for="product_name" class="form-label">Password</label>
+                            <input type="text" value="{{ old('password') }}" placeholder="Masukkan password" class="form-control @error('password') is-invalid @enderror" name="password"/>
+                            @error('password')
                                 <div class="invalid-feedback">
                                     {{$message}}.
                                 </div>
@@ -165,13 +154,13 @@
                 </div>
                 <div class="card">
                     <header class="card-header">
-                        <h4>Foto Data Petugas</h4>
+                        <h4>Foto Data Kasir</h4>
                     </header>
                     <div class="card-body">
                         <div class="mb-3">
                             <div class="input-upload">
-                                <img src="{{ $data->foto != null ? asset('img/petugas/'.$data->foto) : asset('backend/assets/imgs/theme/upload.svg') }}" alt="" id="photosPreview"/>
-                                <input class="form-control" name="foto_petugas" type="file" id="gambar_konten"/>
+                                <img src="{{ asset('') }}backend/assets/imgs/theme/upload.svg" alt="" id="photosPreview"/>
+                                <input class="form-control" name="foto_kasir" type="file" id="gambar_konten"/>
                             </div>
                         </div>
 

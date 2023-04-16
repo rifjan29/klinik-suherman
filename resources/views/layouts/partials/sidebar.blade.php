@@ -28,6 +28,7 @@
                     <a href="{{ route('petugas.index') }}"> Petugas</a>
                     <a href="{{ route('apotek.index') }}"> Apotek</a>
                     <a href="{{ route('ambulance.index') }}"> Ambulance</a>
+                    <a href="{{ route('kasir.index') }}"> Kasir</a>
 
                 </div>
             </li>
@@ -52,7 +53,7 @@
             <li class="menu-item ">
                 <a class="menu-link" href="">
                     <i class="icon material-icons md-add_alert"></i>
-                    <span class="text">Data Konsultasi</span>
+                    <span class="text">Data E-Konsultasi</span>
                 </a>
             </li>
             <li class="menu-item ">
