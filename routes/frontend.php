@@ -8,6 +8,7 @@ Route::get('/', [Frontend\HomeController::class, 'index'])->name('beranda');
 
 // Login User
 Route::get('user-login', [Frontend\AuthController::class, 'index'])->name('login.index');
+Route::post('user-login', [Frontend\AuthController::class, 'login']);
  
 // Register User
 Route::get('user-register', [Frontend\AuthController::class, 'register'])->name('login.register');
