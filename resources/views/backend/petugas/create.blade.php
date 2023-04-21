@@ -64,7 +64,6 @@
                     <div class="card-body">
                         <form action="{{ route('petugas.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-
                                 <div class="mb-4">
                                     <label for="product_name" class="form-label">Nama Petugas</label>
                                     <input type="text" value="{{ old('nama_petugas') }}" placeholder="Masukkan nama petugas" class="form-control @error('nama_petugas') is-invalid @enderror" name="nama_petugas"/>

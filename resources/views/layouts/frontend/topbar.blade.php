@@ -19,7 +19,7 @@
 
       <nav id="navbar" class="navbar mx-4">
         <ul>
-          <li><a class="nav-link scrollto active" href="{{ route('beranda') }}">Beranda</a></li>
+          <li><a class="nav-link scrollto " href="{{ route('beranda') }}">Beranda</a></li>
           <li><a class="nav-link scrollto" href="#about">Tentang Kami</a></li>
           <li><a class="nav-link scrollto" href="#why-us">Profil</a></li>
           <li class="dropdown"><a href="#services"><span>Pelayanan</span> <i class="bi bi-chevron-down"></i></a>

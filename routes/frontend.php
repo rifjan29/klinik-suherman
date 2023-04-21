@@ -8,7 +8,7 @@ Route::get('/', [Frontend\HomeController::class, 'index'])->name('beranda');
 
 // Login User
 Route::get('user-login', [Frontend\AuthController::class, 'index'])->name('login.index');
- 
+
 // Register User
 Route::get('user-register', [Frontend\AuthController::class, 'register'])->name('login.register');
 
@@ -18,7 +18,10 @@ Route::prefix('pelayanan')->group(function() {
     Route::get('rawat-inap', [Frontend\PelayananController::class, 'inap'])->name('rawat-inap');
     Route::get('penunjang', [Frontend\PelayananController::class, 'penunjang'])->name('penunjang');
     Route::get('ugd', [Frontend\PelayananController::class, 'ugd'])->name('ugd');
-    Route::get('e-ambulance', [Frontend\PelayananController::class, 'ambulance'])->name('e-ambulance');
+    Route::prefix('e-ambulance')->group(function () {
+        Route::get('beranda', [Frontend\AmbulanceController::class, 'index'])->name('e-ambulance');
+        Route::get('create', [Frontend\AmbulanceController::class, 'create'])->name('e-ambulance.create');
+    });
     Route::get('e-konsultasi', [Frontend\PelayananController::class, 'konsultasi'])->name('e-konsultasi');
 });
 

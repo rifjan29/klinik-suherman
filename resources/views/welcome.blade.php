@@ -17,7 +17,7 @@
             </div>
         </div>
     </section>
-  @endsection
+@endsection
   <!-- End Hero -->
 @section('content')
     <!-- ======= Clients Section ======= -->
