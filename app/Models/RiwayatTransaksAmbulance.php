@@ -19,6 +19,7 @@ class RiwayatTransaksAmbulance extends Model
         'nominal',
         'status_pembayaran',
         'status_kendaraan',
+        'status_perjalanan',
         'tanggal',
         'tanggal_jemput'
     ];
