@@ -90,6 +90,12 @@ class AmbulanceController extends Controller
         }
     }
 
+    public function list()
+    {
+        $data = RiwayatTransaksAmbulance::with('pasien_ambulance')->get();
+        return view('layouts.frontend.ambulance.list',compact('data'));
+    }
+
     public function generateTransaksi()
     {
         $date = date('Ymd');

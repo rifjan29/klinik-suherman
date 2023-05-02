@@ -76,7 +76,7 @@
                         <span class="text">Data E-Ambulance</span>
                     </a>
                     <div class="submenu">
-                        <a href="{{ route('riwayat-ambulance') }}">List Pemesanan </a>
+                        <a href="{{ route('list-ambulance') }}">List Pemesanan </a>
                         <a href="{{ route('riwayat-ambulance') }}">Riwayat Pemesanan </a>
                         <a href="{{ route('riwayat-ambulance') }}">Laporan E-Ambulance </a>
                     </div>
