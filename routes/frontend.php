@@ -8,11 +8,15 @@ use App\Http\Controllers\WilayaIndonesiaDropdownController;
 Route::get('/', [Frontend\HomeController::class, 'index'])->name('beranda');
 
 // Login User
-Route::get('user-login', [Frontend\AuthController::class, 'index'])->name('login.index');
-Route::post('user-login', [Frontend\AuthController::class, 'login']);
+Route::get('user-login', [Frontend\PasienController::class, 'login'])->name('login.index');
+Route::post('user-login', [Frontend\PasienController::class, 'loginPost'])->name('loginPost');
 
 // Register User
-Route::get('user-register', [Frontend\AuthController::class, 'register'])->name('login.register');
+Route::get('user-register', [Frontend\PasienController::class, 'register'])->name('login.register');
+Route::post('user-register', [Frontend\PasienController::class, 'registerPost'])->name('registerPost');
+
+// Logout
+Route::get('logout', [Frontend\PasienController::class, 'logout'])->name('logout');
 
 // Pelayanan
 Route::prefix('pelayanan')->group(function() {

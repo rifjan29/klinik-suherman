@@ -61,11 +61,11 @@
                                             <label for="" class="col-form-label fw-bold">Status Perkawinan</label>
                                             <div class="d-flex justify-content-start mt-3">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="statusPerkawinan" id="flexRadioDefault1">
                                                     <label class="form-check-label" for="flexRadioDefault1">Kawin</label>
                                                 </div>
                                                 <div class="form-check mx-4">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                                    <input class="form-check-input" type="radio" name="statusPerkawinan" id="flexRadioDefault2" checked>
                                                     <label class="form-check-label" for="flexRadioDefault2">Belum Kawin</label>
                                                 </div>
                                             </div>
@@ -74,11 +74,11 @@
                                             <label for="" class="col-form-label fw-bold">Jenis Kelamin</label>
                                             <div class="d-flex justify-content-start mt-3">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="jenisKelamin" id="flexRadioDefault1">
                                                     <label class="form-check-label" for="flexRadioDefault1">Laki-Laki</label>
                                                 </div>
                                                 <div class="form-check mx-4">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                                    <input class="form-check-input" type="radio" name="jenisKelamin" id="flexRadioDefault2" checked>
                                                     <label class="form-check-label" for="flexRadioDefault2">Perempuan</label>
                                                 </div>
                                             </div>
