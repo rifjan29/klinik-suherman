@@ -147,7 +147,7 @@
                                             <span class="form-check-label"> Laki-Laki </span>
                                         </label>
                                         <label class="mb-2 form-check form-check-inline" style="width: 45%;">
-                                            <input class="form-check-input" id="jeni_kelamin" name="jeni_kelamin" value="2" {{ old('jenis_kelamin') == '1' ? "checked" : '' }} type="radio">
+                                            <input class="form-check-input" id="jeni_kelamin" name="jeni_kelamin" value="2" {{ old('jenis_kelamin') == '2' ? "checked" : '' }} type="radio">
                                             <span class="form-check-label"> Perempuan </span>
                                         </label>
                                         @error('jenis_kelamin')

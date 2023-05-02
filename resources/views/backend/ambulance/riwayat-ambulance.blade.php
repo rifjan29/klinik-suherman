@@ -26,7 +26,7 @@
         @include('components.notification')
         <div class="card mb-4">
             <div class="card-body">
-                <div class="table-responsive">
+                <div class="">
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -34,9 +34,7 @@
                                 <th>No Pesanan</th>
                                 <th scope="col">Nama Wali</th>
                                 <th scope="col">No. Telp</th>
-                                <th scope="col">Alamat</th>
                                 <th scope="col">Tanggal Pesanan</th>
-                                <th scope="col">Alasan</th>
                                 <th>Status Kejadian</th>
                                 <th>Status Pesanan</th>
                                 <th>Status Pembayaran</th>
@@ -50,9 +48,8 @@
                                     <td>{{ $item->kode_pesanan }}</td>
                                     <td>{{ $item->pasien_ambulance->nama_wali }}</td>
                                     <td>{{ $item->pasien_ambulance->no_hp }}</td>
-                                    <td>{{ $item->pasien_ambulance->lokasi_tujuan }}</td>
+
                                     <td>{{ $item->pasien_ambulance->tanggal }}</td>
-                                    <td><a href="{{ $item->pasien_ambulance->id }}" class="badge rounded-pill alert-info">Alasan Pesanan</a></td>
                                     <td>
                                         @if ($item->status_kejadian == '0')
                                             <span class="badge rounded-pill alert-warning">Tidak Darurat</span>
@@ -61,22 +58,71 @@
                                         @else
                                             <a href="{{ $item->pasien_ambulance->id }}" data-bs-toggle="modal" data-bs-target="#cekstatus{{ $item->pasien_ambulance->id }}" class="badge rounded-pill alert-info">Cek Status Kejadian</a></td>
                                             <div class="modal fade" id="cekstatus{{ $item->pasien_ambulance->id }}" tabindex="-1" aria-labelledby="cekstatus{{ $item->pasien_ambulance->id }}Label" aria-hidden="true">
-                                                <div class="modal-dialog">
+                                                <div class="modal-dialog modal-xl">
                                                   <div class="modal-content">
                                                     <div class="modal-header">
-                                                      <h5 class="modal-title" id="exampleModalLabel">Modal Keluar</h5>
+                                                      <h5 class="modal-title" id="exampleModalLabel">Cek Status</h5>
                                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-md-2">
+                                                                Alamat :
+                                                            </div>
+                                                            <div class="col-md-10">
+                                                                <div class="card">
+                                                                    @php
+
+                                                                            $provinsi = \Indonesia::findProvince($item->lokasi->id_provinsi)->first();
+                                                                            $kota = \Indonesia::findCity($item->lokasi->id_kota)->first();
+                                                                            $kecamatan = \Indonesia::findDistrict($item->lokasi->id_kecamatan)->first();
+                                                                            $desa = \Indonesia::findVillage($item->lokasi->id_desa)->first();
+                                                                    @endphp
+                                                                    <div class="card-body">
+                                                                        <p>{{ $provinsi->name }}, {{ $kota->name }}, {{ $kecamatan->name }}, {{ $desa->name }}, {{ $item->lokasi->alamat }}</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                Keaadaan :
+                                                            </div>
+                                                            <div class="col-md-10">
+                                                                <textarea name="" id="" cols="5" rows="5" class="form-control" readonly>{{ $item->pasien_ambulance->keadaan }}</textarea>
+                                                                <div class="input-upload">
+                                                                    <img src="{{ $item->pasien_ambulance->foto_kejadian != null ? asset('img/admin/'.$item->pasien_ambulance->foto_kejadian) : asset('backend/assets/imgs/theme/upload.svg') }}" alt="" id="photosPreview"/>
+                                                                </div>
+                                                            </div>
+                                                            <hr>
+                                                            <form action="{{ route('update-status.riwayat-ambulance') }}" method="POST" >
+                                                                @csrf
+                                                                <input type="text" name="id_transaksi" value="{{ $item->kode_pesanan }}">
+
+                                                            <div class="col-md-2">
+                                                                <label for="product_name" class="form-label">Status Kejadian</label>
+                                                            </div>
+                                                            <div class="col-md-10">
+                                                                <label class="mb-2 form-check form-check-inline" style="width: 45%;">
+                                                                    <input class="form-check-input" id="jenis_kelamin" name="status_kejadian" value="0" {{ old('status_kejadian') == '0' ? "checked" : '' }} type="radio">
+                                                                    <span class="form-check-label"> Darurat </span>
+                                                                </label>
+                                                                <label class="mb-2 form-check form-check-inline" style="width: 45%;">
+                                                                    <input class="form-check-input" id="jeni_kelamin" name="status_kejadian" value="1" {{ old('status_kejadian') == '1' ? "checked" : '' }} type="radio">
+                                                                    <span class="form-check-label"> Tidak Darurat </span>
+                                                                </label>
+                                                                @error('status_kejadian')
+                                                                    <div class="invalid-feedback">
+                                                                        {{$message}}.
+                                                                    </div>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
 
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <a class="btn btn-primary" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">Logout</a>
-                                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                                @csrf
-                                                            </form>
+                                                        <button type="submit" class="btn btn-primary">Update Status</button>
+
+                                                        </form>
                                                     </div>
                                                   </div>
                                                 </div>

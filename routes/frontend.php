@@ -29,6 +29,8 @@ Route::prefix('pelayanan')->group(function() {
         Route::get('cek', [Frontend\AmbulanceController::class, 'cek'])->name('e-ambulance.cek');
         Route::get('create', [Frontend\AmbulanceController::class, 'create'])->name('e-ambulance.create');
         Route::post('create/post', [Frontend\AmbulanceController::class, 'store'])->name('e-ambulance.store');
+        Route::get('list-pesanan',[Frontend\AmbulanceController::class,'list'])->name('e-ambulance.list');
+
     });
     Route::get('e-konsultasi', [Frontend\PelayananController::class, 'konsultasi'])->name('e-konsultasi');
 });
