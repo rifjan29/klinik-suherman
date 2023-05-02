@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend as Frontend;
+use App\Http\Controllers\WilayaIndonesiaDropdownController;
 
 // Beranda
 Route::get('/', [Frontend\HomeController::class, 'index'])->name('beranda');
@@ -21,12 +22,17 @@ Route::prefix('pelayanan')->group(function() {
     Route::get('ugd', [Frontend\PelayananController::class, 'ugd'])->name('ugd');
     Route::prefix('e-ambulance')->group(function () {
         Route::get('beranda', [Frontend\AmbulanceController::class, 'index'])->name('e-ambulance');
+        Route::get('cek', [Frontend\AmbulanceController::class, 'cek'])->name('e-ambulance.cek');
         Route::get('create', [Frontend\AmbulanceController::class, 'create'])->name('e-ambulance.create');
+        Route::post('create/post', [Frontend\AmbulanceController::class, 'store'])->name('e-ambulance.store');
     });
     Route::get('e-konsultasi', [Frontend\PelayananController::class, 'konsultasi'])->name('e-konsultasi');
 });
 
-
+Route::get('provinces', [WilayaIndonesiaDropdownController::class,'provinces'])->name('provinces');
+Route::get('cities',[WilayaIndonesiaDropdownController::class,'cities'])->name('cities');
+Route::get('districts', [WilayaIndonesiaDropdownController::class,'districts'])->name('districts');
+Route::get('villages', [WilayaIndonesiaDropdownController::class,'villages'])->name('villages');
 
 
 
