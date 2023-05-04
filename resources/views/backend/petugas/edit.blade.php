@@ -130,7 +130,7 @@
             <div class="col-md-4">
                 <div class="card">
                     <header class="card-header">
-                        <h4>Akun Data Admin</h4>
+                        <h4>Akun Data Petugas</h4>
                     </header>
                     <div class="card-body">
                         <div class="mb-3">
@@ -165,7 +165,7 @@
                 </div>
                 <div class="card">
                     <header class="card-header">
-                        <h4>Foto Data Admin</h4>
+                        <h4>Foto Data Petugas</h4>
                     </header>
                     <div class="card-body">
                         <div class="mb-3">

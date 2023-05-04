@@ -52,7 +52,7 @@ class PetugasController extends Controller
             $user->role = 'petugas';
             $user->save();
 
-            $petugas = new petugas;
+            $petugas = new Petugas;
             $petugas->nama_petugas = $request->get('nama_petugas');
             $petugas->jabatan = $request->get('jabatan');
             $petugas->jenis_kelamin = $request->get('jeni_kelamin');

@@ -3,8 +3,12 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AmbulanceController;
 use App\Http\Controllers\ApoterController;
+use App\Http\Controllers\BankController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DataMobilAmbulanceController;
+use App\Http\Controllers\DataProfileController;
 use App\Http\Controllers\DokterController;
+use App\Http\Controllers\KasirController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\PoliController;
 use App\Http\Controllers\ProfileController;
@@ -28,6 +32,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
+    Route::get('profile-user/{id}',[DataProfileController::class,'index'])->name('profile-user');
     Route::prefix('dashboard')->group(function () {
         Route::prefix('master-data')->group(function () {
             Route::resource('poli', PoliController::class);
@@ -35,10 +40,15 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('admin', AdminController::class);
             Route::resource('petugas',PetugasController::class);
             Route::resource('apotek',ApoterController::class);
+            Route::resource('ambulance', DataMobilAmbulanceController::class);
+            Route::resource('kasir', KasirController::class);
+            Route::resource('bank', BankController::class);
         });
         Route::prefix('ambulance')->group(function () {
             Route::get('data-ambulance',[AmbulanceController::class,'index'])->name('data-ambulance');
+            Route::get('list-ambulance',[AmbulanceController::class,'list'])->name('list-ambulance');
             Route::get('riwayat-ambulance',[AmbulanceController::class,'riwayat'])->name('riwayat-ambulance');
+            Route::post('riwayat-ambulance/update-status',[AmbulanceController::class,'updateStatus'])->name('update-status.riwayat-ambulance');
             // Route::get('data-saldo',[AmbulanceController::class,'saldo'])->name('data-saldo');
             // Route::get('data-pemasukan',[AmbulanceController::class,'pemasukan'])->name('data-pemasukan');
             // Route::get('riwayat-transaksi',[AmbulanceController::class,'transaksi'])->name('riwayat-transaksi');

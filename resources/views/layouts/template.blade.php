@@ -37,6 +37,7 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  @stack('css')
 </head>
 
 <body>
@@ -64,6 +65,7 @@
 
   <!-- Template Main JS File -->
   <script src="{{ asset('') }}frontend/assets/js/main.js"></script>
+  @stack('js')
 
 </body>
 

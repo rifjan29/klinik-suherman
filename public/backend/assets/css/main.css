@@ -1139,19 +1139,19 @@ textarea.form-control {
           box-shadow: none;
   border: 1px solid #eee;
   border-radius: 10px;
-  -webkit-transition-duration: 0.3s;
+  /* -webkit-transition-duration: 0.3s;
           transition-duration: 0.3s;
-  overflow: hidden;
+  overflow: hidden; */
 }
 
-.card:hover {
+/* .card:hover {
   -webkit-transform: translateY(-2px);
           transform: translateY(-2px);
   -webkit-transition-duration: 0.3s;
           transition-duration: 0.3s;
   -webkit-box-shadow: none;
           box-shadow: none;
-}
+} */
 
 .icontext {
   display: -webkit-inline-box;
@@ -2927,7 +2927,7 @@ ul.row, ul.row-sm {
 }
 
 /***************************
-    Page section margin 
+    Page section margin
 ****************************/
 .mtb-0 {
   margin: 0;

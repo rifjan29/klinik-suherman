@@ -39,9 +39,67 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-12 col-md-8 col-lg-6">
                         <div class="position-relative">
-                            <div class="card position-absolute top-50 start-50 translate-middle" style="border-radius:40px; width:250%">
+                            <div class="card position-absolute top-50 start-50 translate-middle" style="border-radius:40px; width:150%">
                                 <div class="card-body p-5">
-                                    <form action="" class="mb-3 mt-md-4">
+                                    <div class="section-title">
+                                        <h2 class="">Create Account</h2>
+                                    </div>
+                                    <form class="row g-3" action="">
+                                        <div class="col-md-6 p-2">
+                                            <label for="" class="col-form-label fw-bold">Nama Lengkap</label>
+                                            <input type="text" class="form-control shadow rounded-4 mt-1" id="" placeholder="Masukkan Nama Lengkap" style="height: 50px;">
+                                        </div>
+                                        <div class="col-md-6 p-2">
+                                            <label for="" class="col-form-label fw-bold">Agama</label>
+                                            <input type="text" class="form-control shadow rounded-4 mt-1" id="" placeholder="Masukkan Agama" style="height: 50px;">
+                                        </div>
+                                        <div class="col-md-6 p-2">
+                                            <label for="" class="col-form-label fw-bold">Tempat/Tanggal Lahir</label>
+                                            <input type="text" class="form-control shadow rounded-4 mt-1" id="" placeholder="Masukkan Tempat dan Tanggal Lahir" style="height: 50px;">
+                                        </div>
+                                        <div class="col-md-6 p-2">
+                                            <label for="" class="col-form-label fw-bold">Status Perkawinan</label>
+                                            <div class="d-flex justify-content-start mt-3">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="statusPerkawinan" id="flexRadioDefault1">
+                                                    <label class="form-check-label" for="flexRadioDefault1">Kawin</label>
+                                                </div>
+                                                <div class="form-check mx-4">
+                                                    <input class="form-check-input" type="radio" name="statusPerkawinan" id="flexRadioDefault2" checked>
+                                                    <label class="form-check-label" for="flexRadioDefault2">Belum Kawin</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 p-2">
+                                            <label for="" class="col-form-label fw-bold">Jenis Kelamin</label>
+                                            <div class="d-flex justify-content-start mt-3">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="jenisKelamin" id="flexRadioDefault1">
+                                                    <label class="form-check-label" for="flexRadioDefault1">Laki-Laki</label>
+                                                </div>
+                                                <div class="form-check mx-4">
+                                                    <input class="form-check-input" type="radio" name="jenisKelamin" id="flexRadioDefault2" checked>
+                                                    <label class="form-check-label" for="flexRadioDefault2">Perempuan</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 p-2">
+                                            <label for="" class="col-form-label fw-bold">Pekerjaan</label>
+                                            <input type="text" class="form-control shadow rounded-4 mt-1" id="" placeholder="Masukkan Pekerjaan" style="height: 50px;">
+                                        </div>
+                                        <div class="col-md-6 p-2">
+                                            <label for="" class="col-form-label fw-bold">Alamat</label>
+                                            <input type="text" class="form-control shadow rounded-4 mt-1" id="" placeholder="Masukkan Alamat" style="height: 50px;">
+                                        </div>
+                                        <div class="col-md-6 p-2">
+                                            <label for="" class="col-form-label fw-bold">Nomor Telepon</label>
+                                            <input type="number" class="form-control shadow rounded-4 mt-1" id="" placeholder="Masukkan Nomor Telepon" style="height: 50px;">
+                                        </div>
+                                        <div class="d-flex justify-content-center p-1 mt-5">
+                                            <button type="submit" class="btn btn-lg btn-primary text-center" style="background-color: #37517E; border:0; border-radius:20px"><span class="p-4" style="font-size: 16px">Sign Up</span></button>
+                                        </div>
+                                    </form>
+                                    {{-- <form action="" class="mb-3 mt-md-4">
                                         <div class="section-title">
                                             <h2 class="">Create Account</h2>
                                         </div>
@@ -150,7 +208,7 @@
                                                 <button type="button" class="btn btn-lg btn-primary text-center" style="background-color: #37517E; border:0; border-radius:20px"><span class="p-4" style="font-size: 16px">Sign Up</span></button>
                                             </div>
                                         </div>
-                                    </form>
+                                    </form> --}}
                                 </div>
                             </div>
                         </div>

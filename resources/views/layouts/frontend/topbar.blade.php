@@ -19,7 +19,7 @@
 
       <nav id="navbar" class="navbar mx-4">
         <ul>
-          <li><a class="nav-link scrollto active" href="{{ route('beranda') }}">Beranda</a></li>
+          <li><a class="nav-link scrollto " href="{{ route('beranda') }}">Beranda</a></li>
           <li><a class="nav-link scrollto" href="#about">Tentang Kami</a></li>
           <li><a class="nav-link scrollto" href="#why-us">Profil</a></li>
           <li class="dropdown"><a href="#services"><span>Pelayanan</span> <i class="bi bi-chevron-down"></i></a>
@@ -35,8 +35,13 @@
           <li><a class="nav-link scrollto" href="#portfolio">Dokter</a></li>
           <li><a class="nav-link scrollto" href="#team">Kritik dan Saran</a></li>
           <li><a class="nav-link scrollto" href="#contact">Kontak</a></li>
+          @if (Session::get('id'))
+          <li><a class="nav-link scrollto" href="#"><button type="button" class="btn btn-outline-primary rounded-5 fw-normal border border-2 border-info" style="color: white;"><span class="p-3">Akun</span></button></a></li>
+          <li><a class="nav-link scrollto" href="{{ route('logout') }}"><button type="button" class="btn btn-outline-primary rounded-5 fw-normal border border-2 border-info" style="color: white;"><span class="p-3">Logout</span></button></a></li>
+          @else
           <li><a class="nav-link scrollto" href="{{ route('login.register') }}"><button type="button" class="btn btn-outline-primary rounded-5 fw-normal border border-2 border-info" style="color: white;"><span class="p-3">Daftar</span></button></a></li>
           <li><a class="nav-link scrollto" href="{{ route('login.index') }}"><button type="button" class="btn btn-outline-primary rounded-5 fw-normal border border-2 border-info" style="color: white;"><span class="p-3">Masuk</span></button></a></li>
+          @endif
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

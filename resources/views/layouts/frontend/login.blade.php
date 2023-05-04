@@ -40,22 +40,33 @@
                     <div class="col-12 col-md-8 col-lg-6">
                         <div class="card" style="border-radius:40px;">
                             <div class="card-body p-4">
-                                <form action="" class="mb-3 mt-md-4">
+                                <form class="mb-3 mt-md-4" method="POST" action="{{ route('loginPost') }}">
                                     <div class="section-title">
                                         <h2 class="">Login</h2>
                                     </div>
                                     <div class="p-5">
+                                        @if (\Session::has('alert'))
+                                            <div class="alert alert-danger">
+                                                <div>{{Session::get('alert')}}</div>
+                                            </div>
+                                        @endif
+                                        @if (\Session::has('alert-success'))
+                                            <div class="alert alert-success">
+                                                <div>{{Session::get('alert-success')}}</div>
+                                            </div>
+                                        @endif
+                                        {{ csrf_field() }}
                                         <div class="input-group mb-3 mt-3">
                                             <span class="input-group-text border border-end-0 p-3" style="background-color:white; border-radius:20px 0 0 20px; box-shadow: 5px 5px #c7c7c7" id="basic-addon1"><i class="fa-solid fa-user" style="color: rgb(139, 139, 139)"></i></span>
-                                            <input type="text" class="form-control border border-start-0" placeholder="Username" style="border-radius:0 20px 20px 0; box-shadow: 5px 5px #c7c7c7" aria-label="Username" aria-describedby="basic-addon1">
+                                            <input type="username" name="username" id="username" class="form-control border border-start-0" placeholder="Username" style="border-radius:0 20px 20px 0; box-shadow: 5px 5px #c7c7c7" aria-label="Username" aria-describedby="basic-addon1">
                                         </div>
                                         <div class="input-group mb-3 mt-3">
                                             <span class="input-group-text border border-end-0 p-3" style="background-color:white; border-radius:20px 0 0 20px; box-shadow: 5px 5px #c7c7c7" id="basic-addon1"><i class="fa-solid fa-lock" style="color: rgb(139, 139, 139)"></i></span>
-                                            <input type="text" class="form-control border border-start-0" placeholder="Username" style="border-radius:0 20px 20px 0; box-shadow: 5px 5px #c7c7c7" aria-label="Username" aria-describedby="basic-addon1">
+                                            <input type="password" name="password" id="password" class="form-control border border-start-0" placeholder="Password" style="border-radius:0 20px 20px 0; box-shadow: 5px 5px #c7c7c7" aria-label="Username" aria-describedby="basic-addon1">
                                         </div>
-                                        <p class="fw-">Didn’t have account?<span class="fw-bolder"> <a href="" class="mx-1" style="color: #37517E"> Sign up</a></span></p>
+                                        <p class="fw-">Didn’t have account?<span class="fw-bolder"> <a href="{{ route('login.register') }}" class="mx-1" style="color: #37517E"> Sign up</a></span></p>
                                         <div class="d-flex justify-content-center p-1 mt-5">
-                                            <button type="button" class="btn btn-lg btn-primary text-center" style="background-color: #37517E; border:0; border-radius:20px"><span class="p-4" style="font-size: 16px">Login</span></button>
+                                            <button type="submit" class="btn btn-lg btn-primary text-center" style="background-color: #37517E; border:0; border-radius:20px"><span class="p-4" style="font-size: 16px">Login</span></button>
                                         </div>
                                     </div>
                                 </form>

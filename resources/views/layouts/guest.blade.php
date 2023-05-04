@@ -13,16 +13,33 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <style>
+            #image{
+                background-image: linear-gradient(rgba(28, 27, 27, 0.717), rgba(0, 0, 0, 0.5)), url("{{ asset('frontend/assets/img/bg.png') }}");
+
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                position: relative;
+            }
+        </style>
     </head>
     <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 " id="image">
             <div>
                 <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                    <div class="flex items-center">
+                        <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                        <div>
+                            <h1 class="text-white text-2xl font-black mx-2 ">Klinik Rawat Inap Dr. Suherman</h1>
+                            <small class="text-white  mx-2 ">Kabupaten Jember</small>
+                        </div>
+
+                    </div>
                 </a>
             </div>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+            <div class="w-full sm:max-w-md mt-6 px-6 py-4 backdrop-blur-sm bg-white/50 shadow-md overflow-hidden sm:rounded-lg">
                 {{ $slot }}
             </div>
         </div>
