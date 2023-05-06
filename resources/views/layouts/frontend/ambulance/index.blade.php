@@ -59,7 +59,11 @@
                                 </div>
                             </div>
                         </div>
+                        @if (Session::get('id'))
                         <a class="btn btn-lg btn-primary text-center mt-4" href="{{ route('e-ambulance.create') }}">Pesan Ambulance</a>
+                        @else
+                        <a class="btn btn-lg btn-primary text-center mt-4" href="{{ route('login.index') }}">Pesan Ambulance</a>
+                        @endif
                     </div>
                 </div>
             </div>

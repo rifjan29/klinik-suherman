@@ -26,6 +26,12 @@ class AmbulanceController extends Controller
 
     }
 
+    public function fitur()
+    {
+        return view('layouts.frontend.ambulance.fitur');
+
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -181,5 +187,20 @@ class AmbulanceController extends Controller
             ],Response::HTTP_OK);
         }
 
+    }
+
+    public function ringkasan()
+    {
+        return view('layouts.frontend.ambulance.ringkasan');
+    }
+
+    public function pembayaran()
+    {
+        return view('layouts.frontend.ambulance.pembayaran');
+    }
+
+    public function estimasi()
+    {
+        return view('layouts.frontend.ambulance.estimasi');
     }
 }

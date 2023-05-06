@@ -144,6 +144,7 @@ h6 {
 */
 .navbar {
   padding: 0;
+  margin-right: 7%;
 }
 
 .navbar ul {
@@ -938,7 +939,27 @@ section {
   border-radius: 4%;
 }
 
+#services .bg-image7 {
+  background-image: linear-gradient(rgba(187, 187, 187, 0), rgba(0, 0, 0, 50)), url("../img/apotek.jpg");
+  height: 310px;
+  width: 100%;
+  /* margin-top: 125px; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  border-radius: 4%;
+}
+
 #services .card-text {
+  text-align: start;
+  width: 100%;
+  margin: 80% 0;
+  position: absolute;
+  z-index: 1;
+}
+
+#services .card-text1 {
   text-align: start;
   width: 100%;
   margin: 62% 0;
@@ -1742,6 +1763,10 @@ section {
   100% {
     transform: rotate(360deg);
   }
+}
+
+#pembayaran .metode {
+  width: 70%;
 }
 
 /*--------------------------------------------------------------
