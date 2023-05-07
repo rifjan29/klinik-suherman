@@ -120,24 +120,24 @@ class AmbulanceController extends Controller
         if (date('Y-m-d H:i:s', strtotime($request->get('tgl'))) > date("Y-m-d H:i:s")) {
             $data = RiwayatTransaksAmbulance::with('pasien_ambulance')->whereDate('tanggal_jemput', '>',date('Y-m-d', strtotime($request->get('tgl'))));
             if (count($data->get()) > 0 ) {
-                if (count($data->OrWhere('status_kejadian','==','1')->get()) > 0) {
-                    if (count($data->where('status_perjalanan','!=','1')->where('status_perjalanan','!=','2')->get()) > 0) {
-                        return response()->json([
-                            'data' => true,
-                            'message' => 'Dapat Memesan'
-                        ],Response::HTTP_OK);
-                    }else{
-                        return response()->json([
-                            'data' => false,
-                            'message' => 'Mohon maaf, ambulance tidak tersedia. Silakan untuk menghubungi fasilitas kesehatan lainnya.'
-                        ],Response::HTTP_OK);
-                    }
-                }else{
-                    return response()->json([
-                        'data' => true,
-                        'message' => 'Dapat Memesan'
-                    ],Response::HTTP_OK);
-                }
+                return response()->json([
+                    'data' => true,
+                    'message' => 'Dapat Memesan'
+                ],Response::HTTP_OK);
+                // if (count($data->OrWhere('status_kejadian','==','1')->get()) > 0) {
+                //     if (count($data->where('status_perjalanan','!=','1')->where('status_perjalanan','!=','2')->get()) > 0) {
+                //         return response()->json([
+                //             'data' => true,
+                //             'message' => 'Dapat Memesan'
+                //         ],Response::HTTP_OK);
+                //     }else{
+                //         return response()->json([
+                //             'data' => false,
+                //             'message' => 'Mohon maaf, ambulance tidak tersedia. Silakan untuk menghubungi fasilitas kesehatan lainnya.'
+                //         ],Response::HTTP_OK);
+                //     }
+                // }else{
+                // }
             } else {
                 $data = RiwayatTransaksAmbulance::with('pasien_ambulance')->whereDate('tanggal_jemput', '=',date('Y-m-d', strtotime($request->get('tgl'))));
 
@@ -156,17 +156,17 @@ class AmbulanceController extends Controller
                             'message' => 'Dapat Memesan'
                         ],Response::HTTP_OK);
                     }
-                    if (count($data->where('status_perjalanan','!=','1')->where('status_perjalanan','!=','2')->get()) > 0) {
-                        return response()->json([
-                            'data' => true,
-                            'message' => 'Dapat Memesan'
-                        ],Response::HTTP_OK);
-                    }else{
-                        return response()->json([
-                            'data' => false,
-                            'message' => 'Mohon maaf, ambulance tidak tersedia. Silakan untuk menghubungi fasilitas kesehatan lainnya.'
-                        ],Response::HTTP_OK);
-                    }
+                    // if (count($data->where('status_perjalanan','!=','1')->where('status_perjalanan','!=','2')->get()) > 0) {
+                    //     return response()->json([
+                    //         'data' => true,
+                    //         'message' => 'Dapat Memesan'
+                    //     ],Response::HTTP_OK);
+                    // }else{
+                    //     return response()->json([
+                    //         'data' => false,
+                    //         'message' => 'Mohon maaf, ambulance tidak tersedia. Silakan untuk menghubungi fasilitas kesehatan lainnya.'
+                    //     ],Response::HTTP_OK);
+                    // }
                 }else{
                     return response()->json([
                         'data' => true,
