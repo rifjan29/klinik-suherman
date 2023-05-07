@@ -22,7 +22,9 @@ class RiwayatTransaksAmbulance extends Model
         'status_kendaraan',
         'status_perjalanan',
         'tanggal',
-        'tanggal_jemput'
+        'tanggal_jemput',
+        'biaya_lain',
+        'total_biaya'
     ];
 
     public function pasien_ambulance()

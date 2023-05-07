@@ -86,7 +86,7 @@ class AmbulanceController extends Controller
             $transaksi->status_pembayaran = 'pending';
             $transaksi->tanggal = date('Y-m-d ', strtotime($request->get('tgl')));
             $transaksi->save();
-            return $transaksi;
+            return redirect()->route('e-ambulance.ringkasan',['id'=> $transaksi->id]);
         } catch (Exception $e) {
             return $e;
             return redirect()->route('dokter.index')->withError('Terjadi kesalahan.');
@@ -188,19 +188,105 @@ class AmbulanceController extends Controller
         }
 
     }
-
-    public function ringkasan()
+    public function status(Request $request)
     {
-        return view('layouts.frontend.ambulance.ringkasan');
+        $data = RiwayatTransaksAmbulance::find($request->id)->status_perjalanan;
+        return $data;
     }
 
-    public function pembayaran()
+    public function statusEstimasi(Request $request)
     {
-        return view('layouts.frontend.ambulance.pembayaran');
+        $data = RiwayatTransaksAmbulance::find($request->id)->status_perjalanan;
+        return $data;
     }
 
-    public function estimasi()
+    public function ringkasan($id)
     {
-        return view('layouts.frontend.ambulance.estimasi');
+        $data = RiwayatTransaksAmbulance::
+                select(
+                        'transaksi_ambulance.*',
+                        'pasien_ambulance.id as pasien_id',
+                        'pasien_ambulance.nama_wali','pasien_ambulance.tanggal',
+                        'pasien_ambulance.foto_kejadian',
+                        'pasien_ambulance.keadaan','pasien_ambulance.no_hp',
+                        'lokasi_kejadian.id as lokasi_kejadian_id',
+                        'lokasi_kejadian.long',
+                        'lokasi_kejadian.lang',
+                        'lokasi_kejadian.id_provinsi',
+                        'lokasi_kejadian.id_kota',
+                        'lokasi_kejadian.id_kecamatan',
+                        'lokasi_kejadian.id_desa',
+                        'lokasi_kejadian.alamat',
+                        'lokasi_kejadian.id_pasien_ambu')
+                    ->join('pasien_ambulance','pasien_ambulance.id', 'transaksi_ambulance.id_pasien')
+                    ->join('lokasi_kejadian','lokasi_kejadian.id_pasien_ambu','pasien_ambulance.id')
+                    ->find($id);
+        return view('layouts.frontend.ambulance.ringkasan',compact('data'));
+    }
+
+    public function pembayaran($id)
+    {
+        $data = RiwayatTransaksAmbulance::
+        select(
+                'transaksi_ambulance.*',
+                'pasien_ambulance.id as pasien_id',
+                'pasien_ambulance.nama_wali','pasien_ambulance.tanggal',
+                'pasien_ambulance.foto_kejadian',
+                'pasien_ambulance.keadaan','pasien_ambulance.no_hp',
+                'lokasi_kejadian.id as lokasi_kejadian_id',
+                'lokasi_kejadian.long',
+                'lokasi_kejadian.lang',
+                'lokasi_kejadian.id_provinsi',
+                'lokasi_kejadian.id_kota',
+                'lokasi_kejadian.id_kecamatan',
+                'lokasi_kejadian.id_desa',
+                'lokasi_kejadian.alamat',
+                'lokasi_kejadian.id_pasien_ambu')
+            ->join('pasien_ambulance','pasien_ambulance.id', 'transaksi_ambulance.id_pasien')
+            ->join('lokasi_kejadian','lokasi_kejadian.id_pasien_ambu','pasien_ambulance.id')
+            ->find($id);
+        return view('layouts.frontend.ambulance.pembayaran',compact('data'));
+    }
+    public function versi($id)
+    {
+        $data = RiwayatTransaksAmbulance::
+        select(
+                'transaksi_ambulance.*',
+                'pasien_ambulance.id as pasien_id',
+                'pasien_ambulance.nama_wali','pasien_ambulance.tanggal',
+                'pasien_ambulance.foto_kejadian',
+                'pasien_ambulance.keadaan','pasien_ambulance.no_hp',
+                'lokasi_kejadian.id as lokasi_kejadian_id',
+                'lokasi_kejadian.long',
+                'lokasi_kejadian.lang',
+                'lokasi_kejadian.id_provinsi',
+                'lokasi_kejadian.id_kota',
+                'lokasi_kejadian.id_kecamatan',
+                'lokasi_kejadian.id_desa',
+                'lokasi_kejadian.alamat',
+                'lokasi_kejadian.id_pasien_ambu')
+            ->join('pasien_ambulance','pasien_ambulance.id', 'transaksi_ambulance.id_pasien')
+            ->join('lokasi_kejadian','lokasi_kejadian.id_pasien_ambu','pasien_ambulance.id')
+            ->find($id);
+        return view('layouts.frontend.ambulance.versi-cetak',compact('data'));
+    }
+
+    public function estimasi($id)
+    {
+        $data = RiwayatTransaksAmbulance::
+        select(
+                'transaksi_ambulance.id',
+                'transaksi_ambulance.status_perjalanan',
+            )
+            ->find($id);
+
+        return view('layouts.frontend.ambulance.estimasi',compact('data'));
+    }
+
+    public function estimasiSelesai($id)
+    {
+        $kode = RiwayatTransaksAmbulance::find($id)->kode_pesanan;
+        $data = "Berhasil melakukan pesan ambulance dengan kode pesanan : $kode";
+        return redirect()->route('e-ambulance.fitur')->withStatus($data);
     }
 }

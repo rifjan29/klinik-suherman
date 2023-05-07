@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('ket_kasir')->nullable();
             $table->string('nominal')->nullable();
             $table->enum('status_pembayaran',['lunas','pending','ditolak'])->default('pending');
-            $table->enum('status_kendaraan',['0','1','2'])->default('0')->comment('0 : proses pengecekan 1 : dalam perjalanan 2 : tiba dilokasi');
+            $table->enum('status_kendaraan',['0','1','2'])->default('0')->comment('0 : proses pengecekan 1 : diterima 2 : ditolak');
             $table->enum('status_perjalanan',['0','1','2','3','4'])->default('0')->comment('0 = pesanan diterima 1 = ambulance menuju lokasi 2 = ambulance tiba di lokasi 3 = pesanan dibayarkan 4 = selesai');
             $table->date('tanggal')->nullable();
             $table->date('tanggal_jemput')->nullable();

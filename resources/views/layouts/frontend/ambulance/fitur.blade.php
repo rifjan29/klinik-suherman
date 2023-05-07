@@ -23,6 +23,11 @@
         <div class="container text-center" data-aos="fade-up">
             <div class="section-title">
                 <h2>Selamat Datang di Layanan Online Suherman</h2>
+                @if (session('status'))
+                    <div class="alert alert-primary" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
             </div>
             <div class="row mb-5">
                 <div class="col-md-4 mt-4 text-center pelayanan">

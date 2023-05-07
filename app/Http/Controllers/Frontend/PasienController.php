@@ -28,7 +28,6 @@ class PasienController extends Controller
     }
 
     public function loginPost(Request $request){
-        // return $request;
         $username = $request->username;
         $password = $request->password;
 

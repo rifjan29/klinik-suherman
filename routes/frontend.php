@@ -9,17 +9,20 @@ Route::get('/', [Frontend\HomeController::class, 'index'])->name('beranda');
 
 // Login User
 Route::get('user-login', [Frontend\PasienController::class, 'login'])->name('login.index');
-Route::post('user-login', [Frontend\PasienController::class, 'loginPost'])->name('loginPost');
+Route::post('user-login/post', [Frontend\PasienController::class, 'loginPost'])->name('loginPost');
 
 // Register User
 Route::get('user-register', [Frontend\PasienController::class, 'register'])->name('login.register');
-Route::post('user-register', [Frontend\PasienController::class, 'registerPost'])->name('registerPost');
+Route::post('user-register/post', [Frontend\PasienController::class, 'registerPost'])->name('registerPost');
 
 // Logout
 Route::get('logout', [Frontend\PasienController::class, 'logout'])->name('logout');
 
 
 // Pelayanan
+Route::get('cek-status',[Frontend\AmbulanceController::class,'status'])->name('e-ambulance.status');
+Route::get('cek-estimasi',[Frontend\AmbulanceController::class,'statusEstimasi'])->name('e-ambulance.status-estimasi');
+
 Route::prefix('pelayanan')->group(function() {
     Route::get('rawat-jalan', [Frontend\PelayananController::class, 'jalan'])->name('rawat-jalan');
     Route::get('rawat-inap', [Frontend\PelayananController::class, 'inap'])->name('rawat-inap');
@@ -33,9 +36,11 @@ Route::prefix('pelayanan')->group(function() {
         Route::get('create', [Frontend\AmbulanceController::class, 'create'])->name('e-ambulance.create');
         Route::post('create/post', [Frontend\AmbulanceController::class, 'store'])->name('e-ambulance.store');
         Route::get('list-pesanan',[Frontend\AmbulanceController::class,'list'])->name('e-ambulance.list');
-        Route::get('ringkasan-pesanan',[Frontend\AmbulanceController::class,'ringkasan'])->name('e-ambulance.ringkasan');
-        Route::get('metode-pembayaran',[Frontend\AmbulanceController::class,'pembayaran'])->name('e-ambulance.pembayaran');
-        Route::get('estimasi-ambulance',[Frontend\AmbulanceController::class,'estimasi'])->name('e-ambulance.estimasi');
+        Route::get('ringkasan-pesanan/{id}',[Frontend\AmbulanceController::class,'ringkasan'])->name('e-ambulance.ringkasan');
+        Route::get('metode-pembayaran/{id}',[Frontend\AmbulanceController::class,'pembayaran'])->name('e-ambulance.pembayaran');
+        Route::get('metode-pembayaran/versi-cetak/{id}',[Frontend\AmbulanceController::class,'versi'])->name('e-ambulance.versi');
+        Route::get('metode-pembayaran/estimasi-ambulance/{id}',[Frontend\AmbulanceController::class,'estimasi'])->name('e-ambulance.estimasi');
+        Route::get('metode-pembayaran/estimasi-ambulance/selesai/{id}',[Frontend\AmbulanceController::class,'estimasiSelesai'])->name('e-ambulance.estimasi-selesai');
 
     });
     Route::get('e-konsultasi', [Frontend\PelayananController::class, 'konsultasi'])->name('e-konsultasi');
