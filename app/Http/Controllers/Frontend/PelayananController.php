@@ -31,4 +31,9 @@ class PelayananController extends Controller
     {
         return view('layouts.frontend.konsultasi');
     }
+
+    public function apotek()
+    {
+        return view('layouts.frontend.apotek');
+    }
 }
