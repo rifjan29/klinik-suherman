@@ -10,7 +10,6 @@ Route::get('/', [Frontend\HomeController::class, 'index'])->name('beranda');
 // Login User
 Route::get('user-login', [Frontend\PasienController::class, 'login'])->name('login.index');
 Route::post('user-login/post', [Frontend\PasienController::class, 'loginPost'])->name('loginPost');
-
 // Register User
 Route::get('user-register', [Frontend\PasienController::class, 'register'])->name('login.register');
 Route::post('user-register/post', [Frontend\PasienController::class, 'registerPost'])->name('registerPost');
