@@ -1,5 +1,6 @@
 @extends('layouts.template')
 @push('css')
+
     <style>
         #hero {
             width: 100%;
@@ -11,11 +12,55 @@
             border: none;
             font-size: 14px;
         }
+        .modal-test {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(77, 77, 77, .7);
+            transition: all .4s;
+        }
+
+        .modal-show{
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .modal__content {
+            border-radius: 4px;
+            position: relative;
+            width: 500px;
+            max-width: 90%;
+            background: #fff;
+            padding: 1em 2em;
+        }
+
     </style>
 @endpush
 @push('js')
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"
+    ></script>
+    <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"
+    ></script>
     <script>
+        $('.modal__close').on('click',function() {
+            console.log('qwrq');
+            const popup = document.querySelector("#demo-modal");
+            popup.classList.remove("modal-show");
+        })
         var id_transaksi = $('#id').val();
         test('{{ route('e-ambulance.status') }}',id_transaksi)
         function test(url,id) {
@@ -32,9 +77,15 @@
                     $('#pending').hide();
                     $('#diterima').hide();
                     $('#ditolak').show();
+                    var myModal = new bootstrap.Modal(document.getElementById("exampleModal"), {});
+                    document.onreadystatechange = function () {
+                        myModal.show();
+                    };
+
                 }
                 setInterval(function()
                 {
+
                     $.ajax({
                         url: url,
                         type:"GET",
@@ -43,18 +94,25 @@
                         },
                         success:function(data)
                         {
-                            console.log(typeof(data));
                             if (data == '0') {
                                 $('#pending').show();
                                 $('#diterima').hide();
                                 $('#ditolak').hide();
                             }else if(data == '1'){
+                                console.log(data);
                                 $('#pending').hide();
                                 $('#diterima').show();
                                 $('#ditolak').hide();
-                            }else{
+                            }else if(data == '2'){
                                 $('#pending').hide();
                                 $('#diterima').hide();
+                                $('#demo-modal').addClass('modal-show')
+                                const popup = document.querySelector("#demo-modal");
+                                setTimeout(() => {
+                                if (popup.classList.contains("modal-test")) {
+                                    popup.classList.remove("modal-show");
+                                    }
+                                }, 25000);
                                 $('#ditolak').show();
                             }
                         }
@@ -139,6 +197,68 @@
                 </div>
             </div>
         </div>
+        <div id="demo-modal" class="modal-test">
+            <div class="modal__content">
+                <div class="modal-content">
+                    <div class="modal-header d-flex justify-content-between">
+                        <h5 class="modal-title" id="exampleModalLabel">Pemberitahuan</h5>
+                        <a href="javascript:void(0)"  class="modal__close">&times;</a>
+
+                    </div>
+                    <div class="modal-body">
+                      Mohon maaf pemesanan anda tidak dapat diproses. Untuk langkah selanjutnya silahkan hubungi nomor berikut 089XXXX
+                    </div>
+                    <div class="modal-footer">
+                        <a
+                        type="button"
+                        class="btn btn-primary"
+                        href="{{ route('e-ambulance.create') }}"
+                      >
+
+                        Kembali Beranda
+                      </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Pemberitahuan</h5>
+
+          </div>
+          <div class="modal-body">
+            Mohon maaf pemesanan anda tidak dapat diproses. Untuk langkah selanjutnya silahkan hubungi nomor berikut 089XXXX
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Tutup
+            </button>
+            <a
+              type="button"
+              class="btn btn-primary"
+              href="{{ route('e-ambulance.create') }}"
+            >
+
+              Kembali Beranda
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
     </section>
     <!-- End ambulance Section -->
 @endsection

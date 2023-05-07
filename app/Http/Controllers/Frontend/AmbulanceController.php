@@ -190,7 +190,7 @@ class AmbulanceController extends Controller
     }
     public function status(Request $request)
     {
-        $data = RiwayatTransaksAmbulance::find($request->id)->status_perjalanan;
+        $data = RiwayatTransaksAmbulance::find($request->id)->status_kendaraan;
         return $data;
     }
 

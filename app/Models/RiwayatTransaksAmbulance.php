@@ -42,4 +42,5 @@ class RiwayatTransaksAmbulance extends Model
         return $this->belongsTo(Ambulance::class,'id_ambulance','id');
 
     }
+
 }
