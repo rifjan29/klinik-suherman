@@ -60,29 +60,41 @@ class PasienController extends Controller
         return redirect('/user-login')->with('alert-success','Kamu sudah logout');
     }
 
-    public function register(Request $request){
+    public function register(){
         return view('layouts.frontend.register');
     }
 
     public function registerPost(Request $request){
-        $this->validate($request, [
-            'nama' => 'required',
-            'username' => 'required',
-            'password' => 'required',
-            'email' => 'required',
-            'alamat' => 'required',
-            'no_hp' => 'required',
+        // dd($request->all());
+        $validatedData = $request->validate([
+            'nama' => 'required|max:255|string|min:5',
+            'username' => 'required|unique:pasien|min:5|max:20|string|alpha_dash',
+            'email' => 'required|unique:pasien|email:dns',
+            'password' => 'required|min:8|string|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/',
+            'address' => 'required|string',
+            'phone' => 'required|numeric|min:10|starts_with:08|digits_between:10,12',
+            'born' => 'required|string',
+            'gender' => 'required|in:L,P',
+            'status' => 'required|in:1,0',
+            'job' => 'required|string',
+            'religion' => 'required|string',
         ]);
 
+        // dd('registrasi berhasil');
         $data = new ModelPasien();
-        $data->nama = $request->nama;
-        $data->username = $request->username;
-        $data->password = Hash::make($request->get('password'));
-        $data->email = $request->email;
-        $data->alamat = $request->alamat;
-        $data->no_hp = $request->no_hp;
+        $data->nama = $validatedData['nama'];
+        $data->username = $validatedData['username'];
+        $data->email = $validatedData['email'];
+        $data->password = Hash::make($validatedData['password']);
+        $data->address = $validatedData['address'];
+        $data->phone = $validatedData['phone'];
+        $data->born = $validatedData['born'];
+        $data->gender = $validatedData['gender'];
+        $data->status = $validatedData['status'];
+        $data->job = $validatedData['job'];
+        $data->religion = $validatedData['religion'];
         $data->save();
-        return redirect('login.index')->with('alert-success', 'Kamu berhasil Register');
+        return redirect('/user-login')->with('alert-success','Kamu berhasil Register. Silahkan Login');
     }
 
     /**
