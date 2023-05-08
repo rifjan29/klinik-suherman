@@ -28,7 +28,6 @@ class PasienController extends Controller
     }
 
     public function loginPost(Request $request){
-        // return $request;
         $username = $request->username;
         $password = $request->password;
 
@@ -44,14 +43,16 @@ class PasienController extends Controller
                 Session::put('login', TRUE);
                 // dd($data);
                 // return $data->email;
-                return redirect('/');
+                // return redirect('/fitur');
+                return view('layouts.frontend.ambulance.fitur');
+
             }
             else{
-                return back()->with('alert','Password atau Email, Salah!');
+                return back()->with('alert','Password atau Username, Salah!');
             }
         }
         else{
-            return back()->with('alert','Password atau Email, Salah!');
+            return back()->with('alert','Password atau Username, Salah!');
         }
     }
 

@@ -46,9 +46,19 @@ Route::middleware(['auth'])->group(function () {
         });
         Route::prefix('ambulance')->group(function () {
             Route::get('data-ambulance',[AmbulanceController::class,'index'])->name('data-ambulance');
+
+            // list ambulance
+            Route::post('list-ambulance/post/{id}',[AmbulanceController::class,'postAmbulance'])->name('list-ambulance.post');
+            Route::get('list-ambulance/update-perjalanan/{id}',[AmbulanceController::class,'updatePerjalanan'])->name('list-ambulance.update-perjalanan');
+            Route::get('list-ambulance/update-perjalanan-dua/{id}',[AmbulanceController::class,'updatePerjalananDua'])->name('list-ambulance.update-perjalanan-dua');
+            Route::post('list-ambulance/update-status',[AmbulanceController::class,'updateStatus'])->name('update-status.riwayat-ambulance');
+            Route::post('list-ambulance/detail/update/{id}',[AmbulanceController::class,'updatePesanan'])->name('list-ambulance.detail-update');
+            Route::get('list-ambulance/detail/{id}',[AmbulanceController::class,'detail'])->name('list-ambulance.detail');
             Route::get('list-ambulance',[AmbulanceController::class,'list'])->name('list-ambulance');
+
+            // riwayat
+            Route::get('riwayat-ambulance/detail/{id}',[AmbulanceController::class,'riwayatDetail'])->name('riwayat-ambulance.detail');
             Route::get('riwayat-ambulance',[AmbulanceController::class,'riwayat'])->name('riwayat-ambulance');
-            Route::post('riwayat-ambulance/update-status',[AmbulanceController::class,'updateStatus'])->name('update-status.riwayat-ambulance');
             // Route::get('data-saldo',[AmbulanceController::class,'saldo'])->name('data-saldo');
             // Route::get('data-pemasukan',[AmbulanceController::class,'pemasukan'])->name('data-pemasukan');
             // Route::get('riwayat-transaksi',[AmbulanceController::class,'transaksi'])->name('riwayat-transaksi');
