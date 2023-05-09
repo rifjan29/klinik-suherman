@@ -44,56 +44,124 @@
                                     <div class="section-title">
                                         <h2 class="">Create Account</h2>
                                     </div>
-                                    <form class="row g-3" action="">
+                                    <form class="row g-3" action="{{ route('registerPost') }}" method="post">
+                                        @csrf
                                         <div class="col-md-6 p-2">
-                                            <label for="" class="col-form-label fw-bold">Nama Lengkap</label>
-                                            <input type="text" class="form-control shadow rounded-4 mt-1" id="" placeholder="Masukkan Nama Lengkap" style="height: 50px;">
+                                            <label for="nama" class="col-form-label fw-bold">Nama Lengkap</label>
+                                            <input type="text" name="nama" class="form-control shadow rounded-4 mt-1  @error('nama') is-invalid @enderror" id="nama" placeholder="Masukkan Nama Lengkap" style="height: 50px;" required value="{{ old('nama') }}">
+                                            @error('nama')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="col-md-6 p-2">
-                                            <label for="" class="col-form-label fw-bold">Agama</label>
-                                            <input type="text" class="form-control shadow rounded-4 mt-1" id="" placeholder="Masukkan Agama" style="height: 50px;">
+                                            <label for="username" class="col-form-label fw-bold">Username</label>
+                                            <input type="text" name="username" class="form-control shadow rounded-4 mt-1  @error('username') is-invalid @enderror" id="username" placeholder="Masukkan Username Anda" style="height: 50px;" required value="{{ old('username') }}">
+                                            @error('username')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="col-md-6 p-2">
-                                            <label for="" class="col-form-label fw-bold">Tempat/Tanggal Lahir</label>
-                                            <input type="text" class="form-control shadow rounded-4 mt-1" id="" placeholder="Masukkan Tempat dan Tanggal Lahir" style="height: 50px;">
+                                            <label for="email" class="col-form-label fw-bold">Email</label>
+                                            <input type="email" name="email" class="form-control shadow rounded-4 mt-1  @error('email') is-invalid @enderror" id="email" placeholder="name@mail.com" style="height: 50px;" required value="{{ old('email') }}">
+                                            @error('email')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="col-md-6 p-2">
-                                            <label for="" class="col-form-label fw-bold">Status Perkawinan</label>
+                                            <label for="password" class="col-form-label fw-bold">Password</label>
+                                            <input type="password" name="password" class="form-control shadow rounded-4 mt-1  @error('password') is-invalid @enderror" id="password" placeholder="Masukkan Password Anda" style="height: 50px;" required>
+                                            @error('password')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6 p-2">
+                                            <label for="phone" class="col-form-label fw-bold">Nomor Telepon</label>
+                                            <input type="number" name="phone" class="form-control shadow rounded-4 mt-1  @error('phone') is-invalid @enderror" id="phone" placeholder="Masukkan Nomor Anda (08xxxxxxxxxx)" style="height: 50px;" required value="{{ old('phone') }}">
+                                            @error('phone')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6 p-2">
+                                            <label for="born" class="col-form-label fw-bold">Tempat/Tanggal Lahir</label>
+                                            <input type="text" name="born" class="form-control shadow rounded-4 mt-1  @error('born') is-invalid @enderror" id="born" placeholder="Masukkan Tempat, Tanggal Lahir" style="height: 50px;" required value="{{ old('born') }}">
+                                            @error('born')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6 p-2">
+                                            <label for="address" class="col-form-label fw-bold">Alamat</label>
+                                            <input type="text" name="address" class="form-control shadow rounded-4 mt-1  @error('address') is-invalid @enderror" id="address" placeholder="Masukkan Alamat" style="height: 50px;" required value="{{ old('address') }}">
+                                            @error('alamat')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6 p-2">
+                                            <label for="religion" class="col-form-label fw-bold">Agama</label>
+                                            <input type="text" name="religion" class="form-control shadow rounded-4 mt-1  @error('religion') is-invalid @enderror" id="religion" placeholder="(Islam, Kristen, Katolik, Budha, Hindu, Khonghucu)" style="height: 50px;" required value="{{ old('religion') }}">
+                                            @error('religion')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6 p-2">
+                                            <label for="job" class="col-form-label fw-bold">Pekerjaan</label>
+                                            <input type="text" name="job" class="form-control shadow rounded-4 mt-1  @error('job') is-invalid @enderror" id="job" placeholder="Masukkan Pekerjaan" style="height: 50px;" required value="{{ old('job') }}">
+                                            @error('job')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6 p-2">
+                                            <label for="gender" class="col-form-label fw-bold">Jenis Kelamin</label>
                                             <div class="d-flex justify-content-start mt-3">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="statusPerkawinan" id="flexRadioDefault1">
-                                                    <label class="form-check-label" for="flexRadioDefault1">Kawin</label>
+                                                    <input class="form-check-input @error('gender') is-invalid @enderror" type="radio" name="gender" id="male" value="L" {{ old('gender') == 'L' ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="male">Laki-Laki</label>
                                                 </div>
                                                 <div class="form-check mx-4">
-                                                    <input class="form-check-input" type="radio" name="statusPerkawinan" id="flexRadioDefault2" checked>
-                                                    <label class="form-check-label" for="flexRadioDefault2">Belum Kawin</label>
+                                                    <input class="form-check-input @error('gender') is-invalid @enderror" type="radio" name="gender" id="female" value="P" {{ old('gender') == 'P' ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="female">Perempuan</label>
                                                 </div>
+                                                @error('gender')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-6 p-2">
-                                            <label for="" class="col-form-label fw-bold">Jenis Kelamin</label>
+                                            <label for="status" class="col-form-label fw-bold">Status Perkawinan</label>
                                             <div class="d-flex justify-content-start mt-3">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="jenisKelamin" id="flexRadioDefault1">
-                                                    <label class="form-check-label" for="flexRadioDefault1">Laki-Laki</label>
+                                                    <input class="form-check-input @error('status') is-invalid @enderror" type="radio" name="status" id="married" value="1" {{ old('status') == '1' ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="married">Kawin</label>
                                                 </div>
                                                 <div class="form-check mx-4">
-                                                    <input class="form-check-input" type="radio" name="jenisKelamin" id="flexRadioDefault2" checked>
-                                                    <label class="form-check-label" for="flexRadioDefault2">Perempuan</label>
+                                                    <input class="form-check-input @error('status') is-invalid @enderror" type="radio" name="status" id="single" value="0" {{ old('status') == '0' ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="single">Belum Kawin</label>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6 p-2">
-                                            <label for="" class="col-form-label fw-bold">Pekerjaan</label>
-                                            <input type="text" class="form-control shadow rounded-4 mt-1" id="" placeholder="Masukkan Pekerjaan" style="height: 50px;">
-                                        </div>
-                                        <div class="col-md-6 p-2">
-                                            <label for="" class="col-form-label fw-bold">Alamat</label>
-                                            <input type="text" class="form-control shadow rounded-4 mt-1" id="" placeholder="Masukkan Alamat" style="height: 50px;">
-                                        </div>
-                                        <div class="col-md-6 p-2">
-                                            <label for="" class="col-form-label fw-bold">Nomor Telepon</label>
-                                            <input type="number" class="form-control shadow rounded-4 mt-1" id="" placeholder="Masukkan Nomor Telepon" style="height: 50px;">
+                                            @error('status')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="d-flex justify-content-center p-1 mt-5">
                                             <button type="submit" class="btn btn-lg btn-primary text-center" style="background-color: #37517E; border:0; border-radius:20px"><span class="p-4" style="font-size: 16px">Sign Up</span></button>
