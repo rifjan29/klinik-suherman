@@ -94,16 +94,18 @@
                         },
                         success:function(data)
                         {
-                            if (data == '0') {
+                            console.log(data.data);
+                            if (data.data == '0') {
                                 $('#pending').show();
                                 $('#diterima').hide();
                                 $('#ditolak').hide();
-                            }else if(data == '1'){
+                            }else if(data.data == '1'){
                                 console.log(data);
+                                $('#sukses').text(data.tanggal_jemput);
                                 $('#pending').hide();
                                 $('#diterima').show();
                                 $('#ditolak').hide();
-                            }else if(data == '2'){
+                            }else if(data.data == '2'){
                                 $('#pending').hide();
                                 $('#diterima').hide();
                                 $('#demo-modal').addClass('modal-show')
@@ -147,7 +149,7 @@
                             <small class="text-muted" style="font-size: 11px;">Silakan cek secara berkala untuk melihat pembaruan status pemesanan Anda</small>
                         </div>
                         <div id="diterima">
-                            <h5>Status : <span class="badge bg-success">Diterima dengan tanggal jemput : </span></h5>
+                            <h5>Status : <span class="badge bg-success" id="sukses">Diterima dengan tanggal jemput : {{ \Carbon\Carbon::parse($data->tanggal_jemput)->translatedFormat('d F Y ') }} Jam {{ \Carbon\Carbon::parse($data->tanggal_jemput)->translatedFormat('h:i:s A') }}</span></h5>
                             <a class="btn btn-primary w-100" href="{{ route('e-ambulance.pembayaran',$data->id) }}"> Cetak Pembayaran</a>
                         </div>
                         <div id="ditolak">

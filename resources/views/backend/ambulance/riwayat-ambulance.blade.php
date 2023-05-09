@@ -1,5 +1,6 @@
 <x-app-layout>
     @push('css')
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
         <style>
             .page-item.active .page-link{
                 background-color: #219ebc !important;
@@ -13,8 +14,12 @@
     @endpush
     @push('js')
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
     <script>
-
+        $(document).ready(function () {
+            $('#example').DataTable();
+        })
     </script>
     @endpush
     @section('content')
@@ -29,7 +34,7 @@
         <div class="card mb-4">
             <div class="card-body">
                 <div class="">
-                    <table class="table table-hover">
+                    <table class="table table-hover" id="example">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -49,7 +54,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->kode_pesanan }}</td>
                                     <td>{{ $item->pasien_ambulance->nama_wali }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($item->tanggal_jempu)->translatedFormat('d F Y ') }} <br> <small class="text-muted" style="font-size: 11px">Jam {{ \Carbon\Carbon::parse($item->pasien_ambulance->tanggal)->translatedFormat('h:i:s A') }}</small></td>
+                                    <td>{{ \Carbon\Carbon::parse($item->tanggal_jemput)->translatedFormat('d F Y ') }} <br> <small class="text-muted" style="font-size: 11px">Jam {{ \Carbon\Carbon::parse($item->tanggal_jemput)->translatedFormat('h:i:s A') }}</small></td>
                                     <td>{{ \Carbon\Carbon::parse($item->pasien_ambulance->tanggal)->translatedFormat('d F Y ') }} <br> <small class="text-muted" style="font-size: 11px">Jam {{ \Carbon\Carbon::parse($item->pasien_ambulance->tanggal)->translatedFormat('h:i:s A') }}</small></td>
                                     <td>
                                         <span class="badge rounded-pill alert-success">Lunas</span>

@@ -1,5 +1,6 @@
 <x-app-layout>
     @push('css')
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
         <style>
             .page-item.active .page-link{
                 background-color: #219ebc !important;
@@ -9,42 +10,52 @@
     @endpush
     @push('js')
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        })
+    </script>
     <script>
         $(document).ready(function() {
-            $("#pesan").hide();
-            function hapus_uang(params) {
-                const angka = params;
-                const valueWithoutCurrency = angka.replace(/\./g, "").toString();
-                return parseInt(valueWithoutCurrency);
-            }
-            function count_biaya(biaya, nominal_bayar) {
-                var result = nominal_bayar - biaya;
-                $('#total').val(result)
-                if (result < 0) {
-                    $("#pesan").show();
-                    setTimeout(function() { $("#pesan").hide(); }, 5000);
-                }else{
-                    var total = document.getElementById("total");
-                    total.value = formatRupiah(total.value);
-                    $("#pesan").hide();
+            cetak_pembayaran()
+            function cetak_pembayaran() {
+                $("#pesan").hide();
+                function hapus_uang(params) {
+                    const angka = params;
+                    const valueWithoutCurrency = angka.replace(/\./g, "").toString();
+                    return parseInt(valueWithoutCurrency);
                 }
+                function count_biaya(biaya, nominal_bayar) {
+                    var result = nominal_bayar - biaya;
+                    $('#total').val(result)
+                    if (result < 0) {
+                        $("#pesan").show();
+                        setTimeout(function() { $("#pesan").hide(); }, 5000);
+                    }else{
+                        var total = document.getElementById("total");
+                        total.value = formatRupiah(total.value);
+                        $("#pesan").hide();
+                    }
+                }
+
+                var nominal_bayar = document.getElementById("nominal_bayar");
+                nominal_bayar.value = formatRupiah(nominal_bayar.value);
+                nominal_bayar.addEventListener("keyup", function(e) {
+                    nominal_bayar.value = formatRupiah(this.value);
+                    count_biaya(hapus_uang($('#total_biaya').val()),hapus_uang(this.value))
+                });
+
+
+                var total_biaya = document.getElementById("total_biaya");
+                total_biaya.value = formatRupiah(total_biaya.value);
+
+                total_biaya.addEventListener("keyup", function(e) {
+                    total_biaya.value = formatRupiah(this.value);
+                });
+
             }
-
-            var nominal_bayar = document.getElementById("nominal_bayar");
-            nominal_bayar.value = formatRupiah(nominal_bayar.value);
-            nominal_bayar.addEventListener("keyup", function(e) {
-                nominal_bayar.value = formatRupiah(this.value);
-                count_biaya(hapus_uang($('#total_biaya').val()),hapus_uang(this.value))
-            });
-
-
-            var total_biaya = document.getElementById("total_biaya");
-            total_biaya.value = formatRupiah(total_biaya.value);
-
-            total_biaya.addEventListener("keyup", function(e) {
-                total_biaya.value = formatRupiah(this.value);
-            });
-
 
             /* Fungsi formatRupiah */
             function formatRupiah(angka, prefix) {
@@ -77,8 +88,13 @@
         @include('components.notification')
         <div class="card mb-4">
             <div class="card-body">
+                {{-- @if (auth()->user()->role == 'petugas')
+                    ini petugas
+                @else
+                    ini bukan petugas
+                @endif --}}
                 <div class="">
-                    <table class="table table-hover">
+                    <table class="table table-hover" id="example">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -102,6 +118,7 @@
                                     <td>{{ $item->pasien_ambulance->no_hp }}</td>
 
                                     <td>{{ \Carbon\Carbon::parse($item->pasien_ambulance->tanggal)->translatedFormat('d F Y ') }} <br> <small class="text-muted" style="font-size: 11px">Jam {{ \Carbon\Carbon::parse($item->pasien_ambulance->tanggal)->translatedFormat('h:i:s A') }}</small></td>
+
                                     <td>
                                         @if ($item->status_kejadian == "0")
                                             <span class="badge rounded-pill alert-warning">Tidak Darurat</span>
@@ -228,58 +245,62 @@
                                     <td>
                                         @if ($item->total_biaya != null)
                                             @if ($item->status_perjalanan == '3')
-                                                <button class="btn btn-sm font-sm rounded btn-brand"  data-bs-toggle="modal" data-bs-target="#exampleModalBayar-{{ $item->id }}">Bayar Tagihan Rp. {{ number_format($item->total_biaya,2, ",", ".") }}</button> <br>
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="exampleModalBayar-{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalBayar-{{ $item->id }}Label" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Pembayaran</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <form action="{{ route('list-ambulance.post',$item->id) }}" method="POST">
-                                                            @csrf
-                                                            <div class="">
-                                                                <label for="product_name" class="form-label">Jumlah Nominal Bayar</label>
-                                                                <input type="text" id="nominal_bayar" value="{{ old('nominal_bayar',0) }}"  placeholder="Masukkan Total Biaya" class="form-control @error('nominal_bayar') is-invalid @enderror" name="nominal_bayar"/>
-                                                                @error('nominal_bayar')
-                                                                    <div class="invalid-feedback">
-                                                                        {{$message}}.
-                                                                    </div>
-                                                                @enderror
+                                                @if ($loop->first)
+                                                    <button class="btn btn-sm font-sm rounded btn-brand"  onclick="cetak_pembayaran()" data-bs-toggle="modal" data-bs-target="#exampleModalBayar-{{ $item->id }}">Bayar Tagihan Rp. {{ number_format($item->total_biaya,2, ",", ".") }}</button> <br>
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="exampleModalBayar-{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalBayar-{{ $item->id }}Label" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Pembayaran</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
-                                                            <div class="mb-4">
-                                                                <label for="product_name" class="form-label">Total Biaya</label>
-                                                                <input type="text" id="total_biaya" value="{{ old('total_biaya',$item->total_biaya) }}" readonly placeholder="Masukkan Total Biaya" class="form-control @error('total_biaya') is-invalid @enderror" name="total_biaya"/>
-                                                                @error('total_biaya')
-                                                                    <div class="invalid-feedback">
-                                                                        {{$message}}.
-                                                                    </div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="mb-4">
-                                                                <label for="product_name" class="form-label">Jumlah Kembalian</label>
-                                                                <input type="text" id="total" value="{{ old('total',) }}"  placeholder="Masukkan Total Biaya" class="form-control @error('total') is-invalid @enderror" name="total"/>
-                                                                <div id="pesan">
-                                                                    <small class="text-danger">Maaf uang anda tidak mencukupi</small>
+                                                            <div class="modal-body">
+                                                                <form action="{{ route('list-ambulance.post',$item->id) }}" method="POST">
+                                                                @csrf
+                                                                <div class="">
+                                                                    <label for="product_name" class="form-label">Jumlah Nominal Bayar</label>
+                                                                    <input type="text" id="nominal_bayar" value="{{ old('nominal_bayar',0) }}"  placeholder="Masukkan Total Biaya" class="form-control @error('nominal_bayar') is-invalid @enderror" name="nominal_bayar"/>
+                                                                    @error('nominal_bayar')
+                                                                        <div class="invalid-feedback">
+                                                                            {{$message}}.
+                                                                        </div>
+                                                                    @enderror
                                                                 </div>
-                                                                @error('total')
-                                                                    <div class="invalid-feedback">
-                                                                        {{$message}}.
+                                                                <div class="mb-4">
+                                                                    <label for="product_name" class="form-label">Total Biaya</label>
+                                                                    <input type="text" id="total_biaya" value="{{ old('total_biaya',$item->total_biaya) }}" readonly placeholder="Masukkan Total Biaya" class="form-control @error('total_biaya') is-invalid @enderror" name="total_biaya"/>
+                                                                    @error('total_biaya')
+                                                                        <div class="invalid-feedback">
+                                                                            {{$message}}.
+                                                                        </div>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="mb-4">
+                                                                    <label for="product_name" class="form-label">Jumlah Kembalian</label>
+                                                                    <input type="text" id="total" value="{{ old('total',) }}"  placeholder="Masukkan Total Biaya" class="form-control @error('total') is-invalid @enderror" name="total"/>
+                                                                    <div id="pesan">
+                                                                        <small class="text-danger">Maaf uang anda tidak mencukupi</small>
                                                                     </div>
-                                                                @enderror
+                                                                    @error('total')
+                                                                        <div class="invalid-feedback">
+                                                                            {{$message}}.
+                                                                        </div>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="btn btn-primary">Simpan</button>
+
+                                                                </form>
                                                             </div>
                                                         </div>
-                                                        <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                <button type="submit" class="btn btn-primary">Simpan</button>
-
-                                                            </form>
                                                         </div>
                                                     </div>
-                                                    </div>
-                                                </div>
+                                                @else
+                                                    <small class="text-muted">selesaikan pembayaran sebelumnya</small>
+                                                @endif
                                             @else
                                                 Rp. {{ number_format($item->total_biaya,2, ",", ".") }}
                                             @endif

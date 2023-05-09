@@ -8,6 +8,7 @@ use App\Models\LokasiKejadian;
 use App\Models\PasienAmbulance;
 use App\Models\Petugas;
 use App\Models\RiwayatTransaksAmbulance;
+use DateTime;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -123,56 +124,33 @@ class AmbulanceController extends Controller
     }
     public function cek(Request $request)
     {
-        if (date('Y-m-d H:i:s', strtotime($request->get('tgl'))) > date("Y-m-d H:i:s")) {
-            $data = RiwayatTransaksAmbulance::with('pasien_ambulance')->whereDate('tanggal_jemput', '>',date('Y-m-d', strtotime($request->get('tgl'))));
+        $request = new DateTime($request->get('tgl'));
+        $sekarang = new DateTime("now");
+
+        if ($request > $sekarang) {
+            $data = RiwayatTransaksAmbulance::with('pasien_ambulance')->whereDate('tanggal_jemput', '>',$sekarang);
             if (count($data->get()) > 0 ) {
                 return response()->json([
                     'data' => true,
                     'message' => 'Dapat Memesan'
                 ],Response::HTTP_OK);
-                // if (count($data->OrWhere('status_kejadian','==','1')->get()) > 0) {
-                //     if (count($data->where('status_perjalanan','!=','1')->where('status_perjalanan','!=','2')->get()) > 0) {
-                //         return response()->json([
-                //             'data' => true,
-                //             'message' => 'Dapat Memesan'
-                //         ],Response::HTTP_OK);
-                //     }else{
-                //         return response()->json([
-                //             'data' => false,
-                //             'message' => 'Mohon maaf, ambulance tidak tersedia. Silakan untuk menghubungi fasilitas kesehatan lainnya.'
-                //         ],Response::HTTP_OK);
-                //     }
-                // }else{
-                // }
             } else {
-                $data = RiwayatTransaksAmbulance::with('pasien_ambulance')->whereDate('tanggal_jemput', '=',date('Y-m-d', strtotime($request->get('tgl'))));
+                $data = RiwayatTransaksAmbulance::with('pasien_ambulance')->whereDate('tanggal_jemput', '=',$request);
 
                 if (count($data->get()) > 0 ) {
-                    $day = $data->whereDay('tanggal_jemput', '>',date('d',strtotime($request->get('tgl'))));
-                    $time = $data->whereTime('tanggal_jemput', '>',date('h:i:s',strtotime($request->get('tgl'))));
-                    if ($day->get()) {
+                    $day = $data->whereDay('tanggal_jemput', '>=',$request->format('d'));
+                    $time = $data->whereTime('tanggal_jemput', '>=',$request->format('H:i:s'));
+                    if (count($time->get()) < 0 || count($day->get()) <= 0) {
                         return response()->json([
                             'data' => true,
                             'message' => 'Dapat Memesan'
                         ],Response::HTTP_OK);
-                    }
-                    if ($time->get()) {
+                    }else{
                         return response()->json([
-                            'data' => true,
-                            'message' => 'Dapat Memesan'
-                        ],Response::HTTP_OK);
+                                    'data' => false,
+                                    'message' => 'Mohon maaf, ambulance tidak tersedia. Silakan untuk menghubungi fasilitas kesehatan lainnya.'
+                                ]);
                     }
-                    // if (count($data->where('status_perjalanan','!=','1')->where('status_perjalanan','!=','2')->get()) > 0) {
-                    //     return response()->json([
-                    //         'data' => true,
-                    //         'message' => 'Dapat Memesan'
-                    //     ],Response::HTTP_OK);
-                    // }else{
-                    //     return response()->json([
-                    //         'data' => false,
-                    //         'message' => 'Mohon maaf, ambulance tidak tersedia. Silakan untuk menghubungi fasilitas kesehatan lainnya.'
-                    //     ],Response::HTTP_OK);
-                    // }
                 }else{
                     return response()->json([
                         'data' => true,
@@ -185,13 +163,19 @@ class AmbulanceController extends Controller
                 'data' => false,
                 'message' => 'Tolong masukkan tanggal dengan benar.'
             ],Response::HTTP_OK);
+
         }
 
     }
     public function status(Request $request)
     {
-        $data = RiwayatTransaksAmbulance::find($request->id)->status_kendaraan;
-        return $data;
+        $data = RiwayatTransaksAmbulance::find($request->id);
+        $tanggal_jemput = new DateTime($data->tanggal_jemput);
+        $format = 'Diterima dengan tanggal jemput : '.$tanggal_jemput->format('d F Y').' Jam '.$tanggal_jemput->format('h:i:s A');
+        return response()->json([
+            'data' => $data->status_kendaraan,
+            'tanggal_jemput' => $format,
+        ]);
     }
 
     public function statusEstimasi(Request $request)

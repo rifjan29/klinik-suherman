@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\RiwayatTransaksiAmbulanceExport;
 use App\Models\DetailTransaksiAmbulance;
 use App\Models\RiwayatTransaksAmbulance;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AmbulanceController extends Controller
 {
@@ -159,6 +163,57 @@ class AmbulanceController extends Controller
         return redirect()->route('list-ambulance')->withStatus('Berhasil mengganti status kejadian');
     }
 
+    public function laporan(Request $request)
+    {
+        $data_grafik = RiwayatTransaksAmbulance::select(
+            "id" ,
+            DB::raw("(sum(total_biaya)) as total_biaya"),
+            DB::raw("(DATE_FORMAT(created_at, '%m-%Y')) as month_year")
+            )
+            ->orderBy('created_at')
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
+            ->get();
+        Session::forget('dari');
+        Session::forget('sampai');
+        $query = RiwayatTransaksAmbulance::with('pasien_ambulance','ambulance')->where('status_pembayaran','lunas');
+        $cetak = null;
+        if ($request->has('dari') || $request->has('sampai')) {
+            Session::put('dari',$request->get('dari'));
+            Session::put('sampai',$request->get('sampai'));
+            $cetak = "ada";
+            $data = $query->whereBetween('created_at',[$request->get('dari'),$request->get('sampai')])->get();
+        }else{
+            $cetak = null;
+            $data = $query->get();
+        }
+        return view('backend.ambulance.laporan',compact('data','cetak','data_grafik'));
+    }
+    public function pdf(Request $request)
+    {
+
+        // return Excel::download(new RiwayatTransaksiAmbulanceExport($request->session()->get('dari'),$request->session()->get('sampai')),'laporan.xls');
+
+        $query = RiwayatTransaksAmbulance::with('pasien_ambulance','ambulance');
+
+        if (Session::has('dari') || Session::has('sampai')) {
+            $data = $query->whereBetween('created_at',[$request->session()->get('dari'),$request->session()->get('sampai')])->get();
+        }else{
+            $data = $query->get();
+        }
+        return view('backend.ambulance.pdf',compact('data'));
+    }
+
+    public function excel(Request $request)
+    {
+        $query = RiwayatTransaksAmbulance::with('pasien_ambulance','ambulance');
+
+        if (Session::has('dari') || Session::has('sampai')) {
+            $data = $query->whereBetween('created_at',[$request->session()->get('dari'),$request->session()->get('sampai')])->get();
+        }else{
+            $data = $query->get();
+        }
+        return view('backend.ambulance.excel',compact('data'));
+    }
     public function formatNumber($param)
     {
         return (int)str_replace('.', '', $param);

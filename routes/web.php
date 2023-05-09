@@ -12,6 +12,7 @@ use App\Http\Controllers\KasirController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\PoliController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Ambulance;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,11 +60,18 @@ Route::middleware(['auth'])->group(function () {
             // riwayat
             Route::get('riwayat-ambulance/detail/{id}',[AmbulanceController::class,'riwayatDetail'])->name('riwayat-ambulance.detail');
             Route::get('riwayat-ambulance',[AmbulanceController::class,'riwayat'])->name('riwayat-ambulance');
+
+            // Laporan e-ambulance
+            Route::get('laporan-ambulance/pdf',[AmbulanceController::class,'pdf'])->name('laporan-ambulance.pdf');
+            Route::get('laporan-ambulance/excel',[AmbulanceController::class,'excel'])->name('laporan-ambulance.excel');
+            Route::get('laporan-ambulance',[AmbulanceController::class,'laporan'])->name('laporan-ambulance');
             // Route::get('data-saldo',[AmbulanceController::class,'saldo'])->name('data-saldo');
             // Route::get('data-pemasukan',[AmbulanceController::class,'pemasukan'])->name('data-pemasukan');
             // Route::get('riwayat-transaksi',[AmbulanceController::class,'transaksi'])->name('riwayat-transaksi');
 
         });
+
+
 
     });
 });

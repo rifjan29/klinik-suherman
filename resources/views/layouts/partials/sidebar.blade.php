@@ -76,9 +76,14 @@
                         <span class="text">Data E-Ambulance</span>
                     </a>
                     <div class="submenu">
-                        <a href="{{ route('list-ambulance') }}">List Pemesanan </a>
-                        <a href="{{ route('riwayat-ambulance') }}">Riwayat Pemesanan </a>
-                        <a href="{{ route('riwayat-ambulance') }}">Laporan E-Ambulance </a>
+
+                        @if (auth()->user()->role == 'petugas')
+                            <a href="{{ route('list-ambulance') }}">List Pemesanan </a>
+                        @else
+                            <a href="{{ route('list-ambulance') }}">List Pemesanan </a>
+                            <a href="{{ route('riwayat-ambulance') }}">Riwayat Pemesanan </a>
+                            <a href="{{ route('laporan-ambulance') }}">Laporan E-Ambulance </a>
+                        @endif
                     </div>
                 </li>
                 @if (auth()->user()->role == 'kasir')
