@@ -36,7 +36,7 @@
           <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Akun<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Profil</a></li>
+                  <li><a href="{{ route('profil') }}">Profil</a></li>
                   <li><a href="{{ route('e-ambulance.fitur') }}">Pilihan Menu</a></li>
                   <div class="dropdown-divider"></div>
                   <li><a href="{{ route('logout') }}" style="color:red">Logout</a></li>

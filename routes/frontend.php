@@ -17,6 +17,15 @@ Route::post('user-register/post', [Frontend\PasienController::class, 'registerPo
 // Logout
 Route::get('logout', [Frontend\PasienController::class, 'logout'])->name('logout');
 
+// Profile
+Route::prefix('akun')->group(function() {
+    Route::get('profil-saya', [Frontend\ProfileController::class, 'ProfilSaya'])->name('profil');
+    Route::get('riwayat', [Frontend\RiwayatController::class, 'riwayat'])->name('riwayat');
+    Route::get('notifikasi', [Frontend\NotifikasiController::class, 'index'])->name('notifikasi');
+    Route::get('pengaturan', [Frontend\PengaturanController::class, 'index'])->name('pengaturan');
+});
+
+
 
 // Pelayanan
 Route::get('cek-status',[Frontend\AmbulanceController::class,'status'])->name('e-ambulance.status');
