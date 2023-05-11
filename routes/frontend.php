@@ -51,7 +51,14 @@ Route::prefix('pelayanan')->group(function() {
         Route::get('metode-pembayaran/estimasi-ambulance/selesai/{id}',[Frontend\AmbulanceController::class,'estimasiSelesai'])->name('e-ambulance.estimasi-selesai');
 
     });
-    Route::get('e-konsultasi', [Frontend\PelayananController::class, 'konsultasi'])->name('e-konsultasi');
+
+    // Layanan E-Konsultasi
+    Route::prefix('e-konsultasi')->group(function() {
+        Route::get('beranda', [Frontend\KonsultasiController::class, 'index'])->name('e-konsultasi');
+        Route::get('pembayaran', [Frontend\KonsultasiController::class, 'pembayaran'])->name('pembayaran');
+    });
+
+    
     Route::get('e-apotek', [Frontend\PelayananController::class, 'apotek'])->name('e-apotek');
 });
 

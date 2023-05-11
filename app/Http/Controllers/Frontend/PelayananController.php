@@ -27,11 +27,6 @@ class PelayananController extends Controller
         return view('layouts.frontend.ugd');
     }
 
-    public function konsultasi()
-    {
-        return view('layouts.frontend.konsultasi');
-    }
-
     public function apotek()
     {
         return view('layouts.frontend.apotek');
