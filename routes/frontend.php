@@ -56,6 +56,7 @@ Route::prefix('pelayanan')->group(function() {
     Route::prefix('e-konsultasi')->group(function() {
         Route::get('beranda', [Frontend\KonsultasiController::class, 'index'])->name('e-konsultasi');
         Route::get('pembayaran', [Frontend\KonsultasiController::class, 'pembayaran'])->name('pembayaran');
+        Route::get('pesan', [Frontend\KonsultasiController::class, 'pesan'])->name('pesan');
     });
 
     

@@ -127,7 +127,7 @@
                                     <div class="ms-auto">Rp. 25.000</div>
                                 </div>
                             </div>
-                            <a class="btn btn-primary mt-4" href="{{ route('pembayaran')}}">Chat Sekarang</a>
+                            <a class="btn btn-primary mt-4" href="{{ route('pesan')}}">Chat Sekarang</a>
                         </div>
                     </div>
                 </div>
