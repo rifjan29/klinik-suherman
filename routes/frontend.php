@@ -20,6 +20,7 @@ Route::get('logout', [Frontend\PasienController::class, 'logout'])->name('logout
 // Profile
 Route::prefix('akun')->group(function() {
     Route::get('profil-saya', [Frontend\ProfileController::class, 'ProfilSaya'])->name('profil');
+    Route::put('update-profil', [Frontend\ProfileController::class, 'updateProfil'])->name('updateProfil');
     Route::get('riwayat', [Frontend\RiwayatController::class, 'riwayat'])->name('riwayat');
     Route::get('notifikasi', [Frontend\NotifikasiController::class, 'index'])->name('notifikasi');
     Route::get('pengaturan', [Frontend\PengaturanController::class, 'index'])->name('pengaturan');
