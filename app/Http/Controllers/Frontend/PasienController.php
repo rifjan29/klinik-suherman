@@ -79,6 +79,11 @@ class PasienController extends Controller
             'status' => 'required|in:1,0',
             'job' => 'required|string',
             'religion' => 'required|string',
+        ],[
+            'required' => ':attribute harus terisi',
+            'regex' => ':attribute terdiri dari minimal 8 karakter dan terdapat huruf besar dan simbol',
+            'min' => ':attribute harus lebih dari 5 karakter',
+            'starts_with' => ':attribute harus diawali dengan 08'
         ]);
 
         // dd('registrasi berhasil');

@@ -5,6 +5,7 @@ use App\Http\Controllers\AmbulanceController;
 use App\Http\Controllers\ApoterController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardDokterController;
 use App\Http\Controllers\DataMobilAmbulanceController;
 use App\Http\Controllers\DataProfileController;
 use App\Http\Controllers\DokterController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\PoliController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Ambulance;
 use Illuminate\Support\Facades\Route;
+use Maatwebsite\Excel\Row;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,6 +71,10 @@ Route::middleware(['auth'])->group(function () {
             // Route::get('data-pemasukan',[AmbulanceController::class,'pemasukan'])->name('data-pemasukan');
             // Route::get('riwayat-transaksi',[AmbulanceController::class,'transaksi'])->name('riwayat-transaksi');
 
+        });
+
+        Route::prefix('konsultasi')->group(function () {
+            Route::get('dashboard-dokter',[DashboardDokterController::class,'index'])->name('dokter.dashboard');
         });
 
 

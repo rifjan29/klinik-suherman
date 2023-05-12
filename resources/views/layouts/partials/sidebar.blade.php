@@ -43,8 +43,8 @@
                     </div>
                 </li>
             @elseif (auth()->user()->role == 'dokter')
-                <li class="menu-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                    <a class="menu-link" href="{{ route('dashboard') }}">
+                <li class="menu-item {{ request()->routeIs('dokter.dashboard') ? 'active' : '' }}">
+                    <a class="menu-link" href="{{ route('dokter.dashboard') }}">
                         <i class="icon material-icons md-home"></i>
                         <span class="text">Dashboard</span>
                     </a>
