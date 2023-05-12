@@ -399,7 +399,7 @@
                         </div>
                         <div class="row">
                             <label for="" class="form-label">Alamat</label>
-                            <textarea name="alamat" id="" cols="30" rows="10" class="form-control @error('alaman') is-invalid @enderror" placeholder="Masukkan alamat detail"></textarea>
+                            <textarea name="alamat" id="" cols="30" rows="10" class="form-control @error('alamat') is-invalid @enderror" placeholder="Masukkan alamat detail"></textarea>
                             @error('alamat')
                                 <small class="text-small text-danger">
                                     {{$message}}.

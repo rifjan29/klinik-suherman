@@ -41,6 +41,7 @@
                         <div class="card" style="border-radius:40px;">
                             <div class="card-body p-4">
                                 <form class="mb-3 mt-md-4" method="POST" action="{{ route('loginPost') }}">
+                                    @csrf
                                     <div class="section-title">
                                         <h2 class="">Login</h2>
                                     </div>

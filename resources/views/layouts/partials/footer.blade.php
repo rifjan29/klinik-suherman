@@ -4,7 +4,7 @@
             <script>
                 document.write(new Date().getFullYear());
             </script>
-            &copy; Forecast Shrimp - Politeknik Negeri Jember .
+            &copy; KLINIK Rawat Inap DR. SUHERMAN - Politeknik Negeri Jember .
         </div>
         <div class="col-sm-6">
             <div class="text-sm-end">All rights reserved</div>

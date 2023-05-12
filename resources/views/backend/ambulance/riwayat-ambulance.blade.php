@@ -1,17 +1,24 @@
 <x-app-layout>
     @push('css')
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
         <style>
             .page-item.active .page-link{
                 background-color: #219ebc !important;
                 border-color: #8ecae6;
             }
+            .btn-danger{
+                background-color: #e63946;
+                border: none
+            }
         </style>
     @endpush
     @push('js')
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
     <script>
-        $(document).ready(function() {
-
-
+        $(document).ready(function () {
+            $('#example').DataTable();
         })
     </script>
     @endpush
@@ -27,17 +34,17 @@
         <div class="card mb-4">
             <div class="card-body">
                 <div class="">
-                    <table class="table table-hover">
+                    <table class="table table-hover" id="example">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>No Pesanan</th>
-                                <th scope="col">Nama Wali</th>
-                                <th scope="col">No. Telp</th>
+                                <th>Nama Pasien</th>
                                 <th scope="col">Tanggal Pesanan</th>
-                                <th>Status Kejadian</th>
-                                <th>Status Pesanan</th>
+                                <th scope="col">Tanggal Jemput</th>
                                 <th>Status Pembayaran</th>
+                                <th>Status Pesanan</th>
+                                <th>Total Biaya</th>
                                 <th scope="col" class="text-start">Action</th>
                             </tr>
                         </thead>
@@ -47,115 +54,19 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->kode_pesanan }}</td>
                                     <td>{{ $item->pasien_ambulance->nama_wali }}</td>
-                                    <td>{{ $item->pasien_ambulance->no_hp }}</td>
-
-                                    <td>{{ $item->pasien_ambulance->tanggal }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($item->tanggal_jemput)->translatedFormat('d F Y ') }} <br> <small class="text-muted" style="font-size: 11px">Jam {{ \Carbon\Carbon::parse($item->tanggal_jemput)->translatedFormat('h:i:s A') }}</small></td>
+                                    <td>{{ \Carbon\Carbon::parse($item->pasien_ambulance->tanggal)->translatedFormat('d F Y ') }} <br> <small class="text-muted" style="font-size: 11px">Jam {{ \Carbon\Carbon::parse($item->pasien_ambulance->tanggal)->translatedFormat('h:i:s A') }}</small></td>
                                     <td>
-                                        @if ($item->status_kejadian == '0')
-                                            <span class="badge rounded-pill alert-warning">Tidak Darurat</span>
-                                        @elseif ($item->status_kejadian == '1')
-                                            <span class="badge rounded-pill alert-warning">Darurat</span>
-                                        @else
-                                            <a href="{{ $item->pasien_ambulance->id }}" data-bs-toggle="modal" data-bs-target="#cekstatus{{ $item->pasien_ambulance->id }}" class="badge rounded-pill alert-info">Cek Status Kejadian</a></td>
-                                            <div class="modal fade" id="cekstatus{{ $item->pasien_ambulance->id }}" tabindex="-1" aria-labelledby="cekstatus{{ $item->pasien_ambulance->id }}Label" aria-hidden="true">
-                                                <div class="modal-dialog modal-xl">
-                                                  <div class="modal-content">
-                                                    <div class="modal-header">
-                                                      <h5 class="modal-title" id="exampleModalLabel">Cek Status</h5>
-                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <div class="col-md-2">
-                                                                Alamat :
-                                                            </div>
-                                                            <div class="col-md-10">
-                                                                <div class="card">
-                                                                    @php
-
-                                                                            $provinsi = \Indonesia::findProvince($item->lokasi->id_provinsi)->first();
-                                                                            $kota = \Indonesia::findCity($item->lokasi->id_kota)->first();
-                                                                            $kecamatan = \Indonesia::findDistrict($item->lokasi->id_kecamatan)->first();
-                                                                            $desa = \Indonesia::findVillage($item->lokasi->id_desa)->first();
-                                                                    @endphp
-                                                                    <div class="card-body">
-                                                                        <p>{{ $provinsi->name }}, {{ $kota->name }}, {{ $kecamatan->name }}, {{ $desa->name }}, {{ $item->lokasi->alamat }}</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-2">
-                                                                Keaadaan :
-                                                            </div>
-                                                            <div class="col-md-10">
-                                                                <textarea name="" id="" cols="5" rows="5" class="form-control" readonly>{{ $item->pasien_ambulance->keadaan }}</textarea>
-                                                                <div class="input-upload">
-                                                                    <img src="{{ $item->pasien_ambulance->foto_kejadian != null ? asset('img/admin/'.$item->pasien_ambulance->foto_kejadian) : asset('backend/assets/imgs/theme/upload.svg') }}" alt="" id="photosPreview"/>
-                                                                </div>
-                                                            </div>
-                                                            <hr>
-                                                            <form action="{{ route('update-status.riwayat-ambulance') }}" method="POST" >
-                                                                @csrf
-                                                                <input type="text" name="id_transaksi" value="{{ $item->kode_pesanan }}">
-
-                                                            <div class="col-md-2">
-                                                                <label for="product_name" class="form-label">Status Kejadian</label>
-                                                            </div>
-                                                            <div class="col-md-10">
-                                                                <label class="mb-2 form-check form-check-inline" style="width: 45%;">
-                                                                    <input class="form-check-input" id="jenis_kelamin" name="status_kejadian" value="0" {{ old('status_kejadian') == '0' ? "checked" : '' }} type="radio">
-                                                                    <span class="form-check-label"> Darurat </span>
-                                                                </label>
-                                                                <label class="mb-2 form-check form-check-inline" style="width: 45%;">
-                                                                    <input class="form-check-input" id="jeni_kelamin" name="status_kejadian" value="1" {{ old('status_kejadian') == '1' ? "checked" : '' }} type="radio">
-                                                                    <span class="form-check-label"> Tidak Darurat </span>
-                                                                </label>
-                                                                @error('status_kejadian')
-                                                                    <div class="invalid-feedback">
-                                                                        {{$message}}.
-                                                                    </div>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-primary">Update Status</button>
-
-                                                        </form>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                            </div>
-                                        @endif
+                                        <span class="badge rounded-pill alert-success">Lunas</span>
                                     </td>
                                     <td>
-                                        @if ($item->status_kendaraan == '1')
-                                            <span class="badge rounded-pill alert-warning">Dalam Perjalanan</span>
-                                        @elseif ($item->status_kendaraan == '2')
-                                            <span class="badge rounded-pill alert-info">Tiba di klinik</span>
-                                        @else
-                                            <span class="badge rounded-pill alert-warning">Proses Pengecekan</span>
-                                        @endif
+                                        <span class="badge rounded-pill alert-success">Selesai</span>
                                     </td>
                                     <td>
-                                        @if ($item->status_kendaraan == 'pending')
-                                            <span class="badge rounded-pill alert-warning">Pending</span>
-                                        @elseif ($item->status_kendaraan == 'lunas')
-                                            <span class="badge rounded-pill alert-info">Lunas</span>
-                                        @else
-                                            <span class="badge rounded-pill alert-danger">Ditolak</span>
-                                        @endif
+                                        <b>Rp. {{ number_format($item->total_biaya,2, ",", ".") }}</b>
                                     </td>
                                     <td>
-                                        <a href="" class="btn btn-sm font-sm rounded btn-brand"> <i class="material-icons md-edit"></i> Detail Pesanan </a>
-                                        <div class="dropdown">
-                                            <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i class="material-icons md-more_horiz"></i> </a>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#">Cek Pembayaran</a>
-                                                <a class="dropdown-item" href="#">Ganti Status Pesanan</a>
-                                            </div>
-                                        </div>
+                                        <a class="btn btn-sm btn-danger" href="{{ route('riwayat-ambulance.detail',$item->id) }}">Cetak Bukti Pembayaran</a>
                                     </td>
                                 </tr>
                             @endforeach

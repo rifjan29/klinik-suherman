@@ -9,4 +9,6 @@ class ModelPasien extends Model
 {
     use HasFactory;
     protected $table = 'pasien';
+
 }
+
