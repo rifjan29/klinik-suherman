@@ -6,6 +6,7 @@ use App\Http\Controllers\WilayaIndonesiaDropdownController;
 
 // Beranda
 Route::get('/', [Frontend\HomeController::class, 'index'])->name('beranda');
+Route::post('kritik-saran', [Frontend\HomeController::class, 'kritikSaran'])->name('kritikSaran');
 
 // Login User
 Route::get('user-login', [Frontend\PasienController::class, 'login'])->name('login.index');
