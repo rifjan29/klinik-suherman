@@ -71,7 +71,7 @@ class PasienController extends Controller
             'nama' => 'required|max:255|string|min:5',
             'username' => 'required|unique:pasien|min:5|max:20|string|alpha_dash',
             'email' => 'required|unique:pasien|email:dns',
-            'password' => 'required|min:8|string|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/',
+            'password' => 'required|min:5',
             'address' => 'required|string',
             'phone' => 'required|numeric|min:10|starts_with:08|digits_between:10,12',
             'born' => 'required|string',
