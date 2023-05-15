@@ -25,7 +25,7 @@
     </div>
     <nav>
         <ul class="menu-aside">
-            @if (auth()->user()->role == 'apotek')
+            @if (auth()->user()->role == 'kasir' )
                 <li class="menu-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                     <a class="menu-link" href="{{ route('dashboard') }}">
                         <i class="icon material-icons md-home"></i>
@@ -42,12 +42,21 @@
                         <a href="{{ route('riwayat-ambulance') }}">Laporan Resep </a>
                     </div>
                 </li>
-            @elseif (auth()->user()->role == 'dokter')
-                <li class="menu-item {{ request()->routeIs('dokter.dashboard') ? 'active' : '' }}">
-                    <a class="menu-link" href="{{ route('dokter.dashboard') }}">
-                        <i class="icon material-icons md-home"></i>
-                        <span class="text">Dashboard</span>
+                <li class="menu-item has-submenu {{ Request::segment(2) == 'ambulance' ? 'active' : '' }}">
+                    <a class="menu-link" href="page-form-product-1.html">
+                        <i class="icon material-icons md-airport_shuttle"></i>
+                        <span class="text">Data E-Ambulance</span>
                     </a>
+                    <div class="submenu">
+
+                        @if (auth()->user()->role == 'petugas')
+                            <a href="{{ route('list-ambulance') }}">List Pemesanan </a>
+                        @else
+                            <a href="{{ route('list-ambulance') }}">List Pemesanan </a>
+                            <a href="{{ route('riwayat-ambulance') }}">Riwayat Pemesanan </a>
+                            <a href="{{ route('laporan-ambulance') }}">Laporan E-Ambulance </a>
+                        @endif
+                    </div>
                 </li>
                 <li class="menu-item has-submenu {{ Request::segment(2) == 'e-konsultasi' ? 'active' : '' }}">
                     <a class="menu-link" href="page-form-product-1.html">
@@ -55,15 +64,39 @@
                         <span class="text">Data E-Konsultasi</span>
                     </a>
                     <div class="submenu">
-                        @if (auth()->user()->role == 'kasir')
-                            <a href="{{ route('riwayat-ambulance') }}">List Transaksi </a>
-                        @endif
+                        <a href="{{ route('konsultasi.list') }}" class="{{ Request::segment(3) == 'list-transaksi' ? 'active' : '' }}">List Transaksi </a>
+                        <a href="{{ route('konsultasi.riwayat') }}" class="{{ Request::segment(3) == 'riwayat-transaksi' ? 'active' : '' }}">Riwayat Transaksi </a>
+                        <a href="{{ route('konsultasi.laporan') }}" class="{{ Request::segment(3) == 'laporan-transaksi' ? 'active' : '' }}">Laporan Transaksi </a>
+                    </div>
+                </li>
+                <li class="menu-item has-submenu {{ Request::segment(2) == 'e-apotek' ? 'active' : '' }}">
+                    <a class="menu-link" href="page-form-product-1.html">
+                        <i class="icon material-icons md-assignment"></i>
+                        <span class="text">Data E-Apotek</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="{{ route('riwayat-ambulance') }}">List Transaksi Resep</a>
+                    </div>
+                </li>
+            @elseif (auth()->user()->role == 'dokter')
+                <li class="menu-item {{ request()->routeIs('dokter.dashboard') ? 'active' : '' }}">
+                    <a class="menu-link" href="{{ route('dokter.dashboard') }}">
+                        <i class="icon material-icons md-home"></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+                {{-- <li class="menu-item has-submenu {{ Request::segment(2) == 'e-konsultasi' ? 'active' : '' }}">
+                    <a class="menu-link" href="page-form-product-1.html">
+                        <i class="icon material-icons md-add_alert"></i>
+                        <span class="text">Data E-Konsultasi</span>
+                    </a>
+                    <div class="submenu">
                         <a href="{{ route('riwayat-ambulance') }}">Rating Dokter </a>
                         <a href="{{ route('riwayat-ambulance') }}">Riwayat Konsultasi </a>
                         <a href="{{ route('riwayat-ambulance') }}">Laporan Konsultasi </a>
                     </div>
-                </li>
-            @elseif (auth()->user()->role == 'petugas' || auth()->user()->role == 'kasir')
+                </li> --}}
+            @elseif (auth()->user()->role == 'petugas' )
                 <li class="menu-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                     <a class="menu-link" href="{{ route('dashboard') }}">
                         <i class="icon material-icons md-home"></i>
@@ -86,37 +119,6 @@
                         @endif
                     </div>
                 </li>
-                @if (auth()->user()->role == 'kasir')
-                    <li class="menu-item has-submenu {{ Request::segment(3) == 'e-konsultasi' ? 'active' : '' }}">
-                        <a class="menu-link" href="page-form-product-1.html">
-                            <i class="icon material-icons md-add_alert"></i>
-                            <span class="text">Data E-Konsultasi</span>
-                        </a>
-                        <div class="submenu">
-                            @if (auth()->user()->role == 'kasir')
-                                <a href="{{ route('konsultasi.list') }}">List Transaksi </a>
-                                <a href="{{ route('konsultasi.riwayat') }}">Riwayat Transaksi </a>
-                                <a href="{{ route('konsultasi.laporan') }}">Laporan Transaksi </a>
-                            @else
-                                <a href="{{ route('riwayat-ambulance') }}">Rating Dokter </a>
-                                <a href="{{ route('riwayat-ambulance') }}">Riwayat Konsultasi </a>
-                                <a href="{{ route('riwayat-ambulance') }}">Laporan Konsultasi </a>
-
-                            @endif
-                        </div>
-                    </li>
-                    <li class="menu-item has-submenu {{ Request::segment(2) == 'e-apotek' ? 'active' : '' }}">
-                        <a class="menu-link" href="page-form-product-1.html">
-                            <i class="icon material-icons md-assignment"></i>
-                            <span class="text">Data E-Apotek</span>
-                        </a>
-                        <div class="submenu">
-                            <a href="{{ route('riwayat-ambulance') }}">List Transaksi Resep</a>
-                        </div>
-                    </li>
-                @endif
-
-
             @else
                 <li class="menu-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                     <a class="menu-link" href="{{ route('dashboard') }}">
@@ -152,7 +154,7 @@
                         <a href="{{ route('laporan-ambulance') }}">Laporan E-Ambulance </a>
                     </div>
                 </li>
-                <li class="menu-item has-submenu {{ Request::segment(2) == 'e-konsultasi' ? 'active' : '' }}">
+                {{-- <li class="menu-item has-submenu {{ Request::segment(2) == 'e-konsultasi' ? 'active' : '' }}">
                     <a class="menu-link" href="page-form-product-1.html">
                         <i class="icon material-icons md-add_alert"></i>
                         <span class="text">Data E-Konsultasi</span>
@@ -163,8 +165,7 @@
                         <a href="{{ route('riwayat-ambulance') }}">Riwayat Konsultasi </a>
                         <a href="{{ route('riwayat-ambulance') }}">Laporan Konsultasi </a>
                     </div>
-                </li>
-
+                </li> --}}
                 <li class="menu-item has-submenu {{ Request::segment(2) == 'e-apotek' ? 'active' : '' }}">
                     <a class="menu-link" href="page-form-product-1.html">
                         <i class="icon material-icons md-assignment"></i>
@@ -175,7 +176,6 @@
                         <a href="{{ route('riwayat-ambulance') }}">Laporan Resep </a>
                     </div>
                 </li>
-
                 <li class="menu-item ">
                     <a class="menu-link"  href="">
                         <i class="icon material-icons md-person"></i>
@@ -189,8 +189,6 @@
                     </a>
                 </li>
             @endif
-
-
 
         </ul>
         <br />

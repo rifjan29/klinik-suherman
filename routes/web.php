@@ -68,6 +68,8 @@ Route::middleware(['auth'])->group(function () {
 
         });
         Route::prefix('e-konsultasi')->group(function () {
+            Route::post('list-transaksi/update-pembayaran',[TransaksiKonsultasiController::class,'UpdateTransaksi'])->name('konsultasi.update');
+            Route::get('list-transaksi/get-pembayaran',[TransaksiKonsultasiController::class,'GetTransaksi'])->name('konsultasi.get');
             Route::get('list-transaksi',[TransaksiKonsultasiController::class,'ListTransaksi'])->name('konsultasi.list');
             Route::get('riwayat-transaksi',[TransaksiKonsultasiController::class,'RiwayatTransaksi'])->name('konsultasi.riwayat');
             Route::get('laporan-transaksi',[TransaksiKonsultasiController::class,'LaporanTransaksi'])->name('konsultasi.laporan');
