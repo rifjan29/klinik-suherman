@@ -6,6 +6,7 @@ use App\Http\Controllers\WilayaIndonesiaDropdownController;
 
 // Beranda
 Route::get('/', [Frontend\HomeController::class, 'index'])->name('beranda');
+Route::post('kritik-saran', [Frontend\HomeController::class, 'kritikSaran'])->name('kritikSaran');
 
 // Login User
 Route::get('user-login', [Frontend\PasienController::class, 'login'])->name('login.index');
@@ -20,6 +21,7 @@ Route::get('logout', [Frontend\PasienController::class, 'logout'])->name('logout
 // Profile
 Route::prefix('akun')->group(function() {
     Route::get('profil-saya', [Frontend\ProfileController::class, 'ProfilSaya'])->name('profil');
+    Route::put('update-profil', [Frontend\ProfileController::class, 'updateProfil'])->name('updateProfil');
     Route::get('riwayat', [Frontend\RiwayatController::class, 'riwayat'])->name('riwayat');
     Route::get('notifikasi', [Frontend\NotifikasiController::class, 'index'])->name('notifikasi');
     Route::get('pengaturan', [Frontend\PengaturanController::class, 'index'])->name('pengaturan');
@@ -56,6 +58,7 @@ Route::prefix('pelayanan')->group(function() {
     Route::prefix('e-konsultasi')->group(function() {
         Route::get('beranda', [Frontend\KonsultasiController::class, 'index'])->name('e-konsultasi');
         Route::get('pembayaran', [Frontend\KonsultasiController::class, 'pembayaran'])->name('pembayaran');
+        Route::get('pesan', [Frontend\KonsultasiController::class, 'pesan'])->name('pesan');
     });
 
     

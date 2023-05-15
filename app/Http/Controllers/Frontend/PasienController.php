@@ -103,6 +103,7 @@ class PasienController extends Controller
         return redirect('/user-login')->with('alert-success','Kamu berhasil Register. Silahkan Login');
     }
 
+
     /**
      * Show the form for creating a new resource.
      */

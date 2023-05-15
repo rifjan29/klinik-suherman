@@ -31,12 +31,12 @@
                             <img src="{{ asset('frontend/assets/img/profile.jpg') }}" alt="" class="img-fluid rounded-circle" style="width: 75px; height: 75px;">
                         </div>
                         <div class="mx-4 mt-4">
-                            <span style="color:black; font-size:16px; font-weight:bold;">Yolanda</span>
+                            <span style="color:black; font-size:16px; font-weight:bold;">{{ $data->nama }}</span>
                         </div>
                     </div>
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                         <li class="nav-item mb-2">
-                            <a href="" class="nav-link align-middle px-0">
+                            <a href="{{ route('profil') }}" class="nav-link align-middle px-0">
                                 <i class="fs-4 bi-person"></i> <span class="mx-3 d-none d-sm-inline">Profil Saya</span>
                             </a>
                         </li>
@@ -68,11 +68,18 @@
                             <div class="fw-bold" style="font-size:20px;">
                                 <p>Ubah Informasi Pengguna</p>
                             </div>
-                            <form action="">
+                            <form action="{{ route('updateProfil') }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                @if (\Session::has('alert-success'))
+                                    <div class="alert alert-success">
+                                        <div>{{Session::get('alert-success')}}</div>
+                                    </div>
+                                @endif
                                 <div class="row">
                                     <div class="col-md-6 mt-3">
                                         <label for="nama" class="col-form-label fw-bold">Nama Lengkap</label>
-                                        <input type="text" name="nama" class="form-control rounded-3 mt-1  @error('nama') is-invalid @enderror" id="nama" placeholder="Masukkan Nama Lengkap" style="height: 50px;" required value="{{ old('nama') }}">
+                                        <input type="text" name="nama" class="form-control rounded-3 mt-1  @error('nama') is-invalid @enderror" id="nama" placeholder="Masukkan Nama Lengkap" style="height: 50px;" required value="{{ old('nama', $data->nama)}}">
                                         @error('nama')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -81,7 +88,7 @@
                                     </div>
                                     <div class="col-md-6 mt-3">
                                         <label for="religion" class="col-form-label fw-bold">Agama</label>
-                                        <input type="text" name="religion" class="form-control rounded-3 mt-1  @error('religion') is-invalid @enderror" id="religion" placeholder="(Islam, Kristen, Katolik, Budha, Hindu, Khonghucu)" style="height: 50px;" required value="{{ old('religion') }}">
+                                        <input type="text" name="religion" class="form-control rounded-3 mt-1  @error('religion') is-invalid @enderror" id="religion" placeholder="(Islam, Kristen, Katolik, Budha, Hindu, Khonghucu)" style="height: 50px;" required value="{{ old('religion', $data->religion) }}">
                                         @error('religion')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -90,7 +97,7 @@
                                     </div>
                                     <div class="col-md-6 mt-3">
                                         <label for="born" class="col-form-label fw-bold">Tempat/Tanggal Lahir</label>
-                                        <input type="text" name="born" class="form-control rounded-3 mt-1  @error('born') is-invalid @enderror" id="born" placeholder="Masukkan Tempat, Tanggal Lahir" style="height: 50px;" required value="{{ old('born') }}">
+                                        <input type="text" name="born" class="form-control rounded-3 mt-1  @error('born') is-invalid @enderror" id="born" placeholder="Masukkan Tempat, Tanggal Lahir" style="height: 50px;" required value="{{ old('born',$data->born)}}">
                                         @error('born')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -98,32 +105,32 @@
                                         @enderror
                                     </div>
                                     <div class="col-md-6 mt-3">
-                                        <label for="status" class="col-form-label fw-bold">Status Perkawinan</label>
-                                        <div class="d-flex justify-content-start mt-3">
-                                            <div class="form-check">
-                                                <input class="form-check-input @error('status') is-invalid @enderror" type="radio" name="status" id="married" value="1" {{ old('status') == '1' ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="married">Kawin</label>
+                                        <label for="gender" class="col-form-label fw-bold">Jenis Kelamin</label>
+                                            <div class="d-flex justify-content-start mt-3">
+                                                <div class="form-check">
+                                                    <input class="form-check-input @error('gender') is-invalid @enderror" type="radio" name="gender" id="male" value="L" {{ old('gender',$data->gender) == 'L' ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="male">Laki-Laki</label>
+                                                </div>
+                                                <div class="form-check mx-4">
+                                                    <input class="form-check-input @error('gender') is-invalid @enderror" type="radio" name="gender" id="female" value="P" {{ old('gender',$data->gender) == 'P' ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="female">Perempuan</label>
+                                                </div>
+                                                @error('gender')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
                                             </div>
-                                            <div class="form-check mx-4">
-                                                <input class="form-check-input @error('status') is-invalid @enderror" type="radio" name="status" id="single" value="0" {{ old('status') == '0' ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="single">Belum Kawin</label>
-                                            </div>
-                                        </div>
-                                        @error('status')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
                                     </div>
                                     <div class="col-md-6 mt-3">
                                         <label for="status" class="col-form-label fw-bold">Status Perkawinan</label>
                                         <div class="d-flex justify-content-start mt-3">
                                             <div class="form-check">
-                                                <input class="form-check-input @error('status') is-invalid @enderror" type="radio" name="status" id="married" value="1" {{ old('status') == '1' ? 'checked' : '' }}>
+                                                <input class="form-check-input @error('status') is-invalid @enderror" type="radio" name="status" id="married" value="1" {{ old('status', $data->status) == '1' ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="married">Kawin</label>
                                             </div>
                                             <div class="form-check mx-4">
-                                                <input class="form-check-input @error('status') is-invalid @enderror" type="radio" name="status" id="single" value="0" {{ old('status') == '0' ? 'checked' : '' }}>
+                                                <input class="form-check-input @error('status') is-invalid @enderror" type="radio" name="status" id="single" value="0" {{ old('status', $data->status) == '0' ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="single">Belum Kawin</label>
                                             </div>
                                         </div>
@@ -135,7 +142,7 @@
                                     </div>
                                     <div class="col-md-6 mt-3">
                                         <label for="job" class="col-form-label fw-bold">Pekerjaan</label>
-                                        <input type="text" name="job" class="form-control rounded-3 mt-1  @error('job') is-invalid @enderror" id="job" placeholder="Masukkan Pekerjaan" style="height: 50px;" required value="{{ old('job') }}">
+                                        <input type="text" name="job" class="form-control rounded-3 mt-1  @error('job') is-invalid @enderror" id="job" placeholder="Masukkan Pekerjaan" style="height: 50px;" required value="{{ old('job',$data->job) }}">
                                         @error('job')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -144,7 +151,7 @@
                                     </div>
                                     <div class="col-md-6 mt-3">
                                         <label for="address" class="col-form-label fw-bold">Alamat</label>
-                                        <input type="text" name="address" class="form-control rounded-3 mt-1  @error('address') is-invalid @enderror" id="address" placeholder="Masukkan Alamat" style="height: 50px;" required value="{{ old('address') }}">
+                                        <input type="text" name="address" class="form-control rounded-3 mt-1  @error('address') is-invalid @enderror" id="address" placeholder="Masukkan Alamat" style="height: 50px;" required value="{{ old('address',$data->address) }}">
                                         @error('alamat')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -153,7 +160,7 @@
                                     </div>
                                     <div class="col-md-6 mt-3">
                                         <label for="phone" class="col-form-label fw-bold">Nomor Telepon</label>
-                                        <input type="number" name="phone" class="form-control rounded-3 mt-1  @error('phone') is-invalid @enderror" id="phone" placeholder="Masukkan Nomor Anda (08xxxxxxxxxx)" style="height: 50px;" required value="{{ old('phone') }}">
+                                        <input type="number" name="phone" class="form-control rounded-3 mt-1  @error('phone') is-invalid @enderror" id="phone" placeholder="Masukkan Nomor Anda (08xxxxxxxxxx)" style="height: 50px;" required value="{{ old('phone',$data->phone) }}">
                                         @error('phone')
                                             <div class="invalid-feedback">
                                                 {{ $message }}

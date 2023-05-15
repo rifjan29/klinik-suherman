@@ -16,4 +16,9 @@ class KonsultasiController extends Controller
     {
         return view('layouts.frontend.konsultasi.pembayaran');
     }
+
+    public function pesan()
+    {
+        return view('layouts.frontend.konsultasi.pesan');
+    }
 }
