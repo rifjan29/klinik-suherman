@@ -47,12 +47,12 @@
                         </li>
                         <li class="nav-item mb-2">
                             <a href="{{ route('notifikasi') }}" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-bell"></i> <span class="mx-3 d-none d-sm-inline">Notifikasi</span> 
+                                <i class="fs-4 bi-bell"></i> <span class="mx-3 d-none d-sm-inline">Notifikasi</span>
                             </a>
                         </li>
                         <li class="nav-item mb-2">
                             <a href="{{ route('pengaturan') }}" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-gear"></i> <span class="mx-3 d-none d-sm-inline">Pengaturan</span> 
+                                <i class="fs-4 bi-gear"></i> <span class="mx-3 d-none d-sm-inline">Pengaturan</span>
                             </a>
                         </li>
                     </ul>

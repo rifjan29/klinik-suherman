@@ -33,7 +33,7 @@
                         <span class="icon icon-sm rounded-circle bg-green-soft-light"><i class="text-green-soft material-icons md-person"></i></span>
                         <div class="text">
                             <h6 class="mb-1 card-title">Data Pasien</h6>
-                            <span>$13,456.5</span>
+                            <span>{{ $dataPasien }}</span>
                         </div>
                     </article>
                 </div>
@@ -44,7 +44,7 @@
                         <span class="icon icon-sm rounded-circle bg-primary-light"><i class="text-primary material-icons md-airport_shuttle"></i></span>
                         <div class="text">
                             <h6 class="mb-1 card-title">Data Ambulance</h6>
-                            <span>$13,456.5</span>
+                            <span>{{ $riwayatAmbulance }}</span>
                         </div>
                     </article>
                 </div>
@@ -74,12 +74,44 @@
         </div>
         <div class="row">
             <div class="col-xl-12 col-lg-12">
-                <div class="card mb-4">
-                    <article class="card-body">
-                        <h5 class="card-title">Total Pendapatan</h5>
-                        <canvas id="myChart" height="120px"></canvas>
-                    </article>
-                </div>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Total Pendapatan E-Ambulance</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Total Pendapatan E-Konsultasi</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Total Pendapatan E-Apotek</button>
+                    </li>
+                </ul>
+                  <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="card mb-4">
+                            <article class="card-body">
+                                <h5 class="card-title">Total Pendapatan E-Ambulance</h5>
+                                <canvas id="myChart" height="120px"></canvas>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="card mb-4">
+                            <article class="card-body">
+                                <h5 class="card-title">Total Pendapatan E-Konsultasi</h5>
+                                <canvas id="myChart" height="120px"></canvas>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                        <div class="card mb-4">
+                            <article class="card-body">
+                                <h5 class="card-title">Total Pendapatan E-Konsultasi</h5>
+                                <canvas id="myChart" height="120px"></canvas>
+                            </article>
+                        </div>
+                    </div>
+                  </div>
+
             </div>
         </div>
 

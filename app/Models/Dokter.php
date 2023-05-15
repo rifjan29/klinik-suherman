@@ -21,6 +21,7 @@ class Dokter extends Model
         'no_telp',
         'id_user',
         'foto',
+        'status',
     ];
 
     public function user()

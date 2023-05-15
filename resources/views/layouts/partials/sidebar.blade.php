@@ -87,14 +87,16 @@
                     </div>
                 </li>
                 @if (auth()->user()->role == 'kasir')
-                    <li class="menu-item has-submenu {{ Request::segment(2) == 'e-konsultasi' ? 'active' : '' }}">
+                    <li class="menu-item has-submenu {{ Request::segment(3) == 'e-konsultasi' ? 'active' : '' }}">
                         <a class="menu-link" href="page-form-product-1.html">
                             <i class="icon material-icons md-add_alert"></i>
                             <span class="text">Data E-Konsultasi</span>
                         </a>
                         <div class="submenu">
                             @if (auth()->user()->role == 'kasir')
-                                <a href="{{ route('riwayat-ambulance') }}">List Transaksi </a>
+                                <a href="{{ route('konsultasi.list') }}">List Transaksi </a>
+                                <a href="{{ route('konsultasi.riwayat') }}">Riwayat Transaksi </a>
+                                <a href="{{ route('konsultasi.laporan') }}">Laporan Transaksi </a>
                             @else
                                 <a href="{{ route('riwayat-ambulance') }}">Rating Dokter </a>
                                 <a href="{{ route('riwayat-ambulance') }}">Riwayat Konsultasi </a>
@@ -145,9 +147,9 @@
                         <span class="text">Data E-Ambulance</span>
                     </a>
                     <div class="submenu">
-                        <a href="{{ route('riwayat-ambulance') }}">List Pemesanan </a>
+                        <a href="{{ route('list-ambulance') }}">List Pemesanan </a>
                         <a href="{{ route('riwayat-ambulance') }}">Riwayat Pemesanan </a>
-                        <a href="{{ route('riwayat-ambulance') }}">Laporan E-Ambulance </a>
+                        <a href="{{ route('laporan-ambulance') }}">Laporan E-Ambulance </a>
                     </div>
                 </li>
                 <li class="menu-item has-submenu {{ Request::segment(2) == 'e-konsultasi' ? 'active' : '' }}">
