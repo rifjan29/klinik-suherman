@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailPemesananKonsultasi;
 use App\Models\PemesananKonsultasi;
 use Illuminate\Http\Request;
 
@@ -46,6 +47,15 @@ class TransaksiKonsultasiController extends Controller
         ]);
     }
 
+    public function UpdateTransaksi(Request $request)
+    {
+        $pemesanan = DetailPemesananKonsultasi::where('id_pemesanan_konsultasi',$request->get('id'))->first();
+        $pemesanan->status_pembayaran = $request->get('status');
+        $pemesanan->id_user = auth()->user()->id;
+        $pemesanan->keterangan = $request->get('ket');
+        $pemesanan->update();
+        return redirect()->route('konsultasi.list')->withStatus('Berhasil update status pembayaran');
+    }
     public function RiwayatTransaksi()
     {
 

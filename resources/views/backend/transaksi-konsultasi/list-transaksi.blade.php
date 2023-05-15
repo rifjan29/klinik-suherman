@@ -43,9 +43,9 @@
                         id:id
                     },
                     success: function(data) {
-                        console.log(data);
                         $.each(data, function (key, value) {
-                            console.log(value);
+                            var img = `{{ asset('') }}img/foto_bukti_pembayaran_konsultasi/${value.bukti_pembayaran}`
+                            $('#foto_bukti').attr("src", `${img}`);
                             $('#kode_transaksi').val(value.kode_pemesanan);
                             $('#nama').val(value.nama_pasien);
                         //     $('#nama').val(value.nama)
@@ -136,15 +136,18 @@
         </div>
         <!-- card end// -->
         <div class="modal fade" id="gantiStatus" tabindex="-1" aria-labelledby="gantiStatusLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel" >Update Pembayaran</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="POST">
+                    <form action="{{ route('konsultasi.update') }}" method="POST">
                         @csrf
+                        {{-- $(this).attr("src", "images/card-front.jpg"); --}}
+                        <p>Foto bukti pembayaran</p>
+                        <img src="{{ asset('backend/assets/imgs/brands/brand-1.jpg') }}" alt="Poker Card" class="img-fluid" id="foto_bukti">
                         <div class="row">
                             <div class="col-md-12">
                                 <input type="text" name="id" id="id" hidden>
@@ -173,7 +176,7 @@
                             <div class="col-md-12 mb-4">
                                 <label for="product_name" class="form-label">Status</label>
                                 <label class="mb-2 form-check form-check-inline" style="width: 45%;">
-                                    <input class="form-check-input" id="status_aktif" name="status" value="lunas" {{ old('status') == 'aktif' ? "checked" : '' }} type="radio">
+                                    <input class="form-check-input" id="status_aktif" name="status" value="lunas" {{ old('status') == 'aktif' ? "checked" : '' }} type="radio" checked>
                                     <span class="form-check-label"> Lunas </span>
                                 </label>
                                 <label class="mb-2 form-check form-check-inline" style="width: 45%;">

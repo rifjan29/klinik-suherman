@@ -2,6 +2,97 @@
     @section('content')
     @push('js')
     <script src="{{ asset('') }}backend/assets/js/custom-chart.js" type="text/javascript"></script>
+    <script>
+        (function ($) {
+               "use strict";
+
+               /*Sale statistics Chart*/
+               if ($('#myChartAmbulance').length) {
+                   var ctx = document.getElementById('myChartAmbulance').getContext('2d');
+                   var chart = new Chart(ctx, {
+                       // The type of chart we want to create
+                       type: 'line',
+
+                       // The data for our dataset
+                       data: {
+                           labels: [
+                               @foreach ($data_grafik_ambulance as $item)
+                                   '{{ $item->month_year }}',
+                               @endforeach
+                               // 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+                           ],
+                           datasets: [{
+                                   label: 'Total Pendapatan',
+                                   tension: 0.3,
+                                   fill: true,
+                                   backgroundColor: 'rgba(44, 120, 220, 0.2)',
+                                   borderColor: 'rgba(44, 120, 220)',
+                                   data: [
+                                       @foreach ($data_grafik_ambulance as $item)
+                                       //  {{ number_format($item->total_biaya,2, ",", ".") }}
+                                           {{ $item->total_biaya }},
+                                       @endforeach
+                                   ]
+                               },
+
+
+                           ]
+                       },
+                       options: {
+                           plugins: {
+                           legend: {
+                               labels: {
+                               usePointStyle: true,
+                               },
+                           }
+                           }
+                       }
+                   });
+               } //End if
+               var ctx = document.getElementById('myChartKonsultasi').getContext('2d');
+                   var chart = new Chart(ctx, {
+                       // The type of chart we want to create
+                       type: 'line',
+
+                       // The data for our dataset
+                       data: {
+                           labels: [
+                               @foreach ($data_grafik_konsultasi as $item)
+                                   '{{ $item->month_year }}',
+                               @endforeach
+                               // 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+                           ],
+                           datasets: [{
+                                   label: 'Total Pendapatan',
+                                   tension: 0.3,
+                                   fill: true,
+                                   backgroundColor: 'rgba(44, 120, 220, 0.2)',
+                                   borderColor: 'rgba(44, 120, 220)',
+                                   data: [
+                                       @foreach ($data_grafik_konsultasi as $item)
+                                       //  {{ number_format($item->total_biaya,2, ",", ".") }}
+                                           {{ $item->total_biaya }},
+                                       @endforeach
+                                   ]
+                               },
+
+
+                           ]
+                       },
+                       options: {
+                           plugins: {
+                           legend: {
+                               labels: {
+                               usePointStyle: true,
+                               },
+                           }
+                           }
+                       }
+                   });
+
+
+           })(jQuery);
+   </script>
     @endpush
     @push('css')
         <style>
@@ -55,7 +146,7 @@
                         <span class="icon icon-sm rounded-circle bg-info-light"><i class="text-info material-icons md-add_alert"></i></span>
                         <div class="text">
                             <h6 class="mb-1 card-title">Data Konsultasi</h6>
-                            <span>$13,456.5</span>
+                            <span>{{ $riwayatKonsultasi }}</span>
                         </div>
                     </article>
                 </div>
@@ -89,8 +180,8 @@
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <div class="card mb-4">
                             <article class="card-body">
-                                <h5 class="card-title">Total Pendapatan E-Ambulance</h5>
-                                <canvas id="myChart" height="120px"></canvas>
+                                <h5 class="card-title">Total Pendapatan E-Ambulans</h5>
+                                <canvas id="myChartAmbulance" height="120px"></canvas>
                             </article>
                         </div>
                     </div>
@@ -98,15 +189,15 @@
                         <div class="card mb-4">
                             <article class="card-body">
                                 <h5 class="card-title">Total Pendapatan E-Konsultasi</h5>
-                                <canvas id="myChart" height="120px"></canvas>
+                                <canvas id="myChartKonsultasi" height="120px"></canvas>
                             </article>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                         <div class="card mb-4">
                             <article class="card-body">
-                                <h5 class="card-title">Total Pendapatan E-Konsultasi</h5>
-                                <canvas id="myChart" height="120px"></canvas>
+                                <h5 class="card-title">Total Pendapatan E-Apotek</h5>
+                                <canvas id="myChartApotek" height="120px"></canvas>
                             </article>
                         </div>
                     </div>

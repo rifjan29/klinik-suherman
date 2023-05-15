@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardDokterController;
 use App\Http\Controllers\DataMobilAmbulanceController;
 use App\Http\Controllers\DataProfileController;
+use App\Http\Controllers\DataSaranKritikController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\KasirController;
 use App\Http\Controllers\PetugasController;
@@ -77,6 +78,10 @@ Route::middleware(['auth'])->group(function () {
 
         Route::prefix('konsultasi')->group(function () {
             Route::get('dashboard-dokter',[DashboardDokterController::class,'index'])->name('dokter.dashboard');
+        });
+
+        Route::prefix('saran-kritik')->group(function () {
+            Route::get('data-saran-kritik',[DataSaranKritikController::class,'index'])->name('saran-kritik');
         });
 
 

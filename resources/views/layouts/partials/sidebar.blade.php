@@ -154,18 +154,16 @@
                         <a href="{{ route('laporan-ambulance') }}">Laporan E-Ambulance </a>
                     </div>
                 </li>
-                {{-- <li class="menu-item has-submenu {{ Request::segment(2) == 'e-konsultasi' ? 'active' : '' }}">
+                <li class="menu-item has-submenu {{ Request::segment(2) == 'e-konsultasi' ? 'active' : '' }}">
                     <a class="menu-link" href="page-form-product-1.html">
                         <i class="icon material-icons md-add_alert"></i>
                         <span class="text">Data E-Konsultasi</span>
                     </a>
                     <div class="submenu">
-                        <a href="{{ route('riwayat-ambulance') }}">Rating Dokter </a>
-                        <a href="{{ route('riwayat-ambulance') }}">List Transaksi </a>
-                        <a href="{{ route('riwayat-ambulance') }}">Riwayat Konsultasi </a>
-                        <a href="{{ route('riwayat-ambulance') }}">Laporan Konsultasi </a>
+                        <a href="{{ route('konsultasi.riwayat') }}" class="{{ Request::segment(3) == 'riwayat-transaksi' ? 'active' : '' }}">Riwayat Transaksi </a>
+                        <a href="{{ route('konsultasi.laporan') }}" class="{{ Request::segment(3) == 'laporan-transaksi' ? 'active' : '' }}">Laporan Transaksi </a>
                     </div>
-                </li> --}}
+                </li>
                 <li class="menu-item has-submenu {{ Request::segment(2) == 'e-apotek' ? 'active' : '' }}">
                     <a class="menu-link" href="page-form-product-1.html">
                         <i class="icon material-icons md-assignment"></i>
@@ -182,8 +180,8 @@
                         <span class="text">Data Pasien</span>
                     </a>
                 </li>
-                <li class="menu-item ">
-                    <a class="menu-link"  href="">
+                <li class="menu-item {{ Request::segment(2) == 'saran-kritik' ? 'active' : '' }}">
+                    <a class="menu-link" href="{{ route('saran-kritik') }}">
                         <i class="icon material-icons md-add_alert"></i>
                         <span class="text">Data Kritik Dan Saran</span>
                     </a>
