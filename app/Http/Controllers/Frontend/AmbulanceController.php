@@ -78,6 +78,11 @@ class AmbulanceController extends Controller
             $lokasi->save();
 
             $ambulance = Ambulance::where('status_mobil','tersedia')->first()->id;
+            if ($ambulance == null) {
+                PasienAmbulance::find($pasien->id)->delete();
+                LokasiKejadian::find($lokasi->id)->delete();
+                return redirect()->route('e-ambulance.create')->withStatus('Ambulans Kosong');
+            }
             $petugas = Petugas::first()->id;
             $transaksi = new RiwayatTransaksAmbulance;
             $transaksi->kode_pesanan = $this->generateTransaksi();
