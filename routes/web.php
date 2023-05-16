@@ -69,10 +69,16 @@ Route::middleware(['auth'])->group(function () {
 
         });
         Route::prefix('e-konsultasi')->group(function () {
+            // list transaksi
             Route::post('list-transaksi/update-pembayaran',[TransaksiKonsultasiController::class,'UpdateTransaksi'])->name('konsultasi.update');
             Route::get('list-transaksi/get-pembayaran',[TransaksiKonsultasiController::class,'GetTransaksi'])->name('konsultasi.get');
-            Route::get('list-transaksi',[TransaksiKonsultasiController::class,'ListTransaksi'])->name('konsultasi.list');
-            Route::get('riwayat-transaksi',[TransaksiKonsultasiController::class,'RiwayatTransaksi'])->name('konsultasi.riwayat');
+            Route::get('list-pembayaran',[TransaksiKonsultasiController::class,'ListTransaksi'])->name('konsultasi.list');
+            // riwayat
+            Route::get('riwayat-pembayaran/detail/{id}',[TransaksiKonsultasiController::class,'CetakRiwayatTransaksi'])->name('konsultasi.cetak');
+            Route::get('riwayat-pembayaran',[TransaksiKonsultasiController::class,'RiwayatTransaksi'])->name('konsultasi.riwayat');
+            // laporan
+            Route::get('laporan-transaksi/pdf',[TransaksiKonsultasiController::class,'pdf'])->name('konsultasi.pdf');
+            Route::get('laporan-transaksi/excel',[TransaksiKonsultasiController::class,'excel'])->name('konsultasi.excel');
             Route::get('laporan-transaksi',[TransaksiKonsultasiController::class,'LaporanTransaksi'])->name('konsultasi.laporan');
         });
 

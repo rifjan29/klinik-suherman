@@ -48,14 +48,6 @@
                             $('#foto_bukti').attr("src", `${img}`);
                             $('#kode_transaksi').val(value.kode_pemesanan);
                             $('#nama').val(value.nama_pasien);
-                        //     $('#nama').val(value.nama)
-                        //     if (value.status == 'aktif') {
-                        //         $('#status_aktif').prop('checked',true);
-                        //         $('#status_aktif').attr('checked', 'checked')
-                        //     } else if(value.status == 'non-aktif'){
-                        //         $('#status_non_aktif').prop('checked',true);
-                        //         $('#status_non_aktif').attr('checked', 'checked')
-                        //     }
                         })
                     }
                 })
@@ -75,11 +67,6 @@
         @include('components.notification')
         <div class="card mb-4">
             <div class="card-body">
-                {{-- @if (auth()->user()->role == 'petugas')
-                    ini petugas
-                @else
-                    ini bukan petugas
-                @endif --}}
                 <div class="">
                     <table class="table table-hover" id="example">
                         <thead>

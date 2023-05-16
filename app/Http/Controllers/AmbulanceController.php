@@ -107,11 +107,7 @@ class AmbulanceController extends Controller
         ]);
 
         return redirect()->route('list-ambulance')->withStatus('Berhasil mengupdate status pesanan');
-
-
     }
-
-
 
     public function updatePerjalanan($id)
     {

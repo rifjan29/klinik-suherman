@@ -64,9 +64,9 @@
                         <span class="text">Data E-Konsultasi</span>
                     </a>
                     <div class="submenu">
-                        <a href="{{ route('konsultasi.list') }}" class="{{ Request::segment(3) == 'list-transaksi' ? 'active' : '' }}">List Transaksi </a>
-                        <a href="{{ route('konsultasi.riwayat') }}" class="{{ Request::segment(3) == 'riwayat-transaksi' ? 'active' : '' }}">Riwayat Transaksi </a>
-                        <a href="{{ route('konsultasi.laporan') }}" class="{{ Request::segment(3) == 'laporan-transaksi' ? 'active' : '' }}">Laporan Transaksi </a>
+                        <a href="{{ route('konsultasi.list') }}" class="{{ Request::segment(3) == 'list-pembayaran' ? 'active' : '' }}">List Pembayaran </a>
+                        <a href="{{ route('konsultasi.riwayat') }}" class="{{ Request::segment(3) == 'riwayat-pembayaran' ? 'active' : '' }}">Riwayat Pembayaran </a>
+                        <a href="{{ route('konsultasi.laporan') }}" class="{{ Request::segment(3) == 'laporan-transaksi' ? 'active' : '' }}">Laporan E-Konsultasi </a>
                     </div>
                 </li>
                 <li class="menu-item has-submenu {{ Request::segment(2) == 'e-apotek' ? 'active' : '' }}">
