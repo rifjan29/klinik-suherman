@@ -62,7 +62,7 @@
                 <div class="section-title">
                     <h2>Profil Saya</h2>
                 </div>
-                <div class="card">
+                <div class="card shadow border-0">
                     <div class="card-body">
                         <div class="p-3">
                             <div class="fw-bold" style="font-size:20px;">

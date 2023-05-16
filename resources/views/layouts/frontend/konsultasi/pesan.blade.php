@@ -39,6 +39,14 @@
             width: 4rem;
             margin-bottom: 10px;
         }
+
+        .massage-pasien {
+            background-color: #CDF4D8;
+        }
+
+        .massage-dokter {
+            background-color: white;
+        }
     </style>
 @endpush
 @section('hero')
@@ -71,43 +79,83 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body-content" style="height:500px; width:auto; overflow:auto; padding:3%;">
+                <div class="card-body-content" style="height:500px; width:auto; overflow:auto; padding:3%; background-color: #EFEFEF;">
                     <div class="content-message">
-                        <div class="d-flex flex-row border mb-3">
-                            <div class="p-2 mx-2">
-                                <div>Flex item 1</div>
-                                <p class="text-start mt-2" style="font-size: 12px;">19:00</p>
+                        <div class="d-flex flex-row-reverse mb-3">
+                            <div class="massage-pasien card border-0 shadow">
+                                <div class="card-body">
+                                    <div class="text-end">
+                                        This is some text within a card body.
+                                        This is some text within a card body. 
+                                        This is some text within a card body. 
+                                        This is some text within a card body. 
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="d-flex flex-row-reverse border mb-3">
-                            <div class="p-2">Flex item 1</div>
+                        <div class="d-flex flex-row mb-3">
+                            <div class="massage-dokter card border-0 shadow">
+                                <div class="card-body">
+                                    <div class="text-start">
+                                        This is some text within a card body.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="d-flex flex-row border mb-3">
-                            <div class="p-2">Flex item 1</div>
+                        <div class="d-flex flex-row-reverse mb-3">
+                            <div class="massage-pasien card border-0 shadow">
+                                <div class="card-body">
+                                    <div class="text-end">
+                                        This is some text within a card body.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="d-flex flex-row-reverse border mb-3">
-                            <div class="p-2">Flex item 1</div>
+                        <div class="d-flex flex-row-reverse mb-3">
+                            <div class="massage-pasien card border-0 shadow">
+                                <div class="card-body">
+                                    <div class="text-end">
+                                        This is some text within a card body.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="d-flex flex-row border mb-3">
-                            <div class="p-2">Flex item 1</div>
+                        <div class="d-flex flex-row mb-3">
+                            <div class="massage-dokter card border-0 shadow">
+                                <div class="card-body">
+                                    <div class="text-start">
+                                        This is some text within a card body.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="d-flex flex-row-reverse border mb-3">
-                            <div class="p-2">Flex item 1</div>
+                        <div class="d-flex flex-row mb-3">
+                            <div class="massage-dokter card border-0 shadow">
+                                <div class="card-body">
+                                    <div class="text-start">
+                                        This is some text within a card body.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="d-flex flex-row-reverse border mb-3">
-                            <div class="p-2">Flex item 1</div>
+                        <div class="d-flex flex-row-reverse mb-3">
+                            <div class="massage-pasien card border-0 shadow">
+                                <div class="card-body">
+                                    <div class="text-start">
+                                        This is some text within a card body.
+                                        This is some text within a card body.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="d-flex flex-row border mb-3">
-                            <div class="p-2">Flex item 1</div>
-                        </div>
-                        <div class="d-flex flex-row border mb-3">
-                            <div class="p-2">Flex item 1</div>
-                        </div>
-                        <div class="d-flex flex-row-reverse border mb-3">
-                            <div class="p-2">Flex item 1</div>
-                        </div>
-                        <div class="d-flex flex-row border mb-3">
-                            <div class="p-2">Flex item 1</div>
+                        <div class="d-flex flex-row mb-3">
+                            <div class="massage-dokter card border-0 shadow">
+                                <div class="card-body">
+                                    <div class="text-start">
+                                        This is some text within a card body.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
