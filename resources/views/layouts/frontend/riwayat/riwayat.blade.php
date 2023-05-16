@@ -87,29 +87,135 @@
                                     <div class="" style="height:500px; width:auto; overflow:auto; padding:1%;">
                                         <div class="row">
                                             <div class="col-md-12 p-2">
-                                                <div class="card">
-                                                    <div class="card-body p-3">
+                                                <div class="card shadow">
+                                                    <div class="card-body p-4">
                                                         <div class="row">
                                                             <div class="col-md-2 text-center">
-                                                                <img src="{{ asset('frontend/assets/img/profile.jpg') }}" alt="" class="img-fluid rounded-circle" style="width: 100px; height: 100px;">
+                                                                <img src="{{ asset('frontend/assets/img/profile.jpg') }}" alt="" class="img-fluid rounded-circle" style="width: 130px; height: 130px;">
                                                             </div>
                                                             <div class="col-md-8">
-                                                                <div class="mt-2">
+                                                                <div class="m-2">
                                                                     <span class="fw-bold fs-5">Dr. Lorem Ipsum</span>
                                                                 </div>
-                                                                <div class="mt-2">Dr. Umum - 2 tahun</div>
-                                                                <div class="d-flex justify-content-start mt-2">
-                                                                    <i class="fa-solid fa-star" style="color: #e1ff00;"></i>
-                                                                    <i class="fa-solid fa-star" style="color: #e1ff00;"></i>
-                                                                    <i class="fa-solid fa-star" style="color: #e1ff00;"></i>
-                                                                    <i class="fa-solid fa-star" style="color: #e1ff00;"></i>
-                                                                    <i class="fa-solid fa-star" style="color: #e1ff00;"></i>
-                                                                    <span class="align-middle">5</span>
+                                                                <div class="m-2">Dr. Umum - 2 tahun</div>
+                                                                <div class="d-flex flex-row m-2">
+                                                                    <div class="d-flex justify-content-start mt-2">
+                                                                        <i class="fa-solid fa-star" style="color: #e1ff00;"></i>
+                                                                        <i class="fa-solid fa-star" style="color: #e1ff00;"></i>
+                                                                        <i class="fa-solid fa-star" style="color: #e1ff00;"></i>
+                                                                        <i class="fa-solid fa-star" style="color: #e1ff00;"></i>
+                                                                        <i class="fa-solid fa-star" style="color: #e1ff00;"></i>
+                                                                    </div>
+                                                                    <div class="p-1 mx-1">
+                                                                        <span>5</span>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-2 position-relative">
                                                                 <div class="position-absolute bottom-0 end-0 mx-4">
-                                                                    <button>tes</button>
+                                                                    <button type="submit" class="btn btn-lg btn-primary text-center" style="background-color: #37517E; border:0; border-radius:10px"><span class="p-4" style="font-size: 14px">Catatan Dokter</span></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 p-2">
+                                                <div class="card shadow">
+                                                    <div class="card-body p-4">
+                                                        <div class="row">
+                                                            <div class="col-md-2 text-center">
+                                                                <img src="{{ asset('frontend/assets/img/profile.jpg') }}" alt="" class="img-fluid rounded-circle" style="width: 130px; height: 130px;">
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <div class="m-2">
+                                                                    <span class="fw-bold fs-5">Dr. Lorem Ipsum</span>
+                                                                </div>
+                                                                <div class="m-2">Dr. Umum - 2 tahun</div>
+                                                                <div class="d-flex flex-row m-2">
+                                                                    <div class="d-flex justify-content-start mt-2">
+                                                                        <i class="fa-solid fa-star" style="color: #e1ff00;"></i>
+                                                                        <i class="fa-solid fa-star" style="color: #e1ff00;"></i>
+                                                                        <i class="fa-solid fa-star" style="color: #e1ff00;"></i>
+                                                                        <i class="fa-solid fa-star" style="color: #e1ff00;"></i>
+                                                                        <i class="fa-solid fa-star" style="color: #e1ff00;"></i>
+                                                                    </div>
+                                                                    <div class="p-1 mx-1">
+                                                                        <span>5</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2 position-relative">
+                                                                <div class="position-absolute bottom-0 end-0 mx-4">
+                                                                    <button type="submit" class="btn btn-lg btn-primary text-center" style="background-color: #37517E; border:0; border-radius:10px"><span class="p-4" style="font-size: 14px">Catatan Dokter</span></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 p-2">
+                                                <div class="card shadow">
+                                                    <div class="card-body p-4">
+                                                        <div class="row">
+                                                            <div class="col-md-2 text-center">
+                                                                <img src="{{ asset('frontend/assets/img/profile.jpg') }}" alt="" class="img-fluid rounded-circle" style="width: 130px; height: 130px;">
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <div class="m-2">
+                                                                    <span class="fw-bold fs-5">Dr. Lorem Ipsum</span>
+                                                                </div>
+                                                                <div class="m-2">Dr. Umum - 2 tahun</div>
+                                                                <div class="d-flex flex-row m-2">
+                                                                    <div class="d-flex justify-content-start mt-2">
+                                                                        <i class="fa-solid fa-star" style="color: #e1ff00;"></i>
+                                                                        <i class="fa-solid fa-star" style="color: #e1ff00;"></i>
+                                                                        <i class="fa-solid fa-star" style="color: #e1ff00;"></i>
+                                                                        <i class="fa-solid fa-star" style="color: #e1ff00;"></i>
+                                                                        <i class="fa-solid fa-star" style="color: #e1ff00;"></i>
+                                                                    </div>
+                                                                    <div class="p-1 mx-1">
+                                                                        <span>5</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2 position-relative">
+                                                                <div class="position-absolute bottom-0 end-0 mx-4">
+                                                                    <button type="submit" class="btn btn-lg btn-primary text-center" style="background-color: #37517E; border:0; border-radius:10px"><span class="p-4" style="font-size: 14px">Catatan Dokter</span></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 p-2">
+                                                <div class="card shadow">
+                                                    <div class="card-body p-4">
+                                                        <div class="row">
+                                                            <div class="col-md-2 text-center">
+                                                                <img src="{{ asset('frontend/assets/img/profile.jpg') }}" alt="" class="img-fluid rounded-circle" style="width: 130px; height: 130px;">
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <div class="m-2">
+                                                                    <span class="fw-bold fs-5">Dr. Lorem Ipsum</span>
+                                                                </div>
+                                                                <div class="m-2">Dr. Umum - 2 tahun</div>
+                                                                <div class="d-flex flex-row m-2">
+                                                                    <div class="d-flex justify-content-start mt-2">
+                                                                        <i class="fa-solid fa-star" style="color: #e1ff00;"></i>
+                                                                        <i class="fa-solid fa-star" style="color: #e1ff00;"></i>
+                                                                        <i class="fa-solid fa-star" style="color: #e1ff00;"></i>
+                                                                        <i class="fa-solid fa-star" style="color: #e1ff00;"></i>
+                                                                        <i class="fa-solid fa-star" style="color: #e1ff00;"></i>
+                                                                    </div>
+                                                                    <div class="p-1 mx-1">
+                                                                        <span>5</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2 position-relative">
+                                                                <div class="position-absolute bottom-0 end-0 mx-4">
+                                                                    <button type="submit" class="btn btn-lg btn-primary text-center" style="background-color: #37517E; border:0; border-radius:10px"><span class="p-4" style="font-size: 14px">Catatan Dokter</span></button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -120,12 +226,228 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                    <h1>Profile</h1>
-                                    <p>This is the profile tab content.</p>
+                                    <div class="" style="height:500px; width:auto; overflow:auto; padding:1%;">
+                                        <div class="row">
+                                            <div class="col-md-12 p-2">
+                                                <div class="card shadow">
+                                                    <div class="card-body p-4">
+                                                        <div class="row">
+                                                            <div class="col-md-2 text-center">
+                                                                <img src="{{ asset('frontend/assets/img/obat.png') }}" alt="" class="img-fluid rounded-circle" style="width: 130px; height: 130px;">
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <div class="m-2">
+                                                                    <span class="fw-bold fs-5">A0000001</span>
+                                                                </div>
+                                                                <div class="float-start hstack gap-3 m-2">
+                                                                    <div class="ms-auto">13/03/2023</div>
+                                                                    <div class="vr"></div>
+                                                                    <div class="">10:44:38 WIB</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2 position-relative">
+                                                                <div class="position-absolute top-50 start-50 translate-middle">
+                                                                    <span>Rp. 75.000,-</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 p-2">
+                                                <div class="card shadow">
+                                                    <div class="card-body p-4">
+                                                        <div class="row">
+                                                            <div class="col-md-2 text-center">
+                                                                <img src="{{ asset('frontend/assets/img/obat.png') }}" alt="" class="img-fluid rounded-circle" style="width: 130px; height: 130px;">
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <div class="m-2">
+                                                                    <span class="fw-bold fs-5">A0000001</span>
+                                                                </div>
+                                                                <div class="float-start hstack gap-3 m-2">
+                                                                    <div class="ms-auto">13/03/2023</div>
+                                                                    <div class="vr"></div>
+                                                                    <div class="">10:44:38 WIB</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2 position-relative">
+                                                                <div class="position-absolute top-50 start-50 translate-middle">
+                                                                    <span>Rp. 75.000,-</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 p-2">
+                                                <div class="card shadow">
+                                                    <div class="card-body p-4">
+                                                        <div class="row">
+                                                            <div class="col-md-2 text-center">
+                                                                <img src="{{ asset('frontend/assets/img/obat.png') }}" alt="" class="img-fluid rounded-circle" style="width: 130px; height: 130px;">
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <div class="m-2">
+                                                                    <span class="fw-bold fs-5">A0000001</span>
+                                                                </div>
+                                                                <div class="float-start hstack gap-3 m-2">
+                                                                    <div class="ms-auto">13/03/2023</div>
+                                                                    <div class="vr"></div>
+                                                                    <div class="">10:44:38 WIB</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2 position-relative">
+                                                                <div class="position-absolute top-50 start-50 translate-middle">
+                                                                    <span>Rp. 75.000,-</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 p-2">
+                                                <div class="card shadow">
+                                                    <div class="card-body p-4">
+                                                        <div class="row">
+                                                            <div class="col-md-2 text-center">
+                                                                <img src="{{ asset('frontend/assets/img/obat.png') }}" alt="" class="img-fluid rounded-circle" style="width: 130px; height: 130px;">
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <div class="m-2">
+                                                                    <span class="fw-bold fs-5">A0000001</span>
+                                                                </div>
+                                                                <div class="float-start hstack gap-3 m-2">
+                                                                    <div class="ms-auto">13/03/2023</div>
+                                                                    <div class="vr"></div>
+                                                                    <div class="">10:44:38 WIB</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2 position-relative">
+                                                                <div class="position-absolute top-50 start-50 translate-middle">
+                                                                    <span>Rp. 75.000,-</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                                    <h1>Contact</h1>
-                                    <p>This is the contact tab content.</p>
+                                    <div class="" style="height:500px; width:auto; overflow:auto; padding:1%;">
+                                        <div class="row">
+                                            <div class="col-md-12 p-2">
+                                                <div class="card shadow">
+                                                    <div class="card-body p-4">
+                                                        <div class="row">
+                                                            <div class="col-md-2 text-center">
+                                                                <img src="{{ asset('frontend/assets/img/ambulance.png') }}" alt="" class="img-fluid" style="width: 130px; height: 130px;">
+                                                            </div>
+                                                            <div class="col-md-10">
+                                                                <div class="d-flex justify-content-between mx-4">
+                                                                    <h5 class="fw-bold" style="color: #37517E">Ambulance Emergency</h6>
+                                                                    <span>15 Menit yang lalu</span>
+                                                                </div>
+                                                                <div class="d-flex justify-content-between mx-4 mt-2">
+                                                                    <span>Klinik Rawat Inap dr Suherman - Residence  Baratan</span>
+                                                                    <span>7 km x Rp 7000/km</span>
+                                                                </div>
+                                                                <div class="progress mx-4 m-2">
+                                                                    <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                </div>
+                                                                <div class="mx-4 mt-2">
+                                                                    <div class="float-end fw-bold" style="color: #37517e">Rp. 421.000,-</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 p-2">
+                                                <div class="card shadow">
+                                                    <div class="card-body p-4">
+                                                        <div class="row">
+                                                            <div class="col-md-2 text-center">
+                                                                <img src="{{ asset('frontend/assets/img/ambulance.png') }}" alt="" class="img-fluid" style="width: 130px; height: 130px;">
+                                                            </div>
+                                                            <div class="col-md-10">
+                                                                <div class="d-flex justify-content-between mx-4">
+                                                                    <h5 class="fw-bold" style="color: #37517E">Ambulance Emergency</h6>
+                                                                    <span>15 Menit yang lalu</span>
+                                                                </div>
+                                                                <div class="d-flex justify-content-between mx-4 mt-2">
+                                                                    <span>Klinik Rawat Inap dr Suherman - Residence  Baratan</span>
+                                                                    <span>7 km x Rp 7000/km</span>
+                                                                </div>
+                                                                <div class="progress mx-4 m-2">
+                                                                    <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                </div>
+                                                                <div class="mx-4 mt-2">
+                                                                    <div class="float-end fw-bold" style="color: #37517e">Rp. 421.000,-</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 p-2">
+                                                <div class="card shadow">
+                                                    <div class="card-body p-4">
+                                                        <div class="row">
+                                                            <div class="col-md-2 text-center">
+                                                                <img src="{{ asset('frontend/assets/img/ambulance.png') }}" alt="" class="img-fluid" style="width: 130px; height: 130px;">
+                                                            </div>
+                                                            <div class="col-md-10">
+                                                                <div class="d-flex justify-content-between mx-4">
+                                                                    <h5 class="fw-bold" style="color: #37517E">Ambulance Emergency</h6>
+                                                                    <span>15 Menit yang lalu</span>
+                                                                </div>
+                                                                <div class="d-flex justify-content-between mx-4 mt-2">
+                                                                    <span>Klinik Rawat Inap dr Suherman - Residence  Baratan</span>
+                                                                    <span>7 km x Rp 7000/km</span>
+                                                                </div>
+                                                                <div class="progress mx-4 m-2">
+                                                                    <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                </div>
+                                                                <div class="mx-4 mt-2">
+                                                                    <div class="float-end fw-bold" style="color: #37517e">Rp. 421.000,-</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 p-2">
+                                                <div class="card shadow">
+                                                    <div class="card-body p-4">
+                                                        <div class="row">
+                                                            <div class="col-md-2 text-center">
+                                                                <img src="{{ asset('frontend/assets/img/ambulance.png') }}" alt="" class="img-fluid" style="width: 130px; height: 130px;">
+                                                            </div>
+                                                            <div class="col-md-10">
+                                                                <div class="d-flex justify-content-between mx-4">
+                                                                    <h5 class="fw-bold" style="color: #37517E">Ambulance Emergency</h6>
+                                                                    <span>15 Menit yang lalu</span>
+                                                                </div>
+                                                                <div class="d-flex justify-content-between mx-4 mt-2">
+                                                                    <span>Klinik Rawat Inap dr Suherman - Residence  Baratan</span>
+                                                                    <span>7 km x Rp 7000/km</span>
+                                                                </div>
+                                                                <div class="progress mx-4 m-2">
+                                                                    <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                </div>
+                                                                <div class="mx-4 mt-2">
+                                                                    <div class="float-end fw-bold" style="color: #37517e">Rp. 421.000,-</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             {{-- <ul class="nav nav-pills nav-fill">
