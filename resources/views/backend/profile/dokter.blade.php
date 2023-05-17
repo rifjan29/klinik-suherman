@@ -9,7 +9,7 @@
         </div>
         <div class="mb-4">
             <label for="product_name" class="form-label">Jabatan</label>
-            <input type="text" value="{{ $data->jabatan }}" placeholder="Masukkan jabatan" class="form-control " readonly name="jabatan"/>
+            <input type="text" value="{{ $data->spesialis }}" placeholder="Masukkan jabatan" class="form-control " readonly name="jabatan"/>
         </div>
         <div class="mb-4">
             <label for="product_name" class="form-label">Alamat</label>

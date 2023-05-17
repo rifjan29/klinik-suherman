@@ -94,10 +94,8 @@ class AmbulanceController extends Controller
             $transaksi->save();
             return redirect()->route('e-ambulance.ringkasan',['id'=> $transaksi->id]);
         } catch (Exception $e) {
-            return $e;
             return redirect()->route('dokter.index')->withError('Terjadi kesalahan.');
         } catch (QueryException $e){
-            return $e;
             return redirect()->route('dokter.index')->withError('Terjadi kesalahan.');
         }
     }

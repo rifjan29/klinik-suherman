@@ -81,9 +81,11 @@
     <section class="content-main">
         <div class="content-header">
             <h2 class="content-title">{{ ucwords(str_replace('-',' ',Request::segment(3))) }}</h2>
-            <div>
-                <a href="{{ route('riwayat-ambulance') }}" class="btn btn-primary"><i class="text-muted material-icons md-post_add"></i>Riwayat Pesanan</a>
-            </div>
+            @if (auth()->user()->role != 'petugas')
+                <div>
+                    <a href="{{ route('riwayat-ambulance') }}" class="btn btn-primary"><i class="text-muted material-icons md-post_add"></i>Riwayat Pesanan</a>
+                </div>
+            @endif
         </div>
         @include('components.notification')
         <div class="card mb-4">

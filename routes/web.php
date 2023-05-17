@@ -5,12 +5,14 @@ use App\Http\Controllers\AmbulanceController;
 use App\Http\Controllers\ApoterController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DashboardDokterController;
 use App\Http\Controllers\DataMobilAmbulanceController;
+use App\Http\Controllers\DataPasienController;
 use App\Http\Controllers\DataProfileController;
 use App\Http\Controllers\DataSaranKritikController;
 use App\Http\Controllers\DokterController;
+use App\Http\Controllers\Frontend\KonsultasiController;
 use App\Http\Controllers\KasirController;
+use App\Http\Controllers\KonsultasiOnlineController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\PoliController;
 use App\Http\Controllers\ProfileController;
@@ -82,10 +84,17 @@ Route::middleware(['auth'])->group(function () {
             Route::get('laporan-transaksi',[TransaksiKonsultasiController::class,'LaporanTransaksi'])->name('konsultasi.laporan');
         });
 
-        Route::prefix('konsultasi')->group(function () {
-            Route::get('dashboard-dokter',[DashboardDokterController::class,'index'])->name('dokter.dashboard');
+        Route::prefix('dokter')->group(function () {
+            // penilaian
+            Route::get('penilaian-dan-ulasan',[KonsultasiOnlineController::class,'penilaian'])->name('konsultasi-dokter.penilaian');
+            // list
+            Route::get('chat',[KonsultasiOnlineController::class,'chat'])->name('konsultasi-dokter.chat');
+            Route::get('konsultasi-online',[KonsultasiOnlineController::class,'index'])->name('konsultasi-dokter.list');
+            // riwayat
+            Route::get('riwayat-konsultasi',[KonsultasiOnlineController::class,'RiwayatKonsultasi'])->name('konsultasi-dokter.riwayat');
         });
 
+        Route::get('data-pasien',[DataPasienController::class,'index'])->name('data-pasien');
         Route::prefix('saran-kritik')->group(function () {
             Route::get('data-saran-kritik',[DataSaranKritikController::class,'index'])->name('saran-kritik');
         });

@@ -56,12 +56,20 @@ Route::prefix('pelayanan')->group(function() {
 
     // Layanan E-Konsultasi
     Route::prefix('e-konsultasi')->group(function() {
+        // pembayaran upload
+        Route::get('pembayaran/cek-transaksi-konsultasi', [Frontend\KonsultasiController::class, 'CekNotifikasiPembayaran'])->name('pembayaran.notifikasi.cek');
+        Route::get('pembayaran/detail/upload/notifikasi/{id}', [Frontend\KonsultasiController::class, 'NotifikasiPembayaran'])->name('pembayaran.notifikasi');
+        Route::post('pembayaran/detail/upload', [Frontend\KonsultasiController::class, 'UploadPembayaran'])->name('pembayaran.upload');
+        // pembayaran detail
+        Route::get('pembayaran/detail/{id}', [Frontend\KonsultasiController::class, 'DetailPembayaran'])->name('pembayaran.detail');
+        Route::post('pembayaran', [Frontend\KonsultasiController::class, 'postPembayaran'])->name('pembayaran.post');
+        // beranda pesan konsultasi
+        Route::get('beranda/detail', [Frontend\KonsultasiController::class, 'detail'])->name('e-konsultasi.detail');
         Route::get('beranda', [Frontend\KonsultasiController::class, 'index'])->name('e-konsultasi');
-        Route::get('pembayaran', [Frontend\KonsultasiController::class, 'pembayaran'])->name('pembayaran');
         Route::get('pesan', [Frontend\KonsultasiController::class, 'pesan'])->name('pesan');
     });
 
-    
+
     Route::get('e-apotek', [Frontend\PelayananController::class, 'apotek'])->name('e-apotek');
 });
 

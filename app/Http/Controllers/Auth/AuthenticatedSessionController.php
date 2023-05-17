@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\Dokter;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -29,7 +31,15 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if (auth()->user()->role == 'dokter') {
+            Dokter::where('id_user',auth()->user()->id)->update([
+                'status' => 'aktif'
+            ]);
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
         return redirect()->intended(RouteServiceProvider::HOME);
+
+
     }
 
     /**
@@ -37,6 +47,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        if (auth()->user()->role == 'dokter') {
+            Dokter::where('id_user',auth()->user()->id)->update([
+                'status' => 'off'
+            ]);
+        }
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();

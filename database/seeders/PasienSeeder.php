@@ -19,8 +19,8 @@ class PasienSeeder extends Seeder
         $pasien->username = 'pasien';
         $pasien->password = Hash::make('Pasien123');
         $pasien->email = 'pasien@gmail.com';
-        $pasien->alamat = 'Jember';
-        $pasien->no_hp = '085746234123';
+        $pasien->address = 'Jember';
+        $pasien->phone = '085746234123';
         $pasien->save();
     }
 }

@@ -128,8 +128,10 @@ class AdminController extends Controller
             $admin->alamat = $request->get('alamat');
             if ($request->hasFile('foto_admin')) {
                 $photos = $request->file('foto_admin');
-                $last_path = public_path() . '/img/admin/' . $admin->foto;
-                unlink($last_path);
+                if ($admin->foto != null) {
+                    $last_path = public_path() . '/img/admin/' . $admin->foto;
+                    unlink($last_path);
+                }
                 $photos = $request->file('foto_admin');
                 $filename = date('His') . '.' . $photos->getClientOriginalExtension();
                 $path = public_path('img/admin');

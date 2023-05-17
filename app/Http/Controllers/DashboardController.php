@@ -9,13 +9,20 @@ use App\Models\ModelPasien;
 use App\Models\PemesananKonsultasi;
 use App\Models\Petugas;
 use App\Models\RiwayatTransaksAmbulance;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
     public function index()
     {
+        if (Auth::user()->role == 'dokter') {
+            $data['user'] = User::find(Auth::user()->id);
+            $data['data'] = Dokter::where('id_user',$data['user']->id)->first();
+            return view('dashboard-dokter',$data);
+        }
         $dataAkun  = Admin::count() + Petugas::count() + Dokter::count() + Apotek::count();
         $dataPasien = ModelPasien::count();
         $riwayatAmbulance = RiwayatTransaksAmbulance::count();
