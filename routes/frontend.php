@@ -14,6 +14,12 @@ Route::post('user-login/post', [Frontend\PasienController::class, 'loginPost'])-
 // Register User
 Route::get('user-register', [Frontend\PasienController::class, 'register'])->name('login.register');
 Route::post('user-register/post', [Frontend\PasienController::class, 'registerPost'])->name('registerPost');
+// Lupa Password
+Route::get('lupa-password', [Frontend\PasienController::class, 'forgotPassword'])->name('lupaPassword');
+Route::post('lupa-password/post', [Frontend\PasienController::class, 'forgotPasswordPost'])->name('lupaPasswordPost');
+// Reset Password
+Route::get('reset-password', [Frontend\PasienController::class, 'resetPassword'])->name('resetPassword');
+Route::post('reset-password/post', [Frontend\PasienController::class, 'resetPasswordPost'])->name('resetPasswordPost');
 
 // Logout
 Route::get('logout', [Frontend\PasienController::class, 'logout'])->name('logout');
@@ -25,6 +31,7 @@ Route::prefix('akun')->group(function() {
     Route::get('riwayat', [Frontend\RiwayatController::class, 'riwayat'])->name('riwayat');
     Route::get('notifikasi', [Frontend\NotifikasiController::class, 'index'])->name('notifikasi');
     Route::get('pengaturan', [Frontend\PengaturanController::class, 'index'])->name('pengaturan');
+    Route::post('update-password', [Frontend\PengaturanController::class, 'updatePassword'])->name('updatePassword');
 });
 
 

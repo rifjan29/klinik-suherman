@@ -7,6 +7,7 @@ use App\Models\ModelPasien;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\ValidationException;
 
 class PasienController extends Controller
 {
@@ -103,7 +104,71 @@ class PasienController extends Controller
         return redirect('/user-login')->with('alert-success','Kamu berhasil Register. Silahkan Login');
     }
 
+    public function forgotPassword(){
+        return view('layouts.frontend.lupaPassword');
+    }
 
+    public function forgotPasswordPost(Request $request){
+        $request->validate([
+            'email' => 'email:dns|required_without:phone',
+            'phone' => 'numeric|min:10|starts_with:08|digits_between:10,12|required_without:email',
+        ],[
+            'email.dns' => 'Email tidak valid',
+            'email.required_without' => 'Silahkan isi dengan Email Terdaftar',
+            'phone.required_without' => 'Silahkan isi dengan Nomor Telepon Terdaftar',
+            'phone.starts_with' => 'Nomor Telepon harus diawali dengan 08',
+            'phone.digits_between' => 'Nomor Telepon harus diantara 10 sampai 12 digit',
+            'phone.numeric' => 'Nomor Telepon harus berupa angka',
+            'phone.min' => 'Nomor Telepon harus lebih dari 10 digit',
+            'phone.max' => 'Nomor Telepon harus kurang dari 12 digit',
+        ]);
+        // dd('Success');
+        if ($request->has('email')) {
+        $data = ModelPasien::where('email', $request->email)->first();
+        } elseif ($request->has('phone')) {
+            $data = ModelPasien::where('phone', $request->phone)->first();
+        } else {
+            throw ValidationException::withMessages([
+                'email' => 'Email or phone is required.',
+                'phone' => 'Email or phone is required.',
+            ]);
+        }
+        if ($data){
+            session(['id' => $data->id]);
+            return redirect()->route('resetPassword')->with('alert-success',"Email atau Nomor Telepon Terdaftar.\nSilahkan isi Password Baru.");
+        } else {
+            return back()->with('alert-danger','Email atau Nomor Telepon tidak terdaftar');
+        }
+    }
+
+    public function resetPassword(){
+        return view('layouts.frontend.resetPassword');
+    }
+
+    public function resetPasswordPost(Request $request){
+        $validatedData = $request->validate([
+            'password' => 'required|min:5',
+            'password_confirmation' => 'required|same:password',
+        ],[
+            'password.required' => 'Silahkan isi Password',
+            'password.min' => 'Password harus lebih dari 5 karakter',
+            'password_confirmation.required' => 'Silahkan isi Konfirmasi Password',
+            'password_confirmation.same' => 'Konfirmasi Password tidak sama dengan Password',
+        ]);
+        $data = ModelPasien::find(session('id'));
+
+        if ($data) {
+            $data->password = Hash::make($request->password);
+            $data->save();
+            session()->forget('id');
+            return redirect('/user-login')->with('alert-success', 'Password berhasil diubah. Silahkan Login');
+        } else {
+            return back()->with('alert-danger', 'Password gagal diubah. Username tidak dapat ditemukan');
+        }
+    }
+    
+
+    
     /**
      * Show the form for creating a new resource.
      */

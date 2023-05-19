@@ -76,6 +76,11 @@
                                         <div>{{Session::get('alert-success')}}</div>
                                     </div>
                                 @endif
+                                @if (\Session::has('error'))
+                                    <div class="alert alert-danger">
+                                        <div>{{ Session::get('error') }}</div>
+                                    </div>
+                                @endif
                                 <div class="row">
                                     <div class="col-md-6 mt-3">
                                         <label for="nama" class="col-form-label fw-bold">Nama Lengkap</label>
