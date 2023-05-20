@@ -63,6 +63,11 @@ Route::prefix('pelayanan')->group(function() {
 
     // Layanan E-Konsultasi
     Route::prefix('e-konsultasi')->group(function() {
+        Route::get('hasil-konsultasi/list/{id}', [Frontend\KonsultasiController::class, 'listKonsultasi'])->name('hasil.list');
+        Route::post('hasil-konsultasi/post', [Frontend\KonsultasiController::class, 'hasilKonsultasi'])->name('hasil.post');
+        Route::post('getpesan/post', [Frontend\KonsultasiController::class, 'sendMessage'])->name('pesan.post');
+        Route::get('getpesan', [Frontend\KonsultasiController::class, 'getMessage'])->name('pesan.get');
+        Route::get('pesan/{id}', [Frontend\KonsultasiController::class, 'pesan'])->name('pesan.beranda');
         // pembayaran upload
         Route::get('pembayaran/cek-transaksi-konsultasi', [Frontend\KonsultasiController::class, 'CekNotifikasiPembayaran'])->name('pembayaran.notifikasi.cek');
         Route::get('pembayaran/detail/upload/notifikasi/{id}', [Frontend\KonsultasiController::class, 'NotifikasiPembayaran'])->name('pembayaran.notifikasi');
@@ -73,7 +78,6 @@ Route::prefix('pelayanan')->group(function() {
         // beranda pesan konsultasi
         Route::get('beranda/detail', [Frontend\KonsultasiController::class, 'detail'])->name('e-konsultasi.detail');
         Route::get('beranda', [Frontend\KonsultasiController::class, 'index'])->name('e-konsultasi');
-        Route::get('pesan', [Frontend\KonsultasiController::class, 'pesan'])->name('pesan');
     });
 
 

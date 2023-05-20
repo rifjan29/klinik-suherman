@@ -74,7 +74,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('konsultasi-dokter.chat') }}" class="btn btn-sm font-sm rounded btn-primary gantiStatus" > Chat Sekarang </a>
+                                        <a href="{{ route('konsultasi-dokter.chat',$item->id) }}" class="btn btn-sm font-sm rounded btn-primary gantiStatus" > Chat Sekarang </a>
                                     </td>
                                 </tr>
                             @empty

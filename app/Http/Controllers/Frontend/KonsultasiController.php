@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Bank;
 use App\Models\DetailPemesananKonsultasi;
 use App\Models\Dokter;
+use App\Models\HasilKonsultasi;
 use App\Models\PemesananKonsultasi;
 use App\Models\Penilaian;
+use App\Models\RiwayatChat;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -112,10 +114,8 @@ class KonsultasiController extends Controller
             $detailPemesanan->update();
             return redirect()->route('pembayaran.notifikasi',['id' => $request->get('id')])->withStatus('Berhasil upload pembayaran.');
         } catch (Exception $e) {
-            return $e;
             return redirect()->route('e-konsultasi')->withError('Terjadi kesalahan.');
         } catch (QueryException $e){
-            return $e;
             return redirect()->route('e-konsultasi')->withError('Terjadi kesalahan.');
         }
     }
@@ -155,8 +155,72 @@ class KonsultasiController extends Controller
         }
     }
 
-    public function pesan()
+    public function pesan($id)
     {
-        return view('layouts.frontend.konsultasi.pesan');
+        $data = PemesananKonsultasi::select('pemesanan_konsultasi.*',
+                'bank.nama_bank',
+                'bank.no_rekening',
+                'bank.foto',
+                'pasien.nama as nama_pasien')
+                ->join('pasien','pasien.id','pemesanan_konsultasi.id_pasien_konsultasi')
+                ->join('bank','bank.id','pemesanan_konsultasi.id_bank')
+                ->find($id);
+        return view('layouts.frontend.konsultasi.pesan',compact('data'));
+    }
+
+    public function getMessage(Request $request)
+    {
+        $messages = RiwayatChat::orderBy('created_at', 'asc')->where('kode_transaksi_konsultasi',$request->get('id'))->get();
+        return response()->json($messages);
+    }
+
+    public function sendMessage(Request $request)
+    {
+        try {
+            $pesan = new RiwayatChat;
+            $pesan->kode_transaksi_konsultasi = $request->get('kode');
+            $pesan->pesan_dokter = null;
+            $pesan->pesan_pasien = $request->get('message');
+            $pesan->tgl_dokter = null;
+            $pesan->tgl_pasien = date(now());
+            $pesan->sender_id = $request->get('sender_id');
+            $pesan->receiver_id = $request->get('receiver_id');
+            $pesan->save();
+
+        } catch (Exception $th) {
+            return response()->json(['e' => $th]);
+        } catch (QueryException $e){
+            return response()->json(['e' => $e]);
+
+        }
+    }
+    public function hasilKonsultasi(Request $request)
+    {
+        try {
+            $penilaian = new Penilaian;
+            $penilaian->id_dokter = $request->get('id_dokter');
+            if ($request->get('suka') == 5) {
+                $penilaian->suka = $request->get('suka');
+            }else{
+                $penilaian->tidak_suka = $request->get('suka');
+            }
+            $penilaian->ulasan =$request->get('ulasan');
+            $penilaian->save();
+            $hasil = new HasilKonsultasi;
+            $hasil->kode_transaksi_konsultasi = $request->get('kode');
+            $hasil->id_pasien = $request->get('id_pasien');
+            $hasil->save();
+            return response()->json(route('hasil.list',['id' => $request->get('kode')]));
+
+        } catch (Exception $e) {
+            //throw $th;
+        }
+    }
+
+    public function listKonsultasi($id)
+    {
+
+        // bikin tampilan list konsultasi
+        return $id;
     }
 }

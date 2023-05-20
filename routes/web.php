@@ -36,6 +36,7 @@ use Maatwebsite\Excel\Row;
 //     return view('welcome');
 // });
 
+Route::post('chat/post',[KonsultasiOnlineController::class,'postChat'])->name('konsultasi-dokter.chat.post');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
@@ -85,10 +86,14 @@ Route::middleware(['auth'])->group(function () {
         });
 
         Route::prefix('dokter')->group(function () {
+            // hasil konsultasi
+            Route::post('hasil-konsulasi/post',[KonsultasiOnlineController::class,'hasilPost'])->name('konsultasi-dokter.hasil.post');
+            Route::get('hasil-konsulasi/{id}',[KonsultasiOnlineController::class,'hasil'])->name('konsultasi-dokter.hasil.get');
             // penilaian
             Route::get('penilaian-dan-ulasan',[KonsultasiOnlineController::class,'penilaian'])->name('konsultasi-dokter.penilaian');
             // list
-            Route::get('chat',[KonsultasiOnlineController::class,'chat'])->name('konsultasi-dokter.chat');
+            Route::get('chat/get',[KonsultasiOnlineController::class,'getChat'])->name('konsultasi-dokter.chat.get');
+            Route::get('chat/{id}',[KonsultasiOnlineController::class,'chat'])->name('konsultasi-dokter.chat');
             Route::get('konsultasi-online',[KonsultasiOnlineController::class,'index'])->name('konsultasi-dokter.list');
             // riwayat
             Route::get('riwayat-konsultasi',[KonsultasiOnlineController::class,'RiwayatKonsultasi'])->name('konsultasi-dokter.riwayat');

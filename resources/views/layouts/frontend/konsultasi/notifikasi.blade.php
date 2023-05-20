@@ -132,7 +132,7 @@
                                     <div class="ms-auto">Rp. {{ number_format($data->total_nominal,2, ",", ".") }}</div>
                                 </div>
                             </div>
-                            <a class="btn btn-primary mt-4" href="{{ route('pesan')}}">Chat Sekarang</a>
+                            <a class="btn btn-primary mt-4" href="{{ route('pesan.beranda',$data->id)}}">Chat Sekarang</a>
                         </div>
                     </div>
                 </div>
