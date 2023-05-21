@@ -25,8 +25,8 @@
     <script>
         $(document).ready(function() {
             var id = $('#kode_transaksi').val();
-            console.log(id);
             loadMessages(id);
+            checkKonsultasi(id)
             // Mengirim pesan
             $('#chat-form').on('click', function(e) {
             // $('#chat-form').submit(function(e) {
@@ -57,10 +57,24 @@
             // Memuat pesan-pesan secara berkala
             setInterval(function() {
                 var id = $('#kode_transaksi').val();
-
+                checkKonsultasi(id)
                 loadMessages(id);
             }, 5000); // Memuat pesan setiap 5 detik
         });
+        function checkKonsultasi(id) {
+            $.ajax({
+                url:`{{ route('get.status.konsultasi') }}`,
+                data:{
+                    id:id
+                },
+                success:function(data) {
+                    console.log(data);
+                    if (data == 'selesai') {
+                        $('#exampleModalChat').modal('show');
+                    }
+                }
+            })
+        }
         function loadMessages(id) {
             $.ajax({
                 url: `{{ route('konsultasi-dokter.chat.get') }}`,
@@ -114,7 +128,7 @@
         function hitungMundur() {
             var countdownElem = document.getElementById("countdown");
 
-            var waktuSisa = 3; // Konversi menit ke detik
+            var waktuSisa = 30 * 60; // Konversi menit ke detik
 
             var timer = setInterval(function() {
                 var menit = Math.floor(waktuSisa / 60);

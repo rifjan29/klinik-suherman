@@ -30,15 +30,18 @@
                     </div>
                     <div class="col-md-6">
                         <div class="float-end mt-1">
-                            @if ($item->status != 'off' || $item->status != 'sibuk')
-                                <a class="btn btn-lg btn-primary text-center detailDokter" data-id="{{ $item->id }}" data-bs-toggle="modal" href="#exampleModalToggle">
-                                    <span class="p-4" style="font-size: 16px">Konsultasi</span>
-                                </a>
-                            @else
+                            @if ($item->status == 'off')
                                 <a class="btn btn-lg btn-primary text-center disabled" data-bs-toggle="modal" href="#exampleModalToggle" role="button">
                                     <span class="p-4" style="font-size: 16px">Konsultasi</span>
                                 </a>
-
+                            @elseif ($item->status == 'sibuk')
+                                <a class="btn btn-lg btn-primary text-center disabled" data-bs-toggle="modal" href="#exampleModalToggle" role="button">
+                                    <span class="p-4" style="font-size: 16px">Konsultasi</span>
+                                </a>
+                            @else
+                                <a class="btn btn-lg btn-primary text-center detailDokter" data-id="{{ $item->id }}" data-bs-toggle="modal" href="#exampleModalToggle">
+                                    <span class="p-4" style="font-size: 16px">Konsultasi</span>
+                                </a>
                             @endif
                         </div>
                     </div>

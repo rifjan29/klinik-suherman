@@ -58,53 +58,6 @@
                             </div>
                         </div>
                         <hr>
-                        <table class="table table-bordered table-responsive-sm">
-                            <tr>
-                                <td width="25%"><h4>Diagnosa Rinci</h4></td>
-                                <td width="1%"><h4>:</h4></td>
-                                <td >
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="25%"><h4>Jawaban Memuaskan</h4></td>
-                                <td width="1%"><h4>:</h4></td>
-                                <td >
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="25%"><h4>Cepat Membalas</h4></td>
-                                <td width="1%"><h4>:</h4></td>
-                                <td >
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="25%"><h4>Profesionalitas Dokter</h4></td>
-                                <td width="1%"><h4>:</h4></td>
-                                <td >
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="30%"><h4>Ramah Kepada Pasien</h4></td>
-                                <td width="1%"><h4>:</h4></td>
-                                <td >
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
                     </div>
                 </div>
                 <div class="card">

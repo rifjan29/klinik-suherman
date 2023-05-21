@@ -206,6 +206,12 @@ class KonsultasiController extends Controller
             }
             $penilaian->ulasan =$request->get('ulasan');
             $penilaian->save();
+            $konsultasi = PemesananKonsultasi::where('kode_pemesanan',$request->get('kode'))->first()->id;
+
+            $data = DetailPemesananKonsultasi::where('id_pemesanan_konsultasi',$konsultasi)->update([
+                'status_chat' => 'selesai'
+            ]);
+
             $hasil = new HasilKonsultasi;
             $hasil->kode_transaksi_konsultasi = $request->get('kode');
             $hasil->id_pasien = $request->get('id_pasien');
@@ -213,9 +219,15 @@ class KonsultasiController extends Controller
             return response()->json(route('hasil.list',['id' => $request->get('kode')]));
 
         } catch (Exception $e) {
+            return $e;
+        } catch (QueryException $e) {
             //throw $th;
+            return $e;
         }
+
     }
+
+
 
     public function listKonsultasi($id)
     {

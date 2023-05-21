@@ -92,10 +92,12 @@ Route::middleware(['auth'])->group(function () {
             // penilaian
             Route::get('penilaian-dan-ulasan',[KonsultasiOnlineController::class,'penilaian'])->name('konsultasi-dokter.penilaian');
             // list
+            Route::get('chat/get-status-konsultasi',[KonsultasiOnlineController::class,'statusKonsultasi'])->name('get.status.konsultasi');
             Route::get('chat/get',[KonsultasiOnlineController::class,'getChat'])->name('konsultasi-dokter.chat.get');
             Route::get('chat/{id}',[KonsultasiOnlineController::class,'chat'])->name('konsultasi-dokter.chat');
             Route::get('konsultasi-online',[KonsultasiOnlineController::class,'index'])->name('konsultasi-dokter.list');
             // riwayat
+            Route::get('riwayat-konsultasi/hasi-konsultasi/{id}',[KonsultasiOnlineController::class,'HasilRiwayatKonsultasi'])->name('konsultasi-dokter.riwayat.hasil');
             Route::get('riwayat-konsultasi',[KonsultasiOnlineController::class,'RiwayatKonsultasi'])->name('konsultasi-dokter.riwayat');
         });
 

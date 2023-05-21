@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailPemesananKonsultasi;
 use App\Models\HasilKonsultasi;
 use App\Models\PemesananKonsultasi;
 use App\Models\RiwayatChat;
@@ -26,13 +27,16 @@ class KonsultasiOnlineController extends Controller
                                     'pasien.phone',
                                     'bank.id as idbank',
                                     'bank.nama_bank',
-                                    'bank.no_rekening')
+                                    'bank.no_rekening',
+                                    'hasil_konsultasi.kode_transaksi_konsultasi',
+                                    'hasil_konsultasi.status as status_update')
                                     ->join('detail_pemesanan_konsultasi',
                                             'detail_pemesanan_konsultasi.id_pemesanan_konsultasi',
                                             'pemesanan_konsultasi.id')
                                     ->join('pasien','pasien.id','pemesanan_konsultasi.id_pasien_konsultasi')
                                     ->join('dokter','dokter.id','pemesanan_konsultasi.id_dokter')
                                     ->join('bank','bank.id','pemesanan_konsultasi.id_bank')
+                                    ->join('hasil_konsultasi','hasil_konsultasi.kode_transaksi_konsultasi','pemesanan_konsultasi.kode_pemesanan')
                                     ->where('detail_pemesanan_konsultasi.status_pembayaran','lunas')->get();
         return view('backend.dokter.konsultasi.list',compact('data'));
     }
@@ -105,16 +109,51 @@ class KonsultasiOnlineController extends Controller
                                     'pasien.phone',
                                     'bank.id as idbank',
                                     'bank.nama_bank',
-                                    'bank.no_rekening')
+                                    'bank.no_rekening',
+                                    'hasil_konsultasi.kode_transaksi_konsultasi',
+                                    'hasil_konsultasi.status as status_update')
                                     ->join('detail_pemesanan_konsultasi',
                                             'detail_pemesanan_konsultasi.id_pemesanan_konsultasi',
                                             'pemesanan_konsultasi.id')
                                     ->join('pasien','pasien.id','pemesanan_konsultasi.id_pasien_konsultasi')
                                     ->join('dokter','dokter.id','pemesanan_konsultasi.id_dokter')
                                     ->join('bank','bank.id','pemesanan_konsultasi.id_bank')
-                                    ->where('detail_pemesanan_konsultasi.status_pembayaran','lunas')->get();
+                                    ->join('hasil_konsultasi','hasil_konsultasi.kode_transaksi_konsultasi','pemesanan_konsultasi.kode_pemesanan')
+                                    ->where('detail_pemesanan_konsultasi.status_pembayaran','lunas')
+                                    ->get();
         return view('backend.dokter.konsultasi.riwayat',compact('data'));
-
+    }
+    public function HasilRiwayatKonsultasi($id)
+    {
+        $data = PemesananKonsultasi::select('pemesanan_konsultasi.*',
+                                'detail_pemesanan_konsultasi.id as detail_konsultasi',
+                                'detail_pemesanan_konsultasi.id_pemesanan_konsultasi',
+                                'detail_pemesanan_konsultasi.status_pembayaran',
+                                'detail_pemesanan_konsultasi.id_user',
+                                'detail_pemesanan_konsultasi.keterangan',
+                                'dokter.id as iddokter',
+                                'dokter.nama_dokter',
+                                'pasien.id as id_pasien',
+                                'pasien.nama as nama_pasien',
+                                'pasien.phone',
+                                'bank.id as idbank',
+                                'bank.nama_bank',
+                                'bank.no_rekening',
+                                'hasil_konsultasi.kode_transaksi_konsultasi',
+                                'hasil_konsultasi.kesimpulan',
+                                'hasil_konsultasi.resep_obat',
+                                'hasil_konsultasi.status as status_update')
+                                ->join('detail_pemesanan_konsultasi',
+                                        'detail_pemesanan_konsultasi.id_pemesanan_konsultasi',
+                                        'pemesanan_konsultasi.id')
+                                ->join('pasien','pasien.id','pemesanan_konsultasi.id_pasien_konsultasi')
+                                ->join('dokter','dokter.id','pemesanan_konsultasi.id_dokter')
+                                ->join('bank','bank.id','pemesanan_konsultasi.id_bank')
+                                ->join('hasil_konsultasi','hasil_konsultasi.kode_transaksi_konsultasi','pemesanan_konsultasi.kode_pemesanan')
+                                ->where('detail_pemesanan_konsultasi.status_pembayaran','lunas')
+                                ->where('pemesanan_konsultasi.kode_pemesanan',$id)
+                                ->first();
+            return view('backend.dokter.konsultasi.hasil-konsultasi',compact('data'));
     }
 
     public function hasil($id)
@@ -156,7 +195,15 @@ class KonsultasiOnlineController extends Controller
             'status' => 'konfirmasi'
         ]);
         // bikin tampilan buat riwayat
-        return 'data berhasil di update';
+        return redirect()->route('konsultasi-dokter.riwayat');
+    }
+
+    public function statusKonsultasi(Request $request)
+    {
+        $konsultasi = PemesananKonsultasi::where('kode_pemesanan',$request->get('id'))->first()->id;
+
+        $data = DetailPemesananKonsultasi::where('id_pemesanan_konsultasi',$konsultasi)->first()->status_chat;
+        return response()->json($data);
     }
 
     public function penilaian()

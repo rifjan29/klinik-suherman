@@ -23,77 +23,6 @@
         })
     </script>
     <script>
-        $(document).ready(function() {
-            var id = $('#kode_transaksi').val();
-            console.log(id);
-            loadMessages(id);
-            // Mengirim pesan
-            $('#chat-form').on('click', function(e) {
-            // $('#chat-form').submit(function(e) {
-                e.preventDefault();
-                $.ajaxSetup({
-                    headers:{
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                    url: `{{ route('konsultasi-dokter.chat.post') }}`,
-                    method: 'POST',
-                    data: {
-                        sender_id: $('#sender_id').val(),
-                        receiver_id: $('#receiver_id').val(),
-                        message: $('#message').val(),
-                        kode: $('#kode').val(),
-                    },
-                    success: function(response) {
-                        // $("#chat-messages").scrollBottom($("#chat-messages")[0].scrollHeight);
-                        $('#message').val('');
-                        var id = $('#kode_transaksi').val();
-                        loadMessages(id); // Memuat pesan-pesan terbaru setelah mengirim pesan
-
-                    }
-                });
-            });
-            // Memuat pesan-pesan secara berkala
-        });
-        function loadMessages(id) {
-            $.ajax({
-                url: `{{ route('konsultasi-dokter.chat.get') }}`,
-                data:{
-                    id:id
-                },
-                method: 'GET',
-                success: function(response) {
-                    var messages = response;
-
-                    var chatMessages = $('#chat-messages');
-                    chatMessages.empty();
-
-                    $.each(messages, function(key, message) {
-                        var createdAt = moment(message.created_at).format('h:mm A')
-                        if (message.pesan_pasien != null) {
-                            var pasien = $('<li class="sender">');
-                            pasien.append(`
-                                <p> ${message.pesan_pasien} </p>
-                                <span class="time">${createdAt}</span>
-                            `);
-                        }
-                        chatMessages.append(pasien);
-                        if (message.pesan_dokter != null) {
-                            var dokter = $(`
-                                <li class="repaly">
-                                    <p>${message.pesan_dokter}</p>
-                                    <span class="time">${createdAt}</span>
-                                </li> --}}
-                            `)
-
-                            chatMessages.append(dokter);
-                        }
-
-                    });
-                }
-            });
-        };
     </script>
     <script>
 
@@ -103,89 +32,52 @@
     @section('content')
     <section class="content-main">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-12">
                 <div class="card">
+                    <header class="card-header">
+                        <h4>Detail Hasil Konsultasi</h4>
+                    </header>
                     <div class="card-body">
-                        <form action="{{ route('konsultasi-dokter.hasil.post') }}" method="POST">
-                            @csrf
-                            <input type="text" name="kode_transaksi" id="kode_transaksi" value="{{ $data->kode_pemesanan }}">
-                            <div class="mb-3">
-                                <label for="">Resep</label>
-                                <textarea name="resep_obat" id="" cols="30" rows="10" class="form-control" placeholder="Masukkan resep"></textarea>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <table class="table table-bordered table-responsive-sm">
+                                    <tr>
+                                        <td width="20%">Kode Transaksi</td>
+                                        <td width="1%">:</td>
+                                        <td >{{ $data->kode_pemesanan }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%">Nama Pasien</td>
+                                        <td width="1%">:</td>
+                                        <td >{{ $data->nama_pasien }}</td>
+                                    </tr>
+                                </table>
                             </div>
-                            <div class="mb-3">
-                                <label for="">Diagnosa</label>
-                                <textarea name="kesimpulan" id="" cols="30" rows="10" class="form-control" placeholder="Masukkan diagnosa"></textarea>
+                            <div class="col-md-6">
+                                <table class="table table-bordered table-responsive-sm">
+                                    <tr>
+                                        <td width="20%">Nama Dokter</td>
+                                        <td width="1%">:</td>
+                                        <td >{{ $data->nama_dokter }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%">Tarif</td>
+                                        <td width="1%">:</td>
+                                        <td >Rp. {{ number_format($data->total_nominal,2, ",", ".") }}</td>
+                                    </tr>
+
+                                </table>
                             </div>
-                    </div>
-                    <div class="card-footer">
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="card mb-2">
-                    <div class="card-body">
-                        <section class="message-area">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="chat-area">
-                                            <!-- chatlist -->
-
-                                            <!-- chatbox -->
-                                            <div class="chatbox">
-                                                <div class="modal-dialog-scrollable" id="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="msg-head">
-                                                            <div class="row">
-                                                                <div class="col-8">
-                                                                    <div class="d-flex align-items-center">
-                                                                        <span class="chat-icon"><img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/arroleftt.svg" alt="image title"></span>
-                                                                        <div class="flex-shrink-0">
-                                                                            <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png" alt="user img">
-                                                                        </div>
-                                                                        <div class="flex-grow-1 ms-3">
-                                                                            <h3>{{ ucwords($data->nama_pasien) }}</h3>
-                                                                            <input type="text" id="kode_transaksi" value="{{ $data->kode_pemesanan }}">
-                                                                            <p>{{ $data->gender == 'L' ? 'Laki-Laki ' : 'Perempuan' }}</p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="msg-body">
-                                                                <ul id="chat-messages">
-
-                                                                    {{-- <li class="repaly">
-                                                                        <p>yes!</p>
-                                                                        <span class="time">10:20 am</span>
-                                                                    </li> --}}
-
-
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- chatbox -->
-
-
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                        </section>
+                        <hr>
+                        <div class="mb-3">
+                            <label for="">Resep</label>
+                            <textarea name="resep_obat" id="" cols="30" rows="10" class="form-control" placeholder="Masukkan resep" readonly>{{ $data->resep_obat }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Diagnosa</label>
+                            <textarea name="kesimpulan" id="" cols="30" rows="10" class="form-control" placeholder="Masukkan diagnosa" readonly>{{ $data->kesimpulan }} </textarea>
+                        </div>
                     </div>
                 </div>
             </div>

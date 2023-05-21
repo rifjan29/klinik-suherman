@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dokter;
+use App\Models\PemesananKonsultasi;
 use App\Models\Poli;
 use App\Models\User;
 use Exception;
@@ -19,7 +20,8 @@ class DokterController extends Controller
     public function index()
     {
         $data = Dokter::with('user')->latest()->get();
-        return view('backend.dokter.index',compact('data'));
+
+        return view('backend.dokter.index',compact('data','dokter'));
 
     }
 

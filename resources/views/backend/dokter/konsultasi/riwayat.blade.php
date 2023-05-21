@@ -75,8 +75,12 @@
                                     <td><b>{{ \Carbon\Carbon::parse($item->tgl)->translatedFormat('d F Y ') }} </b></td>
 
                                     <td>
-                                        <a href="{{ route('konsultasi-dokter.chat') }}" class="btn btn-sm font-sm rounded btn-warning gantiStatus" > Update hasil pemeriksaan </a>
-                                        <a href="{{ route('konsultasi-dokter.chat') }}" class="btn btn-sm font-sm rounded btn-brand gantiStatus" > hasil pemeriksaan </a>
+                                        @if ($item->status_update == 'konfirmasi')
+                                            <a href="{{ route('konsultasi-dokter.riwayat.hasil',$item->kode_pemesanan) }}" class="btn btn-sm font-sm rounded btn-warning" > hasil pemeriksaan </a>
+                                        @else
+                                            <a href="" class="btn btn-sm font-sm rounded btn-brand" > Update hasil pemeriksaan </a>
+
+                                        @endif
                                     </td>
                                 </tr>
                             @empty

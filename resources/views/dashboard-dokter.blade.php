@@ -49,17 +49,17 @@
                             <tr>
                                 <td width="20%">Kode Transaksi</td>
                                 <td width="1%">:</td>
-                                <td >wqtq</td>
+                                <td >{{ ucwords($dokter->kode_pemesanan) }}</td>
                             </tr>
                             <tr>
                                 <td width="20%">Nama Pasien</td>
                                 <td width="1%">:</td>
-                                <td >wqtq</td>
+                                <td >{{ ucwords($dokter->nama_pasien) }}</td>
                             </tr>
                             <tr>
                                 <td width="20%">Tanggal Pembayaran</td>
                                 <td width="1%">:</td>
-                                <td >wqtq</td>
+                                <td >{{ \Carbon\Carbon::parse($dokter->tgl)->translatedFormat('d F Y ') }} </td>
                             </tr>
                             <tr>
                                 <td width="20%">Status Pembayaran</td>
@@ -70,7 +70,14 @@
                     </div>
                     <div class="card-footer">
                         <div class="d-flex justify-content-end">
-                            <button class="btn btn-primary">Chat Sekarang</button>
+                            @php
+                                $cek = \App\Models\HasilKonsultasi::where('kode_transaksi_konsultasi',$dokter->kode_pemesanan)->first();
+                            @endphp
+                            @if ($cek != NULL)
+                                <h5 class="badge rounded-pill alert-info">Selesai</h5>
+                            @else
+                                <a href="{{ route('konsultasi-dokter.chat',$dokter->id) }}" class="btn btn-primary">Chat Sekarang</a>
+                            @endif
                         </div>
                     </div>
                 </div>

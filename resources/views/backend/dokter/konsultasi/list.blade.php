@@ -74,7 +74,12 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('konsultasi-dokter.chat',$item->id) }}" class="btn btn-sm font-sm rounded btn-primary gantiStatus" > Chat Sekarang </a>
+                                        @if ($item->status_update == 'konfirmasi')
+                                            <span class="badge rounded-pill alert-info">Selesai</span>
+                                        @else
+                                            <a href="{{ route('konsultasi-dokter.chat',$item->id) }}" class="btn btn-sm font-sm rounded btn-primary gantiStatus" > Chat Sekarang </a>
+
+                                        @endif
                                     </td>
                                 </tr>
                             @empty
