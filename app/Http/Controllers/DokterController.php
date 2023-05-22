@@ -21,7 +21,7 @@ class DokterController extends Controller
     {
         $data = Dokter::with('user')->latest()->get();
 
-        return view('backend.dokter.index',compact('data','dokter'));
+        return view('backend.dokter.index',compact('data'));
 
     }
 

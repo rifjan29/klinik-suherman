@@ -184,7 +184,7 @@ class KonsultasiOnlineController extends Controller
                                 ->where('pemesanan_konsultasi.id',$pemesan->id)
                                 ->first();
 
-        return view('backend.dokter.konsultasi.hasil-konsultasi',compact('data'));
+        return view('backend.dokter.konsultasi.post-hasil-konsultasi',compact('data'));
     }
 
     public function hasilPost(Request $request)

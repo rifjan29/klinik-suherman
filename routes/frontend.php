@@ -63,6 +63,7 @@ Route::prefix('pelayanan')->group(function() {
 
     // Layanan E-Konsultasi
     Route::prefix('e-konsultasi')->group(function() {
+        Route::get('hasil-konsultasi/list/detail-konsultasi', [Frontend\KonsultasiController::class, 'listKonsultasiDetail'])->name('hasil.list.detail');
         Route::get('hasil-konsultasi/list/{id}', [Frontend\KonsultasiController::class, 'listKonsultasi'])->name('hasil.list');
         Route::post('hasil-konsultasi/post', [Frontend\KonsultasiController::class, 'hasilKonsultasi'])->name('hasil.post');
         Route::post('getpesan/post', [Frontend\KonsultasiController::class, 'sendMessage'])->name('pesan.post');
@@ -80,8 +81,14 @@ Route::prefix('pelayanan')->group(function() {
         Route::get('beranda', [Frontend\KonsultasiController::class, 'index'])->name('e-konsultasi');
     });
 
-
     Route::get('e-apotek', [Frontend\PelayananController::class, 'apotek'])->name('e-apotek');
+    Route::prefix('e-apotek')->group(function() {
+        // apotek
+        Route::get('list',[Frontend\ApotekController::class,'index'])->name('list.apotek');
+        // tebus obat
+        Route::post('list/post',[Frontend\ApotekController::class,'post'])->name('post.apotek');
+    });
+
 });
 
 Route::get('provinces', [WilayaIndonesiaDropdownController::class,'provinces'])->name('provinces');

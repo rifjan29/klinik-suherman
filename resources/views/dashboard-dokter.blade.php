@@ -40,47 +40,49 @@
 
         <div class="row">
             <div class="col-md-8">
-                <div class="card">
-                    <header class="card-header">
-                        <h4>Konsultasi Terbaru</h4>
-                    </header>
-                    <div class="card-body">
-                        <table class="table table-bordered table-responsive-sm">
-                            <tr>
-                                <td width="20%">Kode Transaksi</td>
-                                <td width="1%">:</td>
-                                <td >{{ ucwords($dokter->kode_pemesanan) }}</td>
-                            </tr>
-                            <tr>
-                                <td width="20%">Nama Pasien</td>
-                                <td width="1%">:</td>
-                                <td >{{ ucwords($dokter->nama_pasien) }}</td>
-                            </tr>
-                            <tr>
-                                <td width="20%">Tanggal Pembayaran</td>
-                                <td width="1%">:</td>
-                                <td >{{ \Carbon\Carbon::parse($dokter->tgl)->translatedFormat('d F Y ') }} </td>
-                            </tr>
-                            <tr>
-                                <td width="20%">Status Pembayaran</td>
-                                <td width="1%">:</td>
-                                <td >  <span class="badge rounded-pill alert-info">Lunas</span></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="card-footer">
-                        <div class="d-flex justify-content-end">
-                            @php
-                                $cek = \App\Models\HasilKonsultasi::where('kode_transaksi_konsultasi',$dokter->kode_pemesanan)->first();
-                            @endphp
-                            @if ($cek != NULL)
-                                <h5 class="badge rounded-pill alert-info">Selesai</h5>
-                            @else
-                                <a href="{{ route('konsultasi-dokter.chat',$dokter->id) }}" class="btn btn-primary">Chat Sekarang</a>
-                            @endif
+                @if ($dokter != null)
+                    <div class="card">
+                        <header class="card-header">
+                            <h4>Konsultasi Terbaru</h4>
+                        </header>
+                        <div class="card-body">
+                            <table class="table table-bordered table-responsive-sm">
+                                <tr>
+                                    <td width="20%">Kode Transaksi</td>
+                                    <td width="1%">:</td>
+                                    <td >{{ ucwords($dokter->kode_pemesanan) }}</td>
+                                </tr>
+                                <tr>
+                                    <td width="20%">Nama Pasien</td>
+                                    <td width="1%">:</td>
+                                    <td >{{ ucwords($dokter->nama_pasien) }}</td>
+                                </tr>
+                                <tr>
+                                    <td width="20%">Tanggal Pembayaran</td>
+                                    <td width="1%">:</td>
+                                    <td >{{ \Carbon\Carbon::parse($dokter->tgl)->translatedFormat('d F Y ') }} </td>
+                                </tr>
+                                <tr>
+                                    <td width="20%">Status Pembayaran</td>
+                                    <td width="1%">:</td>
+                                    <td >  <span class="badge rounded-pill alert-info">Lunas</span></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-flex justify-content-end">
+                                @php
+                                    $cek = \App\Models\HasilKonsultasi::where('kode_transaksi_konsultasi',$dokter->kode_pemesanan)->first();
+                                @endphp
+                                @if ($cek != NULL)
+                                    <h5 class="badge rounded-pill alert-info">Selesai</h5>
+                                @else
+                                    <a href="{{ route('konsultasi-dokter.chat',$dokter->id) }}" class="btn btn-primary">Chat Sekarang</a>
+                                @endif
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
             </div>
             <div class="col-md-4">
                 <div class="card">
