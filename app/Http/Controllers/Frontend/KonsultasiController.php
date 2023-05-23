@@ -21,7 +21,7 @@ class KonsultasiController extends Controller
     public function index(Request $request)
     {
         // $dokter = Dokter::
-        $data = Dokter::orderBy('id','ASC')->paginate(10);
+        $data = Dokter::orderBy('id','ASC')->get();
         $bank = Bank::all();
         if($request->ajax())
         {
@@ -293,6 +293,7 @@ class KonsultasiController extends Controller
                                 ->where('pemesanan_konsultasi.id_pasien_konsultasi',Session::get('id'))
                                 ->where('pemesanan_konsultasi.id',$request->get('id'))
                                 ->first();
+
         return response()->json($data);
     }
 }

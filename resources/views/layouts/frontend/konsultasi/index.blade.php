@@ -72,39 +72,46 @@
             }
             var id;
             $('.detailDokter').on('click',function() {
-                id =  $(this).data('id');
-                $.ajax({
-                    url:`{{ route('e-konsultasi.detail') }}`,
-                    data:{
-                        id:id
-                    },
-                    success: function(data) {
-                        $('#rating').text(data.suka);
-                        var nominal = Intl.NumberFormat('id-ID',
-                            { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }
-                        ).format(data.data.nominal)
-                        $('#total_bayar').text(nominal);
-                        $('#total_pesanan').text(nominal);
-                        $('#id_dokter').val(data.data.id);
-                        $('#total_nominal').val(data.data.nominal);
-                        $.map(data,function(i) {
-                            $('#nama').text(i.nama_dokter)
-                            $('#spesialis').text(i.spesialis)
-                            $('#mulai_dari').text(i.mulai_dari)
-                            $('#akhir_dari').text(i.akhir_dari)
-                        })
-                    }
-                })
+                id = $(this).data('id');
+                detail(id);
             })
+
             // $('#hubungi').on('click')
             $('#pembayaran-close').on('click',function() {
                 $('.modal').modal('hide') // closes all active pop ups.
                 $('.modal-backdrop').remove() // removes the grey overlay.
             })
             // $('.modal').modal('hide');
+            $(document).on('keyup', '#query', function(){
+                var query = $('#query').val();
+                fetch_data(query);
+
+            });
         })
-    </script>
-    <script>
+        function detail(id) {
+            $.ajax({
+                url:`{{ route('e-konsultasi.detail') }}`,
+                data:{
+                    id:id
+                },
+                success: function(data) {
+                    $('#rating').text(data.suka);
+                    var nominal = Intl.NumberFormat('id-ID',
+                        { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }
+                    ).format(data.data.nominal)
+                    $('#total_bayar').text(nominal);
+                    $('#total_pesanan').text(nominal);
+                    $('#id_dokter').val(data.data.id);
+                    $('#total_nominal').val(data.data.nominal);
+                    $.map(data,function(i) {
+                        $('#nama').text(i.nama_dokter)
+                        $('#spesialis').text(i.spesialis)
+                        $('#mulai_dari').text(i.mulai_dari)
+                        $('#akhir_dari').text(i.akhir_dari)
+                    })
+                }
+            })
+        }
         function fetch_data(query)
         {
             if(query === undefined){
@@ -119,12 +126,10 @@
                 }
             })
         }
+    </script>
+    <script>
 
-        $(document).on('keyup', '#query', function(){
-            var query = $('#query').val();
-            fetch_data(query);
 
-        });
 
     </script>
 @endpush

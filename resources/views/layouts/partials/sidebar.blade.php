@@ -68,6 +68,17 @@
                         <a href="{{ route('riwayat-ambulance') }}">List Transaksi Resep</a>
                     </div>
                 </li>
+                <li class="menu-item has-submenu {{ Request::segment(2) == 'master-obat' ? 'active' : '' }}">
+                    <a class="menu-link" href="page-form-product-1.html">
+                        <i class="icon material-icons md-add_box"></i>
+                        <span class="text">Master Obat</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="{{ route('kategori-obat.index') }}">Kategori Obat</a>
+                        <a href="{{ route('obat.index') }}"> Obat</a>
+
+                    </div>
+                </li>
             @elseif (auth()->user()->role == 'dokter')
                 <li class="menu-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                     <a class="menu-link" href="{{ route('dashboard') }}">
@@ -138,7 +149,6 @@
                         <a href="{{ route('ambulance.index') }}"> Ambulance</a>
                         <a href="{{ route('kasir.index') }}"> Kasir</a>
                         <a href="{{ route('bank.index') }}"> Bank</a>
-
                     </div>
                 </li>
                 <li class="menu-item has-submenu {{ Request::segment(2) == 'ambulance' ? 'active' : '' }}">

@@ -1,0 +1,89 @@
+.wizard {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    font-family: 'Roboto', sans-serif;
+}
+.process {
+    box-model: border-box;
+    align-self: center;
+    justify-self: center;
+    padding: 30px 0;
+}
+.process ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+.process ul li.step .name {
+    display: flex;
+    align-items: center;
+    color: #939393;
+}
+.process ul li.step .name:before {
+    content: '';
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 8px;
+    background: #ddd;
+}
+.process ul li.step.completed .name {
+    color: #005c9f;
+}
+.process ul li.step.completed .name:before {
+    content: '\2713';
+    color: white;
+    font-size: 0.8em;
+    text-align: center;
+    background: #005c9f;
+}
+.process ul li.step.current .name {
+    color: #e74700;
+}
+.process ul li.step.current .name:before {
+    background: #e74700;
+    box-shadow: 0 0 18px #ff9362;
+    animation: 1750ms linear infinite pulse;
+}
+.process ul li.step:not(:last-child):after {
+    height: 48px;
+    width: 3px;
+    content: '';
+    display: block;
+    background-color: #ddd;
+    margin-left: 7px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+.process ul li.step.completed:not(:last-child):after {
+    background-color: #005c9f;
+}
+.process.done ul li.step .name {
+    color: #33673b;
+}
+.process.done ul li.step .name:before {
+    background: #33673b;
+    box-shadow: none;
+    content: '\2713';
+    color: white;
+    font-size: 0.8em;
+    text-align: center;
+}
+.process.done ul li.step:not(:last-child):after {
+    background-color: #33673b;
+    box-shadow: 0 0 8px #88c492;
+}
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 2px #ff9362;
+    }
+    80% {
+        box-shadow: 0 0 18px #ff9362;
+    }
+    100% {
+        box-shadow: 0 0 2px #ff9362;
+    }
+}

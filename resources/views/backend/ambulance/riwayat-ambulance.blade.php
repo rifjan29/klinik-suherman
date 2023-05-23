@@ -38,6 +38,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Foto Bukti</th>
                                 <th>No Pesanan</th>
                                 <th>Nama Pasien</th>
                                 <th scope="col">Tanggal Pesanan</th>
@@ -52,6 +53,11 @@
                             @foreach ($data as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>
+                                        <div class="input-upload">
+                                            <img src="{{ $item->pasien_ambulance->foto_kejadian != null ? asset('img/admin/'.$item->pasien_ambulance->foto_kejadian) : asset('backend/assets/imgs/theme/upload.svg') }}" alt="" id="photosPreview"/>
+                                        </div>
+                                    </td>
                                     <td>{{ $item->kode_pesanan }}</td>
                                     <td>{{ $item->pasien_ambulance->nama_wali }}</td>
                                     <td>{{ \Carbon\Carbon::parse($item->tanggal_jemput)->translatedFormat('d F Y ') }} <br> <small class="text-muted" style="font-size: 11px">Jam {{ \Carbon\Carbon::parse($item->tanggal_jemput)->translatedFormat('h:i:s A') }}</small></td>

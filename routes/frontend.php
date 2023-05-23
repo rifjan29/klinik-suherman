@@ -45,6 +45,8 @@ Route::prefix('pelayanan')->group(function() {
     Route::get('rawat-inap', [Frontend\PelayananController::class, 'inap'])->name('rawat-inap');
     Route::get('penunjang', [Frontend\PelayananController::class, 'penunjang'])->name('penunjang');
     Route::get('ugd', [Frontend\PelayananController::class, 'ugd'])->name('ugd');
+
+    // ambulance
     Route::prefix('e-ambulance')->group(function () {
         Route::get('beranda', [Frontend\AmbulanceController::class, 'index'])->name('e-ambulance');
         // Pilihan Layanan Fitur Online
@@ -84,6 +86,8 @@ Route::prefix('pelayanan')->group(function() {
     Route::get('e-apotek', [Frontend\PelayananController::class, 'apotek'])->name('e-apotek');
     Route::prefix('e-apotek')->group(function() {
         // apotek
+        Route::get('list-data/tebus-resep/{id}',[Frontend\ApotekController::class,'tebusResep'])->name('list.apotek.tebus');
+        Route::get('list-data/',[Frontend\ApotekController::class,'listData'])->name('list.apotek.detail');
         Route::get('list',[Frontend\ApotekController::class,'index'])->name('list.apotek');
         // tebus obat
         Route::post('list/post',[Frontend\ApotekController::class,'post'])->name('post.apotek');

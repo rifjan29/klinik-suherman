@@ -297,7 +297,7 @@
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="inputPassword" class="col-sm-3 col-form-label">Foto Kejadian  <small class="text-muted">Optional</small></label>
+                        <label for="inputPassword" class="col-sm-3 col-form-label">Foto Kejadian  <small class="text-muted">Wajib</small></label>
                         <div class="col-sm-9">
                           <input type="file" class="form-control @error('foto') is-invalid @enderror" name="foto" placeholder="Masukkan no hp" id="inputPassword">
                           @error('foto')

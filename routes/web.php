@@ -12,7 +12,9 @@ use App\Http\Controllers\DataSaranKritikController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\Frontend\KonsultasiController;
 use App\Http\Controllers\KasirController;
+use App\Http\Controllers\KategoriObatController;
 use App\Http\Controllers\KonsultasiOnlineController;
+use App\Http\Controllers\ObatController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\PoliController;
 use App\Http\Controllers\ProfileController;
@@ -42,6 +44,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
     Route::get('profile-user/{id}',[DataProfileController::class,'index'])->name('profile-user');
     Route::prefix('dashboard')->group(function () {
+        Route::prefix('master-obat')->group(function () {
+            Route::resource('kategori-obat', KategoriObatController::class);
+            Route::resource('obat', ObatController::class);
+        });
+        // master data
         Route::prefix('master-data')->group(function () {
             Route::resource('poli', PoliController::class);
             Route::resource('dokter', DokterController::class);
@@ -101,6 +108,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('riwayat-konsultasi',[KonsultasiOnlineController::class,'RiwayatKonsultasi'])->name('konsultasi-dokter.riwayat');
         });
 
+        Route::prefix('e-apotek')->group(function () {
+
+        });
         Route::get('data-pasien',[DataPasienController::class,'index'])->name('data-pasien');
         Route::prefix('saran-kritik')->group(function () {
             Route::get('data-saran-kritik',[DataSaranKritikController::class,'index'])->name('saran-kritik');
