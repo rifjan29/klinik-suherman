@@ -40,8 +40,8 @@ class AmbulanceController extends Controller
             'no_hp' => 'required',
             'jam_kerja' => 'required',
             'keteranagan' => 'required',
-            'lang' => 'required',
-            'long' => 'required',
+            'longitude' => 'required',
+            'latitude' => 'required',
             'provinsi' => 'required',
             'kota' => 'required',
             'kecamatan' => 'required',
@@ -67,8 +67,8 @@ class AmbulanceController extends Controller
             $pasien->save();
 
             $lokasi = new LokasiKejadian;
-            $lokasi->long = $request->get('long');
-            $lokasi->lang = $request->get('lang');
+            $lokasi->long = $request->get('longitude');
+            $lokasi->lang = $request->get('latitude');
             $lokasi->id_provinsi = $request->get('provinsi');
             $lokasi->id_kota = $request->get('kota');
             $lokasi->id_kecamatan = $request->get('kecamatan');
@@ -116,7 +116,7 @@ class AmbulanceController extends Controller
         if($ambulance->count() > 0) {
             $noTransaksi = $ambulance[0]->kode_pesanan;
 
-            $lastIncrement = substr($noTransaksi, 10);
+            $lastIncrement = substr($noTransaksi, 4);
 
             $noTransaksi = str_pad($lastIncrement + 1, 4, 0, STR_PAD_LEFT);
             return $noTransaksi = "KT".$date.$noTransaksi;

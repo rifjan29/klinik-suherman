@@ -67,7 +67,6 @@ class PasienController extends Controller
     }
 
     public function registerPost(Request $request){
-        // dd($request->all());
         $validatedData = $request->validate([
             'nama' => 'required|max:255|string|min:5',
             'username' => 'required|unique:pasien|min:5|max:20|string|alpha_dash',
@@ -80,11 +79,14 @@ class PasienController extends Controller
             'status' => 'required|in:1,0',
             'job' => 'required|string',
             'religion' => 'required|string',
+            'password' => 'confirmed',
+
         ],[
             'required' => ':attribute harus terisi',
             'regex' => ':attribute terdiri dari minimal 8 karakter dan terdapat huruf besar dan simbol',
             'min' => ':attribute harus lebih dari 5 karakter',
-            'starts_with' => ':attribute harus diawali dengan 08'
+            'starts_with' => ':attribute harus diawali dengan 08',
+            'confirmed' => ':attribute data tidak sesuai'
         ]);
 
         // dd('registrasi berhasil');
@@ -166,9 +168,9 @@ class PasienController extends Controller
             return back()->with('alert-danger', 'Password gagal diubah. Username tidak dapat ditemukan');
         }
     }
-    
 
-    
+
+
     /**
      * Show the form for creating a new resource.
      */

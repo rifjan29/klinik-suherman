@@ -5,7 +5,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+    <style>
+        #map { height: 600px; }
+    </style>
     <style>
         .form-wizard{
             display: none;
@@ -71,16 +76,63 @@
     {{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> --}}
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+    {{-- <script src="https://unpkg.com/esri-leaflet@3.0.4/dist/esri-leaflet.js" integrity="sha512-oUArlxr7VpoY7f/dd3ZdUL7FGOvS79nXVVQhxlg6ij4Fhdc4QID43LUFRs7abwHNJ0EYWijiN5LP2ZRR2PY4hQ==" crossorigin=""></script>
+    <script src="https://unpkg.com/esri-leaflet-vector@3.1.1/dist/esri-leaflet-vector.js" integrity="sha512-7rLAors9em7cR3583gZSvu1mxwPBUjWjdFJ000pc4Wpu+fq84lXF1l4dbG4ShiPQ4pSBUTb4e9xaO6xtMZIlA==" crossorigin=""></script> --}}
+
     <script>
+        var map = L.map('map').setView([-7.93699,113.812946], 13);
+        var marker = L.marker([-7.93699,113.812946]).addTo(map);
+        var circle = new L.circleMarker();
+
+        L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+            maxZoom: 20,
+            minZoom: 10,
+            subdomains:['mt0','mt1','mt2','mt3']
+        }).addTo(map);
+
+
+        /* var labelLatVal = document.getElementById('labelLatitude');
+        var labelLongVal = document.getElementById('labelLongitude'); */
+
+        var latVal = document.getElementById('latitude');
+        var longVal = document.getElementById('longitude');
+
+        map.on('click', function(e) {
+            /* labelLatVal.innerHTML = e.latlng.lat;
+            labelLongVal.innerHTML = e.latlng.lng; */
+
+            latVal.value = e.latlng.lat;
+            longVal.value = e.latlng.lng;
+
+            map.removeLayer(marker)
+            map.removeLayer(circle);
+
+            marker = new L.Marker(e.latlng, {draggable:true});
+            map.addLayer(marker);
+
+            /* var marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map); */
+            /* alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng); */
+        });
+
+        /* function setRadius(){
+            var rad = document.getElementById('radius').value;
+
+            map.removeLayer(circle);
+            circle = new L.circle([latVal.value, longVal.value], {
+                color: 'red',
+                fillColor: '#f03',
+                fillOpacity: 0.5,
+                radius: rad
+            }).addTo(map);
+        } */
+
 
     </script>
     <script>
 
 
-        function showPosition(position) {
-            x.innerHTML = "Latitude: " + position.coords.latitude +
-            "<br>Longitude: " + position.coords.longitude;
-        }
         function onChangeSelect(url, id, name) {
         // send ajax request to get the cities of the selected province and append to the select tag
             $.ajax({
@@ -152,19 +204,6 @@
         $(document).ready(function() {
             $(".btn-next").show();
 
-            function getLocation() {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(showPosition);
-                    } else {
-                        x.innerHTML = "Geolocation is not supported by this browser.";
-                }
-            }
-            function showPosition(position) {
-                $('#lang').val(position.coords.latitude);
-                $('#long').val(position.coords.longitude);
-                    // x.innerHTML = "Latitude: " + position.coords.latitude +
-                    // "<br>Longitude: " + position.coords.longitude;
-            }
 
             var jumlahData = $('#jumlahData').val();
             function cekBtn() {
@@ -201,7 +240,6 @@
             $(".btn-next").click(function(e) {
                 e.preventDefault();
                 // cek();
-                getLocation();
                 var indexNow = $(".form-wizard.active").data('index')
 
                 var next = parseInt(indexNow) + 1
@@ -326,8 +364,6 @@
                 <h2>Lokasi Penjemputan</h2>
             </div>
             <div class="row content">
-                <input type="text" value="" name="lang" id="lang" hidden>
-                <input type="text" value="" name="long" id="long" hidden>
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-3">
@@ -407,8 +443,36 @@
                             @enderror
                         </div>
                     </div>
-
-
+                    <div class="row">
+                        <div class="col-md-6 mt-3">
+                            <div class="form-group">
+                                <label for="longitude" class="ml-1">Longitude :</label>
+                                {{-- <p id="labelLongitude">-</p> --}}
+                                <input type="text" id="longitude" class="form-control  @error('longitude') is-invalid @enderror" name="longitude" placeholder="longitude..." value="{{old('longitude')}}" readonly>
+                                @error('longitude')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <div class="form-group">
+                                <label for="latitude" class="ml-1">Latitude :</label>
+                                {{-- <p id="labelLatitude">-</p> --}}
+                                <input type="text" id="latitude" class="form-control  @error('latitude') is-invalid @enderror" name="latitude" placeholder="Latitude..." value="{{old('latitude')}}" readonly>
+                                @error('latitude')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="location" class="ml-1">Pilih Lokasi :</label>
+                        <div id="map"></div>
+                    </div>
                 </div>
             </div>
         </div>

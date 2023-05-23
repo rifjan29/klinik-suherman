@@ -1,6 +1,12 @@
 <x-app-layout>
     @push('css')
         <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/>
+        <style>
+            #map { height: 600px; }
+        </style>
         <style>
             .page-item.active .page-link{
                 background-color: #219ebc !important;
@@ -12,6 +18,26 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+    <script>
+        $('.cekStatusData').on('click',function() {
+            var long = parseFloat($('#long').val());
+            var lang = parseFloat($('#lang').val());
+            test(lang,long)
+        })
+        function test(lang,long) {
+            var map = L.map('map').setView([-7.93699,113.812946], 13);
+            var marker = L.marker([long,lang]).addTo(map);
+            var circle = new L.circleMarker();
+
+            L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+                maxZoom: 20,
+                minZoom: 10,
+                subdomains:['mt0','mt1','mt2','mt3']
+            }).addTo(map);
+        }
+
+    </script>
     <script>
         $(document).ready(function () {
             $('#example').DataTable();
@@ -127,7 +153,7 @@
                                         @elseif ($item->status_kejadian == "1")
                                             <span class="badge rounded-pill alert-danger">Darurat</span>
                                         @else
-                                            <a href="{{ $item->pasien_ambulance->id }}" data-bs-toggle="modal" data-bs-target="#cekstatus{{ $item->pasien_ambulance->id }}" class="badge rounded-pill alert-info">Cek Status Kejadian</a></td>
+                                            <a href="{{ $item->pasien_ambulance->id }}" data-bs-toggle="modal" data-bs-target="#cekstatus{{ $item->pasien_ambulance->id }}" class="badge rounded-pill alert-info cekStatusData">Cek Status Kejadian</a></td>
                                             <div class="modal fade" id="cekstatus{{ $item->pasien_ambulance->id }}" tabindex="-1" aria-labelledby="cekstatus{{ $item->pasien_ambulance->id }}Label" aria-hidden="true">
                                                 <div class="modal-dialog modal-xl">
                                                   <div class="modal-content">
@@ -137,6 +163,12 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="row">
+                                                            <div class="col-md-2">Lokasi :</div>
+                                                            <div class="col-md-10">
+                                                                <input type="number" hidden name="" id="long" value="{{ $item->lokasi->long }}">
+                                                                <input type="number" hidden name="" id="lang" value="{{ $item->lokasi->lang }}">
+                                                                <div id="map"></div>
+                                                            </div>
                                                             <div class="col-md-2">
                                                                 Alamat :
                                                             </div>

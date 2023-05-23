@@ -55,7 +55,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
                                         <div class="input-upload">
-                                            <img src="{{ $item->pasien_ambulance->foto_kejadian != null ? asset('img/admin/'.$item->pasien_ambulance->foto_kejadian) : asset('backend/assets/imgs/theme/upload.svg') }}" alt="" id="photosPreview"/>
+                                            <img src="{{ $item->pasien_ambulance->foto_kejadian != null ? asset('img/foto-kejadian/'.$item->pasien_ambulance->foto_kejadian) : asset('backend/assets/imgs/theme/upload.svg') }}" alt="" id="photosPreview"/>
                                         </div>
                                     </td>
                                     <td>{{ $item->kode_pesanan }}</td>

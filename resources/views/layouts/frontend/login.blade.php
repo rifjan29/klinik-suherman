@@ -45,7 +45,7 @@
                                     <div class="section-title">
                                         <h2 class="">Login</h2>
                                     </div>
-                                    <div class="p-5">
+                                    <div class="p-3">
                                         @if (\Session::has('alert'))
                                             <div class="alert alert-danger">
                                                 <div>{{Session::get('alert')}}</div>
@@ -61,11 +61,23 @@
                                             <span class="input-group-text border border-end-0 p-3" style="background-color:white; border-radius:20px 0 0 20px; box-shadow: 5px 5px #c7c7c7" id="basic-addon1"><i class="fa-solid fa-user" style="color: rgb(139, 139, 139)"></i></span>
                                             <input type="username" name="username" id="username" class="form-control border border-start-0" placeholder="Username" style="border-radius:0 20px 20px 0; box-shadow: 5px 5px #c7c7c7" aria-label="Username" aria-describedby="basic-addon1">
                                         </div>
-                                        <div class="input-group mb-3 mt-3">
-                                            <span class="input-group-text border border-end-0 p-3" style="background-color:white; border-radius:20px 0 0 20px; box-shadow: 5px 5px #c7c7c7" id="basic-addon1"><i class="fa-solid fa-lock" style="color: rgb(139, 139, 139)"></i></span>
-                                            <input type="password" name="password" id="password" class="form-control border border-start-0" placeholder="Password" style="border-radius:0 20px 20px 0; box-shadow: 5px 5px #c7c7c7" aria-label="Password" aria-describedby="basic-addon1">
+                                        <div class="d-flex">
+                                            <div style="width: 420px">
+                                                <div class="input-group mb-3 mt-3">
+                                                    <span class="input-group-text border border-end-0 p-3" style="background-color:white; border-radius:20px 0 0 20px; box-shadow: 5px 5px #c7c7c7" id="basic-addon1"><i class="fa-solid fa-lock" style="color: rgb(139, 139, 139)"></i></span>
+                                                    <input type="password" name="password" id="password" class="form-control border border-start-0" placeholder="Password" style="border-radius:0 20px 20px 0; box-shadow: 5px 5px #c7c7c7" aria-label="Password" aria-describedby="basic-addon1">
+                                                </div>
+                                            </div>
+                                            <div class="align-self-center px-4">
+                                                <div>
+                                                    <label for="">
+                                                        <input type='checkbox' id='toggle' value='0'>
+                                                        <span id='toggleText' class="align-center-self">Show</span>
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <p class="fw-">Didn’t have account?<span class="fw-bolder"> <a href="{{ route('login.register') }}" class="mx-1" style="color: #37517E"> Sign up</a></span></p>
+                                        <p class="fw-">Didn't have account?<span class="fw-bolder"> <a href="{{ route('login.register') }}" class="mx-1" style="color: #37517E"> Sign up</a></span></p>
                                         <p class="fw-">Forgot Password?<span class="fw-bolder"> <a href="{{ route('lupaPassword') }}" class="mx-1" style="color: #37517E"> Lupa Password</a></span></p>
                                         <div class="d-flex justify-content-center p-1 mt-5">
                                             <button type="submit" class="btn btn-lg btn-primary text-center" style="background-color: #37517E; border:0; border-radius:20px"><span class="p-4" style="font-size: 16px">Login</span></button>
@@ -79,4 +91,27 @@
             </div>
         </div>
     </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+         $(document).ready(function(){
+                $("#toggle").change(function(){
+
+                    // Check the checkbox state
+                    if($(this).is(':checked')){
+                    // Changing type attribute
+                        $("#password").attr("type","text");
+
+                        // Change the Text
+                        $("#toggleText").text("Hide");
+                        }else{
+                        // Changing type attribute
+                        $("#password").attr("type","password");
+
+                        // Change the Text
+                        $("#toggleText").text("Show");
+                    }
+
+                });
+        });
+    </script>
 </html>

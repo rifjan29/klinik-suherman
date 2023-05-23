@@ -74,15 +74,6 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-6 p-2">
-                                            <label for="password" class="col-form-label fw-bold">Password</label>
-                                            <input type="password" name="password" class="form-control shadow rounded-4 mt-1  @error('password') is-invalid @enderror" id="password" placeholder="Masukkan Password Anda" style="height: 50px;" required>
-                                            @error('password')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-6 p-2">
                                             <label for="phone" class="col-form-label fw-bold">Nomor Telepon</label>
                                             <input type="number" name="phone" class="form-control shadow rounded-4 mt-1  @error('phone') is-invalid @enderror" id="phone" placeholder="Masukkan Nomor Anda (08xxxxxxxxxx)" style="height: 50px;" required value="{{ old('phone') }}">
                                             @error('phone')
@@ -91,6 +82,41 @@
                                                 </div>
                                             @enderror
                                         </div>
+                                        <div class="col-md-6 p-2">
+                                            <label for="password" class="col-form-label fw-bold">Password</label>
+                                            <input type="password" name="password" class="form-control shadow rounded-4 mt-1  @error('password') is-invalid @enderror" id="password" placeholder="Masukkan Password Anda" style="height: 50px;" required>
+                                            <div class="d-flex justify-content-end pt-3">
+                                                <div>
+                                                    <label for="">
+                                                        <input type='checkbox' id='toggle' value='0'>
+                                                        <span id='toggleText' class="align-center-self">Show</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            @error('password')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6 p-2">
+                                            <label for="password" class="col-form-label fw-bold">Ulangi Password</label>
+                                            <input type="password" id="password_confirmation" value="{{ old('password_confirmation') }}" class="form-control shadow rounded-4 mt-1 @error('password_confirmation') is-invalid @enderror" name="password_confirmation"  placeholder="Masukkan Ulang Password Anda" style="height: 50px;" required>
+                                            <div class="d-flex justify-content-end pt-3">
+                                                <div>
+                                                    <label for="">
+                                                        <input type='checkbox' id='toggleDua' value='0'>
+                                                        <span id='toggleTextDua' class="align-center-self">Show</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            @error('password_confirmation')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+
                                         <div class="col-md-6 p-2">
                                             <label for="born" class="col-form-label fw-bold">Tempat/Tanggal Lahir</label>
                                             <input type="text" name="born" class="form-control shadow rounded-4 mt-1  @error('born') is-invalid @enderror" id="born" placeholder="Masukkan Tempat, Tanggal Lahir" style="height: 50px;" required value="{{ old('born') }}">
@@ -167,116 +193,6 @@
                                             <button type="submit" class="btn btn-lg btn-primary text-center" style="background-color: #37517E; border:0; border-radius:20px"><span class="p-4" style="font-size: 16px">Sign Up</span></button>
                                         </div>
                                     </form>
-                                    {{-- <form action="" class="mb-3 mt-md-4">
-                                        <div class="section-title">
-                                            <h2 class="">Create Account</h2>
-                                        </div>
-                                        <div class="p-3 mx-2">
-                                            <div class="row">
-                                                <div class="col-md-6 p-4">
-                                                    <div class="row">
-                                                        <div class="col-3">
-                                                            <label for="" class="col-form-label fw-bold">Nama Lengkap</label>
-                                                        </div>
-                                                        <div class="col-9">
-                                                            <input type="text" class="form-control shadow rounded-4" id="" placeholder="Masukkan Nama Lengkap" style="height: 130%;">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 p-4">
-                                                    <div class="row">
-                                                        <div class="col-3">
-                                                            <label for="" class="col-form-label fw-bold">Agama</label>
-                                                        </div>
-                                                        <div class="col-9">
-                                                            <input type="text" class="form-control shadow rounded-4" id="" placeholder="Masukkan Agama" style="height: 130%;">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 p-4">
-                                                    <div class="row">
-                                                        <div class="col-3">
-                                                            <label for="" class="col-form-label fw-bold">Tempat/Tanggal Lahir</label>
-                                                        </div>
-                                                        <div class="col-9">
-                                                            <input type="text" class="form-control shadow rounded-4" id="" placeholder="Masukkan Tempat dan Tanggal Lahir" style="height: 90%;">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 p-4">
-                                                    <div class="row">
-                                                        <div class="col-3">
-                                                            <p class="fw-bold fs-6">Status Perkawinan</p>
-                                                        </div>
-                                                        <div class="col-9">
-                                                            <div class="d-flex justify-content-start">
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                                                    <label class="form-check-label" for="flexRadioDefault1">Kawin</label>
-                                                                </div>
-                                                                <div class="form-check mx-4">
-                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                                                    <label class="form-check-label" for="flexRadioDefault2">Belum Kawin</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 p-4">
-                                                    <div class="row">
-                                                        <div class="col-3">
-                                                            <p class="fw-bold fs-6">Jenis Kelamin</p>
-                                                        </div>
-                                                        <div class="col-9">
-                                                            <div class="d-flex justify-content-start">
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="flexRadioDefaultNew" id="flexRadioDefault3">
-                                                                    <label class="form-check-label" for="flexRadioDefault3">Laki-Laki</label>
-                                                                </div>
-                                                                <div class="form-check mx-4">
-                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
-                                                                    <label class="form-check-label" for="flexRadioDefault4">Perempuan</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 p-4">
-                                                    <div class="row">
-                                                        <div class="col-3">
-                                                            <label for="" class="col-form-label fw-bold">Pekerjaan</label>
-                                                        </div>
-                                                        <div class="col-9">
-                                                            <input type="text" class="form-control shadow rounded-4" id="" placeholder="Masukkan Pekerjaan" style="height: 130%;">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 p-4">
-                                                    <div class="row">
-                                                        <div class="col-3">
-                                                            <label for="" class="col-form-label fw-bold">Alamat</label>
-                                                        </div>
-                                                        <div class="col-9">
-                                                            <input type="text" class="form-control shadow rounded-4" id="" placeholder="Masukkan Alamat" style="height: 130%;">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 p-4">
-                                                    <div class="row">
-                                                        <div class="col-3">
-                                                            <label for="" class="col-form-label fw-bold">Nomor Telepon</label>
-                                                        </div>
-                                                        <div class="col-9">
-                                                            <input type="text" class="form-control shadow rounded-4" id="" placeholder="Masukkan Nomor Telepon" style="height: 130%;">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex justify-content-center p-1 mt-5">
-                                                <button type="button" class="btn btn-lg btn-primary text-center" style="background-color: #37517E; border:0; border-radius:20px"><span class="p-4" style="font-size: 16px">Sign Up</span></button>
-                                            </div>
-                                        </div>
-                                    </form> --}}
                                 </div>
                             </div>
                         </div>
@@ -285,4 +201,45 @@
             </div>
         </div>
     </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#toggle").change(function(){
+
+                // Check the checkbox state
+                if($(this).is(':checked')){
+                // Changing type attribute
+                    $("#password").attr("type","text");
+
+                    // Change the Text
+                    $("#toggleText").text("Hide");
+                    }else{
+                    // Changing type attribute
+                    $("#password").attr("type","password");
+
+                    // Change the Text
+                    $("#toggleText").text("Show");
+                }
+
+            });
+            $("#toggleDua").change(function(){
+
+                // Check the checkbox state
+                if($(this).is(':checked')){
+                // Changing type attribute
+                    $("#password_confirmation").attr("type","text");
+
+                    // Change the Text
+                    $("#toggleTextDua").text("Hide");
+                    }else{
+                    // Changing type attribute
+                    $("#password_confirmation").attr("type","password");
+
+                    // Change the Text
+                    $("#toggleTextDua").text("Show");
+                }
+
+            });
+        });
+    </script>
 </html>
