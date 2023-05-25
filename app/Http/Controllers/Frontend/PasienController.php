@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
 
-class PasienController extends Controller
+class   PasienController extends Controller
 {
     /**
      * Display a listing of the resource.
