@@ -444,7 +444,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 mt-3">
+                        <div class="col-md-6 mt-3" hidden>
                             <div class="form-group">
                                 <label for="longitude" class="ml-1">Longitude :</label>
                                 {{-- <p id="labelLongitude">-</p> --}}
@@ -456,7 +456,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-6 mt-3">
+                        <div class="col-md-6 mt-3" hidden>
                             <div class="form-group">
                                 <label for="latitude" class="ml-1">Latitude :</label>
                                 {{-- <p id="labelLatitude">-</p> --}}
@@ -471,6 +471,7 @@
                     </div>
                     <div class="form-group mt-3">
                         <label for="location" class="ml-1">Pilih Lokasi :</label>
+                        <small class="text-muted">Pick/tandai koordinat wilayah yang ingin dituju</small>
                         <div id="map"></div>
                     </div>
                 </div>

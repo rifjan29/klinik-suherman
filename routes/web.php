@@ -110,10 +110,24 @@ Route::middleware(['auth'])->group(function () {
         });
 
         Route::prefix('e-apotek')->group(function () {
+            Route::get('list/detail',[DataApotekController::class,'getDetail'])->name('e-apotek.list.detail');
+            Route::post('list/update-pembayaran/transaksi-obat/update-pembiayaan/post',[DataApotekController::class,'updatePembayaranTransaksiBiaya'])->name('transaksi-obat.data-obat.update-ambil');
+            Route::post('list/update-pembayaran/transaksi-obat/update/post',[DataApotekController::class,'updatePembayaranTransaksi'])->name('transaksi-obat.data-obat.update');
+            // update pembayaran
             Route::post('list/update-pembayaran/transaksi-obat/post',[DataApotekController::class,'post'])->name('transaksi-obat.data-obat.post');
             Route::get('list/update-pembayaran/transaksi-obat/data-obat',[DataApotekController::class,'dataObat'])->name('transaksi-obat.data-obat');
             Route::get('list/update-pembayaran/{id}',[DataApotekController::class,'updatePembayaran'])->name('e-apotek.update');
+            // list data
             Route::get('list',[DataApotekController::class,'list'])->name('e-apotek.list');
+
+            // riwayat obat
+            Route::get('riwayat-obat/versi-cetak/{id}',[DataApotekController::class, 'riwayatCetak'])->name('e-apotek.riwayat.cetak');
+            Route::get('riwayat-obat',[DataApotekController::class, 'riwayat'])->name('e-apotek.riwayat');
+
+            // laporan
+            Route::get('laporan-transaksi/pdf',[DataApotekController::class,'pdf'])->name('e-apotek.pdf');
+            Route::get('laporan-transaksi/excel',[DataApotekController::class,'excel'])->name('e-apotek.excel');
+            Route::get('laporan-transaksi',[DataApotekController::class,'laporan'])->name('e-apotek.laporan');
         });
         Route::get('data-pasien',[DataPasienController::class,'index'])->name('data-pasien');
         Route::prefix('saran-kritik')->group(function () {

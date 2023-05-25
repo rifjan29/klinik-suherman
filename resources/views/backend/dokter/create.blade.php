@@ -99,6 +99,24 @@
                                     @enderror
                                 </div>
                                 <div class="mb-4">
+                                    <label for="product_name" class="form-label">NO SIP</label>
+                                    <input type="text" value="{{ old('no_sip') }}" placeholder="Masukkan No SIP dokter" class="form-control @error('no_sip') is-invalid @enderror" name="no_sip"/>
+                                    @error('no_sip')
+                                        <div class="invalid-feedback">
+                                            {{$message}}.
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-4">
+                                    <label for="product_name" class="form-label">NO STR</label>
+                                    <input type="text" value="{{ old('no_str') }}" placeholder="Masukkan No STR dokter" class="form-control @error('no_str') is-invalid @enderror" name="no_str"/>
+                                    @error('no_str')
+                                        <div class="invalid-feedback">
+                                            {{$message}}.
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-4">
                                     <label for="product_name" class="form-label">Email</label>
                                     <input type="text" value="{{ old('email') }}" placeholder="Masukkan email dokter" class="form-control @error('email') is-invalid @enderror" name="email"/>
                                     @error('email')

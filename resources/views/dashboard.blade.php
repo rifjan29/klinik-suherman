@@ -89,6 +89,46 @@
                            }
                        }
                    });
+                   var ctx = document.getElementById('myChartApotek').getContext('2d');
+                   var chart = new Chart(ctx, {
+                       // The type of chart we want to create
+                       type: 'line',
+
+                       // The data for our dataset
+                       data: {
+                           labels: [
+                               @foreach ($data_grafik_apotek as $item)
+                                   '{{ $item->month_year }}',
+                               @endforeach
+                               // 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+                           ],
+                           datasets: [{
+                                   label: 'Total Pendapatan',
+                                   tension: 0.3,
+                                   fill: true,
+                                   backgroundColor: 'rgba(44, 120, 220, 0.2)',
+                                   borderColor: 'rgba(44, 120, 220)',
+                                   data: [
+                                       @foreach ($data_grafik_apotek as $item)
+                                       //  {{ number_format($item->total_biaya,2, ",", ".") }}
+                                           {{ $item->total_biaya }},
+                                       @endforeach
+                                   ]
+                               },
+
+
+                           ]
+                       },
+                       options: {
+                           plugins: {
+                           legend: {
+                               labels: {
+                               usePointStyle: true,
+                               },
+                           }
+                           }
+                       }
+                   });
 
 
            })(jQuery);

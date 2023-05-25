@@ -22,5 +22,6 @@ class TransaksiPemesananObat extends Model
         'status',
         'tgl_ambil_obat',
         'status_pengambilan',
+        'alasan',
     ];
 }

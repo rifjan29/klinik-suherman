@@ -66,6 +66,8 @@
                     </a>
                     <div class="submenu">
                         <a href="{{ route('e-apotek.list') }}">List Transaksi Resep</a>
+                        <a href="{{ route('e-apotek.riwayat') }}" class="{{ Request::segment(3) == 'riwayat-obat' ? 'active' : '' }}">Riwayat Transaksi </a>
+                        <a href="{{ route('e-apotek.laporan') }}" class="{{ Request::segment(3) == 'laporan-transaksi' ? 'active' : '' }}">Laporan E-Konsultasi </a>
                     </div>
                 </li>
                 <li class="menu-item has-submenu {{ Request::segment(2) == 'master-obat' ? 'active' : '' }}">
@@ -185,6 +187,8 @@
                     </a>
                     <div class="submenu">
                         <a href="{{ route('e-apotek.list') }}">List Transaksi Resep</a>
+                        <a href="{{ route('e-apotek.riwayat') }}" class="{{ Request::segment(3) == 'riwayat-obat' ? 'active' : '' }}">Riwayat Transaksi </a>
+                        <a href="{{ route('e-apotek.laporan') }}" class="{{ Request::segment(3) == 'laporan-transaksi' ? 'active' : '' }}">Laporan E-Apotek </a>
                     </div>
                 </li>
                 <li class="menu-item {{ Request::segment(2) == 'data-pasien' ? 'active' : '' }}">

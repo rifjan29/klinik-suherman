@@ -62,6 +62,7 @@
             var ulasan = $('.ulasan').val();
             var kode_transaksi = $('#kode').val();
             var id_pasien = $('#sender_id').val();
+            var id_dokter = $('#receiver_id').val();
             console.log(`${ulasan}=${suka}=${kode_transaksi}`);
             $.ajaxSetup({
                     headers:{
@@ -75,7 +76,8 @@
                     suka:suka,
                     kode:kode_transaksi,
                     ulasan:ulasan,
-                    id_pasien:id_pasien
+                    id_pasien:id_pasien,
+                    id_dokter:id_dokter,
                 },
                 success:function(data){
                     window.location.href = data;

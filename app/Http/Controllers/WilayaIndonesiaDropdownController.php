@@ -8,7 +8,7 @@ class WilayaIndonesiaDropdownController extends Controller
 {
     public function provinces()
     {
-        return \Indonesia::allProvinces();
+        return \Indonesia::search('jawa timur')->allProvinces();
     }
 
     public function cities(Request $request)

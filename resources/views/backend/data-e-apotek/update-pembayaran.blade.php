@@ -211,7 +211,7 @@
                             <hr>
                             <h4>Total Detail</h4>
                             <div class="row test mt-4">
-                                <input type="text" name="kode_transaksi" id="" value="{{ $data->kode_transaksi }}" hidden>
+                                <input type="text" name="kode_transaksi" id="" value="{{ $data->kode_transaksi }}" hiddene>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="total">Harga Embalase</label>

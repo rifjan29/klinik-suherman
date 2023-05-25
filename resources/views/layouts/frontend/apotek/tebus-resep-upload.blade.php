@@ -188,7 +188,7 @@
                 <div class="modal-body">
                     <div class="p-4">
                         <div class="text-center">
-                            <form action="{{ route('pembayaran.upload') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('list.apotek.tebus-upload-bukti',$transaksiObat->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <input type="text" name="id" id="id" readonly hidden>
                                 <div class="mb-3">

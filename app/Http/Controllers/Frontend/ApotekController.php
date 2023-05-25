@@ -17,7 +17,8 @@ class ApotekController extends Controller
                                         'hasil_konsultasi.resep_obat')
                                     ->join('hasil_konsultasi','hasil_konsultasi.id','transaksi_pemesanan_obat.id_hasil_konsultasi')
                                     ->join('pasien','pasien.id','transaksi_pemesanan_obat.id_pasien')
-                                    ->where('transaksi_pemesanan_obat.id_pasien',Session::get('id'))->get();
+                                    ->where('transaksi_pemesanan_obat.id_pasien',Session::get('id'))
+                                    ->where('transaksi_pemesanan_obat.status_pengambilan','pending')->get();
         return view('layouts.frontend.apotek.list',compact('data'));
     }
     public function post(Request $request)
@@ -49,6 +50,7 @@ class ApotekController extends Controller
                                     'hasil_konsultasi.resep_obat','hasil_konsultasi.kode_transaksi_konsultasi')
                                 ->join('hasil_konsultasi','hasil_konsultasi.id','transaksi_pemesanan_obat.id_hasil_konsultasi')
                                 ->join('pasien','pasien.id','transaksi_pemesanan_obat.id_pasien')
+                                ->where('transaksi_pemesanan_obat.status_pengambilan','diterima')
                                 ->where('transaksi_pemesanan_obat.kode_transaksi',$id)
                                 ->first();
         $bank = Bank::all();
@@ -80,6 +82,51 @@ class ApotekController extends Controller
                                 ->where('transaksi_pemesanan_obat.kode_transaksi',$id)
                                 ->first();
         return view('layouts.frontend.apotek.tebus-resep-upload',compact('transaksiObat'));
+    }
+
+    public function tebusResepUploadBukti(Request $request, $id)
+    {
+        $request->validate([
+            'file' => 'required'
+        ]);
+        if ($request->hasFile('file')) {
+            $photos = $request->file('file');
+            $filename = date('His') . '.' . $photos->getClientOriginalExtension();
+            $path = public_path('img/foto-bukti-pembayaran-apotek');
+            if ($photos->move($path, $filename)) {
+                TransaksiPemesananObat::find($id)->update([
+                    'foto_pembayaran' => $filename,
+                    'status' => 'pending'
+                ]);
+            } else {
+                return redirect()->back()->withError('Terjadi kesalahan.');
+            }
+        }
+
+        return redirect()->route('list.apotek')->withStatus('Berhasil Upload pembayaran silahkan tunggu verifikasi');
+    }
+
+    public function detailInvoice(Request $request)
+    {
+        $data = TransaksiPemesananObat::select('transaksi_pemesanan_obat.*','pasien.nama','bank.nama_bank')
+                                    ->join('pasien','pasien.id','transaksi_pemesanan_obat.id_pasien')
+                                    ->join('bank','bank.id','transaksi_pemesanan_obat.id_bank')
+                                    ->where('transaksi_pemesanan_obat.id',$request->get('id'))
+                                    ->first();
+        $data->url = route('list.apotek.invoice-pdf',[$data->id]);
+        return response()->json($data);
+    }
+    public function detailInvoicePDF($id)
+    {
+        $transaksiObat = TransaksiPemesananObat::select('transaksi_pemesanan_obat.*',
+                                                'pasien.nama',
+                                                'hasil_konsultasi.resep_obat','hasil_konsultasi.kode_transaksi_konsultasi')
+                                            ->join('hasil_konsultasi','hasil_konsultasi.id','transaksi_pemesanan_obat.id_hasil_konsultasi')
+                                            ->join('pasien','pasien.id','transaksi_pemesanan_obat.id_pasien')
+                                            ->where('transaksi_pemesanan_obat.id',$id)
+                                            ->first();
+        return view('layouts.frontend.apotek.versi-cetak',compact('transaksiObat'));
+
     }
     public function generateTransaksi()
     {

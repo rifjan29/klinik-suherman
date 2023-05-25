@@ -86,13 +86,17 @@ Route::prefix('pelayanan')->group(function() {
     Route::get('e-apotek', [Frontend\PelayananController::class, 'apotek'])->name('e-apotek');
     Route::prefix('e-apotek')->group(function() {
         // apotek
+        Route::post('list-data/tebus-resep/update-pembayaran/{id}',[Frontend\ApotekController::class,'tebusResepUploadBukti'])->name('list.apotek.tebus-upload-bukti');
         Route::get('list-data/tebus-resep/update-pembayaran/{id}',[Frontend\ApotekController::class,'tebusResepUpload'])->name('list.apotek.tebus.upload');
         Route::post('list-data/tebus-resep/post/{id}',[Frontend\ApotekController::class,'tebusResepPost'])->name('list.apotek.tebus.post');
         Route::get('list-data/tebus-resep/{id}',[Frontend\ApotekController::class,'tebusResep'])->name('list.apotek.tebus');
         Route::get('list-data/',[Frontend\ApotekController::class,'listData'])->name('list.apotek.detail');
+        Route::get('list/detail-invoice-pdf/{id}',[Frontend\ApotekController::class,'detailInvoicePDF'])->name('list.apotek.invoice-pdf');
+        Route::get('list/detail-invoice',[Frontend\ApotekController::class,'detailInvoice'])->name('list.apotek.invoice');
         Route::get('list',[Frontend\ApotekController::class,'index'])->name('list.apotek');
         // tebus obat
         Route::post('list/post',[Frontend\ApotekController::class,'post'])->name('post.apotek');
+
     });
 
 });

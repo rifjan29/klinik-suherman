@@ -53,6 +53,8 @@ class DokterController extends Controller
             'password' => 'required',
             'nominal' => 'required',
             'foto_dokter' => 'required',
+            'no_str' => 'required',
+            'no_sip' => 'required',
         ]);
         try {
             $user = new User;
@@ -71,6 +73,8 @@ class DokterController extends Controller
             $dokter->jenis_kelamin = $request->get('jeni_kelamin');
             $dokter->umur = $request->get('tgl_lahir');
             $dokter->alamat = $request->get('alamat');
+            $dokter->no_sip = $request->get('no_sip');
+            $dokter->no_str = $request->get('no_str');
             $dokter->nominal = $this->formatNumber($request->get('nominal'));
             $dokter->no_telp = $request->get('telp');
             $dokter->id_user = $user->id;
@@ -137,6 +141,8 @@ class DokterController extends Controller
             'alamat' => 'required',
             'username' => 'required',
             'password' => 'confirmed',
+            'no_str' => 'required',
+            'no_sip' => 'required',
         ]);
         try {
             User::where('id',$request->get('id'))->update([
@@ -158,6 +164,8 @@ class DokterController extends Controller
             $dokter->mulai_dari = date("H:i", strtotime($this->pecahjamkerja($request->get('jam_kerja'))[0]));
             $dokter->akhir_dari = date("H:i", strtotime($this->pecahjamkerja($request->get('jam_kerja'))[1]));
             $dokter->jenis_kelamin = $request->get('jeni_kelamin');
+            $dokter->no_sip = $request->get('no_sip');
+            $dokter->no_str = $request->get('no_str');
             $dokter->umur = $request->get('tgl_lahir');
             $dokter->alamat = $request->get('alamat');
             $dokter->nominal = $this->formatNumber($request->get('nominal'));

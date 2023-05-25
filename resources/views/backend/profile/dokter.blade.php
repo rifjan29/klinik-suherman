@@ -8,6 +8,14 @@
             <input type="text" value="{{ old('nama_petugas',$data->nama_dokter) }}" readonly placeholder="Masukkan nama petugas" class="form-control" name="nama_petugas"/>
         </div>
         <div class="mb-4">
+            <label for="product_name" class="form-label">NO SIP</label>
+            <input type="text" value="{{ old('nama_petugas',$data->no_sip) }}" readonly placeholder="Masukkan nama petugas" class="form-control" name="nama_petugas"/>
+        </div>
+        <div class="mb-4">
+            <label for="product_name" class="form-label">NO STR</label>
+            <input type="text" value="{{ old('nama_petugas',$data->no_str) }}" readonly placeholder="Masukkan nama petugas" class="form-control" name="nama_petugas"/>
+        </div>
+        <div class="mb-4">
             <label for="product_name" class="form-label">Jabatan</label>
             <input type="text" value="{{ $data->spesialis }}" placeholder="Masukkan jabatan" class="form-control " readonly name="jabatan"/>
         </div>
