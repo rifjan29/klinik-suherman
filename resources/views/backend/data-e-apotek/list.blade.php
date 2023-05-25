@@ -61,7 +61,7 @@
                                                 <a href="{{ route('e-apotek.update',$item->id) }}">Update Pembayaran</a><br>
                                                 <small class="text-muted" style="font-size: 10px">Pending</small>
                                             @else
-                                                <a href="" class="btn btn-primary">Verifikasi Pembayaran</a> <br>
+                                                <a href="#" class="btn btn-primary verifikasi" id="verifikasiModal" >Verifikasi Pembayaran</a> <br>
                                             <b class="text-muted"> Total : Rp. {{ number_format($item->nominal_bayar,2, ",", ".") }}</b>
                                             @endif
                                             {{-- <span class="badge rounded-pill alert-warning">Pending</span> --}}

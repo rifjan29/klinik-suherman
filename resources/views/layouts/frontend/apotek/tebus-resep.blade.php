@@ -129,6 +129,21 @@
                                             </tbody>
                                         </table>
                                     </div>
+                                    <div>
+                                        <div class="d-flex justify-content-between mt-3">
+                                            <div>
+                                                <h6>Keterangan Biaya-Biaya :</h6>
+                                            </div>
+                                            @php
+                                                $lainnya = $transaksiObat->harga_lainnya != null ? $transaksiObat->harga_lainnya : 0;
+                                                $embalase = $transaksiObat->harga_embalase != null ? $transaksiObat->harga_embalase : 0;
+                                                $biaya = $lainnya + $embalase;
+                                            @endphp
+                                            <div>
+                                                <h6 class="fw-bold">Rp. {{ number_format($biaya,2, ",", ".") }}</h6>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-footer">

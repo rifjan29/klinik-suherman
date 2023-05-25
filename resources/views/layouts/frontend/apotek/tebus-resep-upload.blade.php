@@ -37,9 +37,13 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-
+            var id;
+            $('.upload-bukti').on('click',function() {
+                id = $(this).data('id');
+                console.log(id);
+                $('#id').val(id);
+            })
         })
-
     </script>
     <script>
         // Mendapatkan referensi ke elemen tombol salin
@@ -159,9 +163,8 @@
                                         </div>
                                     </div>
 
-                                    <div >
-                                        <button class="btn btn-primary" type="submit">Bayar</button>
-                                        </form>
+                                    <div>
+                                        <button class="btn btn-primary upload-bukti" data-id="{{ $transaksiObat->id }}" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Bayar</button>
                                     </div>
                                 </div>
                             </div>
@@ -175,5 +178,30 @@
         </div>
     </section>
     <!-- End ambulance Section -->
-
+     <!-- Start Modal Upload BUkti -->
+     <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="fw-bold">Sisipkan File</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="p-4">
+                        <div class="text-center">
+                            <form action="{{ route('pembayaran.upload') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <input type="text" name="id" id="id" readonly hidden>
+                                <div class="mb-3">
+                                    <small for="formFile" class="form-label fw-bold " style="font-size: 11px">Sallinan file yang dipilih akan dikirim. Setelah terkirim, file tidak dapat diedit atau dihapus</small>
+                                    <input class="form-control mt-2" type="file" id="formFile" name="file">
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-4" >Kirim</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Upload BUkti -->
 @endsection
