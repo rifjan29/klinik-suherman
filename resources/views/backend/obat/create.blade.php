@@ -46,6 +46,15 @@
                             </div>
                         @enderror
                     </div>
+                    <div class="mb-4">
+                        <label for="product_name" class="form-label">Harga</label>
+                        <input type="number" value="{{ old('harga') }}" placeholder="Masukkan harga obat" class="form-control @error('harga') is-invalid @enderror" name="harga"/>
+                        @error('harga')
+                            <div class="invalid-feedback">
+                                {{$message}}.
+                            </div>
+                        @enderror
+                    </div>
             </div>
             <div class="card-footer">
                 <div class="d-flex justify-content-end">

@@ -14,12 +14,13 @@ class TransaksiPemesananObat extends Model
         'id_hasil_konsultasi',
         'kode_transaksi',
         'nominal_bayar',
+        'harga_lainnya',
+        'harga_embalase',
         'id_bank',
         'tgl',
         'foto_pembayaran',
         'status',
         'tgl_ambil_obat',
         'status_pengambilan',
-        ''
     ];
 }

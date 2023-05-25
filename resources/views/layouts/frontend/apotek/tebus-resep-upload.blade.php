@@ -41,6 +41,42 @@
         })
 
     </script>
+    <script>
+        // Mendapatkan referensi ke elemen tombol salin
+        var salinButton = document.getElementById("salin-button");
+
+        // Mendapatkan referensi ke elemen teks yang ingin disalin
+        var teksElement = document.getElementById("teks-element");
+
+        // Menambahkan event listener pada tombol salin
+        salinButton.addEventListener("click", function() {
+            // Mendapatkan teks dari elemen teks
+            var teks = teksElement.innerText;
+
+            // Periksa apakah browser mendukung metode navigator.clipboard.writeText()
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(teks)
+                .then(function() {
+                    alert("Teks berhasil disalin ke clipboard.")
+                    console.log("Teks berhasil disalin ke clipboard.");
+                })
+                .catch(function(error) {
+                    alert("Gagal menyalin teks ke clipboard: ", error)
+                    console.error("Gagal menyalin teks ke clipboard: ", error);
+                });
+            } else {
+                // Fallback untuk browser yang tidak mendukung metode navigator.clipboard.writeText()
+                var textarea = document.createElement("textarea");
+                textarea.value = teks;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand("copy");
+                document.body.removeChild(textarea);
+                console.log("Teks berhasil disalin ke clipboard.");
+            }
+        });
+
+    </script>
 @endpush
 @section('hero')
     <section id="hero" class="d-flex align-items-center">
@@ -51,13 +87,14 @@
      <section id="services" class="services">
         <div class="container" data-aos="fade-up">
             <div class="section-title">
+                @include('components.notification')
             </div>
             <div class="row content">
                 <div class="row justify-content-center my-5">
                     <div class="col-md-8 card-dokter">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="fw-bold text-center">Resep Dokter</h4>
+                                <h4 class="fw-bold text-center">Pembayaran E-Apotek</h4>
                                 <div class="d-flex justify-content-end">
                                     <div>
                                         <p>Status Resep</p>
@@ -96,39 +133,21 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div class="d-flex justify-content-between">
-                                    <div><h5 class="fw-bold">R/</h5></div>
-                                    <div>
-                                        {{ \Carbon\Carbon::parse($transaksiObat->created_at)->translatedFormat('d F Y ') }}
-                                    </div>
-                                </div>
+
                                 <div class="p-5">
-                                    @php
-                                        $obat = \App\Models\DetailTransaksiObat::select('detail_transaksi_pemesanan_obat.*','obat.nama_obat','obat.harga')
-                                                                                ->join('obat','obat.id','detail_transaksi_pemesanan_obat.id_obat')
-                                                                                ->where('detail_transaksi_pemesanan_obat.id_transaksi_obat',$transaksiObat->id)
-                                                                                ->get();
-                                    @endphp
-                                    <div class="card" name="" class="form-control" id="" cols="30" rows="10">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>Nama Obat</th>
-                                                    <th>Qty</th>
-                                                    <th>Harga Satuan</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($obat as $item)
-                                                    <tr>
-                                                        <td >{{ $item->nama_obat }}</td>
-                                                        <td>{{ $item->qty }}</td>
-                                                        <td>{{ $item->harga }}</td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
+                                    <div class="d-flex mb-3">
+                                        <div class="fs-6 fw-bold">Metode Pembayaran</div>
+                                        <div class="ms-auto fw-6">
+                                            <img style="width: 70px; height:50px;" src="{{ $transaksiObat->foto != null ? asset('img/bank/'.$transaksiObat->foto) : asset('backend/assets/imgs/theme/upload.svg') }}" alt="" id="photosPreview"/>
+                                        </div>
                                     </div>
+                                    <div class="fs-6 fw-bold" style="color: rgb(172, 172, 172)">Nomor Rekening</div>
+                                    <div class="d-flex mb-3 mt-4">
+                                        <div class="fs-6 fw-bold" id="teks-element">{{ $transaksiObat->no_rekening }}</div>
+                                        <div class="ms-auto fw-6">
+                                            <button class="border border-1" id="salin-button">salin</button>
+                                        </div>
+                                    </div><br>
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -140,19 +159,6 @@
                                         </div>
                                     </div>
 
-                                </div>
-                                <div class="d-flex justify-content-between px-5 mb-4">
-                                    <div class="mt-4 w-50" >
-                                        <form action="{{ route('list.apotek.tebus.post',$transaksiObat->kode_transaksi) }}" method="POST">
-                                            @csrf
-                                        <h5 class="fw-bold">Metode Pembayaran</h5>
-                                        <select class="form-control mt-2" aria-label="Default select example" id="selectpicker" name="bank">
-                                            @forelse ($bank as $item)
-                                                <option value="{{ $item->id }}" data-thumbnail="{{ $item->foto != null ? asset('img/bank/'.$item->foto) : asset('backend/assets/imgs/theme/upload.svg') }}">{{ $item->nama_bank }}</option>
-                                            @empty
-                                            @endforelse
-                                        </select>
-                                    </div>
                                     <div >
                                         <button class="btn btn-primary" type="submit">Bayar</button>
                                         </form>

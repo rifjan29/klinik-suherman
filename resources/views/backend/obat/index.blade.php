@@ -34,6 +34,7 @@
                                 <th>Nama Obat</th>
                                 <th scope="col">Kategori</th>
                                 <th scope="col">Stok</th>
+                                <th scope="col">Harga</th>
                                 <th scope="col">Tanggal</th>
                                 <th scope="col" class="text-start">Action</th>
                             </tr>
@@ -45,6 +46,7 @@
                                     <td><b>{{ ucwords($item->nama_obat) }}</b></td>
                                     <td><b>{{ ucwords($item->name) }}</b></td>
                                     <td><b>{{ $item->stok }}</b></td>
+                                    <td><b> Rp. {{ number_format($item->harga,2, ",", ".") }}</b></td>
                                     <td><b> {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d M Y - H:i:s') }}</b></td>
                                     <td class="text-start">
                                         <div class="d-flex justify-content-start">

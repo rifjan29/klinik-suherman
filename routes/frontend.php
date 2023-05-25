@@ -86,6 +86,8 @@ Route::prefix('pelayanan')->group(function() {
     Route::get('e-apotek', [Frontend\PelayananController::class, 'apotek'])->name('e-apotek');
     Route::prefix('e-apotek')->group(function() {
         // apotek
+        Route::get('list-data/tebus-resep/update-pembayaran/{id}',[Frontend\ApotekController::class,'tebusResepUpload'])->name('list.apotek.tebus.upload');
+        Route::post('list-data/tebus-resep/post/{id}',[Frontend\ApotekController::class,'tebusResepPost'])->name('list.apotek.tebus.post');
         Route::get('list-data/tebus-resep/{id}',[Frontend\ApotekController::class,'tebusResep'])->name('list.apotek.tebus');
         Route::get('list-data/',[Frontend\ApotekController::class,'listData'])->name('list.apotek.detail');
         Route::get('list',[Frontend\ApotekController::class,'index'])->name('list.apotek');

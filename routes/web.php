@@ -5,6 +5,7 @@ use App\Http\Controllers\AmbulanceController;
 use App\Http\Controllers\ApoterController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DataApotekController;
 use App\Http\Controllers\DataMobilAmbulanceController;
 use App\Http\Controllers\DataPasienController;
 use App\Http\Controllers\DataProfileController;
@@ -109,7 +110,10 @@ Route::middleware(['auth'])->group(function () {
         });
 
         Route::prefix('e-apotek')->group(function () {
-
+            Route::post('list/update-pembayaran/transaksi-obat/post',[DataApotekController::class,'post'])->name('transaksi-obat.data-obat.post');
+            Route::get('list/update-pembayaran/transaksi-obat/data-obat',[DataApotekController::class,'dataObat'])->name('transaksi-obat.data-obat');
+            Route::get('list/update-pembayaran/{id}',[DataApotekController::class,'updatePembayaran'])->name('e-apotek.update');
+            Route::get('list',[DataApotekController::class,'list'])->name('e-apotek.list');
         });
         Route::get('data-pasien',[DataPasienController::class,'index'])->name('data-pasien');
         Route::prefix('saran-kritik')->group(function () {

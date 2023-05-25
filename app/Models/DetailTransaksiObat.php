@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Obat extends Model
+class DetailTransaksiObat extends Model
 {
     use HasFactory;
-    protected $table = 'obat';
+    protected $table = 'detail_transaksi_pemesanan_obat';
     protected $fillable = [
-        'id_kategori',
-        'nama_obat',
-        'stok',
-        'harga',
+        'id_transaksi_obat',
+        'id_obat',
+        'qty',
     ];
 }

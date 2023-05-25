@@ -39,11 +39,13 @@ class ObatController extends Controller
             'id_kategori' => 'required|not_in:0',
             'name' => 'required',
             'stok' => 'required',
+            'harga' => 'required',
         ]);
         try {
             $obat = new Obat;
             $obat->nama_obat = $request->get('name');
             $obat->stok = $request->get('stok');
+            $obat->harga = $request->get('harga');
             $obat->id_kategori = $request->get('id_kategori');
             $obat->save();
             return redirect()->route('obat.index')->withStatus('Berhasil menambahkan data');
@@ -82,11 +84,13 @@ class ObatController extends Controller
             'id_kategori' => 'required|not_in:0',
             'name' => 'required',
             'stok' => 'required',
+            'harga' => 'required',
         ]);
         try {
             $obat = Obat::find($id);
             $obat->nama_obat = $request->get('name');
             $obat->stok = $request->get('stok');
+            $obat->harga = $request->get('harga');
             $obat->id_kategori = $request->get('id_kategori');
             $obat->update();
             return redirect()->route('obat.index')->withStatus('Berhasil mengganti data');

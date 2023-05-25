@@ -94,24 +94,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
          $(document).ready(function(){
-                $("#toggle").change(function(){
+            $("#toggle").change(function(){
 
-                    // Check the checkbox state
-                    if($(this).is(':checked')){
+                // Check the checkbox state
+                if($(this).is(':checked')){
+                // Changing type attribute
+                    $("#password").attr("type","text");
+
+                    // Change the Text
+                    $("#toggleText").text("Hide");
+                    }else{
                     // Changing type attribute
-                        $("#password").attr("type","text");
+                    $("#password").attr("type","password");
 
-                        // Change the Text
-                        $("#toggleText").text("Hide");
-                        }else{
-                        // Changing type attribute
-                        $("#password").attr("type","password");
+                    // Change the Text
+                    $("#toggleText").text("Show");
+                }
 
-                        // Change the Text
-                        $("#toggleText").text("Show");
-                    }
-
-                });
+            });
         });
     </script>
 </html>

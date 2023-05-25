@@ -9,10 +9,10 @@
         </div>
         <div class="card mb-4">
             <header class="card-header">
-                <h4>Tambah Data Obat</h4>
+                <h4>Edit Data Obat</h4>
             </header>
             <div class="card-body">
-                <form action="{{ route('obat.store',$data->id) }}" method="POST">
+                <form action="{{ route('obat.update',$data->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="mb-4">
@@ -42,6 +42,15 @@
                         <label for="product_name" class="form-label">Stok</label>
                         <input type="number" value="{{ old('stok',$data->stok) }}" placeholder="Masukkan stok obat" class="form-control @error('stok') is-invalid @enderror" name="stok"/>
                         @error('stok')
+                            <div class="invalid-feedback">
+                                {{$message}}.
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="mb-4">
+                        <label for="product_name" class="form-label">Harga</label>
+                        <input type="number" value="{{ old('harga',$data->harga) }}" placeholder="Masukkan harga obat" class="form-control @error('harga') is-invalid @enderror" name="harga"/>
+                        @error('harga')
                             <div class="invalid-feedback">
                                 {{$message}}.
                             </div>

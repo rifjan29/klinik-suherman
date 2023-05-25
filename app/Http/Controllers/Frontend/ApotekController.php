@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bank;
 use App\Models\TransaksiPemesananObat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -45,14 +46,41 @@ class ApotekController extends Controller
     {
         $transaksiObat = TransaksiPemesananObat::select('transaksi_pemesanan_obat.*',
                                     'pasien.nama',
-                                    'hasil_konsultasi.resep_obat')
+                                    'hasil_konsultasi.resep_obat','hasil_konsultasi.kode_transaksi_konsultasi')
                                 ->join('hasil_konsultasi','hasil_konsultasi.id','transaksi_pemesanan_obat.id_hasil_konsultasi')
                                 ->join('pasien','pasien.id','transaksi_pemesanan_obat.id_pasien')
-                                ->where('transaksi_pemesanan_obat.kode_transaksi',$id)->first();
-        return view('layouts.frontend.apotek.tebus-resep',compact('transaksiObat'));
+                                ->where('transaksi_pemesanan_obat.kode_transaksi',$id)
+                                ->first();
+        $bank = Bank::all();
+        return view('layouts.frontend.apotek.tebus-resep',compact('transaksiObat','bank'));
 
     }
 
+    public function tebusResepPost(Request $request,$id)
+    {
+        $request->validate([
+            'bank' => 'required'
+        ]);
+        TransaksiPemesananObat::where('kode_transaksi',$id)->update([
+            'id_bank' => $request->get('bank')
+        ]);
+        return redirect()->route('list.apotek.tebus.upload',['id' => $id])->withStatus('Berhasil update transaksi');
+    }
+
+    public function tebusResepUpload($id)
+    {
+        $transaksiObat = TransaksiPemesananObat::select('transaksi_pemesanan_obat.*',
+                                    'pasien.nama',
+                                    'hasil_konsultasi.resep_obat',
+                                    'hasil_konsultasi.kode_transaksi_konsultasi',
+                                    'bank.nama_bank','bank.no_rekening','bank.foto')
+                                ->join('hasil_konsultasi','hasil_konsultasi.id','transaksi_pemesanan_obat.id_hasil_konsultasi')
+                                ->join('pasien','pasien.id','transaksi_pemesanan_obat.id_pasien')
+                                ->join('bank','bank.id','transaksi_pemesanan_obat.id_bank')
+                                ->where('transaksi_pemesanan_obat.kode_transaksi',$id)
+                                ->first();
+        return view('layouts.frontend.apotek.tebus-resep-upload',compact('transaksiObat'));
+    }
     public function generateTransaksi()
     {
         $date = date('Ymd');
