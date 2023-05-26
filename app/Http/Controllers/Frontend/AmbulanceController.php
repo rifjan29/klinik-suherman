@@ -116,10 +116,9 @@ class AmbulanceController extends Controller
         if($ambulance->count() > 0) {
             $noTransaksi = $ambulance[0]->kode_pesanan;
 
-            $lastIncrement = substr($noTransaksi, 4);
-
-            $noTransaksi = str_pad($lastIncrement + 1, 4, 0, STR_PAD_LEFT);
-            return $noTransaksi = "KT".$date.$noTransaksi;
+            $lastIncrement = substr($noTransaksi, 10);
+            $noTransaksi = str_pad($lastIncrement + 1, 5, 0, STR_PAD_LEFT);
+            return "KT".$date.$noTransaksi;
         }
         else {
             return $noTransaksi = "KT".$date."0001";
