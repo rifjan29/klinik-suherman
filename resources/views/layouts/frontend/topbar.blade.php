@@ -26,7 +26,7 @@
               <li><a href="{{ route('penunjang') }}">Penunjang</a></li>
               <li><a href="{{ route('ugd') }}">UGD</a></li>
               <li><a href="{{ route('e-ambulance') }}">E-Ambulance</a></li>
-              <li><a href="{{ route('e-konsultasi') }}">E-Konsultasi</a></li>
+              <li><a href="{{ route('e-konsultasi.index') }}">E-Konsultasi</a></li>
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="#portfolio">Dokter</a></li>

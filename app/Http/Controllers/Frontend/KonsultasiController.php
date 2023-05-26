@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\Session;
 
 class KonsultasiController extends Controller
 {
+
+    public function utama()
+    {
+        return view('layouts.frontend.konsultasi.utama');
+    }
     public function index(Request $request)
     {
         // $dokter = Dokter::

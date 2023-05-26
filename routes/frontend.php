@@ -81,6 +81,7 @@ Route::prefix('pelayanan')->group(function() {
         // beranda pesan konsultasi
         Route::get('beranda/detail', [Frontend\KonsultasiController::class, 'detail'])->name('e-konsultasi.detail');
         Route::get('beranda', [Frontend\KonsultasiController::class, 'index'])->name('e-konsultasi');
+        Route::get('/', [Frontend\KonsultasiController::class, 'utama'])->name('e-konsultasi.index');
     });
 
     Route::get('e-apotek', [Frontend\PelayananController::class, 'apotek'])->name('e-apotek');

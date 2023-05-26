@@ -43,6 +43,7 @@ class DashboardController extends Controller
                                         ->join('dokter','dokter.id','pemesanan_konsultasi.id_dokter')
                                         ->join('bank','bank.id','pemesanan_konsultasi.id_bank')
                                         ->where('detail_pemesanan_konsultasi.status_pembayaran','lunas')
+                                        ->where('pemesanan_konsultasi.id_dokter',$data['data']->id)
                                         ->orderBy('pemesanan_konsultasi.id','DESC')
                                         ->first();
             return view('dashboard-dokter',$data);
