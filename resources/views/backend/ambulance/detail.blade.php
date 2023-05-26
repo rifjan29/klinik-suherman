@@ -142,10 +142,10 @@
                                         <td width="1%">:</td>
                                         <td >
                                             @php
-                                                    $provinsi = \Indonesia::findProvince($data->id_provinsi)->first();
-                                                    $kota = \Indonesia::findCity($data->id_kota)->first();
-                                                    $kecamatan = \Indonesia::findDistrict($data->id_kecamatan)->first();
-                                                    $desa = \Indonesia::findVillage($data->id_desa)->first();
+                                                    $provinsi = \Indonesia::findProvince($data->id_provinsi);
+                                                    $kota = \Indonesia::findCity($data->id_kota);
+                                                    $kecamatan = \Indonesia::findDistrict($data->id_kecamatan);
+                                                    $desa = \Indonesia::findVillage($data->id_desa);
                                             @endphp
                                             <p>{{ $provinsi->name }}, {{ $kota->name }}, {{ $kecamatan->name }}, {{ $desa->name }}, {{ $data->alamat }}</p>
                                         </td>

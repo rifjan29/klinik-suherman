@@ -173,10 +173,10 @@
                                 <td class="p-5">{{ \Carbon\Carbon::parse($data->tanggal)->translatedFormat('d F Y ') }} Jam {{ \Carbon\Carbon::parse($data->tanggal)->translatedFormat('h:i:s A') }}</td>
                                 @php
 
-                                        $provinsi = \Indonesia::findProvince($data->id_provinsi)->first();
-                                        $kota = \Indonesia::findCity($data->id_kota)->first();
-                                        $kecamatan = \Indonesia::findDistrict($data->id_kecamatan)->first();
-                                        $desa = \Indonesia::findVillage($data->id_desa)->first();
+                                        $provinsi = \Indonesia::findProvince($data->id_provinsi);
+                                        $kota = \Indonesia::findCity($data->id_kota);
+                                        $kecamatan = \Indonesia::findDistrict($data->id_kecamatan);
+                                        $desa = \Indonesia::findVillage($data->id_desa);
                                 @endphp
                                 <td class="p-5">{{ $data->alamat }}, {{ $provinsi->name }}, {{ $kota->name }}, {{ $kecamatan->name }}, {{ $desa->name }}</td>
                                 <td class="p-5">
