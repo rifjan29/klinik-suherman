@@ -50,12 +50,12 @@
                         </li>
                         <li class="nav-item mb-2">
                             <a href="" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-bell"></i> <span class="mx-3 d-none d-sm-inline">Notifikasi</span> 
+                                <i class="fs-4 bi-bell"></i> <span class="mx-3 d-none d-sm-inline">Notifikasi</span>
                             </a>
                         </li>
                         <li class="nav-item mb-2">
                             <a href="{{ route('pengaturan') }}" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-gear"></i> <span class="mx-3 d-none d-sm-inline">Pengaturan</span> 
+                                <i class="fs-4 bi-gear"></i> <span class="mx-3 d-none d-sm-inline">Pengaturan</span>
                             </a>
                         </li>
                     </ul>
@@ -89,48 +89,38 @@
                                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                     <div class="" style="height:500px; width:auto; overflow:auto; padding:1%;">
                                         <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="d-flex flex-column">
-                                                    <div class="">
-                                                        <div class="card shadow border-0 mt-2" style="background-color: azure;">
-                                                            <div class="card-body">
-                                                                <div class="d-flex flex-row">
-                                                                    <div class="p-2">
-                                                                        <div class="mt-2">
-                                                                            <img src="{{ asset('frontend/assets/img/pesan.png') }}" alt="" class="img-fluid" style="width: 70px; height: 70px;">
+                                            @forelse ($konsultasi as $item)
+                                                <div class="col-md-12">
+                                                    <div class="d-flex flex-column">
+                                                        <div class="">
+                                                            <div class="card shadow border-0 mt-2" >
+                                                                <div class="card-body">
+                                                                    <div class="d-flex flex-row">
+                                                                        <div class="p-2">
+                                                                            <div class="mt-2">
+                                                                                <img src="{{ asset('frontend/assets/img/pesan.png') }}" alt="" class="img-fluid" style="width: 70px; height: 70px;">
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="p-3">
-                                                                        <div class="p-1">
-                                                                            <h5 class="fw-bold">Waktu konsultasi anda kurang 5 menit lagi!</h5>
-                                                                        </div>
-                                                                        <div class="p-1">
-                                                                            <span>Apr 07, 2023 at 10.45 am</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="d-flex flex-column">
-                                                    <div class="">
-                                                        <div class="card shadow border-0 mt-2" style="background-color: azure;">
-                                                            <div class="card-body">
-                                                                <div class="d-flex flex-row">
-                                                                    <div class="p-2">
-                                                                        <div class="mt-2">
-                                                                            <img src="{{ asset('frontend/assets/img/pesan.png') }}" alt="" class="img-fluid" style="width: 70px; height: 70px;">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="p-3">
-                                                                        <div class="p-1">
-                                                                            <h5 class="fw-bold">Waktu konsultasi anda kurang 5 menit lagi!</h5>
-                                                                        </div>
-                                                                        <div class="p-1">
-                                                                            <span>Apr 07, 2023 at 10.45 am</span>
+                                                                        <div class="p-3">
+                                                                            <div class="p-1">
+                                                                                @if ($item->status_pembayaran == 'pending')
+                                                                                    <h5 class="fw-bold">Menunggu Verifikasi Pembayarann</h5>
+                                                                                @elseif ($item->status_pembayaran == 'lunas')
+                                                                                    @php
+                                                                                        $riwayat = \App\Models\DetailPemesananKonsultasi::where('id_pemesanan_konsultasi',$item->id)->first();
+                                                                                    @endphp
+                                                                                    @if ($riwayat->status_chat == 'pending')
+                                                                                        <h5 class="fw-bold">Sedang Melakukan Chat</h5>
+                                                                                    @else
+                                                                                        <h5 class="fw-bold">Chat telah berakhir</h5>
+                                                                                    @endif
+                                                                                @else
+                                                                                    <h5 class="fw-bold">Pembayaran ditolak</h5>
+                                                                                @endif
+                                                                            </div>
+                                                                            <div class="p-1">
+                                                                                <span>{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d F Y ') }} Jam {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('h:i:s A') }}</span>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -138,105 +128,40 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="d-flex flex-column">
-                                                    <div class="">
-                                                        <div class="card shadow border-0 mt-2">
-                                                            <div class="card-body">
-                                                                <div class="d-flex flex-row">
-                                                                    <div class="p-2">
-                                                                        <div class="mt-2">
-                                                                            <img src="{{ asset('frontend/assets/img/pesan.png') }}" alt="" class="img-fluid" style="width: 70px; height: 70px;">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="p-3">
-                                                                        <div class="p-1">
-                                                                            <h5 class="fw-bold">Waktu konsultasi anda kurang 5 menit lagi!</h5>
-                                                                        </div>
-                                                                        <div class="p-1">
-                                                                            <span>Apr 07, 2023 at 10.45 am</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="d-flex flex-column">
-                                                    <div class="">
-                                                        <div class="card shadow border-0 mt-2">
-                                                            <div class="card-body">
-                                                                <div class="d-flex flex-row">
-                                                                    <div class="p-2">
-                                                                        <div class="mt-2">
-                                                                            <img src="{{ asset('frontend/assets/img/pesan.png') }}" alt="" class="img-fluid" style="width: 70px; height: 70px;">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="p-3">
-                                                                        <div class="p-1">
-                                                                            <h5 class="fw-bold">Waktu konsultasi anda kurang 5 menit lagi!</h5>
-                                                                        </div>
-                                                                        <div class="p-1">
-                                                                            <span>Apr 07, 2023 at 10.45 am</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            @empty
+                                                <p>Tidak ada data</p>
+                                            @endforelse
+
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                     <div class="" style="height:500px; width:auto; overflow:auto; padding:1%;">
                                         <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="d-flex flex-column">
-                                                    <div class="">
-                                                        <div class="card shadow border-0 mt-2" style="background-color: azure;">
-                                                            <div class="card-body">
-                                                                <div class="d-flex flex-row">
-                                                                    <div class="p-2">
-                                                                        <div class="mt-2">
-                                                                            <img src="{{ asset('frontend/assets/img/farmasi.png') }}" alt="" class="img-fluid" style="width: 70px; height: 70px;">
+                                            @forelse ($apotek as $item)
+                                                <div class="col-md-12">
+                                                    <div class="d-flex flex-column">
+                                                        <div class="">
+                                                            <div class="card shadow border-0 mt-2">
+                                                                <div class="card-body">
+                                                                    <div class="d-flex flex-row">
+                                                                        <div class="p-2">
+                                                                            <div class="mt-2">
+                                                                                <img src="{{ asset('frontend/assets/img/farmasi.png') }}" alt="" class="img-fluid" style="width: 70px; height: 70px;">
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="p-3">
-                                                                        <div class="p-1">
-                                                                            <h5 class="fw-bold">Obat anda sudah siap diambil!</h5>
-                                                                        </div>
-                                                                        <div class="p-1">
-                                                                            <span>Apr 07, 2023 at 10.45 am</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="d-flex flex-column">
-                                                    <div class="">
-                                                        <div class="card shadow border-0 mt-2" style="background-color: azure;">
-                                                            <div class="card-body">
-                                                                <div class="d-flex flex-row">
-                                                                    <div class="p-2">
-                                                                        <div class="mt-2">
-                                                                            <img src="{{ asset('frontend/assets/img/farmasi.png') }}" alt="" class="img-fluid" style="width: 70px; height: 70px;">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="p-3">
-                                                                        <div class="p-1">
-                                                                            <h5 class="fw-bold">Obat anda sudah siap diambil!</h5>
-                                                                        </div>
-                                                                        <div class="p-1">
-                                                                            <span>Apr 07, 2023 at 10.45 am</span>
+                                                                        <div class="p-3">
+                                                                            <div class="p-1">
+                                                                                @if ($item->status_update == 'konfirmasi')
+                                                                                    <h5 class="fw-bold"><a href="{{ route('hasil.list',$item->kode_pemesanan) }}">Silahkan Tebus obat</a></h5>
+                                                                                @else
+
+                                                                                    <h5 class="fw-bold">Menunggu Hasil Pemeriksaan</h5>
+                                                                                @endif
+                                                                            </div>
+                                                                            <div class="p-1">
+                                                                                <span>{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d F Y ') }} Jam {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('h:i:s A') }}</span>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -244,105 +169,49 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="d-flex flex-column">
-                                                    <div class="">
-                                                        <div class="card shadow border-0 mt-2">
-                                                            <div class="card-body">
-                                                                <div class="d-flex flex-row">
-                                                                    <div class="p-2">
-                                                                        <div class="mt-2">
-                                                                            <img src="{{ asset('frontend/assets/img/farmasi.png') }}" alt="" class="img-fluid" style="width: 70px; height: 70px;">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="p-3">
-                                                                        <div class="p-1">
-                                                                            <h5 class="fw-bold">Obat anda sudah siap diambil!</h5>
-                                                                        </div>
-                                                                        <div class="p-1">
-                                                                            <span>Apr 07, 2023 at 10.45 am</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="d-flex flex-column">
-                                                    <div class="">
-                                                        <div class="card shadow border-0 mt-2">
-                                                            <div class="card-body">
-                                                                <div class="d-flex flex-row">
-                                                                    <div class="p-2">
-                                                                        <div class="mt-2">
-                                                                            <img src="{{ asset('frontend/assets/img/farmasi.png') }}" alt="" class="img-fluid" style="width: 70px; height: 70px;">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="p-3">
-                                                                        <div class="p-1">
-                                                                            <h5 class="fw-bold">Obat anda sudah siap diambil!</h5>
-                                                                        </div>
-                                                                        <div class="p-1">
-                                                                            <span>Apr 07, 2023 at 10.45 am</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            @empty
+                                                <p>Tidak ada data</p>
+
+                                            @endforelse
+
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                                     <div class="" style="height:500px; width:auto; overflow:auto; padding:1%;">
                                         <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="d-flex flex-column">
-                                                    <div class="">
-                                                        <div class="card shadow border-0 mt-2" style="background-color: azure;">
-                                                            <div class="card-body">
-                                                                <div class="d-flex flex-row">
-                                                                    <div class="p-2">
-                                                                        <div class="mt-2">
-                                                                            <img src="{{ asset('frontend/assets/img/ambulance1.png') }}" alt="" class="img-fluid" style="width: 70px; height: 70px;">
+                                            @forelse ($ambulance as $item)
+                                                <div class="col-md-12">
+                                                    <div class="d-flex flex-column">
+                                                        <div class="">
+                                                            <div class="card shadow border-0 mt-2">
+                                                                <div class="card-body">
+                                                                    <div class="d-flex flex-row">
+                                                                        <div class="p-2">
+                                                                            <div class="mt-2">
+                                                                                <img src="{{ asset('frontend/assets/img/ambulance1.png') }}" alt="" class="img-fluid" style="width: 70px; height: 70px;">
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="p-3">
-                                                                        <div class="p-1">
-                                                                            <h5 class="fw-bold">Pembayaran E-Ambulance sudah selesai!</h5>
-                                                                        </div>
-                                                                        <div class="p-1">
-                                                                            <span>Apr 07, 2023 at 10.45 am</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="d-flex flex-column">
-                                                    <div class="">
-                                                        <div class="card shadow border-0 mt-2" style="background-color: azure;">
-                                                            <div class="card-body">
-                                                                <div class="d-flex flex-row">
-                                                                    <div class="p-2">
-                                                                        <div class="mt-2">
-                                                                            <img src="{{ asset('frontend/assets/img/ambulance1.png') }}" alt="" class="img-fluid" style="width: 70px; height: 70px;">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="p-3">
-                                                                        <div class="p-1">
-                                                                            <h5 class="fw-bold">Pembayaran E-Ambulance sudah selesai!</h5>
-                                                                        </div>
-                                                                        <div class="p-1">
-                                                                            <span>Apr 07, 2023 at 10.45 am</span>
+                                                                        <div class="p-3">
+                                                                            <div class="p-1">
+                                                                                <h5 class="fw-bold">
+                                                                                    @if ($item->status_perjalanan == '0')
+                                                                                        Pesanan Diterima
+                                                                                    @elseif($item->status_perjalanan == '1')
+                                                                                        Ambulance Menuju Lokasi
+                                                                                    @elseif($item->status_perjalanan == '2')
+                                                                                        Ambulance Tiba di Lokasi
+                                                                                    @elseif($item->status_perjalanan == '3')
+                                                                                        Pesanan Dibayarkan
+                                                                                    @elseif($item->status_perjalanan == '4')
+                                                                                        Pembayaran E-Ambulance sudah selesai!
+                                                                                    @else
+                                                                                    @endif
+                                                                                </h5>
+                                                                            </div>
+                                                                            <div class="p-1">
+                                                                                <span>Apr 07, 2023 at 10.45 am</span>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -350,57 +219,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="d-flex flex-column">
-                                                    <div class="">
-                                                        <div class="card shadow border-0 mt-2">
-                                                            <div class="card-body">
-                                                                <div class="d-flex flex-row">
-                                                                    <div class="p-2">
-                                                                        <div class="mt-2">
-                                                                            <img src="{{ asset('frontend/assets/img/ambulance1.png') }}" alt="" class="img-fluid" style="width: 70px; height: 70px;">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="p-3">
-                                                                        <div class="p-1">
-                                                                            <h5 class="fw-bold">Pembayaran E-Ambulance sudah selesai!</h5>
-                                                                        </div>
-                                                                        <div class="p-1">
-                                                                            <span>Apr 07, 2023 at 10.45 am</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="d-flex flex-column">
-                                                    <div class="">
-                                                        <div class="card shadow border-0 mt-2">
-                                                            <div class="card-body">
-                                                                <div class="d-flex flex-row">
-                                                                    <div class="p-2">
-                                                                        <div class="mt-2">
-                                                                            <img src="{{ asset('frontend/assets/img/ambulance1.png') }}" alt="" class="img-fluid" style="width: 70px; height: 70px;">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="p-3">
-                                                                        <div class="p-1">
-                                                                            <h5 class="fw-bold">Pembayaran E-Ambulance sudah selesai!</h5>
-                                                                        </div>
-                                                                        <div class="p-1">
-                                                                            <span>Apr 07, 2023 at 10.45 am</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            @empty
+                                                <p>Tidak ada data</p>
+
+                                            @endforelse
+
                                         </div>
                                     </div>
                                 </div>

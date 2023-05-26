@@ -13,6 +13,7 @@ use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Session;
 
 class AmbulanceController extends Controller
 {
@@ -91,6 +92,7 @@ class AmbulanceController extends Controller
             $transaksi->id_petugas = $petugas;
             $transaksi->status_pembayaran = 'pending';
             $transaksi->tanggal = date('Y-m-d ', strtotime($request->get('tgl')));
+            $transaksi->id_pasien_login = Session::get('id');
             $transaksi->save();
             return redirect()->route('e-ambulance.ringkasan',['id'=> $transaksi->id]);
         } catch (Exception $e) {
