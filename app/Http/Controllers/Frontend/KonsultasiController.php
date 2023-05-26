@@ -162,7 +162,7 @@ class KonsultasiController extends Controller
                 'bank.nama_bank',
                 'bank.no_rekening',
                 'bank.foto',
-                'pasien.nama as nama_pasien')
+                'pasien.nama as nama_pasien','pasien.gender')
                 ->join('pasien','pasien.id','pemesanan_konsultasi.id_pasien_konsultasi')
                 ->join('bank','bank.id','pemesanan_konsultasi.id_bank')
                 ->find($id);

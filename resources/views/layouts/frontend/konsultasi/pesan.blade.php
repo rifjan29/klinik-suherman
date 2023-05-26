@@ -222,7 +222,7 @@
         <div class="container text-center" data-aos="fade-up">
             <div class="section-title">
                 <h2>E-Konsultasi</h2>
-                <input type="text" name="kode_transaksi" id="kode_transaksi" value="{{ $data->kode_pemesanan }}">
+                <input type="text" name="kode_transaksi" id="kode_transaksi" value="{{ $data->kode_pemesanan }}" hidden>
             </div>
             <div class="card mt-3 shadow">
                 <div class="card-header shadow">
@@ -230,10 +230,13 @@
                         <div class="py-2 px-4 d-none d-lg-block">
                             <div class="d-flex align-items-center py-1">
                                 <div class="position-relative">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Sharon Lessman" width="50" height="50">
+                                    <img class="img-fluid rounded-circle mr-1" src="{{ $data->gender == 'L' ? asset('backend/assets/imgs/people/avatar-4.png') : asset('backend/assets/imgs/people/avatar-1.png') }}" alt="user img" width="50" height="50">
+
+                                    {{-- <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Sharon Lessman" width="50" height="50"> --}}
                                 </div>
                                 <div class="flex-grow-1 pl-3 text-start mx-3">
-                                    <strong>{{ ucwords($data->nama_pasien) }}</strong>
+                                    <strong>{{ ucwords($data->nama_pasien) }}</strong> <br>
+                                    <small class="text-muted">{{ $data->gender == 'L' ? 'Laki-laki' : 'Perempuan' }}</small>
                                     {{-- <div class="text-muted small"><i class="fa-solid fa-circle fa-2xs" style="color: #1DEA4A;"></i><em> Online</em></div> --}}
                                 </div>
                                 <div>

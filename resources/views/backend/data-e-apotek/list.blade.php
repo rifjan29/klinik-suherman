@@ -146,8 +146,12 @@
                                                 <a href="{{ route('e-apotek.update',$item->id) }}">Update Pembayaran</a><br>
                                                 <small class="text-muted" style="font-size: 10px">Pending</small>
                                             @else
-                                                <a href="#" class="btn btn-primary gantiStatus" data-id="{{ $item->id }}" data-bs-toggle="modal" data-bs-target="#gantiStatus">Verifikasi Pembayaran</a> <br>
-                                                <b class="text-muted"> Total : Rp. {{ number_format($item->nominal_bayar,2, ",", ".") }}</b>
+                                                @if ($item->foto_pembayaran != null)
+                                                    <a href="#" class="btn btn-primary gantiStatus" data-id="{{ $item->id }}" data-bs-toggle="modal" data-bs-target="#gantiStatus">Verifikasi Pembayaran</a> <br>
+                                                    <b class="text-muted"> Total : Rp. {{ number_format($item->nominal_bayar,2, ",", ".") }}</b>
+                                                @else
+                                                    <small class="text-muted">Menunggu pasien upload pembayaran</small>
+                                                @endif
                                             @endif
                                             {{-- <span class="badge rounded-pill alert-warning">Pending</span> --}}
                                         @elseif ($item->status == 'lunas')
@@ -202,7 +206,7 @@
                     <p>Foto bukti pembayaran</p>
                     <img src="{{ asset('backend/assets/imgs/brands/brand-1.jpg') }}" alt="Poker Card" class="img-fluid w-25" id="foto_bukti">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <input type="text" name="id" id="id" hidden>
                             <div class="mb-4">
                                 <label for="product_name" class="form-label">Kode Transaksi</label>
@@ -214,7 +218,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="mb-4">
                                 <label for="product_name" class="form-label">Nama Pasien</label>
                                 <input placeholder="Masukkan Nama Pasien" readonly type="text" value="{{ old('nama') }}" class="form-control @error('nama') is-invalid @enderror" name="nama" id="nama" />

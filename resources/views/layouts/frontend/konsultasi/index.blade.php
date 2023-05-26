@@ -99,6 +99,8 @@
                     var nominal = Intl.NumberFormat('id-ID',
                         { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }
                     ).format(data.data.nominal)
+                    var img = `{{ asset('') }}img/dokter/${data.data.foto}`
+                    $('#dokter').attr("src", `${img}`);
                     $('#total_bayar').text(nominal);
                     $('#total_pesanan').text(nominal);
                     $('#id_dokter').val(data.data.id);
@@ -177,7 +179,7 @@
             <div class="modal-body p-3 mx-2">
                 <div class="row">
                     <div class="col-md-4 text-center mt-3">
-                        <img src="{{ asset('') }}frontend/assets/img/dokter1.png" alt="" class="rounded-circle" style="width: 100px; height:100px;">
+                        <img src="{{ asset('') }}frontend/assets/img/dokter1.png" id="dokter" alt="" class="rounded-circle" style="width: 100px; height:100px;">
                         <div class="mt-3">
                             <i class="fa-solid fa-thumbs-up fa-lg" style="color: #a8a8a8"></i>
                             <span style="color:#37517e; font-weight:bold;" id="rating">0</span>
@@ -244,9 +246,9 @@
                     </div>
                     <form action="{{ route('pembayaran.post') }}" method="POST">
                     @csrf
-                    <input type="text" name="id_dokter" id="id_dokter" readonly>
-                    <input type="text" name="id_pasien_konsultasi" id="id_pasien_konsultasi" readonly value="{{ Session::get('id') }}">
-                    <input type="text" name="total_nominal" id="total_nominal" readonly>
+                    <input type="text" name="id_dokter" id="id_dokter" readonly hidden>
+                    <input type="text" name="id_pasien_konsultasi" id="id_pasien_konsultasi" readonly value="{{ Session::get('id') }}" hidden>
+                    <input type="text" name="total_nominal" id="total_nominal" readonly hidden>
                     <div class="mt-4 mb-4">
                         <label class="fw-bold fs-6" for="">Pilih Metode Pembayaran</label>
                         <select class="form-control mt-2" aria-label="Default select example" id="selectpicker" name="bank">

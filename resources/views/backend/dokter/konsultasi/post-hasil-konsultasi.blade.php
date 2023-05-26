@@ -72,7 +72,7 @@
                         <hr>
                         <form action="{{ route('konsultasi-dokter.hasil.post') }}" method="POST">
                         @csrf
-                        <input type="text" name="kode_transaksi" id="" value="{{ $data->kode_pemesanan }}">
+                        <input type="text" name="kode_transaksi" id="" value="{{ $data->kode_pemesanan }}" hidden>
                         <div class="mb-3">
                             <label for="">Resep</label>
                             <textarea name="resep_obat" id="" cols="30" rows="10" class="form-control" placeholder="Masukkan resep" ></textarea>

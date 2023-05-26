@@ -177,11 +177,12 @@
                                                             <div class="d-flex align-items-center">
                                                                 <span class="chat-icon"><img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/arroleftt.svg" alt="image title"></span>
                                                                 <div class="flex-shrink-0">
-                                                                    <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png" alt="user img">
+                                                                    <img class="img-md rounded-circle" src="{{ $data->gender == 'L' ? asset('backend/assets/imgs/people/avatar-4.png') : asset('backend/assets/imgs/people/avatar-1.png') }}" alt="user img">
+
                                                                 </div>
                                                                 <div class="flex-grow-1 ms-3">
                                                                     <h3>{{ ucwords($data->nama_pasien) }}</h3>
-                                                                    <input type="text" id="kode_transaksi" value="{{ $data->kode_pemesanan }}">
+                                                                    <input type="text" id="kode_transaksi" value="{{ $data->kode_pemesanan }}" hidden>
                                                                     <p>{{ $data->gender == 'L' ? 'Laki-Laki ' : 'Perempuan' }}</p>
                                                                 </div>
                                                             </div>

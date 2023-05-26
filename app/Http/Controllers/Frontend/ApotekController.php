@@ -18,6 +18,7 @@ class ApotekController extends Controller
                                     ->join('hasil_konsultasi','hasil_konsultasi.id','transaksi_pemesanan_obat.id_hasil_konsultasi')
                                     ->join('pasien','pasien.id','transaksi_pemesanan_obat.id_pasien')
                                     ->where('transaksi_pemesanan_obat.id_pasien',Session::get('id'))
+                                    ->where('transaksi_pemesanan_obat.status','pending')
                                     ->where('transaksi_pemesanan_obat.status_pengambilan','pending')->get();
         return view('layouts.frontend.apotek.list',compact('data'));
     }
@@ -50,7 +51,7 @@ class ApotekController extends Controller
                                     'hasil_konsultasi.resep_obat','hasil_konsultasi.kode_transaksi_konsultasi')
                                 ->join('hasil_konsultasi','hasil_konsultasi.id','transaksi_pemesanan_obat.id_hasil_konsultasi')
                                 ->join('pasien','pasien.id','transaksi_pemesanan_obat.id_pasien')
-                                ->where('transaksi_pemesanan_obat.status_pengambilan','diterima')
+                                // ->where('transaksi_pemesanan_obat.status_pengambilan','diterima')
                                 ->where('transaksi_pemesanan_obat.kode_transaksi',$id)
                                 ->first();
         $bank = Bank::all();
