@@ -50,11 +50,11 @@
                         <div class="d-flex justify-content-center thumb_up">
                             <div class="d-flex p-4">
                                 <i class="icon material-icons md-thumb_up"></i>
-                                <span class="mx-2">5.0</span>
+                                <span class="mx-2">{{ $suka }}</span>
                             </div>
                             <div class="d-flex p-4 thumb_down">
                                 <i class="icon material-icons md-thumb_down"></i>
-                                <span class="mx-2">5.0</span>
+                                <span class="mx-2">{{ $tidak_suka }}</span>
                             </div>
                         </div>
                         <hr>
@@ -65,23 +65,17 @@
                         <h4>Ulasan</h4>
                     </header>
                     <div class="card-body">
-                        <div class="itemside">
-                            <div class="left">
-                                <img src="{{ asset('backend/assets/imgs/people/avatar-2.png') }}" class="img-sm img-avatar" alt="Userpic" />
+                        @foreach ($ulasan as $item)
+                            <div class="itemside">
+                                <div class="left">
+                                    <img src="{{ asset('backend/assets/imgs/people/avatar-2.png') }}" class="img-sm img-avatar" alt="Userpic" />
+                                </div>
+                                <div class="info pl-3">
+                                    <h6 class="mb-0 title">{{ $item->ulasan }}</h6>
+                                </div>
                             </div>
-                            <div class="info pl-3">
-                                <h6 class="mb-0 title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptatem, in voluptatum repellat ab fugiat sint quos aperiam neque, harum consectetur ipsum sit, animi sapiente eius facere eum provident debitis.</h6>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="itemside mt-4">
-                            <div class="left">
-                                <img src="{{ asset('backend/assets/imgs/people/avatar-2.png') }}" class="img-sm img-avatar" alt="Userpic" />
-                            </div>
-                            <div class="info pl-3">
-                                <h6 class="mb-0 title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptatem, in voluptatum repellat ab fugiat sint quos aperiam neque, harum consectetur ipsum sit, animi sapiente eius facere eum provident debitis.</h6>
-                            </div>
-                        </div>
+                            <hr>
+                        @endforeach
                     </div>
                 </div>
             </div>

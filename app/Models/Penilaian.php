@@ -9,4 +9,9 @@ class Penilaian extends Model
 {
     use HasFactory;
     protected $table = "penilaian";
+    protected $fillable = [
+        'id_dokter',
+        'suka',
+        'tidak_suka',
+    ];
 }
