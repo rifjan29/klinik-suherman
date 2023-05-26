@@ -176,10 +176,10 @@
                                                                 <div class="card">
                                                                     @php
 
-                                                                            $provinsi = \Indonesia::findProvince($item->lokasi->id_provinsi)->first();
-                                                                            $kota = \Indonesia::findCity($item->lokasi->id_kota)->first();
-                                                                            $kecamatan = \Indonesia::findDistrict($item->lokasi->id_kecamatan)->first();
-                                                                            $desa = \Indonesia::findVillage($item->lokasi->id_desa)->first();
+                                                                            $provinsi = \Indonesia::findProvince($item->lokasi->id_provinsi);
+                                                                            $kota = \Indonesia::findCity($item->lokasi->id_kota);
+                                                                            $kecamatan = \Indonesia::findDistrict($item->lokasi->id_kecamatan);
+                                                                            $desa = \Indonesia::findVillage($item->lokasi->id_desa);
                                                                     @endphp
                                                                     <div class="card-body">
                                                                         <p>{{ $provinsi->name }}, {{ $kota->name }}, {{ $kecamatan->name }}, {{ $desa->name }}, {{ $item->lokasi->alamat }}</p>
