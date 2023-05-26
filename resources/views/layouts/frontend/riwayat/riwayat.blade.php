@@ -34,7 +34,7 @@
                             <img src="{{ asset('frontend/assets/img/profile.jpg') }}" alt="" class="img-fluid rounded-circle" style="width: 75px; height: 75px;">
                         </div>
                         <div class="mx-4 mt-4">
-                            <span style="color:black; font-size:16px; font-weight:bold;">Yolanda</span>
+                            <span style="color:black; font-size:16px; font-weight:bold;">{{ $data->nama }}</span>
                         </div>
                     </div>
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
