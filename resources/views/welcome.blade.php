@@ -170,7 +170,7 @@
                     <h2 style="color: white">Pelayanan</h2>
                 </div>
                 <div class="row d-flex flex-wrap align-content-center">
-                    <div class="col-md-3 text-center pelayanan">
+                    <div class="col-md-3 mb-3 text-center pelayanan">
                         <a href="{{ route('rawat-jalan') }}">
                             <div class="bg-image1">
                                 <div class="text-start mx-4 fw-bold fs-5" style="color: rgb(247, 247, 247)">
@@ -179,7 +179,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-md-3 text-center pelayanan">
+                    <div class="col-md-3 mb-3 text-center pelayanan">
                         <a href="{{ route('rawat-inap') }}">
                             <div class="bg-image2">
                                 <div class="text-start mx-4 fw-bold fs-5" style="color: rgb(247, 247, 247)">
@@ -188,7 +188,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-md-3 text-center pelayanan">
+                    <div class="col-md-3 mb-3 text-center pelayanan">
                         <a href="{{ route('penunjang') }}">
                             <div class="bg-image3">
                                 <div class="text-start mx-4 fw-bold fs-5" style="color: rgb(247, 247, 247)">
@@ -197,7 +197,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-md-3 text-center pelayanan">
+                    <div class="col-md-3 mb-3 text-center pelayanan">
                         <a href="{{ route('ugd') }}">
                             <div class="bg-image4">
                                 <div class="text-start mx-4 fw-bold fs-5" style="color: rgb(247, 247, 247)">
@@ -206,7 +206,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="d-flex justify-content-center">
+                    <div class="d-flex justify-content-center row">
                         <div class="col-md-3 mt-4 mx-3 text-center pelayanan">
                             <a href="{{ route('e-ambulance') }}">
                                 <div class="bg-image5">

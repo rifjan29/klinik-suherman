@@ -1482,6 +1482,15 @@ section {
 }
 
 @media (max-width: 420px) {
+    .border-info{
+        color: #209dd8 !important;
+    }
+    #header_heading img{
+        width: 20px;
+    }
+   #header_heading{
+    font-size: 10px;
+   }
   .pricing .box {
     max-width: 100%;
     margin: 0 auto 30px auto;
@@ -1509,6 +1518,9 @@ section {
   background: #fff;
   border-radius: 4px;
   position: relative;
+}
+.border-info{
+    color: #fff;
 }
 
 .faq .faq-list a {
