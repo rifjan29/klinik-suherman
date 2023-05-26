@@ -17,7 +17,9 @@
             border: none;
             font-size: 14px;
         }
-
+        .bg-primary{
+            background-color: #CEDEF6 !important;
+        }
         .search {
             width: 65%;
             margin: 35px auto;
@@ -147,16 +149,14 @@
                 <h2>E-Konsultasi</h2>
             </div>
             <div class="search">
-                <form action="">
 
-                </form>
                 <div class="input-group mb-3 form-group has-search">
                     <span class="fa fa-search form-control-feedback"></span>
                     <input type="text" class="form-control" placeholder="Masukkan kata kunci" name="query" id="query" aria-label="Recipient's username" aria-describedby="button-addon2">
                 </div>
             </div>
             <p style="color: #b4b4b4;"><span style="color: red;">*</span>Konsultasi online hanya dapat dilakukan dengan dokter gigi dan dokter umum</p>
-            <div class="mt-4" style="height:500px; width:auto; overflow:auto; padding:1%;">
+            <div class="mt-4 bg-primary rounded" style="height:500px; width:auto; overflow:auto; padding:1%;">
                 <div class="row">
                     @include('layouts.frontend.konsultasi.daftar-dokter')
                 </div>
