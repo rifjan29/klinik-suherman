@@ -82,7 +82,7 @@ class KonsultasiOnlineController extends Controller
     {
         $data['user'] = User::find(auth()->user()->id);
         $data['data'] = Dokter::where('id_user',$data['user']->id)->first();
-        $messages = RiwayatChat::orderBy('created_at', 'asc')->where('kode_transaksi_konsultasi',$request->get('id'))->where('pemesanan_konsultasi.id_dokter',$data['data']->id)->get();
+        $messages = RiwayatChat::orderBy('created_at', 'asc')->where('kode_transaksi_konsultasi',$request->get('id'))->get();
         return response()->json($messages);
     }
     public function postChat(Request $request)
