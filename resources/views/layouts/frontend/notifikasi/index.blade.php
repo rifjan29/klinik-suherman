@@ -26,13 +26,16 @@
         <div class="row flex-nowrap">
             <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-light">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                    <div class="d-flex flex-row mb-3 p-3">
+                    <div class="d-flex flex-column align-items-center mb-4" style="margin-top: 20px;">
                         <div class="card-body">
-                            <img src="{{ asset('frontend/assets/img/profile.jpg') }}" alt="" class="img-fluid rounded-circle" style="width: 75px; height: 75px;">
+                            <img src="{{ $data->gender == 'L' ? asset('backend/assets/imgs/people/avatar-4.png') : asset('backend/assets/imgs/people/avatar-1.png') }}" alt="user-img" class="img-fluid rounded-circle" style="width: 75px; height: 75px;">
                         </div>
-                        <div class="mx-4 mt-4">
+                        <div class="ml-3 d-none d-sm-block">
                             <span style="color:black; font-size:16px; font-weight:bold;">{{ $data->nama }}</span>
                         </div>
+                    </div>
+                    <div class="d-flex flex-column align-items-center mt-3 d-sm-none">
+                        <span style="color:black; font-size:16px; font-weight:bold;">{{ $data->nama }}</span>
                     </div>
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                         <li class="nav-item mb-2">
@@ -86,13 +89,6 @@
                                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                     <div class="" style="height:500px; width:auto; overflow:auto; padding:1%;">
                                         <div class="row">
-                                            <div class="col-md-12 p-3">
-                                                <div class="float-end">
-                                                    <a href="" style="color: #37517e">
-                                                        <span class="fw-bold">Mark all as read</span>
-                                                    </a>
-                                                </div>
-                                            </div>
                                             <div class="col-md-12">
                                                 <div class="d-flex flex-column">
                                                     <div class="">
@@ -199,13 +195,6 @@
                                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                     <div class="" style="height:500px; width:auto; overflow:auto; padding:1%;">
                                         <div class="row">
-                                            <div class="col-md-12 p-3">
-                                                <div class="float-end">
-                                                    <a href="" style="color: #37517e">
-                                                        <span class="fw-bold">Mark all as read</span>
-                                                    </a>
-                                                </div>
-                                            </div>
                                             <div class="col-md-12">
                                                 <div class="d-flex flex-column">
                                                     <div class="">
@@ -312,13 +301,6 @@
                                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                                     <div class="" style="height:500px; width:auto; overflow:auto; padding:1%;">
                                         <div class="row">
-                                            <div class="col-md-12 p-3">
-                                                <div class="float-end">
-                                                    <a href="" style="color: #37517e">
-                                                        <span class="fw-bold">Mark all as read</span>
-                                                    </a>
-                                                </div>
-                                            </div>
                                             <div class="col-md-12">
                                                 <div class="d-flex flex-column">
                                                     <div class="">
