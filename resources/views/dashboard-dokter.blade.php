@@ -85,29 +85,31 @@
                 @endif
             </div>
             <div class="col-md-4">
-                <div class="card">
-                    <header class="card-header">
-                        <h4>Profil Dokter</h4>
-                    </header>
-                    <div class="card-body">
-                        <figure class="text-lg-center">
-                            <img class="img-lg mb-3 img-avatar" src="{{ $data->foto != null ? asset('img/dokter/'.$data->foto) : asset('backend/assets/imgs/people/avatar-2.png') }}" alt="User Photo">
-                        </figure>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="mb-4">
-                                    <label for="product_name" class="form-label">Nama</label>
-                                    <input type="text" value="{{ old('nama_petugas',$data->nama_dokter) }}" readonly placeholder="Masukkan nama petugas" class="form-control" name="nama_petugas"/>
+                @if ($data != null)
+                    <div class="card">
+                        <header class="card-header">
+                            <h4>Profil Dokter</h4>
+                        </header>
+                        <div class="card-body">
+                            <figure class="text-lg-center">
+                                <img class="img-lg mb-3 img-avatar" src="{{ $data->foto != null ? asset('img/dokter/'.$data->foto) : asset('backend/assets/imgs/people/avatar-2.png') }}" alt="User Photo">
+                            </figure>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="mb-4">
+                                        <label for="product_name" class="form-label">Nama</label>
+                                        <input type="text" value="{{ old('nama_petugas',$data->nama_dokter) }}" readonly placeholder="Masukkan nama petugas" class="form-control" name="nama_petugas"/>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="product_name" class="form-label">Spesialis</label>
+                                        <input type="text" value="{{ $data->spesialis }}" placeholder="Masukkan jabatan" class="form-control " readonly name="jabatan"/>
+                                    </div>
                                 </div>
-                                <div class="mb-4">
-                                    <label for="product_name" class="form-label">Spesialis</label>
-                                    <input type="text" value="{{ $data->spesialis }}" placeholder="Masukkan jabatan" class="form-control " readonly name="jabatan"/>
-                                </div>
-                            </div>
 
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
             </div>
         </div>
 
