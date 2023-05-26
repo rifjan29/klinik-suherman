@@ -40,7 +40,7 @@
                     </a>
                 </div>
                 <div class="col-md-4 mt-4 text-center pelayanan">
-                    <a href="{{ route('e-konsultasi') }}">
+                    <a href="{{ route('e-konsultasi.index') }}">
                         <div class="bg-image6">
                             <div class="text-start mx-4 fw-bold fs-5" style="color: rgb(247, 247, 247)">
                                 <p class="card-text1">E-Konsultasi</p>

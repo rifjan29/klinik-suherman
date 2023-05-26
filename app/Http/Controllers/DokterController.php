@@ -172,8 +172,10 @@ class DokterController extends Controller
             $dokter->no_telp = $request->get('telp');
             if ($request->hasFile('foto_dokter')) {
                 $photos = $request->file('foto_dokter');
-                $last_path = public_path() . '/img/dokter/' . $dokter->foto;
-                unlink($last_path);
+                if ($dokter->foto != null) {
+                    $last_path = public_path() . '/img/dokter/' . $dokter->foto;
+                    unlink($last_path);
+                }
                 $photos = $request->file('foto_dokter');
                 $filename = date('His') . '.' . $photos->getClientOriginalExtension();
                 $path = public_path('img/dokter');
