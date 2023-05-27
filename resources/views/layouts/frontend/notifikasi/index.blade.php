@@ -15,6 +15,14 @@
         .nav-pills .nav-link {
             color:#37517e;
         }
+        .nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+            background-color: #37517e !important;
+        }
+        .btn-primary {
+            background-color: #37517e;
+            border: none;
+            font-size: 14px;
+        }
     </style>
 @endpush
 @section('hero')
