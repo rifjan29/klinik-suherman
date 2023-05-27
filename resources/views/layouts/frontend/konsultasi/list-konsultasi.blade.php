@@ -33,7 +33,20 @@
                         $('#resep_obat').text(data.resep_obat)
                         $('#kesimpulan').text(data.kesimpulan)
                         $('#id_hasil_konsultasi').val(data.id)
+                        $('#cetak').val(data.id)
                         $('#id_pasien').val(data.id_pasien_konsultasi)
+                        $('#cetak').on('click',function() {
+                            var id = $(this).val();
+                            $.ajax({
+                                url:`{{ route('hasil.list.pdf') }}`,
+                                data:{
+                                    id:id
+                                },
+                                success:function(data){
+                                    window.location.href = data;
+                                }
+                            })
+                        })
                     }
                 })
             })
@@ -105,7 +118,7 @@
             </div>
             <div class="modal-body">
                 <div class="d-flex justify-content-end mb-3">
-                    <button type="button" class="btn btn-danger " >Cetak PDF</button>
+                    <button type="button" class="btn btn-danger" id="cetak" value="">Cetak PDF</button>
                 </div>
                 <div class="row">
                     <div class="col-md-6">

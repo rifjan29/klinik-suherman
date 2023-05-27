@@ -65,6 +65,8 @@ Route::prefix('pelayanan')->group(function() {
 
     // Layanan E-Konsultasi
     Route::prefix('e-konsultasi')->group(function() {
+        Route::get('hasil-konsultasi/list/detail-konsultasi/cetak/pdf-cetak', [Frontend\KonsultasiController::class, 'listKonsultasiDetailPdfCetak'])->name('hasil.list.pdf-cetak');
+        Route::get('hasil-konsultasi/list/detail-konsultasi/cetak/pdf', [Frontend\KonsultasiController::class, 'listKonsultasiDetailPdf'])->name('hasil.list.pdf');
         Route::get('hasil-konsultasi/list/detail-konsultasi', [Frontend\KonsultasiController::class, 'listKonsultasiDetail'])->name('hasil.list.detail');
         Route::get('hasil-konsultasi/list/{id}', [Frontend\KonsultasiController::class, 'listKonsultasi'])->name('hasil.list');
         Route::post('hasil-konsultasi/post', [Frontend\KonsultasiController::class, 'hasilKonsultasi'])->name('hasil.post');
