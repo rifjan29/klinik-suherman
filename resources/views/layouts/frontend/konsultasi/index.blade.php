@@ -174,7 +174,7 @@
             <div class="modal-content">
             <div class="modal-header" style="background-color: #37517e">
                 <h1 class="modal-title fs-5" id="exampleModalToggleLabel" style="color: white;">Konsultasi Dokter</h1>
-
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body p-3 mx-2">
                 <div class="row">
