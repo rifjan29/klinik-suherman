@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Exports\RiwayatTransaksiAmbulanceExport;
 use App\Models\DetailTransaksiAmbulance;
+use App\Models\Petugas;
 use App\Models\RiwayatTransaksAmbulance;
+use App\Models\User;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
@@ -65,8 +68,15 @@ class AmbulanceController extends Controller
 
     public function list()
     {
-        $data = RiwayatTransaksAmbulance::with('pasien_ambulance','ambulance','lokasi')->where('status_pembayaran','pending')->orWhere('status_kejadian',Null)->where('status_pembayaran','pending')->get();
-        return view('backend.ambulance.list-ambulance',compact('data'));
+        if (Auth::user()->role == 'petugas') {
+            $data['user'] = User::find(Auth::user()->id);
+            $data['data'] = Petugas::where('id_user',$data['user']->id)->first();
+            $data = RiwayatTransaksAmbulance::with('pasien_ambulance','ambulance','lokasi')->where('status_pembayaran','pending')->where('transaksi_ambulance.id_petugas',$data['data']->id)->get();
+            return view('backend.ambulance.list-ambulance-petugas',compact('data'));
+        }else{
+            $data = RiwayatTransaksAmbulance::with('pasien_ambulance','ambulance','lokasi')->where('status_pembayaran','pending')->orWhere('status_kejadian',Null)->where('status_pembayaran','pending')->get();
+            return view('backend.ambulance.list-ambulance',compact('data'));
+        }
 
     }
 
