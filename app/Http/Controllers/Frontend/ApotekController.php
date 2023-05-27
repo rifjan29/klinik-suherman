@@ -19,7 +19,7 @@ class ApotekController extends Controller
                                         ->join('hasil_konsultasi','hasil_konsultasi.id','transaksi_pemesanan_obat.id_hasil_konsultasi')
                                         ->join('pasien','pasien.id','transaksi_pemesanan_obat.id_pasien')
                                         ->where('transaksi_pemesanan_obat.id_pasien',Session::get('id'))
-                                        ->where('transaksi_pemesanan_obat.status','!=','pending')
+                                        ->where('transaksi_pemesanan_obat.status','!=','lunas')
                                         ->OrWhere('transaksi_pemesanan_obat.status_pengambilan','pending')->get();
             return view('layouts.frontend.apotek.list',compact('data'));
         }else{

@@ -16,6 +16,8 @@
 @endpush
 @push('js')
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment-with-locales.min.js"></script>
     <script>
         $(document).ready(function() {
             var id = $('#kode_transaksi').text();
@@ -102,6 +104,14 @@
                                 $('.lunas').addClass('d-none')
                                 console.log('nih pending');
                             }else if(data.status == 'lunas'){
+                                moment.locale('id')
+                                var formattedDate = moment(data.tgl_ambil_obat).format('D MMMM YYYY');
+                                var tanggal = moment(data.tgl_ambil_obat);
+                                var next_day = tanggal.add(1,'days');
+                                var result_day = next_day.format('D MMMM YYYY')
+                                $('#tgl_ambil').html(`
+                                    Obat diambil tanggal ${formattedDate} <br> Batas waktu pengambilan : ${result_day}
+                                `)
                                 $('.process ul .tanggal_ambil').addClass('completed')
                                 $('.process ul .tanggal_ambil').removeClass('d-none')
                                 $('.lunas').removeClass('d-none')
@@ -200,7 +210,7 @@
                                                         <div class="name">Menunggu verifikasi pembayaran</div>
                                                         </li>
                                                         <li class="step tanggal_ambil d-none" data-id="3">
-                                                            <div class="name">Obat diambil tanggal {{ \Carbon\Carbon::parse($item->tgl_ambil_obat)->translatedFormat('d F Y ') }} <br> Batas waktu pengambilan : {{ \Carbon\Carbon::parse($item->tgl_ambil_obat)->addDay()->translatedFormat('d F Y ') }}</div>
+                                                            <div class="name" id="tgl_ambil">Obat diambil tanggal {{ \Carbon\Carbon::parse($item->tgl_ambil_obat)->translatedFormat('d F Y ') }} <br> Batas waktu pengambilan : {{ \Carbon\Carbon::parse($item->tgl_ambil_obat)->addDay()->translatedFormat('d F Y ') }}</div>
                                                         </li>
                                                         <li class="step tanggal_ambil d-none" data-id="4">
                                                             <div class="name">Pesanan Telah Selesai</div>
