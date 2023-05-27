@@ -25,25 +25,28 @@ class KonsultasiController extends Controller
     }
     public function index(Request $request)
     {
-        // $dokter = Dokter::
-        $data = Dokter::orderBy('id','ASC')->get();
-        $bank = Bank::all();
-        if($request->ajax())
-        {
-            $query = $request->get('query');
-            $query = str_replace(" ", "%", $query);
-            if (!empty($query)) {
-                $data = DB::table('dokter')
-                            ->where('nama_dokter','like', '%'.$query.'%')
-                            ->get();
-                return view('layouts.frontend.konsultasi.daftar-dokter', compact('data','bank'))->render();
-            }else{
-                $data = Dokter::orderBy('id','ASC')->get();
-                return view('layouts.frontend.konsultasi.daftar-dokter', compact('data','bank'))->render();
+        if (Session::get('id')) {
+            $data = Dokter::orderBy('id','ASC')->get();
+            $bank = Bank::all();
+            if($request->ajax())
+            {
+                $query = $request->get('query');
+                $query = str_replace(" ", "%", $query);
+                if (!empty($query)) {
+                    $data = DB::table('dokter')
+                                ->where('nama_dokter','like', '%'.$query.'%')
+                                ->get();
+                    return view('layouts.frontend.konsultasi.daftar-dokter', compact('data','bank'))->render();
+                }else{
+                    $data = Dokter::orderBy('id','ASC')->get();
+                    return view('layouts.frontend.konsultasi.daftar-dokter', compact('data','bank'))->render();
 
+                }
             }
+            return view('layouts.frontend.konsultasi.index',compact('data','bank'));
+        }else{
+            return redirect()->route('login.index');
         }
-        return view('layouts.frontend.konsultasi.index',compact('data','bank'));
     }
     public function detail(Request $request)
     {

@@ -12,15 +12,19 @@ class ApotekController extends Controller
 {
     public function index()
     {
-        $data = TransaksiPemesananObat::select('transaksi_pemesanan_obat.*',
-                                        'pasien.nama',
-                                        'hasil_konsultasi.resep_obat')
-                                    ->join('hasil_konsultasi','hasil_konsultasi.id','transaksi_pemesanan_obat.id_hasil_konsultasi')
-                                    ->join('pasien','pasien.id','transaksi_pemesanan_obat.id_pasien')
-                                    ->where('transaksi_pemesanan_obat.id_pasien',Session::get('id'))
-                                    ->where('transaksi_pemesanan_obat.status','pending')
-                                    ->where('transaksi_pemesanan_obat.status_pengambilan','pending')->get();
-        return view('layouts.frontend.apotek.list',compact('data'));
+        if (Session::get('id')) {
+            $data = TransaksiPemesananObat::select('transaksi_pemesanan_obat.*',
+                                            'pasien.nama',
+                                            'hasil_konsultasi.resep_obat')
+                                        ->join('hasil_konsultasi','hasil_konsultasi.id','transaksi_pemesanan_obat.id_hasil_konsultasi')
+                                        ->join('pasien','pasien.id','transaksi_pemesanan_obat.id_pasien')
+                                        ->where('transaksi_pemesanan_obat.id_pasien',Session::get('id'))
+                                        ->where('transaksi_pemesanan_obat.status','pending')
+                                        ->where('transaksi_pemesanan_obat.status_pengambilan','pending')->get();
+            return view('layouts.frontend.apotek.list',compact('data'));
+        }else{
+            return redirect()->route('login.index');
+        }
     }
     public function post(Request $request)
     {

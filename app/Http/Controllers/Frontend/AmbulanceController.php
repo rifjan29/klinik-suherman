@@ -106,8 +106,13 @@ class AmbulanceController extends Controller
 
     public function list()
     {
-        $data = RiwayatTransaksAmbulance::with('pasien_ambulance')->get();
-        return view('layouts.frontend.ambulance.list',compact('data'));
+        if (Session::get('id')) {
+            $data = RiwayatTransaksAmbulance::with('pasien_ambulance')->get();
+            return view('layouts.frontend.ambulance.list',compact('data'));
+        }else{
+            return redirect()->route('login.index');
+        }
+
     }
 
     public function generateTransaksi()
