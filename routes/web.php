@@ -60,23 +60,23 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('kasir', KasirController::class);
             Route::resource('bank', BankController::class);
         });
-        Route::prefix('ambulance')->group(function () {
-            Route::get('data-ambulance',[AmbulanceController::class,'index'])->name('data-ambulance');
+        Route::prefix('ambulans')->group(function () {
+            Route::get('data-ambulans',[AmbulanceController::class,'index'])->name('data-ambulance');
             // list ambulance
-            Route::post('list-ambulance/post/{id}',[AmbulanceController::class,'postAmbulance'])->name('list-ambulance.post');
-            Route::get('list-ambulance/update-perjalanan/{id}',[AmbulanceController::class,'updatePerjalanan'])->name('list-ambulance.update-perjalanan');
-            Route::get('list-ambulance/update-perjalanan-dua/{id}',[AmbulanceController::class,'updatePerjalananDua'])->name('list-ambulance.update-perjalanan-dua');
-            Route::post('list-ambulance/update-status',[AmbulanceController::class,'updateStatus'])->name('update-status.riwayat-ambulance');
-            Route::post('list-ambulance/detail/update/{id}',[AmbulanceController::class,'updatePesanan'])->name('list-ambulance.detail-update');
-            Route::get('list-ambulance/detail/{id}',[AmbulanceController::class,'detail'])->name('list-ambulance.detail');
-            Route::get('list-ambulance',[AmbulanceController::class,'list'])->name('list-ambulance');
+            Route::post('list-ambulans/post/{id}',[AmbulanceController::class,'postAmbulance'])->name('list-ambulance.post');
+            Route::get('list-ambulans/update-perjalanan/{id}',[AmbulanceController::class,'updatePerjalanan'])->name('list-ambulance.update-perjalanan');
+            Route::get('list-ambulans/update-perjalanan-dua/{id}',[AmbulanceController::class,'updatePerjalananDua'])->name('list-ambulance.update-perjalanan-dua');
+            Route::post('list-ambulans/update-status',[AmbulanceController::class,'updateStatus'])->name('update-status.riwayat-ambulance');
+            Route::post('list-ambulans/detail/update/{id}',[AmbulanceController::class,'updatePesanan'])->name('list-ambulance.detail-update');
+            Route::get('list-ambulans/detail/{id}',[AmbulanceController::class,'detail'])->name('list-ambulance.detail');
+            Route::get('list-ambulans',[AmbulanceController::class,'list'])->name('list-ambulance');
             // riwayat
-            Route::get('riwayat-ambulance/detail/{id}',[AmbulanceController::class,'riwayatDetail'])->name('riwayat-ambulance.detail');
-            Route::get('riwayat-ambulance',[AmbulanceController::class,'riwayat'])->name('riwayat-ambulance');
+            Route::get('riwayat-ambulans/detail/{id}',[AmbulanceController::class,'riwayatDetail'])->name('riwayat-ambulance.detail');
+            Route::get('riwayat-ambulans',[AmbulanceController::class,'riwayat'])->name('riwayat-ambulance');
             // Laporan e-ambulance
-            Route::get('laporan-ambulance/pdf',[AmbulanceController::class,'pdf'])->name('laporan-ambulance.pdf');
-            Route::get('laporan-ambulance/excel',[AmbulanceController::class,'excel'])->name('laporan-ambulance.excel');
-            Route::get('laporan-ambulance',[AmbulanceController::class,'laporan'])->name('laporan-ambulance');
+            Route::get('laporan-ambulans/pdf',[AmbulanceController::class,'pdf'])->name('laporan-ambulance.pdf');
+            Route::get('laporan-ambulans/excel',[AmbulanceController::class,'excel'])->name('laporan-ambulance.excel');
+            Route::get('laporan-ambulans',[AmbulanceController::class,'laporan'])->name('laporan-ambulance');
 
         });
         Route::prefix('e-konsultasi')->group(function () {

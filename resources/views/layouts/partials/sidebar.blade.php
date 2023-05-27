@@ -10,7 +10,7 @@
                 @elseif (auth()->user()->role == 'dokter')
                     <h4>E-Konsultasi</h4>
                 @elseif (auth()->user()->role == 'petugas')
-                    <h4>E-Ambulance</h4>
+                    <h4>E-Ambulans</h4>
                 @elseif (auth()->user()->role == 'kasir')
                     <h4>Kasir</h4>
                 @else
@@ -35,7 +35,7 @@
                 <li class="menu-item has-submenu {{ Request::segment(2) == 'ambulance' ? 'active' : '' }}">
                     <a class="menu-link" href="page-form-product-1.html">
                         <i class="icon material-icons md-airport_shuttle"></i>
-                        <span class="text">Data E-Ambulance</span>
+                        <span class="text">Data E-Ambulans</span>
                     </a>
                     <div class="submenu">
 
@@ -117,7 +117,7 @@
                 <li class="menu-item has-submenu {{ Request::segment(2) == 'ambulance' ? 'active' : '' }}">
                     <a class="menu-link" href="page-form-product-1.html">
                         <i class="icon material-icons md-airport_shuttle"></i>
-                        <span class="text">Data E-Ambulance</span>
+                        <span class="text">Data E-Ambulans</span>
                     </a>
                     <div class="submenu">
 
@@ -156,7 +156,7 @@
                 <li class="menu-item has-submenu {{ Request::segment(2) == 'ambulance' ? 'active' : '' }}">
                     <a class="menu-link" href="page-form-product-1.html">
                         <i class="icon material-icons md-airport_shuttle"></i>
-                        <span class="text">Data E-Ambulance</span>
+                        <span class="text">Data E-Ambulans</span>
                     </a>
                     <div class="submenu">
 
