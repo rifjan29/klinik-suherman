@@ -51,6 +51,13 @@ class DataApotekController extends Controller
         $lainnya = $request->lainnya != null ? $request->lainnya : 0;
         foreach ($request->obat as $key => $value) {
             $obat = Obat::find($value);
+            if ($obat->stok <= 0) {
+                return redirect()->route('e-apotek.list')->withError('Stok kurang dari permintaaan');
+            }
+            if ($obat->stok < $request->get('qty')[$key] ) {
+                return redirect()->route('e-apotek.list')->withError('Stok kurang dari permintaaan');
+            }
+
             $harga = $obat->harga;
             $jumlah = $request->qty[$key];
             $subtotal = ($harga * $jumlah) + $embalase + $lainnya;
@@ -61,6 +68,10 @@ class DataApotekController extends Controller
             $detail->id_obat = $value;
             $detail->qty = $request->qty[$key];
             $detail->save();
+
+            $obat->stok -= $request->qty[$key];
+            $obat->update();
+
         }
         $total += $subtotal;
         TransaksiPemesananObat::where('kode_transaksi',$request->get('kode_transaksi'))->update([
