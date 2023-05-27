@@ -50,6 +50,9 @@ class KonsultasiOnlineController extends Controller
     public function chat($id)
     {
         $data['user'] = User::find(auth()->user()->id);
+        Dokter::where('id_user',$data['user']->id)->update([
+            'status' => 'sibuk',
+        ]);
         $data['data'] = Dokter::where('id_user',$data['user']->id)->first();
         $data = PemesananKonsultasi::select('pemesanan_konsultasi.*',
                                 'detail_pemesanan_konsultasi.id as detail_konsultasi',
@@ -209,6 +212,10 @@ class KonsultasiOnlineController extends Controller
 
     public function hasilPost(Request $request)
     {
+        $data['user'] = User::find(auth()->user()->id);
+        Dokter::where('id_user',$data['user']->id)->update([
+            'status' => 'aktif',
+        ]);
         $hasil = HasilKonsultasi::where('kode_transaksi_konsultasi',$request->get('kode_transaksi'))->update([
             'kesimpulan' => $request->get('kesimpulan'),
             'resep_obat' => $request->get('resep_obat'),
