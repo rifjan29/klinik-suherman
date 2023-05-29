@@ -32,7 +32,7 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-md-12">
-                        <p>BKonsultasi lewat chat dengan dokter umum dan dokter gigi seputar kesehatan lebih mudah dan cepat.
+                        <p>Konsultasi lewat chat dengan dokter umum dan dokter gigi seputar kesehatan lebih mudah dan cepat.
                             Mulai dari chat dan resep obat.
                             <br><b>Pelayanan ini meliputi:</b></p>
                     </div>
