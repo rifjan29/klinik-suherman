@@ -9,7 +9,7 @@
                 @else
                     <div class="d-flex justify-content-start"><span class="badge text-bg-success">Aktif</span></div>
                 @endif
-                <img  class="rounded-circle mt-4 img-fluid w-50" src="{{ $item->foto != null ? asset('img/dokter/'.$item->foto) : asset('backend/assets/imgs/theme/upload.svg') }}" alt="" id="photosPreview"/>
+                <img  class="rounded-circle mt-4 img-fluid" style="width: 200px; height: 200px" src="{{ $item->foto != null ? asset('img/dokter/'.$item->foto) : asset('backend/assets/imgs/theme/upload.svg') }}" alt="" id="photosPreview"/>
                 <div class="mt-3">
                     <h4>{{ ucwords($item->nama_dokter) }}</h4>
                     <span style="color: #b4b4b4;">Dokter Umum</span>
