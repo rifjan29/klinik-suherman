@@ -14,7 +14,8 @@ class DataProfileController extends Controller
 {
     public function index($id)
     {
-        $data['user'] = User::find();
+        $data['user'] = User::find($id);
+
         if (auth()->user()->role == 'apotek') {
             $data['data'] = Apotek::where('id_user',$data['user']->id)->first();
         }else if (auth()->user()->role == 'dokter') {
