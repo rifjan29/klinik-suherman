@@ -60,9 +60,9 @@
                             </div>
                         </div>
                         @if (Session::get('id'))
-                        <a class="btn btn-lg btn-primary text-center mt-4" href="{{ route('e-ambulance.create') }}">Pesan Ambulance</a>
+                        <a class="btn btn-lg btn-primary text-center mt-4" href="{{ route('e-ambulance.create') }}">Pesan Ambulans</a>
                         @else
-                        <a class="btn btn-lg btn-primary text-center mt-4" href="{{ route('login.index') }}">Pesan Ambulance</a>
+                        <a class="btn btn-lg btn-primary text-center mt-4" href="{{ route('login.index') }}">Pesan Ambulans</a>
                         @endif
                     </div>
                 </div>

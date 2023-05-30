@@ -244,7 +244,7 @@
          <input type="text" id="jumlahData" name="jumlahData" hidden value="2">
         <div class="container form-wizard active" data-aos="fade-up" data-index='1' data-done='true' data-done='true'">
             <div class="section-title">
-                <h2>Pesan Ambulance</h2>
+                <h2>Pesan Ambulans</h2>
             </div>
             <form action="{{ route('e-ambulance.store') }}" method="POST"  enctype="multipart/form-data">
              @csrf

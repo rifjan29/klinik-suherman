@@ -940,7 +940,7 @@ section {
 }
 
 #services .bg-image7 {
-  background-image: linear-gradient(rgba(187, 187, 187, 0), rgba(0, 0, 0, 50)), url("../img/apotek.jpg");
+  background-image: linear-gradient(rgba(187, 187, 187, 0), rgba(0, 0, 0, 50)), url("../img/poli1.jpg");
   height: 310px;
   width: 100%;
   /* margin-top: 125px; */
@@ -1066,7 +1066,7 @@ section {
 # Portfolio
 --------------------------------------------------------------*/
 #portfolio .bg-image7 {
-  background-image: linear-gradient(rgba(187, 187, 187, 0), rgba(0, 0, 0, 50)), url("../img/umum.jpg");
+  background-image: linear-gradient(rgba(187, 187, 187, 0), rgba(0, 0, 0, 50)), url("../img/poli1.png");
   height: 310px;
   width: 100%;
   /* margin-top: 125px; */
@@ -1078,7 +1078,7 @@ section {
 }
 
 #portfolio .bg-image8 {
-  background-image: linear-gradient(rgba(187, 187, 187, 0), rgba(0, 0, 0, 50)), url("../img/kia.jpg");
+  background-image: linear-gradient(rgba(187, 187, 187, 0), rgba(0, 0, 0, 50)), url("../img/poli2.png");
   height: 310px;
   width: 100%;
   /* margin-top: 125px; */
@@ -1090,7 +1090,7 @@ section {
 }
 
 #portfolio .bg-image9 {
-  background-image: linear-gradient(rgba(187, 187, 187, 0), rgba(0, 0, 0, 50)), url("../img/gigi.jpg");
+  background-image: linear-gradient(rgba(187, 187, 187, 0), rgba(0, 0, 0, 50)), url("../img/poli3.png");
   height: 310px;
   width: 100%;
   /* margin-top: 125px; */

@@ -73,7 +73,7 @@
                                 @endforelse
                             </tbody>
                         </table>
-                        <a class="btn btn-lg btn-primary text-center mt-4" href="{{ route('e-ambulance.create') }}">Pesan Ambulance</a>
+                        <a class="btn btn-lg btn-primary text-center mt-4" href="{{ route('e-ambulance.create') }}">Pesan Ambulans</a>
                     </div>
                 </div>
             </div>
