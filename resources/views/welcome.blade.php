@@ -591,7 +591,7 @@
                                 </div>
                                 <div class="mt-3">
                                     <label for="nama" class="form-label">Nama pasien</label>
-                                    <input type="text" name="nama" class="form-control shadow @error('nama') is-invalid @enderror" id="nama" placeholder="Masukkan Nama Anda" value="{{ old('nama') }}" required>
+                                    <input type="text" name="nama" value="{{ Session::get('nama')?? old('nama') }}" class="form-control shadow @error('nama') is-invalid @enderror" id="nama" placeholder="Masukkan Nama Anda"  {{ Session::get('nama') ? 'readonly' : 'required' }}>
                                     @error('nama')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -600,7 +600,7 @@
                                 </div>
                                 <div class="mt-3">
                                     <label for="no_hp" class="form-label">Nomor HP</label>
-                                    <input type="number" name="no_hp" class="form-control shadow @error('no_hp') is-invalid @enderror" id="no_hp" placeholder="Masukkan Nomor Anda (08xxxxxxxxxx)" required value="{{ old('no_hp') }}">
+                                    <input type="number" name="no_hp" value="{{ Session::get('phone') ?? old('no_hp')}}" class="form-control shadow @error('no_hp') is-invalid @enderror" id="no_hp" placeholder="Masukkan Nomor Anda (08xxxxxxxxxx)" {{ Session::get('phone') ? 'readonly' : 'required' }}>
                                     @error('no_hp')
                                         <div class="invalid-feedback">
                                             {{ $message }}

@@ -192,6 +192,9 @@
                                         <div class="d-flex justify-content-center p-1 mt-5">
                                             <button type="submit" class="btn btn-lg btn-primary text-center" style="background-color: #37517E; border:0; border-radius:20px"><span class="p-4" style="font-size: 16px">Sign Up</span></button>
                                         </div>
+                                        <div class="text-center">
+                                            <p class="fw-">Do you have account?<span class="fw-bolder"> <a href="{{ route('login.index') }}" class="mx-1" style="color: #37517E"> Login</a></span></p>
+                                        </div>
                                     </form>
                                 </div>
                             </div>

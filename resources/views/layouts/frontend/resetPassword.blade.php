@@ -57,8 +57,16 @@
                                     <form class="row g-3" action="{{ route('resetPasswordPost') }}" method="post">
                                         @csrf
                                         <div class="col-md-12 p-2">
-                                            <label for="password" class="col-form-label fw-bold">Password Baru</label>
-                                            <input type="password" name="password" class="form-control shadow rounded-4 mt-1  @error('password') is-invalid @enderror" id="password" placeholder="Masukkan Password Anda" style="height: 50px;" required autocomplete="new-password">
+                                            <label for="password" class="col-form-label fw-bold">Password</label>
+                                            <input type="password" name="password" class="form-control shadow rounded-4 mt-1  @error('password') is-invalid @enderror" id="password" placeholder="Masukkan Password Anda" style="height: 50px;" required>
+                                            <div class="d-flex justify-content-end pt-3">
+                                                <div>
+                                                    <label for="">
+                                                        <input type='checkbox' id='toggle' value='0'>
+                                                        <span id='toggleText' class="align-center-self">Show</span>
+                                                    </label>
+                                                </div>
+                                            </div>
                                             @error('password')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -66,8 +74,16 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-12 p-2">
-                                            <label for="password_confirmation" class="col-form-label fw-bold">Konfirmasi Password Baru</label>
-                                            <input type="password" name="password_confirmation" class="form-control shadow rounded-4 mt-1  @error('password_confirmation') is-invalid @enderror" id="password_confirmation" placeholder="Masukkan Password Anda" style="height: 50px;" required autocomplete="new-password">
+                                            <label for="password" class="col-form-label fw-bold">Ulangi Password</label>
+                                            <input type="password" id="password_confirmation" value="{{ old('password_confirmation') }}" class="form-control shadow rounded-4 mt-1 @error('password_confirmation') is-invalid @enderror" name="password_confirmation"  placeholder="Masukkan Ulang Password Anda" style="height: 50px;" required>
+                                            <div class="d-flex justify-content-end pt-3">
+                                                <div>
+                                                    <label for="">
+                                                        <input type='checkbox' id='toggleDua' value='0'>
+                                                        <span id='toggleTextDua' class="align-center-self">Show</span>
+                                                    </label>
+                                                </div>
+                                            </div>
                                             @error('password_confirmation')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -85,4 +101,45 @@
             </div>
         </div>
     </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#toggle").change(function(){
+
+                // Check the checkbox state
+                if($(this).is(':checked')){
+                // Changing type attribute
+                    $("#password").attr("type","text");
+
+                    // Change the Text
+                    $("#toggleText").text("Hide");
+                    }else{
+                    // Changing type attribute
+                    $("#password").attr("type","password");
+
+                    // Change the Text
+                    $("#toggleText").text("Show");
+                }
+
+            });
+            $("#toggleDua").change(function(){
+
+                // Check the checkbox state
+                if($(this).is(':checked')){
+                // Changing type attribute
+                    $("#password_confirmation").attr("type","text");
+
+                    // Change the Text
+                    $("#toggleTextDua").text("Hide");
+                    }else{
+                    // Changing type attribute
+                    $("#password_confirmation").attr("type","password");
+
+                    // Change the Text
+                    $("#toggleTextDua").text("Show");
+                }
+
+            });
+        });
+    </script>
 </html>
