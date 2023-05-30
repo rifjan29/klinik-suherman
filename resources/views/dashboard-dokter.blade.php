@@ -33,7 +33,7 @@
 
             </div>
             <div class="d-flex justify-content-end">
-                <button class="btn btn-primary">List Konsultasi Online</button>
+                <a href="{{ route('konsultasi-dokter.list') }}" class="btn btn-primary">List Konsultasi Online</a>
             </div>
 
         </div>

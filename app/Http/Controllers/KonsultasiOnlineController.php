@@ -32,18 +32,17 @@ class KonsultasiOnlineController extends Controller
                                     'pasien.phone',
                                     'bank.id as idbank',
                                     'bank.nama_bank',
-                                    'bank.no_rekening',
-                                    'hasil_konsultasi.kode_transaksi_konsultasi',
-                                    'hasil_konsultasi.status as status_update')
+                                    'bank.no_rekening')
                                     ->join('detail_pemesanan_konsultasi',
                                             'detail_pemesanan_konsultasi.id_pemesanan_konsultasi',
                                             'pemesanan_konsultasi.id')
                                     ->join('pasien','pasien.id','pemesanan_konsultasi.id_pasien_konsultasi')
                                     ->join('dokter','dokter.id','pemesanan_konsultasi.id_dokter')
                                     ->join('bank','bank.id','pemesanan_konsultasi.id_bank')
-                                    ->join('hasil_konsultasi','hasil_konsultasi.kode_transaksi_konsultasi','pemesanan_konsultasi.kode_pemesanan')
                                     ->where('detail_pemesanan_konsultasi.status_pembayaran','lunas')
-                                    ->where('pemesanan_konsultasi.id_dokter',$data['data']->id)->get();
+                                    ->where('pemesanan_konsultasi.id_dokter',$data['data']->id)
+                                    ->orderBy('pemesanan_konsultasi.id','DESC')
+                                    ->get();
         return view('backend.dokter.konsultasi.list',compact('data'));
     }
 

@@ -74,11 +74,13 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if ($item->status_update == 'konfirmasi')
-                                            <span class="badge rounded-pill alert-info">Selesai</span>
+                                        @php
+                                            $cek = \App\Models\HasilKonsultasi::where('kode_transaksi_konsultasi',$item->kode_pemesanan)->first();
+                                        @endphp
+                                        @if ($cek != NULL)
+                                            <h5 class="badge rounded-pill alert-info">Selesai</h5>
                                         @else
-                                            <a href="{{ route('konsultasi-dokter.chat',$item->id) }}" class="btn btn-sm font-sm rounded btn-primary gantiStatus" > Chat Sekarang </a>
-
+                                            <a href="{{ route('konsultasi-dokter.chat',$item->id) }}" class="btn btn-primary">Chat Sekarang</a>
                                         @endif
                                     </td>
                                 </tr>
