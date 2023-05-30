@@ -40,6 +40,7 @@ class   PasienController extends Controller
                 Session::put('id', $data->id);
                 Session::put('nama', $data->nama);
                 Session::put('username', $data->username);
+                Session::put('phone', $data->phone);
                 Session::put('email', $data->email);
                 Session::put('login', TRUE);
                 // dd($data);
@@ -85,8 +86,9 @@ class   PasienController extends Controller
             'required' => ':attribute harus terisi',
             'regex' => ':attribute terdiri dari minimal 8 karakter dan terdapat huruf besar dan simbol',
             'min' => ':attribute harus lebih dari 5 karakter',
-            'starts_with' => ':attribute harus diawali dengan 08',
-            'confirmed' => ':attribute data tidak sesuai'
+            'phone.starts_with' => 'Nomor Telepon harus diawali dengan 08',
+            'confirmed' => ':attribute data tidak sesuai',
+            'email.dns' => 'Email tidak valid'
         ]);
 
         // dd('registrasi berhasil');
