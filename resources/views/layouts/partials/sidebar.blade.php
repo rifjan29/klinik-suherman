@@ -68,6 +68,7 @@
                         <a href="{{ route('e-apotek.list') }}">List Transaksi Resep</a>
                         <a href="{{ route('e-apotek.riwayat') }}" class="{{ Request::segment(3) == 'riwayat-obat' ? 'active' : '' }}">Riwayat Transaksi </a>
                         <a href="{{ route('e-apotek.laporan') }}" class="{{ Request::segment(3) == 'laporan-transaksi' ? 'active' : '' }}">Laporan E-Apotek </a>
+                        <a href="{{ route('e-apotek.laporan.mutu') }}" class="{{ Request::segment(3) == 'laporan-mutu' ? 'active' : '' }}">Laporan Mutu </a>
                     </div>
                 </li>
                 <li class="menu-item has-submenu {{ Request::segment(2) == 'master-obat' ? 'active' : '' }}">

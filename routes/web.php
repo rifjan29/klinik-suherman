@@ -128,6 +128,12 @@ Route::middleware(['auth'])->group(function () {
             Route::get('laporan-transaksi/pdf',[DataApotekController::class,'pdf'])->name('e-apotek.pdf');
             Route::get('laporan-transaksi/excel',[DataApotekController::class,'excel'])->name('e-apotek.excel');
             Route::get('laporan-transaksi',[DataApotekController::class,'laporan'])->name('e-apotek.laporan');
+
+            // laporan mutu
+            Route::get('laporan-transaksi/pdf-mutu',[DataApotekController::class,'pdfMutu'])->name('e-apotek.pdf.mutu');
+            Route::get('laporan-transaksi/excel-mutu',[DataApotekController::class,'excelMutu'])->name('e-apotek.excel.mutu');
+            Route::get('laporan-mutu',[DataApotekController::class,'laporanMutu'])->name('e-apotek.laporan.mutu');
+
         });
         Route::get('data-pasien',[DataPasienController::class,'index'])->name('data-pasien');
         Route::prefix('saran-kritik')->group(function () {

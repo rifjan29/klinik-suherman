@@ -196,4 +196,62 @@ class DataApotekController extends Controller
         }
         return view('backend.data-e-apotek.excel',compact('data'));
     }
+
+    public function laporanMutu(Request $request)
+    {
+        $data_grafik = DetailTransaksiObat::select('detail_transaksi_pemesanan_obat.*','obat.nama_obat',DB::raw('SUM(qty) as total'))
+                                        ->join('obat','obat.id','detail_transaksi_pemesanan_obat.id_obat')
+                                        ->groupBy('detail_transaksi_pemesanan_obat.id_obat')
+                                        ->orderByDesc('total')
+                                        ->take(10)
+                                        ->get();
+        Session::forget('dari');
+        Session::forget('sampai');
+        $query = DetailTransaksiObat::select('detail_transaksi_pemesanan_obat.*','obat.nama_obat',DB::raw('SUM(qty) as total'))
+                                        ->join('obat','obat.id','detail_transaksi_pemesanan_obat.id_obat')
+                                        ->groupBy('detail_transaksi_pemesanan_obat.id_obat')
+                                        ->orderByDesc('total');
+        $cetak = null;
+        if ($request->has('dari') || $request->has('sampai')) {
+            Session::put('dari',$request->get('dari'));
+            Session::put('sampai',$request->get('sampai'));
+            $cetak = "ada";
+            $data = $query->whereBetween('detail_transaksi_pemesanan_obat.created_at',[$request->get('dari'),$request->get('sampai')])->get();
+        }else{
+            $cetak = null;
+            $data = $query->get();
+        }
+        return view('backend.data-e-apotek.laporan-mutu',compact('data','cetak','data_grafik'));
+    }
+
+    public function pdfMutu(Request $request)
+    {
+        $query = DetailTransaksiObat::select('detail_transaksi_pemesanan_obat.*','obat.nama_obat',DB::raw('SUM(qty) as total'))
+                                    ->join('obat','obat.id','detail_transaksi_pemesanan_obat.id_obat')
+                                    ->groupBy('detail_transaksi_pemesanan_obat.id_obat')
+                                    ->orderByDesc('total');
+
+        if (Session::has('dari') || Session::has('sampai')) {
+        $data = $query->whereBetween('detail_transaksi_pemesanan_obat.created_at',[$request->session()->get('dari'),$request->session()->get('sampai')])->get();
+        }else{
+        $data = $query->get();
+        }
+        return view('backend.data-e-apotek.pdf-mutu',compact('data'));
+    }
+
+    public function excelMutu(Request $request)
+    {
+        $query = DetailTransaksiObat::select('detail_transaksi_pemesanan_obat.*','obat.nama_obat',DB::raw('SUM(qty) as total'))
+                                    ->join('obat','obat.id','detail_transaksi_pemesanan_obat.id_obat')
+                                    ->groupBy('detail_transaksi_pemesanan_obat.id_obat')
+                                    ->orderByDesc('total');
+
+        if (Session::has('dari') || Session::has('sampai')) {
+        $data = $query->whereBetween('detail_transaksi_pemesanan_obat.created_at',[$request->session()->get('dari'),$request->session()->get('sampai')])->get();
+        }else{
+        $data = $query->get();
+        }
+        return view('backend.data-e-apotek.excel-mutu',compact('data'));
+
+    }
 }
