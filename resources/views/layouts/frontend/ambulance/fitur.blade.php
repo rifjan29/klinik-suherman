@@ -34,7 +34,7 @@
                     <a href="{{ route('e-ambulance') }}">
                         <div class="bg-image5">
                             <div class="text-start mx-4 fw-bold fs-5" style="color: rgb(247, 247, 247)">
-                                <p class="card-text1">E-Ambulance</p>
+                                <p class="card-text1">E-Ambulans</p>
                             </div>
                         </div>
                     </a>

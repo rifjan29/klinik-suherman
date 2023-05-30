@@ -22,7 +22,7 @@
      <section id="services" class="services">
         <div class="container text-center" data-aos="fade-up">
             <div class="section-title">
-                <h2>List E-Ambulance</h2>
+                <h2>List E-Ambulans</h2>
             </div>
             <div class="row content">
                 <div class="row justify-content-center my-5">

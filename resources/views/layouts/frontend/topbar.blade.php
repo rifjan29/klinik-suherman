@@ -17,21 +17,21 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto " href="{{ route('beranda') }}">Beranda</a></li>
-          <li><a class="nav-link scrollto" href="#about">Tentang Kami</a></li>
-          <li><a class="nav-link scrollto" href="#why-us">Profil</a></li>
-          <li class="dropdown"><a href="#services"><span>Pelayanan</span> <i class="bi bi-chevron-down"></i></a>
+          <li><a class="nav-link scrollto" href="{{ route('beranda') }}#about">Tentang Kami</a></li>
+          <li><a class="nav-link scrollto" href="{{ route('beranda') }}#why-us">Profil</a></li>
+          <li class="dropdown"><a href="{{ route('beranda') }}#services"><span>Pelayanan</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="{{ route('rawat-jalan') }}">Rawat Jalan</a></li>
               <li><a href="{{ route('rawat-inap') }}">Rawat Inap</a></li>
               <li><a href="{{ route('penunjang') }}">Penunjang</a></li>
               <li><a href="{{ route('ugd') }}">UGD</a></li>
-              <li><a href="{{ route('e-ambulance') }}">E-Ambulance</a></li>
+              <li><a href="{{ route('e-ambulance') }}">E-Ambulans</a></li>
               <li><a href="{{ route('e-konsultasi.index') }}">E-Konsultasi</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="#portfolio">Dokter</a></li>
-          <li><a class="nav-link scrollto" href="#team">Kritik dan Saran</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Kontak</a></li>
+          <li><a class="nav-link scrollto" href="{{ route('beranda') }}#portfolio">Dokter</a></li>
+          <li><a class="nav-link scrollto" href="{{ route('beranda') }}#team">Kritik dan Saran</a></li>
+          <li><a class="nav-link scrollto" href="{{ route('beranda') }}#contact">Kontak</a></li>
           @if (Session::get('id'))
           <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Akun<span class="caret"></span></a>

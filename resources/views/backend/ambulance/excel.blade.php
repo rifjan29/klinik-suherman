@@ -49,7 +49,7 @@
     <section id="pembayaran" class="pembayaran">
         <div class="container-fluid mt-5" data-aos="fade-up">
             <div class="mb-3 text-center">
-                <h5 class="fw-bold">Laporan Transaksi E-Ambulance</h5>
+                <h5 class="fw-bold">Laporan Transaksi E-Ambulans</h5>
                 <p>Dari Tanggal : {{ \Carbon\Carbon::parse(Session::get('dari'))->translatedFormat('d F Y ') }}, Sampai Tanggal : {{ \Carbon\Carbon::parse(Session::get('sampai'))->translatedFormat('d F Y ') }}</p>
                 <hr>
             </div>
@@ -104,7 +104,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     @if (isset($_GET['xls']))
     @php
-            $name = 'Laporan Transaksi E-Ambulance ' . date('d-m-Y', strtotime($_GET['dari'])).' s/d '.date('d-m-Y', strtotime($_GET['sampai'])).'.xls';
+            $name = 'Laporan Transaksi E-Ambulans ' . date('d-m-Y', strtotime($_GET['dari'])).' s/d '.date('d-m-Y', strtotime($_GET['sampai'])).'.xls';
             header("Content-Type: application/xls");
             header("Content-Disposition: attachment; filename=$name");
         @endphp

@@ -52,7 +52,7 @@
                 <button onclick="history.back()" class="btn btn-primary no-print">Kembali</button>
             </div>
             <div class="mb-3 text-center">
-                <h5 class="fw-bold">Laporan Transaksi E-Ambulance</h5>
+                <h5 class="fw-bold">Laporan Transaksi E-Ambulans</h5>
                 <p>Dari Tanggal : {{ \Carbon\Carbon::parse(Session::get('dari'))->translatedFormat('d F Y ') }}, Sampai Tanggal : {{ \Carbon\Carbon::parse(Session::get('sampai'))->translatedFormat('d F Y ') }}</p>
                 <hr>
             </div>
