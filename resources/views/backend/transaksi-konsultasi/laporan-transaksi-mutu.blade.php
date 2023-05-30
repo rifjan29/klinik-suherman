@@ -32,10 +32,10 @@
         })
     </script>
     <script>
-        var obatLabels = {!! json_encode($data_grafik->pluck('nama_obat')) !!};
-        var jumlahData = {!! json_encode($data_grafik->pluck('total')) !!};
+            var obatLabels = {!! json_encode($data_grafik->pluck('nama_dokter')) !!};
+            var jumlahData = {!! json_encode($data_grafik->pluck('total')) !!};
 
-         (function ($) {
+            (function ($) {
                 "use strict";
 
                 /*Sale statistics Chart*/
@@ -116,7 +116,7 @@
         @include('components.notification')
         <div class="card mb-4">
             <div class="card-header text-center">
-                <h4>Grafik 10 Besar Penjualan Obat</h4>
+                <h4>Grafik Jumlah Kunjungan Pasien Konsultasi</h4>
             </div>
             <div class="card-body">
                 <canvas id="myChart" height="70px"></canvas>
@@ -124,17 +124,17 @@
         </div>
         <div class="card mb-4">
             <header class="card-header">
-                <form action="{{ route('e-apotek.laporan.mutu') }}" method="GET">
+                <form action="{{ route('konsultasi.laporan.mutu') }}" method="GET">
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="">Sampai Tanggal </label>
+                            <label for="">Dari Tanggal </label>
                             <input type="text" data-provide="dari" name="dari" value="{{ request('dari') }}" class="form-control dari @error('dari') is-invalid @enderror" id="exampleInputUsername1" placeholder="Masukkan tanggal dari">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="">Dari Tanggal</label>
+                            <label for="">Sampai Tanggal</label>
                             <input type="text"  name="sampai" value="{{ request('sampai') }}" class="form-control sampai @error('bulan') is-invalid @enderror" id="exampleInputUsername1" placeholder="Masukkan tanggal sampai">
 
                         </div>
@@ -150,15 +150,15 @@
                             </div>
                             <div class="mx-2">
                                 @if ($cetak != null)
-                                    <a href="{{ route('e-apotek.pdf.mutu') }}" type="button" class="btn btn-danger btn-icon-text">
+                                    <a href="{{ route('konsultasi.pdf.mutu') }}" type="button" class="btn btn-danger btn-icon-text">
                                         <i class="ti-printer btn-icon-prepend"></i>
                                         Cetak PDF
                                     </a>
-                                    <a href="{{ route('e-apotek.excel.mutu')."?dari=$_GET[dari]&sampai=$_GET[sampai]&xls=true" }}" type="button" class="btn btn-success btn-icon-text">
+                                    <a href="{{ route('konsultasi.excel.mutu')."?dari=$_GET[dari]&sampai=$_GET[sampai]&xls=true" }}" type="button" class="btn btn-success btn-icon-text">
                                         <i class="ti-printer btn-icon-prepend"></i>
                                         Cetak Excel
                                     </a>
-                                    <a href="{{ route('e-apotek.laporan.mutu') }}" class="btn btn-outline-danger btn-icon-text">
+                                    <a href="{{ route('konsultasi.laporan.mutu') }}" class="btn btn-outline-danger btn-icon-text">
                                         <i class="ti-shift-left btn-icon-prepend"></i>
                                         Reset
                                     </a>
@@ -180,18 +180,24 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Obat</th>
-                                <th>Total Penjualan</th>
+                                <th>Nama Dokter</th>
+                                <th scope="col">Jumlah Kunjungan Konsultasi</th>
+                                <th scope="col">Poli</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $item)
+                            @forelse ($data as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->nama_obat }}</td>
-                                    <td>{{ $item->total }}</td>
+                                    <td><b>{{ ucwords($item->nama_dokter) }}</b></td>
+                                    <td><b>{{ $item->total }}</b></td>
+                                    <td><b>{{ ucwords($item->nama_poli) }}</b></td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td>Tidak ada data</td>
+                                </tr>
+                            @endforelse
 
                         </tbody>
                     </table>

@@ -112,7 +112,7 @@
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">
-                                        <h5 class="fw-bold">E-Ambulance</h5>
+                                        <h5 class="fw-bold">E-Ambulans</h5>
                                     </button>
                                 </li>
                             </ul>
@@ -243,7 +243,7 @@
                                                                     @elseif($item->status_perjalanan == '3')
                                                                         Pesanan Dibayarkan
                                                                     @elseif($item->status_perjalanan == '4')
-                                                                        Pembayaran E-Ambulance sudah selesai!
+                                                                        Pembayaran E-Ambulans sudah selesai!
                                                                     @else
                                                                     @endif
                                                                     </h6>

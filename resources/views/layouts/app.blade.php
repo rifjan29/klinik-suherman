@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Forecast Dashboard</title>
+        <title>KLINIK Rawat Inap DR. SUHERMAN</title>
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="description" content="" />
         <meta name="csrf-token" content="{{ csrf_token() }}">

@@ -56,8 +56,23 @@
         var suka=null;
         $('.like').on('click',function() {
             suka = $(this).data('id');
-            alert(suka);
+            if (suka == 5) {
+                var img = `{{ asset('frontend/assets/img/plus-bold.png') }}`
+                $('#foto_bukti_suka').attr("src", `${img}`);
+
+                var img = `{{ asset('frontend/assets/img/minus.png') }}`
+                $('#foto_bukti_tidak_suka').attr("src", `${img}`);
+            } else {
+                var img = `{{ asset('frontend/assets/img/minus-bold.png') }}`
+                $('#foto_bukti_tidak_suka').attr("src", `${img}`);
+
+                var img = `{{ asset('frontend/assets/img/plus.png') }}`
+                $('#foto_bukti_suka').attr("src", `${img}`);
+
+            }
+            // alert('Apakah anda yakin dengan jawaban anda ?',suka);
         })
+        // console.log(suka);
         $('#proses-konsultasi').on('click',function() {
             var ulasan = $('.ulasan').val();
             var kode_transaksi = $('#kode').val();
@@ -80,7 +95,8 @@
                     id_dokter:id_dokter,
                 },
                 success:function(data){
-                    window.location.href = data;
+                    console.log(data);
+                    // window.location.href = data;
                 }
             })
         })
@@ -285,11 +301,11 @@
                     <p class="fw-bold text-center"> Bagaimana Pengalaman Konsultasi Kamu?</p>
                     <div class="d-flex justify-content-center">
                         <div class="p-3">
-                            <img src="{{ asset('frontend/assets/img/plus.png') }}" value="5" alt="" class="img-fluid like" data-id="5" width="40" height="40">
+                            <img src="{{ asset('frontend/assets/img/plus.png') }}" id="foto_bukti_suka" value="5" alt="" class="img-fluid like" data-id="5" width="40" height="40">
                             <p> Suka</p>
                         </div>
                         <div class="p-3">
-                            <img src="{{ asset('frontend/assets/img/minus.png') }}" value="1" alt="" class="img-fluid like" data-id="1" width="40" height="40">
+                            <img src="{{ asset('frontend/assets/img/minus.png') }}" id="foto_bukti_tidak_suka" value="1" alt="" class="img-fluid like" data-id="1" width="40" height="40">
                             <p>Tidak Suka</p>
                         </div>
                     </div>

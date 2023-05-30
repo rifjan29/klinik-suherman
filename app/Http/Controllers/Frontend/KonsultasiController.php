@@ -205,6 +205,7 @@ class KonsultasiController extends Controller
     }
     public function hasilKonsultasi(Request $request)
     {
+        return $request;
         try {
             $penilaian = new Penilaian;
             $penilaian->id_dokter = $request->get('id_dokter');

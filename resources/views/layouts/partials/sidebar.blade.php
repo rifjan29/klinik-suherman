@@ -32,7 +32,7 @@
                         <span class="text">Dashboard</span>
                     </a>
                 </li>
-                <li class="menu-item has-submenu {{ Request::segment(2) == 'ambulance' ? 'active' : '' }}">
+                <li class="menu-item has-submenu {{ Request::segment(2) == 'ambulans' ? 'active' : '' }}">
                     <a class="menu-link" href="page-form-product-1.html">
                         <i class="icon material-icons md-airport_shuttle"></i>
                         <span class="text">Data E-Ambulans</span>
@@ -44,7 +44,9 @@
                         @else
                             <a href="{{ route('list-ambulance') }}">List Pemesanan </a>
                             <a href="{{ route('riwayat-ambulance') }}">Riwayat Pemesanan </a>
-                            <a href="{{ route('laporan-ambulance') }}">Laporan E-Ambulance </a>
+                            <a href="{{ route('laporan-ambulance') }}">Laporan E-Ambulans </a>
+                            <a href="{{ route('laporan-ambulance.laporan.mutu') }}" class="{{ Request::segment(3) == 'laporan-mutu-ambulans' ? 'active' : '' }}">Laporan Mutu E-Ambulans</a>
+
                         @endif
                     </div>
                 </li>
@@ -57,6 +59,8 @@
                         <a href="{{ route('konsultasi.list') }}" class="{{ Request::segment(3) == 'list-pembayaran' ? 'active' : '' }}">List Pembayaran </a>
                         <a href="{{ route('konsultasi.riwayat') }}" class="{{ Request::segment(3) == 'riwayat-pembayaran' ? 'active' : '' }}">Riwayat Pembayaran </a>
                         <a href="{{ route('konsultasi.laporan') }}" class="{{ Request::segment(3) == 'laporan-transaksi' ? 'active' : '' }}">Laporan E-Konsultasi </a>
+                        <a href="{{ route('konsultasi.laporan.mutu') }}" class="{{ Request::segment(3) == 'laporan-mutu-konsultasi' ? 'active' : '' }}">Laporan Mutu E-Konsultasi</a>
+
                     </div>
                 </li>
                 <li class="menu-item has-submenu {{ Request::segment(2) == 'e-apotek' ? 'active' : '' }}">
@@ -127,7 +131,8 @@
                         @else
                             <a href="{{ route('list-ambulance') }}">List Pemesanan </a>
                             <a href="{{ route('riwayat-ambulance') }}">Riwayat Pemesanan </a>
-                            <a href="{{ route('laporan-ambulance') }}">Laporan E-Ambulance </a>
+                            <a href="{{ route('laporan-ambulance') }}">Laporan E-Ambulans </a>
+                            <a href="{{ route('laporan-ambulance.laporan.mutu') }}" class="{{ Request::segment(3) == 'laporan-mutu-ambulans' ? 'active' : '' }}">Laporan Mutu E-Ambulans</a>
                         @endif
                     </div>
                 </li>
@@ -154,7 +159,7 @@
                         <a href="{{ route('bank.index') }}"> Bank</a>
                     </div>
                 </li>
-                <li class="menu-item has-submenu {{ Request::segment(2) == 'ambulance' ? 'active' : '' }}">
+                <li class="menu-item has-submenu {{ Request::segment(2) == 'ambulans' ? 'active' : '' }}">
                     <a class="menu-link" href="page-form-product-1.html">
                         <i class="icon material-icons md-airport_shuttle"></i>
                         <span class="text">Data E-Ambulans</span>
@@ -166,7 +171,9 @@
                         @else
                             <a href="{{ route('list-ambulance') }}">List Pemesanan </a>
                             <a href="{{ route('riwayat-ambulance') }}">Riwayat Pemesanan </a>
-                            <a href="{{ route('laporan-ambulance') }}">Laporan E-Ambulance </a>
+                            <a href="{{ route('laporan-ambulance') }}">Laporan E-Ambulans </a>
+                            <a href="{{ route('laporan-ambulance.laporan.mutu') }}" class="{{ Request::segment(3) == 'laporan-mutu-ambulans' ? 'active' : '' }}">Laporan Mutu E-Ambulans</a>
+
                         @endif
                     </div>
                 </li>
@@ -179,6 +186,8 @@
                         <a href="{{ route('konsultasi.list') }}" class="{{ Request::segment(3) == 'list-pembayaran' ? 'active' : '' }}">List Pembayaran </a>
                         <a href="{{ route('konsultasi.riwayat') }}" class="{{ Request::segment(3) == 'riwayat-pembayaran' ? 'active' : '' }}">Riwayat Pembayaran </a>
                         <a href="{{ route('konsultasi.laporan') }}" class="{{ Request::segment(3) == 'laporan-transaksi' ? 'active' : '' }}">Laporan E-Konsultasi </a>
+                        <a href="{{ route('konsultasi.laporan.mutu') }}" class="{{ Request::segment(3) == 'laporan-mutu-konsultasi' ? 'active' : '' }}">Laporan Mutu E-Konsultasi</a>
+
                     </div>
                 </li>
                 <li class="menu-item has-submenu {{ Request::segment(2) == 'e-apotek' ? 'active' : '' }}">
@@ -190,6 +199,8 @@
                         <a href="{{ route('e-apotek.list') }}">List Transaksi Resep</a>
                         <a href="{{ route('e-apotek.riwayat') }}" class="{{ Request::segment(3) == 'riwayat-obat' ? 'active' : '' }}">Riwayat Transaksi </a>
                         <a href="{{ route('e-apotek.laporan') }}" class="{{ Request::segment(3) == 'laporan-transaksi' ? 'active' : '' }}">Laporan E-Apotek </a>
+                        <a href="{{ route('e-apotek.laporan.mutu') }}" class="{{ Request::segment(3) == 'laporan-mutu' ? 'active' : '' }}">Laporan Mutu </a>
+
                     </div>
                 </li>
                 <li class="menu-item {{ Request::segment(2) == 'data-pasien' ? 'active' : '' }}">

@@ -226,4 +226,145 @@ class TransaksiKonsultasiController extends Controller
         return view('backend.transaksi-konsultasi.excel',compact('data'));
     }
 
+
+    public function laporanMutu(Request $request)
+    {
+        $data_grafik = PemesananKonsultasi::select('pemesanan_konsultasi.*',
+                                        'detail_pemesanan_konsultasi.id as detail_konsultasi',
+                                        'detail_pemesanan_konsultasi.id_pemesanan_konsultasi',
+                                        'detail_pemesanan_konsultasi.status_pembayaran',
+                                        'detail_pemesanan_konsultasi.id_user',
+                                        'detail_pemesanan_konsultasi.keterangan',
+                                        'dokter.id as iddokter',
+                                        'dokter.nama_dokter',
+                                        'dokter.id_poli',
+                                        'poli.nama_poli',
+                                        'pasien.id as id_pasien',
+                                        'pasien.nama as nama_pasien',
+                                        'pasien.phone',
+                                        'bank.id as idbank',
+                                        'bank.nama_bank',
+                                        'bank.no_rekening',DB::raw('COUNT(pemesanan_konsultasi.id) as total'))
+                                    ->join('detail_pemesanan_konsultasi',
+                                        'detail_pemesanan_konsultasi.id_pemesanan_konsultasi',
+                                        'pemesanan_konsultasi.id')
+                                    ->join('pasien','pasien.id','pemesanan_konsultasi.id_pasien_konsultasi')
+                                    ->join('dokter','dokter.id','pemesanan_konsultasi.id_dokter')
+                                    ->join('poli','poli.id','dokter.id_poli')
+                                    ->join('bank','bank.id','pemesanan_konsultasi.id_bank')
+                                    ->groupBy('pemesanan_konsultasi.id_dokter')
+                                    ->where('detail_pemesanan_konsultasi.status_pembayaran','lunas')
+                                    ->get();
+        Session::forget('dari');
+        Session::forget('sampai');
+        $query = PemesananKonsultasi::select('pemesanan_konsultasi.*',
+                            'detail_pemesanan_konsultasi.id as detail_konsultasi',
+                            'detail_pemesanan_konsultasi.id_pemesanan_konsultasi',
+                            'detail_pemesanan_konsultasi.status_pembayaran',
+                            'detail_pemesanan_konsultasi.id_user',
+                            'detail_pemesanan_konsultasi.keterangan',
+                            'dokter.id as iddokter',
+                            'dokter.nama_dokter',
+                            'dokter.id_poli',
+                            'poli.nama_poli',
+                            'pasien.id as id_pasien',
+                            'pasien.nama as nama_pasien',
+                            'pasien.phone',
+                            'bank.id as idbank',
+                            'bank.nama_bank',
+                            'bank.no_rekening',DB::raw('COUNT(pemesanan_konsultasi.id) as total'))
+                        ->join('detail_pemesanan_konsultasi',
+                            'detail_pemesanan_konsultasi.id_pemesanan_konsultasi',
+                            'pemesanan_konsultasi.id')
+                        ->join('pasien','pasien.id','pemesanan_konsultasi.id_pasien_konsultasi')
+                        ->join('dokter','dokter.id','pemesanan_konsultasi.id_dokter')
+                        ->join('poli','poli.id','dokter.id_poli')
+                        ->join('bank','bank.id','pemesanan_konsultasi.id_bank')
+                        ->groupBy('pemesanan_konsultasi.id_dokter')
+                        ->where('detail_pemesanan_konsultasi.status_pembayaran','lunas');
+        $cetak = null;
+        if ($request->has('dari') || $request->has('sampai')) {
+            Session::put('dari',$request->get('dari'));
+            Session::put('sampai',$request->get('sampai'));
+            $cetak = "ada";
+            $data = $query->whereBetween('pemesanan_konsultasi.created_at',[$request->get('dari'),$request->get('sampai')])->get();
+        }else{
+            $cetak = null;
+            $data = $query->get();
+        }
+        return view('backend.transaksi-konsultasi.laporan-transaksi-mutu',compact('data','cetak','data_grafik'));
+    }
+
+    public function pdfMutu(Request $request)
+    {
+        $query = PemesananKonsultasi::select('pemesanan_konsultasi.*',
+                                    'detail_pemesanan_konsultasi.id as detail_konsultasi',
+                                    'detail_pemesanan_konsultasi.id_pemesanan_konsultasi',
+                                    'detail_pemesanan_konsultasi.status_pembayaran',
+                                    'detail_pemesanan_konsultasi.id_user',
+                                    'detail_pemesanan_konsultasi.keterangan',
+                                    'dokter.id as iddokter',
+                                    'dokter.nama_dokter',
+                                    'dokter.id_poli',
+                                    'poli.nama_poli',
+                                    'pasien.id as id_pasien',
+                                    'pasien.nama as nama_pasien',
+                                    'pasien.phone',
+                                    'bank.id as idbank',
+                                    'bank.nama_bank',
+                                    'bank.no_rekening',DB::raw('COUNT(pemesanan_konsultasi.id) as total'))
+                                ->join('detail_pemesanan_konsultasi',
+                                    'detail_pemesanan_konsultasi.id_pemesanan_konsultasi',
+                                    'pemesanan_konsultasi.id')
+                                ->join('pasien','pasien.id','pemesanan_konsultasi.id_pasien_konsultasi')
+                                ->join('dokter','dokter.id','pemesanan_konsultasi.id_dokter')
+                                ->join('poli','poli.id','dokter.id_poli')
+                                ->join('bank','bank.id','pemesanan_konsultasi.id_bank')
+                                ->groupBy('pemesanan_konsultasi.id_dokter')
+                                ->where('detail_pemesanan_konsultasi.status_pembayaran','lunas');
+
+        if (Session::has('dari') || Session::has('sampai')) {
+        $data = $query->whereBetween('pemesanan_konsultasi.created_at',[$request->session()->get('dari'),$request->session()->get('sampai')])->get();
+        }else{
+        $data = $query->get();
+        }
+        return view('backend.transaksi-konsultasi.pdf-mutu',compact('data'));
+    }
+
+    public function excelMutu(Request $request)
+    {
+        $query = PemesananKonsultasi::select('pemesanan_konsultasi.*',
+                                    'detail_pemesanan_konsultasi.id as detail_konsultasi',
+                                    'detail_pemesanan_konsultasi.id_pemesanan_konsultasi',
+                                    'detail_pemesanan_konsultasi.status_pembayaran',
+                                    'detail_pemesanan_konsultasi.id_user',
+                                    'detail_pemesanan_konsultasi.keterangan',
+                                    'dokter.id as iddokter',
+                                    'dokter.nama_dokter',
+                                    'dokter.id_poli',
+                                    'poli.nama_poli',
+                                    'pasien.id as id_pasien',
+                                    'pasien.nama as nama_pasien',
+                                    'pasien.phone',
+                                    'bank.id as idbank',
+                                    'bank.nama_bank',
+                                    'bank.no_rekening',DB::raw('COUNT(pemesanan_konsultasi.id) as total'))
+                                ->join('detail_pemesanan_konsultasi',
+                                    'detail_pemesanan_konsultasi.id_pemesanan_konsultasi',
+                                    'pemesanan_konsultasi.id')
+                                ->join('pasien','pasien.id','pemesanan_konsultasi.id_pasien_konsultasi')
+                                ->join('dokter','dokter.id','pemesanan_konsultasi.id_dokter')
+                                ->join('poli','poli.id','dokter.id_poli')
+                                ->join('bank','bank.id','pemesanan_konsultasi.id_bank')
+                                ->groupBy('pemesanan_konsultasi.id_dokter')
+                                ->where('detail_pemesanan_konsultasi.status_pembayaran','lunas');
+
+        if (Session::has('dari') || Session::has('sampai')) {
+        $data = $query->whereBetween('pemesanan_konsultasi.created_at',[$request->session()->get('dari'),$request->session()->get('sampai')])->get();
+        }else{
+        $data = $query->get();
+        }
+        return view('backend.transaksi-konsultasi.excel-mutu',compact('data'));
+
+    }
 }

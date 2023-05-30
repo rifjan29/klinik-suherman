@@ -78,6 +78,11 @@ Route::middleware(['auth'])->group(function () {
             Route::get('laporan-ambulans/excel',[AmbulanceController::class,'excel'])->name('laporan-ambulance.excel');
             Route::get('laporan-ambulans',[AmbulanceController::class,'laporan'])->name('laporan-ambulance');
 
+            // laporan e-ambulance
+            Route::get('laporan-transaksi/pdf-mutu',[AmbulanceController::class,'pdfMutu'])->name('laporan-ambulance.pdf.mutu');
+            Route::get('laporan-transaksi/excel-mutu',[AmbulanceController::class,'excelMutu'])->name('laporan-ambulance.excel.mutu');
+            Route::get('laporan-mutu-ambulans',[AmbulanceController::class,'laporanMutu'])->name('laporan-ambulance.laporan.mutu');
+
         });
         Route::prefix('e-konsultasi')->group(function () {
             // list transaksi
@@ -91,6 +96,11 @@ Route::middleware(['auth'])->group(function () {
             Route::get('laporan-transaksi/pdf',[TransaksiKonsultasiController::class,'pdf'])->name('konsultasi.pdf');
             Route::get('laporan-transaksi/excel',[TransaksiKonsultasiController::class,'excel'])->name('konsultasi.excel');
             Route::get('laporan-transaksi',[TransaksiKonsultasiController::class,'LaporanTransaksi'])->name('konsultasi.laporan');
+
+            // laporan mutu
+            Route::get('laporan-transaksi/pdf-mutu',[TransaksiKonsultasiController::class,'pdfMutu'])->name('konsultasi.pdf.mutu');
+            Route::get('laporan-transaksi/excel-mutu',[TransaksiKonsultasiController::class,'excelMutu'])->name('konsultasi.excel.mutu');
+            Route::get('laporan-mutu-konsultasi',[TransaksiKonsultasiController::class,'laporanMutu'])->name('konsultasi.laporan.mutu');
         });
 
         Route::prefix('dokter')->group(function () {

@@ -32,7 +32,6 @@
         })
     </script>
     <script>
-        var obatLabels = {!! json_encode($data_grafik->pluck('nama_obat')) !!};
         var jumlahData = {!! json_encode($data_grafik->pluck('total')) !!};
 
          (function ($) {
@@ -47,7 +46,11 @@
 
                         // The data for our dataset
                         data: {
-                        labels: obatLabels,
+                        labels: [
+                            @foreach ($data_grafik as $item)
+                                '{{ $item->status_kejadian == 0 ? 'Tidak Darurat' : 'Darurat'}}'
+                            @endforeach
+                        ],
                         datasets: [{
                             label: 'Jumlah',
                             data: jumlahData,
@@ -116,7 +119,7 @@
         @include('components.notification')
         <div class="card mb-4">
             <div class="card-header text-center">
-                <h4>Grafik 10 Besar Penjualan Obat</h4>
+                <h4>Grafik Jumlah Pemesanan Ambulans</h4>
             </div>
             <div class="card-body">
                 <canvas id="myChart" height="70px"></canvas>
@@ -124,7 +127,7 @@
         </div>
         <div class="card mb-4">
             <header class="card-header">
-                <form action="{{ route('e-apotek.laporan.mutu') }}" method="GET">
+                <form action="{{ route('laporan-ambulance.laporan.mutu') }}" method="GET">
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
@@ -150,15 +153,15 @@
                             </div>
                             <div class="mx-2">
                                 @if ($cetak != null)
-                                    <a href="{{ route('e-apotek.pdf.mutu') }}" type="button" class="btn btn-danger btn-icon-text">
+                                    <a href="{{ route('laporan-ambulance.pdf.mutu') }}" type="button" class="btn btn-danger btn-icon-text">
                                         <i class="ti-printer btn-icon-prepend"></i>
                                         Cetak PDF
                                     </a>
-                                    <a href="{{ route('e-apotek.excel.mutu')."?dari=$_GET[dari]&sampai=$_GET[sampai]&xls=true" }}" type="button" class="btn btn-success btn-icon-text">
+                                    <a href="{{ route('laporan-ambulance.excel.mutu')."?dari=$_GET[dari]&sampai=$_GET[sampai]&xls=true" }}" type="button" class="btn btn-success btn-icon-text">
                                         <i class="ti-printer btn-icon-prepend"></i>
                                         Cetak Excel
                                     </a>
-                                    <a href="{{ route('e-apotek.laporan.mutu') }}" class="btn btn-outline-danger btn-icon-text">
+                                    <a href="{{ route('laporan-ambulance.laporan.mutu') }}" class="btn btn-outline-danger btn-icon-text">
                                         <i class="ti-shift-left btn-icon-prepend"></i>
                                         Reset
                                     </a>
@@ -180,16 +183,31 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Obat</th>
-                                <th>Total Penjualan</th>
+                                <th>Nomor Pesanan</th>
+                                <th>Nama Pasien/Wali</th>
+                                <th>Tanggal Pesanan</th>
+                                <th>Tanggal Jemput</th>
+                                <th>Status Kejadian</th>
+                                <th>Status Pemesanan</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->nama_obat }}</td>
-                                    <td>{{ $item->total }}</td>
+                                    <td>{{ $item->kode_pesanan }}</td>
+                                    <td>{{ ucwords($item->nama_wali) }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y ') }} <br> <small class="text-muted" style="font-size: 11px">Jam {{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('h:i:s A') }}</small></td>
+                                    <td>{{ \Carbon\Carbon::parse($item->tanggal_jemput)->translatedFormat('d F Y ') }} <br> <small class="text-muted" style="font-size: 11px">Jam {{ \Carbon\Carbon::parse($item->tanggal_jemput)->translatedFormat('h:i:s A') }}</small></td>
+                                    <td>
+                                        @if ($item->status_kejadian == "0")
+                                            <span class="badge rounded-pill alert-warning">Tidak Darurat</span>
+                                        @elseif ($item->status_kejadian == "1")
+                                            <span class="badge rounded-pill alert-danger">Darurat</span>
+                                        @else
+                                        @endif
+                                    </td>
+                                    <td> <span class="badge rounded-pill alert-success">Selesai</span></td>
                                 </tr>
                             @endforeach
 
