@@ -115,12 +115,19 @@
                                                     {{ $message }}
                                                 </div>
                                             @enderror
-                                        </div>
-
+                                        </div>  
                                         <div class="col-md-6 p-2">
-                                            <label for="born" class="col-form-label fw-bold">Tempat/Tanggal Lahir</label>
-                                            <input type="text" name="born" class="form-control shadow rounded-4 mt-1  @error('born') is-invalid @enderror" id="born" placeholder="Masukkan Tempat, Tanggal Lahir" style="height: 50px;" required value="{{ old('born') }}">
-                                            @error('born')
+                                            <label for="birthplace" class="col-form-label fw-bold">Tempat dan Tanggal Lahir</label>
+                                            <div class="d-flex">
+                                                <input type="text" name="birthplace" class="form-control shadow rounded-4 me-2 @error('birthplace') is-invalid @enderror" id="birthplace" placeholder="Masukkan Tempat Lahir" style="height: 50px;" required value="{{ old('birthplace') }}">
+                                                <input type="date" name="birthdate" class="form-control shadow rounded-4 @error('birthdate') is-invalid @enderror" id="birthdate" placeholder="Tanggal Lahir" style="height: 50px;" required value="{{ old('birthdate') }}">
+                                            </div>
+                                            @error('birthplace')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                            @error('birthdate')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
