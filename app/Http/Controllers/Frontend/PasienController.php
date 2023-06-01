@@ -75,7 +75,8 @@ class   PasienController extends Controller
             'password' => 'required|min:5',
             'address' => 'required|string',
             'phone' => 'required|numeric|min:10|starts_with:08|digits_between:10,12',
-            'born' => 'required|string',
+            'birthplace' => 'required|string',
+            'birthdate' => 'required|date',
             'gender' => 'required|in:L,P',
             'status' => 'required|in:1,0',
             'job' => 'required|string',
@@ -99,7 +100,8 @@ class   PasienController extends Controller
         $data->password = Hash::make($validatedData['password']);
         $data->address = $validatedData['address'];
         $data->phone = $validatedData['phone'];
-        $data->born = $validatedData['born'];
+        $born = $validatedData['birthplace'] . ', ' . $validatedData['birthdate'];
+        $data->born = $born;
         $data->gender = $validatedData['gender'];
         $data->status = $validatedData['status'];
         $data->job = $validatedData['job'];
