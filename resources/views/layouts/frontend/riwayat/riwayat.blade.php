@@ -234,22 +234,22 @@
                                                             <div class="col-md-10">
                                                                 <div class="d-flex justify-content-between mx-4">
                                                                     <h5 class="fw-bold" style="color: #37517E">
-                                                                    @if ($item->status_perjalanan == '0')
+                                                                    @if ($data->status_perjalanan == '0')
                                                                         Pesanan Diterima
-                                                                    @elseif($item->status_perjalanan == '1')
+                                                                    @elseif($data->status_perjalanan == '1')
                                                                         Ambulance Menuju Lokasi
-                                                                    @elseif($item->status_perjalanan == '2')
+                                                                    @elseif($data->status_perjalanan == '2')
                                                                         Ambulance Tiba di Lokasi
-                                                                    @elseif($item->status_perjalanan == '3')
+                                                                    @elseif($data->status_perjalanan == '3')
                                                                         Pesanan Dibayarkan
-                                                                    @elseif($item->status_perjalanan == '4')
+                                                                    @elseif($data->status_perjalanan == '4')
                                                                         Pembayaran E-Ambulans sudah selesai!
                                                                     @else
                                                                     @endif
                                                                     </h6>
                                                                 </div>
                                                                 <div class="mx-4 mt-2">
-                                                                    <div class="float-end fw-bold" style="color: #37517e">Rp. {{ number_format($data->biaya_total,2, ",", ".") }}</div>
+                                                                    <div class="float-end fw-bold" style="color: #37517e">Rp. {{ number_format($data->total_biaya,2, ",", ".") }}</div>
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -7,6 +7,7 @@ use App\Models\DetailTransaksiAmbulance;
 use App\Models\Petugas;
 use App\Models\RiwayatTransaksAmbulance;
 use App\Models\User;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -113,7 +114,7 @@ class AmbulanceController extends Controller
             'biaya_lain' => $this->formatNumber($request->get('biaya_lain')),
             'total_biaya' => $this->formatNumber($request->get('total_biaya')),
             'status_perjalanan' => $request->get('status_perjalanan'),
-            'tanggal_jemput' => $request->get('jam_kerja')
+            'tanggal_jemput' => Carbon::parse($request->get('jam_kerja'))->format('Y-m-d H:i:s')
         ]);
 
         return redirect()->route('list-ambulance')->withStatus('Berhasil mengupdate status pesanan');

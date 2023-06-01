@@ -218,7 +218,7 @@
                                                                                 </h5>
                                                                             </div>
                                                                             <div class="p-1">
-                                                                                <span>Apr 07, 2023 at 10.45 am</span>
+                                                                                <span> {{ \Carbon\Carbon::parse($item->tanggal_jemput)->translatedFormat('d F Y ') }} Jam {{ \Carbon\Carbon::parse($item->tanggal_jemput)->translatedFormat('h:i:s A') }}</span>
                                                                             </div>
                                                                         </div>
                                                                     </div>

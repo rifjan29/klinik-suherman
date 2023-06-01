@@ -149,9 +149,9 @@
 
                                     <td>
                                         @if ($item->status_kejadian == "0")
-                                            <span class="badge rounded-pill alert-warning">Tidak Darurat</span>
-                                        @elseif ($item->status_kejadian == "1")
                                             <span class="badge rounded-pill alert-danger">Darurat</span>
+                                        @elseif ($item->status_kejadian == "1")
+                                            <span class="badge rounded-pill alert-warning">Tidak Darurat</span>
                                         @else
                                             <a href="{{ $item->pasien_ambulance->id }}" data-bs-toggle="modal" data-bs-target="#cekstatus{{ $item->pasien_ambulance->id }}" class="badge rounded-pill alert-info cekStatusData">Cek Status Kejadian</a></td>
                                             <div class="modal fade" id="cekstatus{{ $item->pasien_ambulance->id }}" tabindex="-1" aria-labelledby="cekstatus{{ $item->pasien_ambulance->id }}Label" aria-hidden="true">
@@ -163,11 +163,13 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="row">
-                                                            <div class="col-md-2">Lokasi :</div>
+                                                            <div class="col-md-2">Foto Kejadian :</div>
                                                             <div class="col-md-10">
+                                                                <div class="input-upload">
+                                                                    <img src="{{ $item->pasien_ambulance->foto_kejadian != null ? asset('img/foto-kejadian/'.$item->pasien_ambulance->foto_kejadian) : asset('backend/assets/imgs/theme/upload.svg') }}" alt="" id="photosPreview"/>
+                                                                </div>
                                                                 <input type="number" hidden name="" id="long" value="{{ $item->lokasi->long }}">
                                                                 <input type="number" hidden name="" id="lang" value="{{ $item->lokasi->lang }}">
-                                                                <div id="map"></div>
                                                             </div>
                                                             <div class="col-md-2">
                                                                 Alamat :
@@ -191,9 +193,7 @@
                                                             </div>
                                                             <div class="col-md-10">
                                                                 <textarea name="" id="" cols="5" rows="5" class="form-control" readonly>{{ $item->pasien_ambulance->keadaan }}</textarea>
-                                                                <div class="input-upload">
-                                                                    <img src="{{ $item->pasien_ambulance->foto_kejadian != null ? asset('img/admin/'.$item->pasien_ambulance->foto_kejadian) : asset('backend/assets/imgs/theme/upload.svg') }}" alt="" id="photosPreview"/>
-                                                                </div>
+
                                                             </div>
                                                             <hr>
                                                             <form action="{{ route('update-status.riwayat-ambulance') }}" method="POST" >

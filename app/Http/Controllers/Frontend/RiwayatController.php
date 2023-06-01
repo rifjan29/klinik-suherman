@@ -8,13 +8,15 @@ use App\Models\ModelPasien;
 use App\Models\RiwayatTransaksAmbulance;
 use App\Models\TransaksiPemesananObat;
 use App\Models\PemesananKonsultasi;
+use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Facades\Session as FacadesSession;
 
 class RiwayatController extends Controller
 {
     public function riwayat()
     {
         $data = ModelPasien::where('id', session('id'))->first();
-        $ambulance = RiwayatTransaksAmbulance::with('pasien_ambulance')->where('transaksi_ambulance.id_pasien',session('id'))->get();
+        $ambulance = RiwayatTransaksAmbulance::with('pasien_ambulance')->where('transaksi_ambulance.id_pasien_login',FacadesSession::get('id'))->orderBy('transaksi_ambulance.id', 'DESC')->get();
         $obat = TransaksiPemesananObat::select('transaksi_pemesanan_obat.*','pasien.nama')
                                         ->join('pasien','pasien.id','transaksi_pemesanan_obat.id_pasien')
                                         ->where('transaksi_pemesanan_obat.status_pengambilan','diterima', session('id'))

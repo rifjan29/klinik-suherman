@@ -99,7 +99,7 @@
                     timePicker: true,
                     startDate:  moment().startOf('hour').add(32, 'hour')    ,
                     locale: {
-                        format: 'YY-MM-DD hh:mm:ss'
+                        format: 'DD-MM-Y hh:mm:ss'
                     }
                 });
             });

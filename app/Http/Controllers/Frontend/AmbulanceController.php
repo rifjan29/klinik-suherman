@@ -8,6 +8,7 @@ use App\Models\LokasiKejadian;
 use App\Models\PasienAmbulance;
 use App\Models\Petugas;
 use App\Models\RiwayatTransaksAmbulance;
+use Carbon\Carbon;
 use DateTime;
 use Exception;
 use Illuminate\Database\QueryException;
@@ -52,7 +53,7 @@ class AmbulanceController extends Controller
         try {
             $pasien = new PasienAmbulance;
             $pasien->nama_wali = $request->get('nama_pasien');
-            $pasien->tanggal = $request->get('jam_kerja');
+            $pasien->tanggal = Carbon::parse($request->get('jam_kerja'))->format('Y-m-d H:i:s');
             if ($request->hasFile('foto')) {
                 $photos = $request->file('foto');
                 $filename = date('His') . '.' . $photos->getClientOriginalExtension();

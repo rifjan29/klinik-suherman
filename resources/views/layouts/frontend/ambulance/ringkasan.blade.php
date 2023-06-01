@@ -139,7 +139,10 @@
                     <div class="col-md-8">
                         <input type="text" name="" id="id" value="{{ $data->id }}" hidden>
                         <input type="text" name="" id="status_kejadian" value="{{ $data->status_kendaraan }}" hidden>
-                        <h6>{{ \Carbon\Carbon::parse($data->tanggal)->translatedFormat('l,d F Y') }}</h6>
+                        <h6>
+
+                            {{ \Carbon\Carbon::parse($data->tanggal)->translatedFormat('l , d F Y H:i:s') }}
+                        </h6>
                         <p class="mb-2 fw-bold">Nama : {{ ucwords($data->nama_wali) }}</p>
                         <p class="fw-bold">No. HP : {{ $data->no_hp }}</p>
                     </div>
