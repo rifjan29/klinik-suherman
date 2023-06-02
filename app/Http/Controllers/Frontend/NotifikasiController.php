@@ -34,7 +34,7 @@ class NotifikasiController extends Controller
                                 ->join('pasien','pasien.id','pemesanan_konsultasi.id_pasien_konsultasi')
                                 ->join('dokter','dokter.id','pemesanan_konsultasi.id_dokter')
                                 ->join('bank','bank.id','pemesanan_konsultasi.id_bank')
-                                ->where('pemesanan_konsultasi.id_pasien_konsultasi',Session::get('id'))->get();
+                                ->where('pemesanan_konsultasi.id_pasien_konsultasi',Session::get('id'))->orderBy('pemesanan_konsultasi.id','DESC')->take(1)->get();
         $apotek = PemesananKonsultasi::select('pemesanan_konsultasi.*',
                                 'detail_pemesanan_konsultasi.id as detail_konsultasi',
                                 'detail_pemesanan_konsultasi.id_pemesanan_konsultasi',

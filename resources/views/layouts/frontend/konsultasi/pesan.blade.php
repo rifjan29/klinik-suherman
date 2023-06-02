@@ -102,35 +102,77 @@
         $('#keluar').on('click',function() {
             $('#exampleModal').modal('show');
         })
-        hitungMundur();
 
-        function hitungMundur() {
-            var countdownElem = document.getElementById("countdown");
+        // Fungsi untuk memulai penghitungan mundur 30 menit
+        function startCountdown() {
+            const countdownElement = document.getElementById('countdown');
+            const countdownInterval = setInterval(updateCountdown, 1000);
+            const duration = 30 * 60 * 1000; // Durasi 30 menit dalam milidetik
+            const endTime = new Date().getTime() + duration;
 
-            var waktuSisa = 30 * 60; // Konversi menit ke detik
-            // var waktuSisa = 3; // Konversi menit ke detik
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeRemaining = endTime - now;
 
-            var timer = setInterval(function() {
-                var menit = Math.floor(waktuSisa / 60);
-                var detik = waktuSisa % 60;
+            // Check if the countdown has finished
+            if (timeRemaining <= 0) {
+            clearInterval(countdownInterval);
+            countdownElement.textContent = 'Countdown Selesai';
+            localStorage.removeItem('countdownEndTime'); // Menghapus waktu akhir dari localStorage saat countdown selesai
+            } else {
+            // Calculate remaining minutes and seconds
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-                menit = menit < 10 ? "0" + menit : menit;
-                detik = detik < 10 ? "0" + detik : detik;
+            countdownElement.textContent = minutes + ':' + seconds;
 
-                countdownElem.textContent = menit + ":" + detik;
-
-                if (waktuSisa <= 0) {
-                clearInterval(timer);
-                    // countdownElem.textContent = "Hitung mundur selesai!";
-                    $('#exampleModal').modal('show');
-
-                } else {
-                    waktuSisa--;
-                }
-            }, 1000);
-
+            // Menyimpan waktu akhir ke localStorage saat countdown berjalan
+            localStorage.setItem('countdownEndTime', endTime.toString());
+            }
+        }
         }
 
+        // Fungsi untuk memeriksa waktu sisa yang tersimpan di localStorage dan melanjutkan penghitungan mundur
+        function resumeCountdown() {
+        const endTime = localStorage.getItem('countdownEndTime');
+
+        if (endTime) {
+            const currentTime = new Date().getTime();
+            var timeRemaining = endTime - currentTime;
+
+            if (timeRemaining > 0) {
+            const countdownElement = document.getElementById('countdown');
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            countdownElement.textContent = minutes + ':' + seconds;
+
+            // Memulai penghitungan mundur dengan waktu sisa yang tersimpan
+            const countdownInterval = setInterval(function() {
+                timeRemaining -= 1000;
+
+                if (timeRemaining <= 0) {
+                clearInterval(countdownInterval);
+                $('#exampleModal').modal('show');
+                countdownElement.textContent = 'Waktu Berakhir.';
+                localStorage.removeItem('countdownEndTime'); // Menghapus waktu akhir dari localStorage saat countdown selesai
+                } else {
+                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+                countdownElement.textContent = minutes + ':' + seconds;
+                }
+            }, 1000);
+            } else {
+            localStorage.removeItem('countdownEndTime');
+            startCountdown();
+            }
+        } else {
+            startCountdown();
+        }
+        }
+
+        // Memeriksa apakah ada waktu akhir countdown yang tersimpan di localStorage saat halaman dimuat
+        window.addEventListener('load', resumeCountdown);
     </script>
     <script>
         $(document).ready(function() {

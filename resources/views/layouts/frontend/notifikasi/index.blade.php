@@ -118,7 +118,7 @@
                                                                                         $riwayat = \App\Models\DetailPemesananKonsultasi::where('id_pemesanan_konsultasi',$item->id)->first();
                                                                                     @endphp
                                                                                     @if ($riwayat->status_chat == 'pending')
-                                                                                        <h5 class="fw-bold">Sedang Melakukan Chat</h5>
+                                                                                        <h5 class="fw-bold"><a href="{{ route('pesan.beranda',$item->id)}}">Sedang Melakukan Chat</a></h5>
                                                                                     @else
                                                                                         <h5 class="fw-bold">Chat telah berakhir</h5>
                                                                                     @endif
