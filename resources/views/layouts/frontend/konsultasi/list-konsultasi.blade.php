@@ -43,8 +43,7 @@
                                     id:id
                                 },
                                 success:function(data){
-                                    console.log(data);
-                                    // window.location.href = data;
+                                    window.location.href = data;
                                 }
                             })
                         })

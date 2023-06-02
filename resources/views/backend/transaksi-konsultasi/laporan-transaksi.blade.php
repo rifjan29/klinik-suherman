@@ -127,50 +127,50 @@
         <div class="card mb-4">
             <header class="card-header">
                 <form action="{{ route('konsultasi.laporan') }}" method="GET">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="">Dari Tanggal </label>
-                            <input type="text" data-provide="dari" name="dari" value="{{ request('dari') }}" class="form-control dari @error('dari') is-invalid @enderror" id="exampleInputUsername1" placeholder="Masukkan tanggal dari">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="">Sampai Tanggal</label>
-                            <input type="text"  name="sampai" value="{{ request('sampai') }}" class="form-control sampai @error('bulan') is-invalid @enderror" id="exampleInputUsername1" placeholder="Masukkan tanggal sampai">
-
-                        </div>
-                    </div>
-                    <div class="col-md-6 p-0 ">
-                        <label for=""></label>
-                        <div class="d-flex flex-row">
-                            <div>
-                                <button type="submit" class="btn btn-primary btn-icon-text ">
-                                    <i class="ti-filter btn-icon-prepend"></i>
-                                    Filter
-                                </button>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="">Dari Tanggal </label>
+                                <input type="text" data-provide="dari" name="dari" value="{{ request('dari') }}" class="form-control dari @error('dari') is-invalid @enderror" id="exampleInputUsername1" placeholder="Masukkan tanggal dari">
                             </div>
-                            <div class="mx-2">
-                                @if ($cetak != null)
-                                    <a href="{{ route('konsultasi.pdf') }}" type="button" class="btn btn-danger btn-icon-text">
-                                        <i class="ti-printer btn-icon-prepend"></i>
-                                        Cetak PDF
-                                    </a>
-                                    <a href="{{ route('konsultasi.excel')."?dari=$_GET[dari]&sampai=$_GET[sampai]&xls=true" }}" type="button" class="btn btn-success btn-icon-text">
-                                        <i class="ti-printer btn-icon-prepend"></i>
-                                        Cetak Excel
-                                    </a>
-                                    <a href="{{ route('konsultasi.laporan') }}" class="btn btn-outline-danger btn-icon-text">
-                                        <i class="ti-shift-left btn-icon-prepend"></i>
-                                        Reset
-                                    </a>
-                                @endif
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="">Sampai Tanggal</label>
+                                <input type="text"  name="sampai" value="{{ request('sampai') }}" class="form-control sampai @error('bulan') is-invalid @enderror" id="exampleInputUsername1" placeholder="Masukkan tanggal sampai">
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 p-0 ">
+                            <label for=""></label>
+                            <div class="d-flex flex-row">
+                                <div>
+                                    <button type="submit" class="btn btn-primary btn-icon-text ">
+                                        <i class="ti-filter btn-icon-prepend"></i>
+                                        Filter
+                                    </button>
+                                </div>
+                                <div class="mx-2">
+                                    @if ($cetak != null)
+                                        <a href="{{ route('konsultasi.pdf') }}" type="button" class="btn btn-danger btn-icon-text">
+                                            <i class="ti-printer btn-icon-prepend"></i>
+                                            Cetak PDF
+                                        </a>
+                                        <a href="{{ route('konsultasi.excel')."?dari=$_GET[dari]&sampai=$_GET[sampai]&xls=true" }}" type="button" class="btn btn-success btn-icon-text">
+                                            <i class="ti-printer btn-icon-prepend"></i>
+                                            Cetak Excel
+                                        </a>
+                                        <a href="{{ route('konsultasi.laporan') }}" class="btn btn-outline-danger btn-icon-text">
+                                            <i class="ti-shift-left btn-icon-prepend"></i>
+                                            Reset
+                                        </a>
+                                    @endif
+                                </div>
+
                             </div>
 
                         </div>
-
                     </div>
-                </div>
                 </form>
             </header>
 

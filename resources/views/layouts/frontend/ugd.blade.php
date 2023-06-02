@@ -12,15 +12,18 @@
         <div class="row content mt-4">
             <div class="col-lg-12">
                 <p class="mb-4">
-                    Unit Gawat Darurat adalah salah satu unit dalam rumah sakit yang menyediakan penanganan awal pasien, sesuai dengan tingkat kegawatannya. Pada Klinik Rawat Inap dr Suherman, pelayanan instalasi gawat darurat melayani 24 jam dengan dokter jaga on site dan konsul dokter jaga spesialis on call. 
-                    Adapun fasilitas dan layanan yang disediakan diantaranya :
+                    Unit Gawat Darurat adalah salah satu unit dalam klinik yang menyediakan penanganan awal pasien, sesuai dengan tingkat kegawatannya. Pada Klinik Rawat Inap dr Suherman, pelayanan instalasi gawat darurat melayani 24 jam dilakukan oleh beberapa dokter umum yang melayani. Dimana unit ini, akan melayani kasus - kasus khususnya gawat darurat. Bagi pasien yang tergolong emergency (akut) akan langsung dilakukan tindakan penyelamatan jiwa pasien. Bagi pasien yang tergolong tidak akut dan gawat akan dilakukan pengobatan sesuai dengan kebutuan dan kasus masalahnya.
                 </p>
-                <ol>
-                    <li>A</li>
-                    <li>B</li>
-                    <li>C</li>
-                    <li>dst</li>
-                </ol>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-center">
+                            <img src="{{ asset('frontend/assets/img/ugd-1.png') }}" class="" width="400" height="250" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="{{ asset('frontend/assets/img/ugd-2.png') }}" class="" width="400" height="250" alt="">
+                    </div>
+                </div>
                 {{-- <div class="accordion" id="accordionPanelsStayOpenExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="panelsStayOpen-headingOne">
