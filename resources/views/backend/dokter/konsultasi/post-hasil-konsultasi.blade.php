@@ -78,7 +78,7 @@
                             <textarea name="resep_obat" id="" cols="30" rows="10" class="form-control" placeholder="Masukkan resep" ></textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="">Diagnosa</label>
+                            <label for="">Ringkasan Pemeriksaan</label>
                             <textarea name="kesimpulan" id="" cols="30" rows="10" class="form-control" placeholder="Masukkan diagnosa" ></textarea>
                         </div>
                     </div>

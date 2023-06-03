@@ -131,7 +131,7 @@ class AmbulanceController extends Controller
             return "KT".$date.$noTransaksi;
         }
         else {
-            return $noTransaksi = "KT".$date."0001";
+            return $noTransaksi = "KT".$date."00001";
         }
     }
     public function cek(Request $request)

@@ -96,6 +96,7 @@
                 },
                 success:function(data){
                     window.location.href = data;
+                    localStorage.removeItem('countdownEndTime')
                 }
             })
         })

@@ -265,6 +265,7 @@ class KonsultasiController extends Controller
                     ->join('hasil_konsultasi','hasil_konsultasi.kode_transaksi_konsultasi','pemesanan_konsultasi.kode_pemesanan')
                     ->where('detail_pemesanan_konsultasi.status_pembayaran','lunas')
                     ->where('pemesanan_konsultasi.id_pasien_konsultasi',Session::get('id'))
+                    ->orderBy('pemesanan_konsultasi.id','DESC')
                     ->get();
         // bikin tampilan list konsultasi
         return view('layouts.frontend.konsultasi.list-konsultasi',compact('data'));
