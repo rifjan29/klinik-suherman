@@ -399,7 +399,7 @@
                             <div class="form-group">
                                 <label for="longitude" class="ml-1">Longitude :</label>
                                 {{-- <p id="labelLongitude">-</p> --}}
-                                <input type="text" id="longitude" class="form-control longitude  @error('longitude') is-invalid @enderror" name="longitude" placeholder="longitude..." value="{{old('longitude',)}}" readonly>
+                                <input type="text" id="longitude" class="form-control longitude  @error('longitude') is-invalid @enderror" name="longitude" placeholder="longitude..." value="{{old('longitude',1212)}}" readonly>
 
                             </div>
                         </div>
@@ -407,7 +407,7 @@
                             <div class="form-group">
                                 <label for="latitude" class="ml-1">Latitude :</label>
                                 {{-- <p id="labelLatitude">-</p> --}}
-                                <input type="text" id="latitude" class="form-control latitude  @error('latitude') is-invalid @enderror" name="latitude" placeholder="Latitude..." value="{{old('latitude',)}}" readonly>
+                                <input type="text" id="latitude" class="form-control latitude  @error('latitude') is-invalid @enderror" name="latitude" placeholder="Latitude..." value="{{old('latitude',12121)}}" readonly>
 
                             </div>
                         </div>
