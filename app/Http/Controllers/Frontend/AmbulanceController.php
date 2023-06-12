@@ -42,8 +42,7 @@ class AmbulanceController extends Controller
             'no_hp' => 'required',
             'jam_kerja' => 'required',
             'keteranagan' => 'required',
-            'longitude' => 'required',
-            'latitude' => 'required',
+
             'provinsi' => 'required',
             'kota' => 'required',
             'kecamatan' => 'required',
