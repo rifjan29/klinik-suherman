@@ -43,6 +43,7 @@ class RiwayatController extends Controller
                                         'pemesanan_konsultasi.id')
                                     ->join('penilaian','dokter.id','penilaian.id_dokter')
                                     ->join('hasil_konsultasi','hasil_konsultasi.kode_transaksi_konsultasi','pemesanan_konsultasi.kode_pemesanan')
+                                    ->groupBy('kode_pemesanan')
                                     ->where('pemesanan_konsultasi.id_pasien_konsultasi',session('id'))->get();
         // dd($konsultasi);
         return view('layouts.frontend.riwayat.riwayat', compact('data','ambulance', 'obat', 'konsultasi'));

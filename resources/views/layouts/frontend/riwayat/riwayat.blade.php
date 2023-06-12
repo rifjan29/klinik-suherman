@@ -235,7 +235,11 @@
                                                                 <div class="d-flex justify-content-between mx-4">
                                                                     <h5 class="fw-bold" style="color: #37517E">
                                                                     @if ($data->status_perjalanan == '0')
-                                                                        Pesanan Diterima
+                                                                        @if ($data->status_kendaraan == '2')
+                                                                            Pesanan Ditolak silahkan hubungi no : (0331)326091
+                                                                        @else
+                                                                            Pesanan Diterima
+                                                                        @endif
                                                                     @elseif($data->status_perjalanan == '1')
                                                                         Ambulance Menuju Lokasi
                                                                     @elseif($data->status_perjalanan == '2')

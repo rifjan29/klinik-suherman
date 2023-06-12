@@ -101,6 +101,7 @@
             })
         })
         $('#keluar').on('click',function() {
+            localStorage.removeItem('countdownEndTime')
             $('#exampleModal').modal('show');
         })
 

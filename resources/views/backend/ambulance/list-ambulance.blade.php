@@ -165,8 +165,8 @@
                                                         <div class="row">
                                                             <div class="col-md-2">Foto Kejadian :</div>
                                                             <div class="col-md-10">
-                                                                <div class="input-upload">
-                                                                    <img src="{{ $item->pasien_ambulance->foto_kejadian != null ? asset('img/foto-kejadian/'.$item->pasien_ambulance->foto_kejadian) : asset('backend/assets/imgs/theme/upload.svg') }}" alt="" id="photosPreview"/>
+                                                                <div class="">
+                                                                    <img class="img-fluid w-50" src="{{ $item->pasien_ambulance->foto_kejadian != null ? asset('img/foto-kejadian/'.$item->pasien_ambulance->foto_kejadian) : asset('backend/assets/imgs/theme/upload.svg') }}" alt="" id="photosPreview"/>
                                                                 </div>
                                                                 <input type="number" hidden name="" id="long" value="{{ $item->lokasi->long }}">
                                                                 <input type="number" hidden name="" id="lang" value="{{ $item->lokasi->lang }}">
@@ -279,7 +279,7 @@
                                     <td>
                                         @if ($item->total_biaya != null)
                                             @if ($item->status_perjalanan == '3')
-                                                @if ($loop->first)
+                                                @if ($loop->first || $item->status_kendaraan != '2')
                                                     <button class="btn btn-sm font-sm rounded btn-brand"  onclick="cetak_pembayaran()" data-bs-toggle="modal" data-bs-target="#exampleModalBayar-{{ $item->id }}">Bayar Tagihan Rp. {{ number_format($item->total_biaya,2, ",", ".") }}</button> <br>
                                                     <!-- Modal -->
                                                     <div class="modal fade" id="exampleModalBayar-{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalBayar-{{ $item->id }}Label" aria-hidden="true">

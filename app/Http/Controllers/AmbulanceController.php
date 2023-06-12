@@ -230,8 +230,8 @@ class AmbulanceController extends Controller
                     )
                     ->orderBy('created_at')
                     ->groupBy('status_kejadian')
-                    ->where('status_kejadian','!=','null')
-                    ->where('status_pembayaran','lunas')
+                    // ->where('status_kejadian','!=','null')
+                    // ->where('status_pembayaran','lunas')
                     ->get();
         Session::forget('dari');
         Session::forget('sampai');
@@ -246,9 +246,9 @@ class AmbulanceController extends Controller
                 'pasien_ambulance.tanggal')
                 ->join('pasien_ambulance','pasien_ambulance.id','transaksi_ambulance.id_pasien')
                 ->orderBy('transaksi_ambulance.created_at')
-                ->groupBy('transaksi_ambulance.status_kejadian')
-                ->where('transaksi_ambulance.status_kejadian','!=','null')
-                ->where('transaksi_ambulance.status_pembayaran','lunas');
+                ->groupBy('transaksi_ambulance.status_kejadian');
+                // ->where('transaksi_ambulance.status_kejadian','!=','null')
+                // ->where('transaksi_ambulance.status_pemsbayaran','lunas');
         $cetak = null;
         if ($request->has('dari') || $request->has('sampai')) {
             Session::put('dari',$request->get('dari'));
@@ -269,9 +269,9 @@ class AmbulanceController extends Controller
                         DB::raw('COUNT(transaksi_ambulance.id) as total'),
                         )
                         ->orderBy('created_at')
-                        ->groupBy('status_kejadian')
-                        ->where('status_kejadian','!=','null')
-                        ->where('status_pembayaran','lunas');
+                        ->groupBy('status_kejadian');
+                        // ->where('status_kejadian','!=','null')
+                        // ->where('status_pembayaran','lunas');
 
         if (Session::has('dari') || Session::has('sampai')) {
         $data = $query->whereBetween('transaksi_ambulance.created_at',[$request->session()->get('dari'),$request->session()->get('sampai')])->get();
@@ -288,9 +288,9 @@ class AmbulanceController extends Controller
             DB::raw('COUNT(transaksi_ambulance.id) as total'),
             )
             ->orderBy('created_at')
-            ->groupBy('status_kejadian')
-            ->where('status_kejadian','!=','null')
-            ->where('status_pembayaran','lunas');
+            ->groupBy('status_kejadian');
+            // ->where('status_kejadian','!=','null')
+            // ->where('status_pembayaran','lunas');
 
         if (Session::has('dari') || Session::has('sampai')) {
         $data = $query->whereBetween('transaksi_ambulance.created_at',[$request->session()->get('dari'),$request->session()->get('sampai')])->get();

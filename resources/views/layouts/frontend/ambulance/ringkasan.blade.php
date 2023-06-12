@@ -211,7 +211,7 @@
 
                     </div>
                     <div class="modal-body">
-                      Mohon maaf pemesanan anda tidak dapat diproses. Untuk langkah selanjutnya silahkan hubungi nomor berikut 089XXXX
+                      Mohon maaf pemesanan anda tidak dapat diproses. Untuk langkah selanjutnya silahkan hubungi nomor berikut (0331)326091
                     </div>
                     <div class="modal-footer">
                         <a

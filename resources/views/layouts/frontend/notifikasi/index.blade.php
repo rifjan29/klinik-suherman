@@ -161,7 +161,11 @@
                                                                         <div class="p-3">
                                                                             <div class="p-1">
                                                                                 @if ($item->status_update == 'konfirmasi')
-                                                                                    <h5 class="fw-bold"><a href="{{ route('hasil.list',$item->kode_pemesanan) }}">Silahkan Tebus obat</a></h5>
+                                                                                    @if ($item->status_pembayaran == 'lunas')
+                                                                                        <h5 class="fw-bold">Pesanan Lunas</h5>
+                                                                                    @else
+                                                                                        <h5 class="fw-bold"><a href="{{ route('hasil.list',$item->kode_pemesanan) }}">Silahkan Tebus obat</a></h5>
+                                                                                    @endif
                                                                                 @else
 
                                                                                     <h5 class="fw-bold">Menunggu Hasil Pemeriksaan</h5>
@@ -204,7 +208,11 @@
                                                                             <div class="p-1">
                                                                                 <h5 class="fw-bold">
                                                                                     @if ($item->status_perjalanan == '0')
-                                                                                        Pesanan Diterima
+                                                                                        @if ($item->status_kendaraan == '2')
+                                                                                            Pesanan Ditolak silahkan hubungi no : (0331)326091
+                                                                                        @else
+                                                                                            Pesanan Diterima
+                                                                                        @endif
                                                                                     @elseif($item->status_perjalanan == '1')
                                                                                         Ambulance Menuju Lokasi
                                                                                     @elseif($item->status_perjalanan == '2')
