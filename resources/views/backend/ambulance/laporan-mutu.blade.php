@@ -33,7 +33,6 @@
     </script>
     <script>
         var jumlahData = {!! json_encode($data_grafik->pluck('total')) !!};
-
          (function ($) {
                 "use strict";
 
@@ -48,7 +47,7 @@
                         data: {
                         labels: [
                             @foreach ($data_grafik as $item)
-                                '{{ $item->status_kejadian == 0 ? 'Tidak Darurat' : 'Darurat'}}'
+                                '{{ $item->status_kejadian == 0 ? 'Tidak Darurat' : 'Darurat'}}',
                             @endforeach
                         ],
                         datasets: [{

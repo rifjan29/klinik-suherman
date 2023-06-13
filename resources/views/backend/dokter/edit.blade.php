@@ -111,7 +111,7 @@
                                 </div>
                                 <div class="mb-4">
                                     <label for="product_name" class="form-label">NO SIP</label>
-                                    <input type="text" value="{{ old('no_sip') }}" placeholder="Masukkan No SIP dokter" class="form-control @error('no_sip') is-invalid @enderror" name="no_sip"/>
+                                    <input type="text" value="{{ old('no_sip',) }}" placeholder="Masukkan No SIP dokter" class="form-control @error('no_sip') is-invalid @enderror" name="no_sip"/>
                                     @error('no_sip')
                                         <div class="invalid-feedback">
                                             {{$message}}.
